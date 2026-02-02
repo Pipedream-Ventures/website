@@ -6,34 +6,20 @@
   <title>Pipedream Ventures</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --cream: #faf9f6;
-      --warm-black: #1a1817;
-      --warm-gray: #8a8785;
-      --film-border: #f0ede8;
-    }
-
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
-    html {
-      font-size: 16px;
-    }
-
     body {
       min-height: 100vh;
       min-height: 100dvh;
-      background: var(--cream);
-      font-family: 'Inter', -apple-system, sans-serif;
-      font-weight: 300;
-      color: var(--warm-black);
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
+      background: #f5f0e8;
+      overflow: hidden;
+      position: relative;
     }
 
     /* Film grain */
@@ -42,153 +28,136 @@
       position: fixed;
       inset: 0;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      opacity: 0.025;
+      opacity: 0.03;
       pointer-events: none;
       z-index: 9999;
     }
 
-    .page {
+    .container {
       min-height: 100vh;
       min-height: 100dvh;
-      display: grid;
-      grid-template-rows: 1fr auto;
-      padding: clamp(1.5rem, 5vw, 4rem);
-    }
-
-    .main {
       display: flex;
       align-items: center;
       justify-content: center;
+      position: relative;
     }
 
+    /* Floating polaroids */
+    .polaroid {
+      position: absolute;
+      background: white;
+      padding: 10px 10px 35px 10px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+      opacity: 0;
+      animation: fadeIn 0.8s ease forwards, float 6s ease-in-out infinite;
+    }
+
+    .polaroid-inner {
+      width: 120px;
+      height: 120px;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: var(--rotate) translateY(0); }
+      50% { transform: var(--rotate) translateY(-12px); }
+    }
+
+    .p1 {
+      top: 10%;
+      left: 10%;
+      --rotate: rotate(-12deg);
+      animation-delay: 0s, 0s;
+    }
+    .p1 .polaroid-inner {
+      background: linear-gradient(135deg, #ff6b6b, #feca57);
+    }
+
+    .p2 {
+      top: 8%;
+      right: 15%;
+      --rotate: rotate(8deg);
+      animation-delay: 0.1s, 0.5s;
+    }
+    .p2 .polaroid-inner {
+      background: linear-gradient(135deg, #5f27cd, #a29bfe);
+    }
+
+    .p3 {
+      top: 35%;
+      left: 6%;
+      --rotate: rotate(5deg);
+      animation-delay: 0.2s, 1s;
+    }
+    .p3 .polaroid-inner {
+      background: linear-gradient(135deg, #00d2d3, #54a0ff);
+    }
+
+    .p4 {
+      top: 30%;
+      right: 8%;
+      --rotate: rotate(-6deg);
+      animation-delay: 0.15s, 0.3s;
+    }
+    .p4 .polaroid-inner {
+      background: linear-gradient(135deg, #ffeaa7, #fdcb6e);
+    }
+
+    .p5 {
+      bottom: 25%;
+      left: 12%;
+      --rotate: rotate(-8deg);
+      animation-delay: 0.25s, 0.8s;
+    }
+    .p5 .polaroid-inner {
+      background: linear-gradient(135deg, #1dd1a1, #10ac84);
+    }
+
+    .p6 {
+      bottom: 15%;
+      right: 12%;
+      --rotate: rotate(10deg);
+      animation-delay: 0.3s, 1.2s;
+    }
+    .p6 .polaroid-inner {
+      background: linear-gradient(135deg, #ff9ff3, #f368e0);
+    }
+
+    .p7 {
+      bottom: 8%;
+      left: 30%;
+      --rotate: rotate(4deg);
+      animation-delay: 0.35s, 0.6s;
+    }
+    .p7 .polaroid-inner {
+      background: linear-gradient(135deg, #74b9ff, #0984e3);
+    }
+
+    .p8 {
+      top: 60%;
+      right: 25%;
+      --rotate: rotate(-10deg);
+      animation-delay: 0.4s, 1.5s;
+    }
+    .p8 .polaroid-inner {
+      background: linear-gradient(135deg, #fd79a8, #e84393);
+    }
+
+    /* Content */
     .content {
       text-align: center;
-      max-width: 44rem;
-    }
-
-    /* Polaroid stack */
-    .polaroids {
-      display: flex;
-      justify-content: center;
-      margin-bottom: clamp(2.5rem, 6vw, 4rem);
-      perspective: 1000px;
-    }
-
-    .film {
-      background: white;
-      padding: 0.6rem 0.6rem 2rem;
-      box-shadow:
-        0 1px 2px rgba(0,0,0,0.04),
-        0 4px 16px rgba(0,0,0,0.08);
-      transform-style: preserve-3d;
-      transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-      cursor: default;
-    }
-
-    .film:nth-child(1) {
-      transform: rotate(-6deg) translateX(1rem);
-      z-index: 1;
-    }
-    .film:nth-child(2) {
-      transform: rotate(2deg) translateY(-0.5rem);
-      z-index: 2;
-    }
-    .film:nth-child(3) {
-      transform: rotate(7deg) translateX(-1rem);
-      z-index: 1;
-    }
-
-    .film:hover {
-      transform: rotate(0deg) translateY(-0.5rem) scale(1.02);
       z-index: 10;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.3s forwards;
     }
 
-    .film-inner {
-      width: clamp(5rem, 15vw, 7.5rem);
-      height: clamp(5rem, 15vw, 7.5rem);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .film:nth-child(1) .film-inner {
-      background: linear-gradient(145deg, #e8d5c4 0%, #d4a574 50%, #c4956a 100%);
-    }
-    .film:nth-child(2) .film-inner {
-      background: linear-gradient(145deg, #b8c5d4 0%, #8fa4b8 50%, #6b8299 100%);
-    }
-    .film:nth-child(3) .film-inner {
-      background: linear-gradient(145deg, #c9d4c4 0%, #9bb08e 50%, #7d9470 100%);
-    }
-
-    /* Light leak effect */
-    .film-inner::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        120deg,
-        transparent 30%,
-        rgba(255,200,150,0.15) 50%,
-        transparent 70%
-      );
-    }
-
-    .wordmark {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: clamp(2.25rem, 7vw, 4.5rem);
-      font-weight: 400;
-      letter-spacing: -0.02em;
-      line-height: 1.1;
-      margin-bottom: 1.25rem;
-    }
-
-    .wordmark em {
-      font-style: italic;
-    }
-
-    .tagline {
-      font-size: clamp(0.875rem, 2vw, 1.0625rem);
-      color: var(--warm-gray);
-      letter-spacing: 0.01em;
-      line-height: 1.6;
-      max-width: 24rem;
-      margin: 0 auto 2.5rem;
-    }
-
-    .cta {
-      display: inline-block;
-      font-size: 0.75rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--warm-black);
-      text-decoration: none;
-      padding: 1rem 2rem;
-      border: 1px solid var(--warm-black);
-      transition: all 0.3s ease;
-    }
-
-    .cta:hover {
-      background: var(--warm-black);
-      color: var(--cream);
-    }
-
-    footer {
-      text-align: center;
-      padding-top: 3rem;
-    }
-
-    .footer-text {
-      font-size: 0.6875rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--warm-gray);
-    }
-
-    /* Fade in */
     @keyframes fadeUp {
       from {
         opacity: 0;
-        transform: translateY(1rem);
+        transform: translateY(20px);
       }
       to {
         opacity: 1;
@@ -196,49 +165,97 @@
       }
     }
 
-    .content {
-      animation: fadeUp 1s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    .logo {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(2.5rem, 8vw, 4.5rem);
+      color: #1a1a1a;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      cursor: default;
     }
 
-    .polaroids {
-      animation: fadeUp 1s cubic-bezier(0.23, 1, 0.32, 1) 0.1s forwards;
-      opacity: 0;
+    .logo span {
+      font-style: italic;
     }
 
-    footer {
-      animation: fadeUp 1s cubic-bezier(0.23, 1, 0.32, 1) 0.2s forwards;
-      opacity: 0;
+    .tagline {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      color: #888;
+      margin-top: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.01em;
     }
 
-    /* Small screens */
-    @media (max-width: 480px) {
-      .film {
-        padding: 0.4rem 0.4rem 1.25rem;
+    /* Hover magic on polaroids */
+    .polaroid {
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      cursor: default;
+    }
+
+    .polaroid:hover {
+      animation-play-state: paused;
+      transform: var(--rotate) translateY(-12px) scale(1.08) !important;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+      z-index: 100;
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .polaroid {
+        display: none;
       }
 
-      .polaroids {
-        gap: -0.5rem;
+      .mobile-strip {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+      }
+
+      .mobile-strip .swatch {
+        width: 50px;
+        height: 50px;
+        background: white;
+        padding: 4px 4px 12px 4px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      }
+
+      .mobile-strip .swatch-inner {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    @media (min-width: 769px) {
+      .mobile-strip {
+        display: none;
       }
     }
   </style>
 </head>
 <body>
-  <div class="page">
-    <main class="main">
-      <div class="content">
-        <div class="polaroids">
-          <div class="film"><div class="film-inner"></div></div>
-          <div class="film"><div class="film-inner"></div></div>
-          <div class="film"><div class="film-inner"></div></div>
-        </div>
-        <h1 class="wordmark">Pipedream <em>Ventures</em></h1>
-        <p class="tagline">We build with founders who see what others don't.</p>
-        <a href="mailto:hello@pipedream.ventures" class="cta">Say Hello</a>
+  <div class="container">
+    <div class="polaroid p1"><div class="polaroid-inner"></div></div>
+    <div class="polaroid p2"><div class="polaroid-inner"></div></div>
+    <div class="polaroid p3"><div class="polaroid-inner"></div></div>
+    <div class="polaroid p4"><div class="polaroid-inner"></div></div>
+    <div class="polaroid p5"><div class="polaroid-inner"></div></div>
+    <div class="polaroid p6"><div class="polaroid-inner"></div></div>
+    <div class="polaroid p7"><div class="polaroid-inner"></div></div>
+    <div class="polaroid p8"><div class="polaroid-inner"></div></div>
+
+    <div class="content">
+      <div class="mobile-strip">
+        <div class="swatch"><div class="swatch-inner" style="background: linear-gradient(135deg, #ff6b6b, #feca57);"></div></div>
+        <div class="swatch"><div class="swatch-inner" style="background: linear-gradient(135deg, #5f27cd, #a29bfe);"></div></div>
+        <div class="swatch"><div class="swatch-inner" style="background: linear-gradient(135deg, #00d2d3, #54a0ff);"></div></div>
+        <div class="swatch"><div class="swatch-inner" style="background: linear-gradient(135deg, #1dd1a1, #10ac84);"></div></div>
       </div>
-    </main>
-    <footer>
-      <p class="footer-text">New York &nbsp;&middot;&nbsp; Los Angeles</p>
-    </footer>
+      <h1 class="logo">Pipedream <span>Ventures</span></h1>
+      <p class="tagline">Something is coming.</p>
+    </div>
   </div>
 </body>
 </html>
