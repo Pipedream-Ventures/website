@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pipedream Ventures - Refined Concepts</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #0a0a0a;
+      min-height: 100vh;
+      font-family: 'Inter', sans-serif;
+      color: white;
+      padding: 3rem;
+    }
+
+    h1 {
+      text-align: center;
+      font-family: 'Instrument Serif', serif;
+      font-weight: 400;
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 0.7rem;
+      color: #555;
+      margin-bottom: 3rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 0.65rem;
+      color: #444;
+      margin: 3rem 0 2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.5rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .concept {
+      text-align: center;
+    }
+
+    .concept h2 {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #444;
+      margin-bottom: 1rem;
+      font-weight: 400;
+    }
+
+    .concept p {
+      font-size: 0.75rem;
+      color: #555;
+      margin-top: 1rem;
+      line-height: 1.5;
+    }
+
+    /* Logo container */
+    .logo-frame {
+      width: 280px;
+      height: 320px;
+      margin: 0 auto;
+      border-radius: 8px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ============================================
+       DIRECTION A: Geometric Shapes (like image 1)
+       ============================================ */
+
+    .geo-1 {
+      background: #e8e4dc;
+      position: relative;
+    }
+
+    .geo-1 .shape {
+      position: absolute;
+    }
+
+    .geo-1 .circle-pink {
+      width: 180px;
+      height: 180px;
+      background: #f4a5b8;
+      border-radius: 50%;
+      bottom: -40px;
+      left: -40px;
+    }
+
+    .geo-1 .block-orange {
+      width: 140px;
+      height: 200px;
+      background: #e87a4f;
+      top: -20px;
+      left: -30px;
+      border-radius: 0 0 20px 0;
+    }
+
+    .geo-1 .block-green {
+      width: 120px;
+      height: 160px;
+      background: #7ab86a;
+      top: 0;
+      right: -20px;
+    }
+
+    .geo-1 .block-purple {
+      width: 100px;
+      height: 120px;
+      background: #6b5ca5;
+      bottom: 40px;
+      right: -10px;
+      border-radius: 20px 0 0 0;
+    }
+
+    /* Variation 2 */
+    .geo-2 {
+      background: #f0ebe3;
+    }
+
+    .geo-2 .circle-coral {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background: #e07860;
+      border-radius: 50%;
+      top: -60px;
+      right: -60px;
+    }
+
+    .geo-2 .block-teal {
+      position: absolute;
+      width: 150px;
+      height: 180px;
+      background: #3d8b8b;
+      bottom: -30px;
+      left: -40px;
+    }
+
+    .geo-2 .block-gold {
+      position: absolute;
+      width: 80px;
+      height: 100px;
+      background: #d4a84b;
+      bottom: 60px;
+      right: 20px;
+      border-radius: 40px 40px 0 0;
+    }
+
+    /* ============================================
+       DIRECTION B: Color Blocks (like image 2)
+       ============================================ */
+
+    .blocks-1 {
+      background:
+        linear-gradient(135deg, #2d7d7d 0%, #2d7d7d 100%);
+      position: relative;
+    }
+
+    .blocks-1::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 55%;
+      height: 45%;
+      background: #e07860;
+    }
+
+    .blocks-1::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 45%;
+      height: 40%;
+      background: #d4a84b;
+    }
+
+    .blocks-1 .block-navy {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 55%;
+      height: 40%;
+      background: #1e3a5f;
+    }
+
+    /* Variation 2 */
+    .blocks-2 {
+      position: relative;
+      background: #e87a4f;
+    }
+
+    .blocks-2::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 50%;
+      height: 50%;
+      background: #f4a5b8;
+    }
+
+    .blocks-2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 50%;
+      height: 50%;
+      background: #3d8b8b;
+    }
+
+    .blocks-2 .block-purple {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 50%;
+      height: 50%;
+      background: #6b5ca5;
+    }
+
+    /* Variation 3 - diagonal */
+    .blocks-3 {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .blocks-3 .diag {
+      position: absolute;
+      width: 200%;
+      height: 200%;
+    }
+
+    .blocks-3 .diag-1 {
+      background: #e07860;
+      top: -50%;
+      left: -50%;
+      transform: rotate(-30deg);
+    }
+
+    .blocks-3 .diag-2 {
+      background: #3d8b8b;
+      top: 20%;
+      left: -50%;
+      transform: rotate(-30deg);
+    }
+
+    .blocks-3 .diag-3 {
+      background: #1e3a5f;
+      top: 60%;
+      left: -50%;
+      transform: rotate(-30deg);
+    }
+
+    .blocks-3 .diag-4 {
+      background: #d4a84b;
+      top: 100%;
+      left: -50%;
+      transform: rotate(-30deg);
+    }
+
+    /* ============================================
+       POLAROID STYLES
+       ============================================ */
+
+    .polaroid {
+      position: relative;
+      z-index: 10;
+      background: #fefefe;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.2);
+    }
+
+    .polaroid-canvas {
+      background: #f5f2ed;
+    }
+
+    /* Light canvas version */
+    .polaroid-light {
+      width: 100px;
+      height: 120px;
+      padding: 7px 7px 24px 7px;
+    }
+
+    .polaroid-light .polaroid-canvas {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Dark canvas version */
+    .polaroid-dark {
+      width: 95px;
+      height: 115px;
+      padding: 7px 7px 22px 7px;
+    }
+
+    .polaroid-dark .polaroid-canvas {
+      width: 100%;
+      height: 100%;
+      background: #1a1a1a;
+    }
+
+    /* With text inside */
+    .polaroid-text {
+      width: 130px;
+      height: 150px;
+      padding: 10px 10px 30px 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .polaroid-text .inner {
+      width: 100%;
+      height: 100%;
+      background: #f8f6f2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+    }
+
+    .polaroid-text .brand {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      color: #1a1a1a;
+      letter-spacing: 0.05em;
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    .polaroid-text .tagline {
+      font-family: 'Inter', sans-serif;
+      font-size: 6px;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-top: 8px;
+    }
+
+    /* Wordmark below polaroid */
+    .wordmark {
+      position: relative;
+      z-index: 10;
+      margin-top: 16px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: white;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    .wordmark-dark {
+      color: #1a1a1a;
+      text-shadow: none;
+    }
+
+    .wordmark-stacked {
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    /* Tilts */
+    .tilt-l { transform: rotate(-5deg); }
+    .tilt-r { transform: rotate(5deg); }
+    .tilt-slight { transform: rotate(-2deg); }
+
+    /* ============================================
+       LOCKUPS (Polaroid + Wordmark together)
+       ============================================ */
+
+    .lockup {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+  </style>
+</head>
+<body>
+  <h1>Pipedream <em>Ventures</em></h1>
+  <p class="subtitle">Refined Directions</p>
+
+  <p class="section-title">Direction A — Geometric Shapes + Light Polaroid</p>
+
+  <div class="grid">
+    <div class="concept">
+      <h2>A1 / Warm Geo</h2>
+      <div class="logo-frame geo-1">
+        <div class="shape circle-pink"></div>
+        <div class="shape block-orange"></div>
+        <div class="shape block-green"></div>
+        <div class="shape block-purple"></div>
+        <div class="lockup">
+          <div class="polaroid polaroid-text tilt-slight">
+            <div class="inner">
+              <div class="brand">PIPEDREAM<br>VENTURES</div>
+              <div class="tagline">Creative Venture Studio</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p>Text inside frame. Playful shapes.</p>
+    </div>
+
+    <div class="concept">
+      <h2>A2 / Minimal Geo</h2>
+      <div class="logo-frame geo-2">
+        <div class="circle-coral"></div>
+        <div class="block-teal"></div>
+        <div class="block-gold"></div>
+        <div class="lockup">
+          <div class="polaroid polaroid-light tilt-l">
+            <div class="polaroid-canvas"></div>
+          </div>
+          <div class="wordmark wordmark-dark">PIPEDREAM VENTURES</div>
+        </div>
+      </div>
+      <p>Blank canvas. Wordmark below.</p>
+    </div>
+
+    <div class="concept">
+      <h2>A3 / Stacked Text</h2>
+      <div class="logo-frame geo-1">
+        <div class="shape circle-pink"></div>
+        <div class="shape block-orange"></div>
+        <div class="shape block-green"></div>
+        <div class="shape block-purple"></div>
+        <div class="lockup">
+          <div class="polaroid polaroid-light">
+            <div class="polaroid-canvas"></div>
+          </div>
+          <div class="wordmark wordmark-dark wordmark-stacked" style="margin-top: 12px; font-size: 12px;">PIPEDREAM<br>VENTURES</div>
+        </div>
+      </div>
+      <p>Blank canvas. Stacked wordmark.</p>
+    </div>
+  </div>
+
+  <p class="section-title">Direction B — Bold Color Blocks + Dark Polaroid</p>
+
+  <div class="grid">
+    <div class="concept">
+      <h2>B1 / Quad Blocks</h2>
+      <div class="logo-frame blocks-1">
+        <div class="block-navy"></div>
+        <div class="lockup">
+          <div class="polaroid polaroid-dark tilt-slight">
+            <div class="polaroid-canvas"></div>
+          </div>
+          <div class="wordmark wordmark-stacked">PIPEDREAM<br>VENTURES</div>
+        </div>
+      </div>
+      <p>Dark canvas. Teal/coral/gold/navy.</p>
+    </div>
+
+    <div class="concept">
+      <h2>B2 / Hot Grid</h2>
+      <div class="logo-frame blocks-2">
+        <div class="block-purple"></div>
+        <div class="lockup">
+          <div class="polaroid polaroid-dark tilt-r">
+            <div class="polaroid-canvas"></div>
+          </div>
+          <div class="wordmark wordmark-stacked">PIPEDREAM<br>VENTURES</div>
+        </div>
+      </div>
+      <p>Dark canvas. Pink/orange/purple/teal.</p>
+    </div>
+
+    <div class="concept">
+      <h2>B3 / Diagonal</h2>
+      <div class="logo-frame blocks-3">
+        <div class="diag diag-1"></div>
+        <div class="diag diag-2"></div>
+        <div class="diag diag-3"></div>
+        <div class="diag diag-4"></div>
+        <div class="lockup">
+          <div class="polaroid polaroid-dark">
+            <div class="polaroid-canvas"></div>
+          </div>
+          <div class="wordmark wordmark-stacked">PIPEDREAM<br>VENTURES</div>
+        </div>
+      </div>
+      <p>Dark canvas. Diagonal stripes.</p>
+    </div>
+  </div>
+
+  <p class="section-title">Direction C — Hybrid</p>
+
+  <div class="grid">
+    <div class="concept">
+      <h2>C1 / Blocks + Light</h2>
+      <div class="logo-frame blocks-1">
+        <div class="block-navy"></div>
+        <div class="lockup">
+          <div class="polaroid polaroid-text tilt-slight">
+            <div class="inner">
+              <div class="brand">PIPEDREAM<br>VENTURES</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p>Bold blocks. Text inside frame.</p>
+    </div>
+
+    <div class="concept">
+      <h2>C2 / Icon Only</h2>
+      <div class="logo-frame blocks-2" style="height: 280px;">
+        <div class="block-purple"></div>
+        <div class="polaroid polaroid-dark tilt-l" style="width: 80px; height: 96px; padding: 6px 6px 18px 6px;">
+          <div class="polaroid-canvas"></div>
+        </div>
+      </div>
+      <p>Just the mark. No text.</p>
+    </div>
+
+    <div class="concept">
+      <h2>C3 / Centered Clean</h2>
+      <div class="logo-frame" style="background: linear-gradient(135deg, #e07860 0%, #d4a84b 50%, #3d8b8b 100%); height: 280px;">
+        <div class="lockup">
+          <div class="polaroid polaroid-light" style="width: 85px; height: 102px; padding: 6px 6px 20px 6px;">
+            <div class="polaroid-canvas"></div>
+          </div>
+          <div class="wordmark" style="font-size: 11px; margin-top: 14px;">PIPEDREAM VENTURES</div>
+        </div>
+      </div>
+      <p>Gradient. Light canvas. Inline text.</p>
+    </div>
+  </div>
+
+</body>
+</html>

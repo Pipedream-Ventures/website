@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pipedream Ventures - Final Concepts</title>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Instrument+Serif:ital@0;1&family=Inter:wght@400&family=Permanent+Marker&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #0a0a0a;
+      min-height: 100vh;
+      font-family: 'Inter', sans-serif;
+      color: white;
+      padding: 2rem;
+    }
+
+    h1 {
+      text-align: center;
+      font-family: 'Instrument Serif', serif;
+      font-weight: 400;
+      font-size: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+
+    .concept { text-align: center; }
+
+    .concept h2 {
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #444;
+      margin-bottom: 0.75rem;
+      font-weight: 400;
+    }
+
+    .logo-frame {
+      width: 240px;
+      height: 240px;
+      margin: 0 auto;
+      border-radius: 20px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ============================================
+       SICK BACKGROUNDS
+       ============================================ */
+
+    /* 1. Sunburst rays */
+    .bg-sunburst {
+      background: #ffeaa7;
+      position: relative;
+    }
+    .bg-sunburst::before {
+      content: '';
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: repeating-conic-gradient(
+        from 0deg,
+        #ff6b6b 0deg 15deg,
+        #feca57 15deg 30deg,
+        #ff9f43 30deg 45deg,
+        #fdcb6e 45deg 60deg
+      );
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    /* 2. Retro waves */
+    .bg-waves {
+      background:
+        radial-gradient(ellipse 200% 100% at 50% 100%, #1e3a5f 0%, transparent 50%),
+        radial-gradient(ellipse 200% 100% at 50% 85%, #2d7d7d 0%, transparent 50%),
+        radial-gradient(ellipse 200% 100% at 50% 70%, #d4a84b 0%, transparent 50%),
+        radial-gradient(ellipse 200% 100% at 50% 55%, #e07860 0%, transparent 50%),
+        linear-gradient(180deg, #ff6b6b 0%, #feca57 100%);
+    }
+
+    /* 3. Hard diagonal split */
+    .bg-split {
+      background: linear-gradient(
+        135deg,
+        #ff6b6b 0%, #ff6b6b 33%,
+        #feca57 33%, #feca57 66%,
+        #5f27cd 66%, #5f27cd 100%
+      );
+    }
+
+    /* 4. Concentric squares */
+    .bg-squares {
+      background: #1e3a5f;
+      position: relative;
+    }
+    .bg-squares .sq {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 8px;
+    }
+    .bg-squares .sq-1 { width: 220px; height: 220px; background: #2d7d7d; }
+    .bg-squares .sq-2 { width: 180px; height: 180px; background: #d4a84b; }
+    .bg-squares .sq-3 { width: 140px; height: 140px; background: #e07860; }
+    .bg-squares .sq-4 { width: 100px; height: 100px; background: #ff6b6b; }
+
+    /* 5. Corner explosions */
+    .bg-corners {
+      background: #f5f0e8;
+      position: relative;
+      overflow: hidden;
+    }
+    .bg-corners .corner {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+    }
+    .bg-corners .c1 { top: -50px; left: -50px; background: #ff6b6b; border-radius: 0 0 100% 0; }
+    .bg-corners .c2 { top: -50px; right: -50px; background: #5f27cd; border-radius: 0 0 0 100%; }
+    .bg-corners .c3 { bottom: -50px; left: -50px; background: #00d2d3; border-radius: 0 100% 0 0; }
+    .bg-corners .c4 { bottom: -50px; right: -50px; background: #feca57; border-radius: 100% 0 0 0; }
+
+    /* 6. Gradient mesh */
+    .bg-mesh {
+      background:
+        radial-gradient(circle at 0% 0%, #ff6b6b 0%, transparent 50%),
+        radial-gradient(circle at 100% 0%, #5f27cd 0%, transparent 50%),
+        radial-gradient(circle at 100% 100%, #00d2d3 0%, transparent 50%),
+        radial-gradient(circle at 0% 100%, #feca57 0%, transparent 50%),
+        #f5f0e8;
+    }
+
+    /* 7. Thick stripes */
+    .bg-stripes {
+      background: repeating-linear-gradient(
+        -45deg,
+        #ff6b6b 0px, #ff6b6b 40px,
+        #feca57 40px, #feca57 80px,
+        #00d2d3 80px, #00d2d3 120px,
+        #5f27cd 120px, #5f27cd 160px
+      );
+    }
+
+    /* 8. Horizon sunset */
+    .bg-horizon {
+      background: linear-gradient(
+        180deg,
+        #ff6b6b 0%,
+        #ff9f43 20%,
+        #feca57 40%,
+        #fdcb6e 50%,
+        #74b9ff 60%,
+        #0984e3 80%,
+        #1e3a5f 100%
+      );
+    }
+
+    /* 9. Quadrant pop */
+    .bg-quad {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+    }
+    .bg-quad .q1 { background: #ff6b6b; }
+    .bg-quad .q2 { background: #feca57; }
+    .bg-quad .q3 { background: #00d2d3; }
+    .bg-quad .q4 { background: #5f27cd; }
+
+    /* 10. Bullseye */
+    .bg-bullseye {
+      background:
+        radial-gradient(circle, #ff6b6b 0%, #ff6b6b 15%, transparent 15%),
+        radial-gradient(circle, #feca57 0%, #feca57 30%, transparent 30%),
+        radial-gradient(circle, #00d2d3 0%, #00d2d3 45%, transparent 45%),
+        radial-gradient(circle, #5f27cd 0%, #5f27cd 60%, transparent 60%),
+        radial-gradient(circle, #1dd1a1 0%, #1dd1a1 75%, transparent 75%),
+        #1e3a5f;
+    }
+
+    /* 11. Duotone split */
+    .bg-duotone {
+      background: linear-gradient(135deg, #ff6b6b 50%, #1e3a5f 50%);
+    }
+
+    /* 12. Psychedelic swirl - simplified */
+    .bg-swirl {
+      background:
+        conic-gradient(from 0deg at 50% 50%,
+          #ff6b6b, #feca57, #00d2d3, #5f27cd, #1dd1a1, #ff6b6b
+        );
+    }
+
+    /* ============================================
+       POLAROID
+       ============================================ */
+
+    .polaroid {
+      position: relative;
+      z-index: 10;
+      background: #fefefe;
+      box-shadow: 0 10px 50px rgba(0,0,0,0.3);
+      width: 100px;
+      padding: 7px 7px 0 7px;
+    }
+
+    .polaroid-canvas {
+      width: 86px;
+      height: 86px;
+      background: #f5f2ed;
+    }
+
+    .canvas-dark { background: #1a1a1a; }
+
+    .polaroid-tab {
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Permanent Marker', cursive;
+      font-size: 8px;
+      color: #1a1a1a;
+      letter-spacing: 0.01em;
+    }
+
+    .font-script {
+      font-family: 'Caveat', cursive;
+      font-size: 11px;
+    }
+
+    .tilt-l { transform: rotate(-5deg); }
+    .tilt-r { transform: rotate(5deg); }
+
+    /* ============================================
+       PROMPT
+       ============================================ */
+
+    .prompt-section {
+      max-width: 800px;
+      margin: 3rem auto 0;
+      background: #111;
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+
+    .prompt-section h3 {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .prompt-box {
+      background: #0a0a0a;
+      border: 1px solid #222;
+      border-radius: 8px;
+      padding: 1rem;
+      font-family: monospace;
+      font-size: 0.75rem;
+      color: #777;
+      line-height: 1.6;
+      white-space: pre-wrap;
+    }
+
+    .copy-btn {
+      margin-top: 1rem;
+      background: white;
+      color: black;
+      border: none;
+      padding: 0.5rem 1rem;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Pipedream <em>Ventures</em> — Sick Backgrounds</h1>
+
+  <div class="grid">
+    <div class="concept">
+      <h2>01 / Sunburst</h2>
+      <div class="logo-frame bg-sunburst">
+        <div class="polaroid tilt-l">
+          <div class="polaroid-canvas"></div>
+          <div class="polaroid-tab">pipedream ventures</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <h2>02 / Retro Waves</h2>
+      <div class="logo-frame bg-waves">
+        <div class="polaroid tilt-r">
+          <div class="polaroid-canvas canvas-dark"></div>
+          <div class="polaroid-tab font-script">Pipedream Ventures</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <h2>03 / Hard Split</h2>
+      <div class="logo-frame bg-split">
+        <div class="polaroid">
+          <div class="polaroid-canvas"></div>
+          <div class="polaroid-tab">pipedream ventures</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <h2>04 / Nested Squares</h2>
+      <div class="logo-frame bg-squares">
+        <div class="sq sq-1"></div>
+        <div class="sq sq-2"></div>
+        <div class="sq sq-3"></div>
+        <div class="sq sq-4"></div>
+        <div class="polaroid tilt-l">
+          <div class="polaroid-canvas canvas-dark"></div>
+          <div class="polaroid-tab">pipedream ventures</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <h2>05 / Corner Burst</h2>
+      <div class="logo-frame bg-corners">
+        <div class="corner c1"></div>
+        <div class="corner c2"></div>
+        <div class="corner c3"></div>
+        <div class="corner c4"></div>
+        <div class="polaroid tilt-r">
+          <div class="polaroid-canvas"></div>
+          <div class="polaroid-tab font-script">Pipedream Ventures</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <h2>06 / Gradient Mesh</h2>
+      <div class="logo-frame bg-mesh">
+        <div class="polaroid">
+          <div class="polaroid-canvas canvas-dark"></div>
+          <div class="polaroid-tab">pipedream ventures</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <h2>07 / Thick Stripes</h2>
+      <div class="logo-frame bg-stripes">
+        <div class="polaroid tilt-l">
+          <div class="polaroid-canvas"></div>
+          <div class="polaroid-tab">pipedream ventures</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <h2>08 / Horizon</h2>
+      <div class="logo-frame bg-horizon">
+        <div class="polaroid tilt-r">
+          <div class="polaroid-canvas canvas-dark"></div>
+          <div class="polaroid-tab font-script">Pipedream Ventures</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <h2>09 / Quadrant</h2>
+      <div class="logo-frame bg-quad">
+        <div class="q1"></div>
+        <div class="q2"></div>
+        <div class="q3"></div>
+        <div class="q4"></div>
+        <div class="polaroid" style="position: absolute;">
+          <div class="polaroid-canvas"></div>
+          <div class="polaroid-tab">pipedream ventures</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <h2>10 / Bullseye</h2>
+      <div class="logo-frame bg-bullseye">
+        <div class="polaroid tilt-l">
+          <div class="polaroid-canvas canvas-dark"></div>
+          <div class="polaroid-tab">pipedream ventures</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <h2>11 / Duotone</h2>
+      <div class="logo-frame bg-duotone">
+        <div class="polaroid tilt-r">
+          <div class="polaroid-canvas"></div>
+          <div class="polaroid-tab font-script">Pipedream Ventures</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <h2>12 / Swirl</h2>
+      <div class="logo-frame bg-swirl">
+        <div class="polaroid">
+          <div class="polaroid-canvas canvas-dark"></div>
+          <div class="polaroid-tab">pipedream ventures</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="prompt-section">
+    <h3>Fal AI Prompt</h3>
+    <div class="prompt-box" id="prompt">Logo design for "Pipedream Ventures". Square format with rounded corners.
+
+Main element: White Polaroid instant film frame, slightly tilted. Handwritten "pipedream ventures" on the bottom white tab. Photo area is blank (cream OR black).
+
+Background (pick one or combine):
+- SUNBURST: Radiating color rays from center (coral, gold, orange, yellow)
+- RETRO WAVES: Curved horizontal bands like 70s sunset (coral → pink → gold → teal → navy)
+- HARD DIAGONAL: Bold 3-color split at 45 degrees
+- CONCENTRIC SQUARES: Nested squares in different colors, centered
+- CORNER BURSTS: Quarter-circles exploding from each corner in different colors
+- GRADIENT MESH: Overlapping radial gradients from corners (4 colors bleeding into cream)
+- THICK STRIPES: Bold 45-degree repeating stripes
+- BULLSEYE: Concentric circles, target pattern
+- QUADRANT: 4 solid color blocks (one per corner)
+- DUOTONE: Simple 2-color diagonal split (high contrast)
+
+Color palette: Coral red, golden yellow, teal, purple, hot pink, navy blue. Bold, saturated, 1970s energy.
+
+Style: Vintage travel posters, retro album covers, 70s airline graphics, old Polaroid/Kodak packaging, psychedelic concert posters.
+
+Output: Clean vector logo, app icon ready.</div>
+    <button class="copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('prompt').innerText)">Copy Prompt</button>
+  </div>
+
+</body>
+</html>

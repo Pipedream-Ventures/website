@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Background Inspiration</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500&family=Permanent+Marker&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0a0a0a;
+      color: white;
+      font-family: 'Inter', sans-serif;
+      padding: 2rem;
+      line-height: 1.6;
+    }
+    h1 {
+      font-family: 'Instrument Serif', serif;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+    .subtitle {
+      text-align: center;
+      color: #666;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 2rem;
+    }
+    .section {
+      max-width: 1400px;
+      margin: 0 auto 3rem;
+    }
+    h2 {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: #555;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid #222;
+    }
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+    .links a {
+      background: #1a1a1a;
+      color: #888;
+      padding: 0.6rem 1rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.8rem;
+      transition: all 0.2s;
+    }
+    .links a:hover {
+      background: #2a2a2a;
+      color: white;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+    .swatch {
+      text-align: center;
+    }
+    .swatch-box {
+      height: 200px;
+      border-radius: 16px;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .swatch-name {
+      font-size: 0.7rem;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .polaroid {
+      background: white;
+      width: 70px;
+      padding: 5px 5px 0 5px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+      transform: rotate(-4deg);
+    }
+    .polaroid-canvas {
+      width: 60px;
+      height: 60px;
+      background: #f5f2ed;
+    }
+    .polaroid-tab {
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Permanent Marker', cursive;
+      font-size: 5.5px;
+      color: #1a1a1a;
+    }
+
+    /* Gradient presets */
+    .g-sunset { background: linear-gradient(180deg, #ff6b6b 0%, #feca57 50%, #48dbfb 100%); }
+    .g-vice { background: linear-gradient(135deg, #5f27cd, #fd79a8, #ffeaa7); }
+    .g-ocean { background: linear-gradient(180deg, #0984e3 0%, #00cec9 50%, #81ecec 100%); }
+    .g-candy { background: linear-gradient(135deg, #fd79a8, #a29bfe, #74b9ff); }
+    .g-fire { background: linear-gradient(180deg, #d63031 0%, #e17055 30%, #fdcb6e 60%, #ffeaa7 100%); }
+    .g-neon { background: linear-gradient(135deg, #00f5d4, #00bbf9, #9b5de5, #f15bb5); }
+    .g-retro { background: linear-gradient(135deg, #e07860 0%, #f4a5b8 33%, #ffeaa7 66%, #2d7d7d 100%); }
+    .g-warm { background: linear-gradient(180deg, #ff9a9e 0%, #fecfef 50%, #ffecd2 100%); }
+    .g-electric { background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%); }
+    .g-tropical { background: linear-gradient(135deg, #11998e, #38ef7d); }
+    .g-blood { background: linear-gradient(135deg, #f5af19, #f12711); }
+    .g-cosmic { background: linear-gradient(135deg, #ff00cc, #333399); }
+
+    /* Pattern presets */
+    .p-rays {
+      background: repeating-conic-gradient(from 0deg, #ff6b6b 0deg 20deg, #feca57 20deg 40deg);
+    }
+    .p-stripes {
+      background: repeating-linear-gradient(-45deg, #5f27cd 0px 30px, #fd79a8 30px 60px, #ffeaa7 60px 90px);
+    }
+    .p-circles {
+      background:
+        radial-gradient(circle, #ff6b6b 20%, transparent 20%),
+        radial-gradient(circle, #feca57 40%, transparent 40%),
+        radial-gradient(circle, #00cec9 60%, transparent 60%),
+        #5f27cd;
+    }
+    .p-waves {
+      background:
+        radial-gradient(ellipse 200% 80% at 50% 100%, #1e3a5f 0%, transparent 40%),
+        radial-gradient(ellipse 200% 80% at 50% 80%, #00cec9 0%, transparent 40%),
+        radial-gradient(ellipse 200% 80% at 50% 60%, #feca57 0%, transparent 40%),
+        linear-gradient(#ff6b6b, #fd79a8);
+    }
+    .p-quad {
+      background:
+        linear-gradient(to right, #ff6b6b 50%, #feca57 50%) top,
+        linear-gradient(to right, #00cec9 50%, #5f27cd 50%) bottom;
+      background-size: 100% 50%;
+      background-repeat: no-repeat;
+    }
+    .p-mesh {
+      background:
+        radial-gradient(at 0% 0%, #ff6b6b 0%, transparent 50%),
+        radial-gradient(at 100% 0%, #feca57 0%, transparent 50%),
+        radial-gradient(at 100% 100%, #5f27cd 0%, transparent 50%),
+        radial-gradient(at 0% 100%, #00cec9 0%, transparent 50%),
+        #f5f0e8;
+    }
+
+    /* Color palette swatches */
+    .palette {
+      display: flex;
+      border-radius: 8px;
+      overflow: hidden;
+      height: 60px;
+      margin-bottom: 0.5rem;
+    }
+    .palette div { flex: 1; }
+
+    .note {
+      background: #111;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-top: 2rem;
+      font-size: 0.8rem;
+      color: #666;
+    }
+    .note code {
+      background: #1a1a1a;
+      padding: 0.2rem 0.4rem;
+      border-radius: 3px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <h1>Background Inspiration</h1>
+  <p class="subtitle">Explore • Generate • Steal</p>
+
+  <div class="section">
+    <h2>Tools to Explore</h2>
+    <div class="links">
+      <a href="https://meshgradient.com/" target="_blank">Mesh Gradient Generator</a>
+      <a href="https://webgradients.com/" target="_blank">Web Gradients (180+ presets)</a>
+      <a href="https://coolors.co/palettes/trending" target="_blank">Coolors Trending Palettes</a>
+      <a href="https://www.grabient.com/" target="_blank">Grabient</a>
+      <a href="https://cssgradient.io/" target="_blank">CSS Gradient Generator</a>
+      <a href="https://products.ls.graphics/mesh-gradients/" target="_blank">Mesh Gradients Collection</a>
+      <a href="https://www.magicpattern.design/tools/mesh-gradients" target="_blank">Magic Pattern Mesh</a>
+      <a href="https://colorhunt.co/" target="_blank">Color Hunt</a>
+      <a href="https://mycolor.space/" target="_blank">ColorSpace</a>
+      <a href="https://haikei.app/" target="_blank">Haikei (SVG backgrounds)</a>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Gradient Presets</h2>
+    <div class="grid">
+      <div class="swatch">
+        <div class="swatch-box g-sunset">
+          <div class="polaroid"><div class="polaroid-canvas"></div><div class="polaroid-tab">pipedream ventures</div></div>
+        </div>
+        <div class="swatch-name">Sunset</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-box g-vice">
+          <div class="polaroid"><div class="polaroid-canvas"></div><div class="polaroid-tab">pipedream ventures</div></div>
+        </div>
+        <div class="swatch-name">Vice</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-box g-ocean">
+          <div class="polaroid"><div class="polaroid-canvas"></div><div class="polaroid-tab">pipedream ventures</div></div>
+        </div>
+        <div class="swatch-name">Ocean</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-box g-candy">
+          <div class="polaroid"><div class="polaroid-canvas"></div><div class="polaroid-tab">pipedream ventures</div></div>
+        </div>
+        <div class="swatch-name">Candy</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-box g-fire">
+          <div class="polaroid"><div class="polaroid-canvas"></div><div class="polaroid-tab">pipedream ventures</div></div>
+        </div>
+        <div class="swatch-name">Fire</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-box g-neon">
+          <div class="polaroid"><div class="polaroid-canvas"></div><div class="polaroid-tab">pipedream ventures</div></div>
+        </div>
+        <div class="swatch-name">Neon</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-box g-retro">
+          <div class="polaroid"><div class="polaroid-canvas"></div><div class="polaroid-tab">pipedream ventures</div></div>
+        </div>
+        <div class="swatch-name">Retro</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-box g-warm">
+          <div class="polaroid"><div class="polaroid-canvas"></div><div class="polaroid-tab">pipedream ventures</div></div>
+        </div>
+        <div class="swatch-name">Warm</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-box g-electric">
+          <div class="polaroid"><div class="polaroid-canvas"></div><div class="polaroid-tab">pipedream ventures</div></div>
+        </div>
+        <div class="swatch-name">Electric</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-box g-tropical">
+          <div class="polaroid"><div class="polaroid-canvas"></div><div class="polaroid-tab">pipedream ventures</div></div>
+        </div>
+        <div class="swatch-name">Tropical</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-box g-blood">
+          <div class="polaroid"><div class="polaroid-canvas"></div><div class="polaroid-tab">pipedream ventures</div></div>
+        </div>
+        <div class="swatch-name">Blood Orange</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-box g-cosmic">
+          <div class="polaroid"><div class="polaroid-canvas"></div><div class="polaroid-tab">pipedream ventures</div></div>
+        </div>
+        <div class="swatch-name">Cosmic</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Pattern Presets</h2>
+    <div class="grid">
+      <div class="swatch">
+        <div class="swatch-box p-rays">
+          <div class="polaroid"><div class="polaroid-canvas"></div><div class="polaroid-tab">pipedream ventures</div></div>
+        </div>
+        <div class="swatch-name">Rays</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-box p-stripes">
+          <div class="polaroid"><div class="polaroid-canvas"></div><div class="polaroid-tab">pipedream ventures</div></div>
+        </div>
+        <div class="swatch-name">Stripes</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-box p-circles">
+          <div class="polaroid"><div class="polaroid-canvas"></div><div class="polaroid-tab">pipedream ventures</div></div>
+        </div>
+        <div class="swatch-name">Circles</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-box p-waves">
+          <div class="polaroid"><div class="polaroid-canvas"></div><div class="polaroid-tab">pipedream ventures</div></div>
+        </div>
+        <div class="swatch-name">Waves</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-box p-quad">
+          <div class="polaroid"><div class="polaroid-canvas"></div><div class="polaroid-tab">pipedream ventures</div></div>
+        </div>
+        <div class="swatch-name">Quadrant</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-box p-mesh">
+          <div class="polaroid"><div class="polaroid-canvas"></div><div class="polaroid-tab">pipedream ventures</div></div>
+        </div>
+        <div class="swatch-name">Mesh</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Curated Color Palettes</h2>
+    <div class="grid" style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));">
+      <div class="swatch">
+        <div class="palette">
+          <div style="background: #ff6b6b;"></div>
+          <div style="background: #feca57;"></div>
+          <div style="background: #48dbfb;"></div>
+          <div style="background: #5f27cd;"></div>
+        </div>
+        <div class="swatch-name">Retro Pop</div>
+      </div>
+      <div class="swatch">
+        <div class="palette">
+          <div style="background: #e07860;"></div>
+          <div style="background: #f4a5b8;"></div>
+          <div style="background: #2d7d7d;"></div>
+          <div style="background: #1e3a5f;"></div>
+        </div>
+        <div class="swatch-name">Vintage Film</div>
+      </div>
+      <div class="swatch">
+        <div class="palette">
+          <div style="background: #fd79a8;"></div>
+          <div style="background: #fdcb6e;"></div>
+          <div style="background: #00b894;"></div>
+          <div style="background: #6c5ce7;"></div>
+        </div>
+        <div class="swatch-name">Miami Vice</div>
+      </div>
+      <div class="swatch">
+        <div class="palette">
+          <div style="background: #d63031;"></div>
+          <div style="background: #e17055;"></div>
+          <div style="background: #fdcb6e;"></div>
+          <div style="background: #ffeaa7;"></div>
+        </div>
+        <div class="swatch-name">Warm Sunset</div>
+      </div>
+      <div class="swatch">
+        <div class="palette">
+          <div style="background: #00f5d4;"></div>
+          <div style="background: #00bbf9;"></div>
+          <div style="background: #9b5de5;"></div>
+          <div style="background: #f15bb5;"></div>
+        </div>
+        <div class="swatch-name">Neon Dreams</div>
+      </div>
+      <div class="swatch">
+        <div class="palette">
+          <div style="background: #264653;"></div>
+          <div style="background: #2a9d8f;"></div>
+          <div style="background: #e9c46a;"></div>
+          <div style="background: #f4a261;"></div>
+          <div style="background: #e76f51;"></div>
+        </div>
+        <div class="swatch-name">Earth Tones</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="note">
+    <strong>Tip:</strong> Use <code>meshgradient.com</code> or <code>haikei.app</code> to generate unique backgrounds, then screenshot or export. Or grab hex codes from <code>coolors.co</code> and I can build any combo you like.
+  </div>
+
+</body>
+</html>

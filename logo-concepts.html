@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pipedream Ventures - Logo Concepts</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #0f0f0f;
+      min-height: 100vh;
+      font-family: 'Inter', sans-serif;
+      color: white;
+      padding: 3rem;
+    }
+
+    h1 {
+      text-align: center;
+      font-family: 'Instrument Serif', serif;
+      font-weight: 400;
+      font-size: 1.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 0.75rem;
+      color: #666;
+      margin-bottom: 3rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .concept {
+      text-align: center;
+    }
+
+    .concept h2 {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #555;
+      margin-bottom: 1rem;
+      font-weight: 400;
+    }
+
+    /* Contained logo square */
+    .logo-square {
+      width: 240px;
+      height: 240px;
+      margin: 0 auto 1rem;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .concept p {
+      font-size: 0.8rem;
+      color: #666;
+      max-width: 240px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+
+    /* 01: Warm gradient burst */
+    .bg-warm {
+      background: linear-gradient(135deg, #ff6b6b 0%, #feca57 50%, #ff9f43 100%);
+    }
+
+    /* 02: Cool gradient */
+    .bg-cool {
+      background: linear-gradient(135deg, #5f27cd 0%, #a29bfe 50%, #74b9ff 100%);
+    }
+
+    /* 03: Split color */
+    .bg-split {
+      background: linear-gradient(135deg, #1dd1a1 0%, #00d2d3 50%, #54a0ff 100%);
+    }
+
+    /* 04: Hot pink/coral */
+    .bg-hot {
+      background: linear-gradient(135deg, #fd79a8 0%, #ff6b6b 50%, #feca57 100%);
+    }
+
+    /* 05: Deep purple */
+    .bg-deep {
+      background: linear-gradient(145deg, #2d1b69 0%, #5f27cd 50%, #a29bfe 100%);
+    }
+
+    /* 06: Multi color blocks */
+    .bg-blocks {
+      background:
+        linear-gradient(135deg, #ff6b6b 25%, transparent 25%) -50px 0,
+        linear-gradient(225deg, #feca57 25%, transparent 25%) -50px 0,
+        linear-gradient(315deg, #5f27cd 25%, transparent 25%),
+        linear-gradient(45deg, #00d2d3 25%, transparent 25%);
+      background-size: 100px 100px;
+      background-color: #1dd1a1;
+    }
+
+    /* 07: Organic blobs background */
+    .bg-blobs {
+      background: #feca57;
+      position: relative;
+    }
+    .bg-blobs::before {
+      content: '';
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      background: #ff6b6b;
+      border-radius: 60% 40% 50% 50%;
+      top: -30px;
+      left: -30px;
+    }
+    .bg-blobs::after {
+      content: '';
+      position: absolute;
+      width: 120px;
+      height: 130px;
+      background: #5f27cd;
+      border-radius: 40% 60% 50% 50%;
+      bottom: -20px;
+      right: -20px;
+    }
+
+    /* 08: Cream minimal */
+    .bg-cream {
+      background: #f5f0e8;
+    }
+
+    /* Polaroid styles */
+    .polaroid {
+      width: 90px;
+      height: 108px;
+      background: white;
+      padding: 6px 6px 20px 6px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+      position: relative;
+      z-index: 10;
+    }
+
+    .polaroid-canvas {
+      width: 100%;
+      height: 100%;
+      background: #faf9f6;
+    }
+
+    /* Larger polaroid variant */
+    .polaroid-lg {
+      width: 110px;
+      height: 132px;
+      padding: 8px 8px 26px 8px;
+    }
+
+    /* Small polaroid */
+    .polaroid-sm {
+      width: 70px;
+      height: 84px;
+      padding: 5px 5px 16px 5px;
+    }
+
+    /* Tilted */
+    .tilt-left { transform: rotate(-8deg); }
+    .tilt-right { transform: rotate(8deg); }
+    .tilt-slight { transform: rotate(-3deg); }
+
+    /* Prompt section */
+    .prompt-section {
+      max-width: 800px;
+      margin: 4rem auto 0;
+      background: #1a1a1a;
+      border-radius: 12px;
+      padding: 2rem;
+    }
+
+    .prompt-section h3 {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.25rem;
+      font-weight: 400;
+      margin-bottom: 1rem;
+    }
+
+    .prompt-box {
+      background: #0f0f0f;
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 1.25rem;
+      font-family: monospace;
+      font-size: 0.85rem;
+      color: #aaa;
+      line-height: 1.7;
+      white-space: pre-wrap;
+    }
+
+    .copy-btn {
+      margin-top: 1rem;
+      background: white;
+      color: black;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: opacity 0.2s;
+    }
+    .copy-btn:hover { opacity: 0.8; }
+  </style>
+</head>
+<body>
+  <h1>Pipedream <em>Ventures</em></h1>
+  <p class="subtitle">Logo Concepts — Polaroid + Color</p>
+
+  <div class="grid">
+    <div class="concept">
+      <h2>01 / Warm Burst</h2>
+      <div class="logo-square bg-warm">
+        <div class="polaroid tilt-slight">
+          <div class="polaroid-canvas"></div>
+        </div>
+      </div>
+      <p>Coral to gold gradient. Sunset energy.</p>
+    </div>
+
+    <div class="concept">
+      <h2>02 / Cool Fade</h2>
+      <div class="logo-square bg-cool">
+        <div class="polaroid tilt-right">
+          <div class="polaroid-canvas"></div>
+        </div>
+      </div>
+      <p>Purple to blue. Dreamy, ethereal.</p>
+    </div>
+
+    <div class="concept">
+      <h2>03 / Fresh Wave</h2>
+      <div class="logo-square bg-split">
+        <div class="polaroid-lg">
+          <div class="polaroid-canvas"></div>
+        </div>
+      </div>
+      <p>Teal to cyan. Clean, fresh start.</p>
+    </div>
+
+    <div class="concept">
+      <h2>04 / Hot Glow</h2>
+      <div class="logo-square bg-hot">
+        <div class="polaroid tilt-left">
+          <div class="polaroid-canvas"></div>
+        </div>
+      </div>
+      <p>Pink to coral to gold. Bold, alive.</p>
+    </div>
+
+    <div class="concept">
+      <h2>05 / Deep Night</h2>
+      <div class="logo-square bg-deep">
+        <div class="polaroid">
+          <div class="polaroid-canvas"></div>
+        </div>
+      </div>
+      <p>Dark purple gradient. Mysterious, premium.</p>
+    </div>
+
+    <div class="concept">
+      <h2>06 / Color Blocks</h2>
+      <div class="logo-square bg-blocks">
+        <div class="polaroid tilt-right">
+          <div class="polaroid-canvas"></div>
+        </div>
+      </div>
+      <p>Geometric color blocks. Playful, graphic.</p>
+    </div>
+
+    <div class="concept">
+      <h2>07 / Organic Blobs</h2>
+      <div class="logo-square bg-blobs">
+        <div class="polaroid tilt-slight">
+          <div class="polaroid-canvas"></div>
+        </div>
+      </div>
+      <p>Matisse-style blob shapes. Artistic, raw.</p>
+    </div>
+
+    <div class="concept">
+      <h2>08 / Cream Clean</h2>
+      <div class="logo-square bg-cream">
+        <div class="polaroid-sm tilt-left" style="box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+          <div class="polaroid-canvas"></div>
+        </div>
+      </div>
+      <p>Minimal on cream. Quiet confidence.</p>
+    </div>
+  </div>
+
+  <div class="prompt-section">
+    <h3>Fal AI Prompt</h3>
+    <div class="prompt-box" id="prompt">Logo design for "Pipedream Ventures", a creative venture studio.
+
+Style: Minimalist polaroid/instant film frame centered on a vibrant color-blocked background. The polaroid has a blank cream-colored canvas inside (no image).
+
+Background variations to explore:
+- Bold gradient washes (coral to gold, purple to cyan, pink to orange)
+- Matisse-style organic blob shapes in primary colors
+- Color field blocks like Rothko or Ellsworth Kelly
+- Hand-painted brush stroke textures
+
+Aesthetic references: Matisse cutouts, vintage Polaroid packaging, 1970s graphic design, Ace Hotel branding, Memphis Group, David Hockney color palettes.
+
+The polaroid should feel like a blank canvas of possibility - clean white frame, cream interior, slight shadow. Slightly tilted 5-10 degrees for organic feel.
+
+Output: Clean vector-style logo mark, suitable for app icon, social avatar, and print. Square format with rounded corners.</div>
+    <button class="copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('prompt').innerText)">Copy Prompt</button>
+  </div>
+</body>
+</html>
