@@ -88,6 +88,40 @@
       box-shadow: 0 16px 60px rgba(0,0,0,0.2);
     }
 
+    /* Rainbow border snake */
+    .border-snake {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9998;
+    }
+
+    .border-snake::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 6px solid transparent;
+      background: linear-gradient(
+        90deg,
+        #e63939, #f5a623, #f8e71c, #7ed321, #4a90d9, #9013fe, #bd10e0, #e63939
+      ) border-box;
+      -webkit-mask:
+        linear-gradient(#fff 0 0) padding-box,
+        linear-gradient(#fff 0 0);
+      mask:
+        linear-gradient(#fff 0 0) padding-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      background-size: 400% 100%;
+      animation: borderSnake 8s linear infinite;
+    }
+
+    @keyframes borderSnake {
+      0% { background-position: 0% 0%; }
+      100% { background-position: 400% 0%; }
+    }
+
     /* Grain overlay */
     body::after {
       content: '';
@@ -111,6 +145,7 @@
   </style>
 </head>
 <body>
+  <div class="border-snake"></div>
   <div class="container">
     <div class="polaroid">
       <div class="window"></div>
