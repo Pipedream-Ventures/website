@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pipedream Ventures - Product Strategy, Design & Development</title>
+  <meta name="description" content="Pipedream Ventures helps startups and founders build great products. 10+ years of experience in product strategy, design, and development.">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Pipedream Ventures - Product Strategy, Design & Development">
+  <meta property="og:description" content="We help startups and founders build great products. 10+ years of experience in product strategy, design, and development.">
+  <meta property="og:image" content="https://pipedream.ventures/pv-logo-512.png">
+  <meta property="og:url" content="https://pipedream.ventures">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Pipedream Ventures">
+  <meta name="twitter:description" content="We help startups and founders build great products.">
+  <meta name="twitter:image" content="https://pipedream.ventures/pv-logo-512.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      min-height: 100dvh;
+      background: #f5f0e6;
+      font-family: 'Space Mono', monospace;
+      color: #2d2d2d;
+      line-height: 1.6;
+    }
+
+    /* Hero section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    /* Polaroid frame */
+    .polaroid {
+      width: 280px;
+      background: #2d2d2d;
+      padding: 16px 16px 0 16px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+      border-radius: 2px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .polaroid:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 60px rgba(0,0,0,0.2);
+    }
+
+    /* Rainbow window */
+    .window {
+      width: 248px;
+      height: 248px;
+      background: linear-gradient(
+        135deg,
+        #e63939 0%, #e63939 14.28%,
+        #f5a623 14.28%, #f5a623 28.56%,
+        #f8e71c 28.56%, #f8e71c 42.84%,
+        #7ed321 42.84%, #7ed321 57.12%,
+        #4a90d9 57.12%, #4a90d9 71.4%,
+        #9013fe 71.4%, #9013fe 85.68%,
+        #bd10e0 85.68%, #bd10e0 100%
+      );
+      border-radius: 1px;
+    }
+
+    /* Tab with text */
+    .tab {
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tab h1 {
+      color: #f5f0e6;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* Tagline */
+    .tagline {
+      margin-top: 2rem;
+      font-size: 14px;
+      color: #666;
+      letter-spacing: 0.02em;
+      max-width: 400px;
+    }
+
+    /* Content sections */
+    .section {
+      padding: 4rem 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .section h2 {
+      font-size: 1.25rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 2rem;
+      color: #2d2d2d;
+    }
+
+    .section p {
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Services */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .service {
+      text-align: left;
+    }
+
+    .service h3 {
+      font-size: 0.95rem;
+      margin-bottom: 0.75rem;
+      color: #2d2d2d;
+    }
+
+    .service p {
+      font-size: 0.85rem;
+      color: #666;
+      margin-bottom: 0;
+    }
+
+    /* Contact */
+    .contact-info {
+      text-align: left;
+      font-size: 0.9rem;
+    }
+
+    .contact-info p {
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-info a {
+      color: #4a90d9;
+      text-decoration: none;
+    }
+
+    .contact-info a:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    footer {
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.75rem;
+      color: #999;
+      border-top: 1px solid #e0dbd2;
+    }
+
+    footer a {
+      color: #999;
+      text-decoration: none;
+      margin: 0 1rem;
+    }
+
+    footer a:hover {
+      color: #666;
+    }
+
+    .footer-links {
+      margin-bottom: 1rem;
+    }
+
+    /* Rainbow border snake */
+    .border-snake {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9998;
+    }
+
+    .border-snake::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 6px solid transparent;
+      background: linear-gradient(
+        90deg,
+        #e63939, #f5a623, #f8e71c, #7ed321, #4a90d9, #9013fe, #bd10e0, #e63939
+      ) border-box;
+      -webkit-mask:
+        linear-gradient(#fff 0 0) padding-box,
+        linear-gradient(#fff 0 0);
+      mask:
+        linear-gradient(#fff 0 0) padding-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      background-size: 400% 100%;
+      animation: borderSnake 8s linear infinite;
+    }
+
+    @keyframes borderSnake {
+      0% { background-position: 0% 0%; }
+      100% { background-position: 400% 0%; }
+    }
+
+    /* Grain overlay */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      opacity: 0.02;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* Fade in */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .container {
+      animation: fadeIn 0.8s ease forwards;
+    }
+
+    /* Divider */
+    .divider {
+      width: 60px;
+      height: 2px;
+      background: #ddd;
+      margin: 0 auto 2rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="border-snake"></div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="polaroid">
+        <div class="window"></div>
+        <div class="tab">
+          <h1>Pipedream Ventures</h1>
+        </div>
+      </div>
+      <p class="tagline">We help founders turn ideas into products people love.</p>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="section" id="services">
+    <h2>What We Do</h2>
+    <div class="divider"></div>
+    <p>We partner with startups and founders to build products from the ground up. Whether you're validating an idea or scaling to your next milestone, we bring hands-on experience to every stage.</p>
+
+    <div class="services-grid">
+      <div class="service">
+        <h3>Product Strategy</h3>
+        <p>Define your vision, validate your market, and build a roadmap that gets results. We help you focus on what matters.</p>
+      </div>
+      <div class="service">
+        <h3>Design & Development</h3>
+        <p>From prototypes to production. We design and build web and mobile applications that users actually want to use.</p>
+      </div>
+      <div class="service">
+        <h3>Scale & Growth</h3>
+        <p>Optimize performance, improve retention, and build systems that grow with your business.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="section" id="about">
+    <h2>About</h2>
+    <div class="divider"></div>
+    <p>Pipedream Ventures is a product studio based in Columbus, Ohio. With over 10 years of experience building and shipping products, we understand what it takes to go from zero to one.</p>
+    <p>We've worked with early-stage startups and established companies alike, helping them design, build, and launch products that make an impact.</p>
+  </section>
+
+  <!-- Contact -->
+  <section class="section" id="contact">
+    <h2>Contact</h2>
+    <div class="divider"></div>
+    <div class="contact-info">
+      <p><strong>Pipedream Ventures LLC</strong></p>
+      <p>426 Arden Rd<br>Columbus, OH 43214</p>
+      <p>Email: <a href="mailto:seth@pipedream.ventures">seth@pipedream.ventures</a></p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-links">
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/terms.html">Terms of Service</a>
+    </div>
+    <p>&copy; 2025 Pipedream Ventures LLC. All rights reserved.</p>
+  </footer>
+</body>
+</html>
