@@ -3,20 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pipedream Ventures</title>
-  <meta name="description" content="something dope is coming">
+  <title>Pipedream Ventures - Product Strategy, Design & Development</title>
+  <meta name="description" content="Pipedream Ventures helps startups and founders build great products. 10+ years of experience in product strategy, design, and development.">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Pipedream Ventures">
-  <meta property="og:description" content="something dope is coming">
+  <meta property="og:title" content="Pipedream Ventures - Product Strategy, Design & Development">
+  <meta property="og:description" content="We help startups and founders build great products. 10+ years of experience in product strategy, design, and development.">
   <meta property="og:image" content="https://pipedream.ventures/pv-logo-512.png">
   <meta property="og:url" content="https://pipedream.ventures">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Pipedream Ventures">
-  <meta name="twitter:description" content="something dope is coming">
+  <meta name="twitter:description" content="We help startups and founders build great products.">
   <meta name="twitter:image" content="https://pipedream.ventures/pv-logo-512.png">
 
   <!-- Favicon -->
@@ -31,14 +31,27 @@
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       min-height: 100vh;
       min-height: 100dvh;
       background: #f5f0e6;
+      font-family: 'Space Mono', monospace;
+      color: #2d2d2d;
+      line-height: 1.6;
+    }
+
+    /* Hero section */
+    .hero {
+      min-height: 100vh;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      font-family: 'Space Mono', monospace;
+      padding: 2rem;
     }
 
     .container {
@@ -52,6 +65,12 @@
       padding: 16px 16px 0 16px;
       box-shadow: 0 8px 40px rgba(0,0,0,0.12);
       border-radius: 2px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .polaroid:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 60px rgba(0,0,0,0.2);
     }
 
     /* Rainbow window */
@@ -90,19 +109,97 @@
     /* Tagline */
     .tagline {
       margin-top: 2rem;
-      font-size: 12px;
+      font-size: 14px;
+      color: #666;
+      letter-spacing: 0.02em;
+      max-width: 400px;
+    }
+
+    /* Content sections */
+    .section {
+      padding: 4rem 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .section h2 {
+      font-size: 1.25rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 2rem;
+      color: #2d2d2d;
+    }
+
+    .section p {
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Services */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .service {
+      text-align: left;
+    }
+
+    .service h3 {
+      font-size: 0.95rem;
+      margin-bottom: 0.75rem;
+      color: #2d2d2d;
+    }
+
+    .service p {
+      font-size: 0.85rem;
+      color: #666;
+      margin-bottom: 0;
+    }
+
+    /* Contact */
+    .contact-info {
+      text-align: left;
+      font-size: 0.9rem;
+    }
+
+    .contact-info p {
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-info a {
+      color: #4a90d9;
+      text-decoration: none;
+    }
+
+    .contact-info a:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    footer {
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.75rem;
       color: #999;
-      letter-spacing: 0.05em;
+      border-top: 1px solid #e0dbd2;
     }
 
-    /* Subtle hover */
-    .polaroid {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    footer a {
+      color: #999;
+      text-decoration: none;
+      margin: 0 1rem;
     }
 
-    .polaroid:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 60px rgba(0,0,0,0.2);
+    footer a:hover {
+      color: #666;
+    }
+
+    .footer-links {
+      margin-bottom: 1rem;
     }
 
     /* Rainbow border snake */
@@ -159,18 +256,80 @@
     .container {
       animation: fadeIn 0.8s ease forwards;
     }
+
+    /* Divider */
+    .divider {
+      width: 60px;
+      height: 2px;
+      background: #ddd;
+      margin: 0 auto 2rem;
+    }
   </style>
 </head>
 <body>
   <div class="border-snake"></div>
-  <div class="container">
-    <div class="polaroid">
-      <div class="window"></div>
-      <div class="tab">
-        <h1>Pipedream Ventures</h1>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="polaroid">
+        <div class="window"></div>
+        <div class="tab">
+          <h1>Pipedream Ventures</h1>
+        </div>
+      </div>
+      <p class="tagline">We help founders turn ideas into products people love.</p>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="section" id="services">
+    <h2>What We Do</h2>
+    <div class="divider"></div>
+    <p>We partner with startups and founders to build products from the ground up. Whether you're validating an idea or scaling to your next milestone, we bring hands-on experience to every stage.</p>
+
+    <div class="services-grid">
+      <div class="service">
+        <h3>Product Strategy</h3>
+        <p>Define your vision, validate your market, and build a roadmap that gets results. We help you focus on what matters.</p>
+      </div>
+      <div class="service">
+        <h3>Design & Development</h3>
+        <p>From prototypes to production. We design and build web and mobile applications that users actually want to use.</p>
+      </div>
+      <div class="service">
+        <h3>Scale & Growth</h3>
+        <p>Optimize performance, improve retention, and build systems that grow with your business.</p>
       </div>
     </div>
-    <p class="tagline">something dope is coming</p>
-  </div>
+  </section>
+
+  <!-- About -->
+  <section class="section" id="about">
+    <h2>About</h2>
+    <div class="divider"></div>
+    <p>Pipedream Ventures is a product studio based in Columbus, Ohio. With over 10 years of experience building and shipping products, we understand what it takes to go from zero to one.</p>
+    <p>We've worked with early-stage startups and established companies alike, helping them design, build, and launch products that make an impact.</p>
+  </section>
+
+  <!-- Contact -->
+  <section class="section" id="contact">
+    <h2>Contact</h2>
+    <div class="divider"></div>
+    <div class="contact-info">
+      <p><strong>Pipedream Ventures LLC</strong></p>
+      <p>426 Arden Rd<br>Columbus, OH 43214</p>
+      <p>Email: <a href="mailto:seth@pipedream.ventures">seth@pipedream.ventures</a></p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-links">
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/terms.html">Terms of Service</a>
+    </div>
+    <p>&copy; 2025 Pipedream Ventures LLC. All rights reserved.</p>
+  </footer>
 </body>
 </html>
