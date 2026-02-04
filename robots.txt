@@ -1,2 +1,12 @@
 User-agent: *
 Disallow: /work/
+Disallow: /background-inspo.html
+Disallow: /index-full.html
+Disallow: /logo-concepts.html
+Disallow: /logo-final.html
+Disallow: /logo-refined.html
+
+# Allow index, privacy, terms
+Allow: /index.html
+Allow: /privacy.html
+Allow: /terms.html
