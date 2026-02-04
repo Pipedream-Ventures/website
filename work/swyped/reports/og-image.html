@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            width: 1200px;
+            height: 630px;
+            background: #fef9f3;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .glow {
+            position: absolute;
+            top: -200px;
+            left: -200px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(216, 255, 89, 0.4) 0%, transparent 70%);
+        }
+        .glow-2 {
+            position: absolute;
+            bottom: -300px;
+            right: -100px;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(216, 255, 89, 0.3) 0%, transparent 60%);
+        }
+        .content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+        .logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 24px;
+            margin-bottom: 32px;
+            box-shadow: 0 8px 40px rgba(216, 255, 89, 0.3);
+        }
+        h1 {
+            font-size: 64px;
+            font-weight: 700;
+            color: #0a0a0a;
+            margin-bottom: 16px;
+        }
+        h1 span {
+            color: #0a0a0a;
+            background: #D8FF59;
+            padding: 0 12px;
+            border-radius: 8px;
+        }
+        .subtitle {
+            font-size: 28px;
+            color: #6b7280;
+            margin-bottom: 40px;
+        }
+        .stats {
+            display: flex;
+            gap: 40px;
+        }
+        .stat {
+            background: white;
+            padding: 16px 32px;
+            border-radius: 16px;
+            border: 2px solid #D8FF59;
+        }
+        .stat-value {
+            font-size: 36px;
+            font-weight: 700;
+            color: #0a0a0a;
+        }
+        .stat-label {
+            font-size: 16px;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .badge {
+            position: absolute;
+            bottom: 40px;
+            right: 50px;
+            background: #0a0a0a;
+            padding: 12px 24px;
+            border-radius: 30px;
+            color: rgba(255,255,255,0.8);
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="glow"></div>
+    <div class="glow-2"></div>
+    <div class="content">
+        <img src="swyped_logo.png" class="logo" alt="">
+        <h1>Swyped<span>AI</span> API Report</h1>
+        <p class="subtitle">Endpoint Testing & iOS Integration Review</p>
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-value">13</div>
+                <div class="stat-label">Endpoints</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">1</div>
+                <div class="stat-label">Bug Found</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">4</div>
+                <div class="stat-label">Recommendations</div>
+            </div>
+        </div>
+    </div>
+    <div class="badge">pipedream.ventures</div>
+</body>
+</html>
