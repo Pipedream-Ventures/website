@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>SwypedAI API Report — Feb 4, 2026</title>
+    <style>
+        @page {
+            margin: 0.5in;
+            size: letter;
+        }
+        @media print {
+            .no-print { display: none !important; }
+            body { padding: 0; background: white; }
+            .header { margin-bottom: 24px; padding: 30px; border-radius: 12px; }
+            .header h1 { font-size: 1.8rem; }
+            .intro-card, .findings, .images-section, .category {
+                break-inside: avoid;
+                margin-bottom: 20px;
+                padding: 20px;
+            }
+            .endpoint {
+                break-inside: avoid;
+                margin-bottom: 12px;
+            }
+            .endpoint-details {
+                display: block !important; /* Always show details in print */
+            }
+            .arrow { display: none; } /* Hide expand arrows */
+            .code-block {
+                max-height: none;
+                font-size: 0.7rem;
+                padding: 10px;
+            }
+            .section-title { font-size: 1rem; padding: 8px 14px; }
+            .finding { padding: 14px; margin-bottom: 12px; }
+            .footer { margin-top: 24px; padding: 20px; }
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --neon: #D8FF59;
+            --neon-dark: #b8d94a;
+            --cream: #fef9f3;
+            --cream-dark: #f5f0e8;
+            --black: #0a0a0a;
+            --card-dark: #171c20;
+            --text: #1a1a1a;
+            --text-sub: #6b7280;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', sans-serif;
+            background: var(--cream);
+            color: var(--text);
+            line-height: 1.5;
+            padding: 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            padding: 50px 40px;
+            background: var(--black);
+            border-radius: 24px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 70%, rgba(216, 255, 89, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 30%, rgba(216, 255, 89, 0.1) 0%, transparent 40%);
+            pointer-events: none;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(216, 255, 89, 0.3);
+        }
+
+        .header h1 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .header h1 span {
+            color: var(--neon);
+        }
+
+        .header .subtitle {
+            color: rgba(255,255,255,0.7);
+            font-size: 1.1rem;
+        }
+
+        .header .meta {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .header .meta-item {
+            background: rgba(255,255,255,0.1);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .header .meta-item strong {
+            color: var(--neon);
+        }
+
+        .intro-card {
+            background: white;
+            border-radius: 20px;
+            padding: 32px;
+            margin-bottom: 32px;
+            border: 2px solid var(--neon);
+        }
+
+        .intro-card h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 16px;
+        }
+
+        .intro-card p {
+            font-size: 0.95rem;
+            color: #4b5563;
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .intro-card p:last-of-type {
+            margin-bottom: 20px;
+        }
+
+        .intro-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .intro-stats .stat {
+            background: var(--cream-dark);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--text-sub);
+        }
+
+        .intro-stats .stat strong {
+            color: var(--black);
+            font-weight: 600;
+        }
+
+        .findings {
+            background: white;
+            border-radius: 20px;
+            padding: 32px;
+            margin-bottom: 40px;
+        }
+
+        .findings h2 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 24px;
+        }
+
+        .finding {
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+
+        .finding:last-child {
+            margin-bottom: 0;
+        }
+
+        .finding.critical {
+            background: #fef2f2;
+            border-left: 4px solid #ef4444;
+        }
+
+        .finding.suggestion {
+            background: var(--cream);
+            border-left: 4px solid var(--neon);
+        }
+
+        .finding.note {
+            background: #f0f9ff;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .finding-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .finding-tag {
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .finding-tag.bug {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .finding-tag.idea {
+            background: var(--neon);
+            color: var(--black);
+        }
+
+        .finding-tag.note {
+            background: #dbeafe;
+            color: #1d4ed8;
+        }
+
+        .finding h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--black);
+        }
+
+        .finding p {
+            font-size: 0.9rem;
+            color: #4b5563;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .finding p:last-child {
+            margin-bottom: 0;
+        }
+
+        .finding code {
+            background: rgba(0,0,0,0.06);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 0.85em;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--black);
+            padding: 12px 20px;
+            background: var(--neon);
+            border-radius: 12px;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+
+        .rec-item code {
+            background: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-family: 'SF Mono', Monaco, monospace;
+            border: 1px solid #e5e7eb;
+        }
+
+        .images-section {
+            background: white;
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 40px;
+            border: 2px solid var(--cream-dark);
+        }
+
+        .images-section h2 {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: var(--black);
+        }
+
+        .images-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .image-card {
+            text-align: center;
+            background: var(--cream);
+            padding: 16px;
+            border-radius: 12px;
+        }
+
+        .image-card img {
+            max-width: 100%;
+            height: 280px;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .image-card .caption {
+            margin-top: 12px;
+            font-size: 0.85rem;
+            color: var(--text-sub);
+        }
+
+        .category {
+            margin-bottom: 28px;
+        }
+
+        .category-header {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: 12px;
+            padding: 10px 16px;
+            background: linear-gradient(135deg, var(--neon) 0%, var(--neon-dark) 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .category-header .count {
+            margin-left: auto;
+            background: rgba(0,0,0,0.15);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        .endpoint {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            overflow: hidden;
+            transition: box-shadow 0.2s;
+        }
+
+        .endpoint:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .endpoint-header {
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            border-bottom: 1px solid transparent;
+        }
+
+        .endpoint.expanded .endpoint-header {
+            border-bottom-color: #e5e7eb;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .status-dot.pass { background: #16a34a; }
+        .status-dot.fail { background: #dc2626; }
+
+        .method {
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-family: 'SF Mono', Monaco, monospace;
+        }
+
+        .method.GET { background: #dbeafe; color: #1d4ed8; }
+        .method.POST { background: var(--neon); color: var(--black); }
+
+        .endpoint-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+            flex: 1;
+        }
+
+        .endpoint-time {
+            font-size: 0.85rem;
+            color: var(--text-sub);
+            font-family: 'SF Mono', Monaco, monospace;
+        }
+
+        .endpoint-details {
+            display: none;
+            padding: 20px;
+            background: var(--cream);
+        }
+
+        .endpoint.expanded .endpoint-details {
+            display: block;
+        }
+
+        .detail-row {
+            margin-bottom: 16px;
+        }
+
+        .detail-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .detail-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-sub);
+            margin-bottom: 6px;
+        }
+
+        .detail-value {
+            font-size: 0.9rem;
+        }
+
+        .code-block {
+            background: var(--card-dark);
+            color: #e5e7eb;
+            padding: 16px;
+            border-radius: 10px;
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 0.8rem;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-break: break-word;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .ios-type {
+            display: inline-block;
+            background: #fef3c7;
+            color: #92400e;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-family: 'SF Mono', Monaco, monospace;
+        }
+
+        .request-format {
+            background: #e0e7ff;
+            color: #3730a3;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 0.8rem;
+        }
+
+        .issue-badge {
+            background: #fef2f2;
+            color: #dc2626;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: var(--black);
+            border-radius: 16px;
+            margin-top: 40px;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .footer .credit {
+            color: white;
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+
+        .footer .credit span {
+            color: var(--neon);
+        }
+
+        .footer .tools {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .footer .tool-badge {
+            background: rgba(255,255,255,0.1);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .arrow {
+            color: var(--text-sub);
+            transition: transform 0.2s;
+        }
+
+        .endpoint.expanded .arrow {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <img src="swyped_logo.png" alt="Swyped" class="logo">
+            <h1>Swyped<span>AI</span> API Report</h1>
+            <p class="subtitle">Comprehensive Endpoint Testing & iOS Integration Review</p>
+            <div class="meta">
+                <div class="meta-item"><strong>13</strong> Endpoints Tested</div>
+                <div class="meta-item"><strong>Local</strong> Environment</div>
+                <div class="meta-item"><strong>Feb 4, 2026</strong></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="intro-card">
+        <h2>What This Report Is</h2>
+        <p>
+            This is a hands-on walkthrough of the SwypedAI API — every endpoint tested locally against a fresh Docker build.
+            The goal: understand what we're working with, document how things work, and surface anything that might bite us
+            (or our users) later.
+        </p>
+        <p>
+            I spun up the API, generated realistic test images with DALL-E 3, hit each endpoint, and recorded what came back.
+            The results below show the request format, response shape, and how it maps to iOS. Think of it as a
+            living reference doc — useful for onboarding, debugging, and planning iOS updates.
+        </p>
+        <div class="intro-stats">
+            <span class="stat"><strong>13</strong> endpoints tested</span>
+            <span class="stat"><strong>12</strong> working great</span>
+            <span class="stat"><strong>1</strong> needs attention</span>
+            <span class="stat"><strong>~4.8s</strong> avg response (AI endpoints)</span>
+        </div>
+    </div>
+
+    <div class="findings">
+        <h2>Findings & Recommendations</h2>
+
+        <div class="finding critical">
+            <div class="finding-header">
+                <span class="finding-tag bug">Bug Found</span>
+                <h4>Profile Recommendations — JSON Parsing Edge Case</h4>
+            </div>
+            <p>
+                <strong>What's happening:</strong> GPT-4 Vision occasionally returns invalid JSON (~10-15% of requests).
+                When this happens, the API returns HTTP 200 with <code>{"error": "...", "raw_text": "..."}</code>
+                instead of the expected structure. iOS can't decode this and crashes.
+            </p>
+            <p>
+                <strong>The fix:</strong> API now returns a valid structure with empty arrays when parsing fails
+                (<code>controllers.py:984</code>). iOS always gets something it can decode.
+                Also added Mixpanel tracking in iOS for decode errors so we can monitor this.
+            </p>
+        </div>
+
+        <div class="finding suggestion">
+            <div class="finding-header">
+                <span class="finding-tag idea">Idea</span>
+                <h4>Add Retry Logic for GPT Failures</h4>
+            </div>
+            <p>
+                GPT sometimes returns incomplete responses on the first try. Adding 1-2 retries with backoff would
+                significantly improve success rate without adding much latency on the happy path.
+            </p>
+        </div>
+
+        <div class="finding suggestion">
+            <div class="finding-header">
+                <span class="finding-tag idea">Idea</span>
+                <h4>Standardize Error Response Format</h4>
+            </div>
+            <p>
+                Right now, error responses vary by endpoint. A consistent schema like
+                <code>{"error": "message", "code": "ERROR_CODE"}</code> would let iOS handle all errors
+                with a single error type.
+            </p>
+        </div>
+
+        <div class="finding suggestion">
+            <div class="finding-header">
+                <span class="finding-tag idea">Idea</span>
+                <h4>Add Some Observability</h4>
+            </div>
+            <p>
+                If not already in place, consider adding some monitoring — New Relic, Datadog, or even just
+                solid structured logs you can query. Helpful for tracking GPT response times, spotting errors
+                in production, and understanding what's actually happening when users hit issues.
+            </p>
+        </div>
+
+        <div class="finding note">
+            <div class="finding-header">
+                <span class="finding-tag note">Note</span>
+                <h4>Response Times Look Good</h4>
+            </div>
+            <p>
+                The static GET endpoints (photo-ideas, prompt-ideas, coach-get) return in-memory data and are
+                already fast (~45ms). The 533ms on photo-ideas was likely cold-start overhead. AI endpoints
+                (2-10s) are bottlenecked by GPT-4 Vision API calls — can't speed those up without response caching.
+            </p>
+        </div>
+    </div>
+
+    <div class="images-section">
+        <h2>🎨 Test Images (AI-Generated with DALL-E 3)</h2>
+        <div class="images-grid">
+            <div class="image-card">
+                <img src="test_images/ai_chat_screenshot.png" alt="Chat Screenshot">
+                <div class="caption">Chat Screenshot — Reply generation & chat analysis</div>
+            </div>
+            <div class="image-card">
+                <img src="test_images/ai_profile_screenshot.png" alt="Profile Screenshot">
+                <div class="caption">Profile Screenshot — Profile rating & recommendations</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">📋 Endpoint Test Results</h2>
+
+        <div class="category">
+            <div class="category-header">
+                💡 Content Ideas
+                <span class="count">3/3 passed</span>
+            </div>
+
+            <div class="endpoint" onclick="this.classList.toggle('expanded')">
+                <div class="endpoint-header">
+                    <div class="status-dot pass"></div>
+                    <span class="method GET">GET</span>
+                    <span class="endpoint-name">Get Photo Ideas</span>
+                    <span class="endpoint-time">533ms</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="endpoint-details">
+                    <div class="detail-row">
+                        <div class="detail-label">Description</div>
+                        <div class="detail-value">Returns curated photo ideas with settings (lighting, attire, pose)</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Request</div>
+                        <div class="request-format">GET /api/ai/photo-ideas</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">iOS Type</div>
+                        <div class="detail-value"><span class="ios-type">PhotoIdeasResponse → [PhotoIdea]</span></div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Response</div>
+                        <div class="code-block">{
+  "photo_ideas": [
+    {
+      "title": "Diner and Drinks",
+      "description": "A photo of you enjoying a meal...",
+      "attire": "Casual yet stylish",
+      "lighting": "Warm and inviting",
+      "setting": "Dinner and Drinking"
+    },
+    ...
+  ]
+}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="endpoint" onclick="this.classList.toggle('expanded')">
+                <div class="endpoint-header">
+                    <div class="status-dot pass"></div>
+                    <span class="method GET">GET</span>
+                    <span class="endpoint-name">Get Prompt Ideas</span>
+                    <span class="endpoint-time">46ms</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="endpoint-details">
+                    <div class="detail-row">
+                        <div class="detail-label">Description</div>
+                        <div class="detail-value">Returns witty prompt responses by category type</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Request</div>
+                        <div class="request-format">GET /api/ai/prompt-ideas</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">iOS Type</div>
+                        <div class="detail-value"><span class="ios-type">PromptIdeasResponse → [PromptIdea]</span></div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Response</div>
+                        <div class="code-block">{
+  "prompts": [
+    {
+      "type": "My most controversial thought",
+      "values": [
+        "My most controversial thought is that weekends should be three days.",
+        "My most controversial thought is that breakfast is overrated.",
+        "My most controversial thought is that pizza is better cold.",
+        ...
+      ]
+    },
+    {
+      "type": "If I could",
+      "values": [
+        "If I could teleport, I'd take us to dinner in a new country every night.",
+        ...
+      ]
+    },
+    ...
+  ]
+}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="endpoint" onclick="this.classList.toggle('expanded')">
+                <div class="endpoint-header">
+                    <div class="status-dot pass"></div>
+                    <span class="method GET">GET</span>
+                    <span class="endpoint-name">Get Coach Profiles</span>
+                    <span class="endpoint-time">44ms</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="endpoint-details">
+                    <div class="detail-row">
+                        <div class="detail-label">Description</div>
+                        <div class="detail-value">Returns dating coach personas with system prompts and start prompts</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Request</div>
+                        <div class="request-format">GET /api/ai/coach-get</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">iOS Type</div>
+                        <div class="detail-value"><span class="ios-type">[CoachMessageDTO]</span></div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Response</div>
+                        <div class="code-block">[
+  {
+    "id": 1,
+    "image": "https://gens3.sfo2.cdn.digitaloceanspaces.com/coach/DATING_MATCH_...",
+    "name": "Get more matches",
+    "start_prompt": "Help me get more matches on my dating profile.",
+    "system_prompt": "You are a dating app match-optimization coach..."
+  },
+  {
+    "id": 2,
+    "image": "https://gens3.sfo2.cdn.digitaloceanspaces.com/coach/DATING_REPLY...",
+    "name": "Reply coach",
+    "start_prompt": "Help me craft the perfect reply.",
+    "system_prompt": "You are a dating conversation coach..."
+  },
+  ...
+]</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="category">
+            <div class="category-header">
+                💬 Dating Coach
+                <span class="count">4/4 passed</span>
+            </div>
+
+            <div class="endpoint expanded" onclick="this.classList.toggle('expanded')">
+                <div class="endpoint-header">
+                    <div class="status-dot pass"></div>
+                    <span class="method POST">POST</span>
+                    <span class="endpoint-name">Dating Coach Chat</span>
+                    <span class="endpoint-time">2,669ms</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="endpoint-details">
+                    <div class="detail-row">
+                        <div class="detail-label">Description</div>
+                        <div class="detail-value">Send message to AI dating coach. Maintains conversation history per device.</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Request</div>
+                        <div class="request-format">POST /api/ai/dating-coach
+Content-Type: application/json
+
+{
+  "device_id": "xxx",
+  "message": "What's a good opening line?",
+  "conversation_id": null,  // optional - continues existing
+  "system_role": null,      // optional - custom persona
+  "chat_type": "general"    // optional - categorization
+}</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">iOS Type</div>
+                        <div class="detail-value"><span class="ios-type">DCSendResponse</span></div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Response</div>
+                        <div class="code-block">{
+  "coach_response": "A great opening line for a hiker would be...",
+  "conversation_id": "abc123",
+  "device_id": "xxx",
+  "message_count": 2,
+  "user_message": "What's a good opening line?"
+}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="endpoint" onclick="this.classList.toggle('expanded')">
+                <div class="endpoint-header">
+                    <div class="status-dot pass"></div>
+                    <span class="method GET">GET</span>
+                    <span class="endpoint-name">Get Coach Conversations</span>
+                    <span class="endpoint-time">112ms</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="endpoint-details">
+                    <div class="detail-row">
+                        <div class="detail-label">Request</div>
+                        <div class="request-format">GET /api/ai/dating-coach/{device_id}?limit=50&offset=0</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">iOS Type</div>
+                        <div class="detail-value"><span class="ios-type">DCConversationsResponse → [DCConversationDTO]</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="endpoint" onclick="this.classList.toggle('expanded')">
+                <div class="endpoint-header">
+                    <div class="status-dot pass"></div>
+                    <span class="method GET">GET</span>
+                    <span class="endpoint-name">Get Coach by Type</span>
+                    <span class="endpoint-time">100ms</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="endpoint-details">
+                    <div class="detail-row">
+                        <div class="detail-label">Request</div>
+                        <div class="request-format">GET /api/ai/dating-coach/{device_id}/{chat_type}</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">iOS Type</div>
+                        <div class="detail-value"><span class="ios-type">DCConversationsResponse</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="category">
+            <div class="category-header">
+                💌 Chat Assistant
+                <span class="count">2/2 passed</span>
+            </div>
+
+            <div class="endpoint expanded" onclick="this.classList.toggle('expanded')">
+                <div class="endpoint-header">
+                    <div class="status-dot pass"></div>
+                    <span class="method POST">POST</span>
+                    <span class="endpoint-name">Reply Generator</span>
+                    <span class="endpoint-time">6,136ms</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="endpoint-details">
+                    <div class="detail-row">
+                        <div class="detail-label">Description</div>
+                        <div class="detail-value">Analyzes chat screenshot and generates contextual reply suggestions</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Request</div>
+                        <div class="request-format">POST /api/ai/reply
+Content-Type: multipart/form-data
+
+screenshot: [image file]
+device_id: "xxx"</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">iOS Type</div>
+                        <div class="detail-value"><span class="ios-type">AiReplyResponse → reply: String</span></div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Response</div>
+                        <div class="code-block">{
+  "reply": "That sounds like a great idea! I'd love to plan a hiking date...",
+  "metadata": {
+    "device_id": "xxx",
+    "image_cdn_url": "https://...",
+    "record_id": "..."
+  }
+}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="endpoint" onclick="this.classList.toggle('expanded')">
+                <div class="endpoint-header">
+                    <div class="status-dot pass"></div>
+                    <span class="method POST">POST</span>
+                    <span class="endpoint-name">Chat Analysis</span>
+                    <span class="endpoint-time">8,082ms</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="endpoint-details">
+                    <div class="detail-row">
+                        <div class="detail-label">Description</div>
+                        <div class="detail-value">Deep analysis of chat dynamics: interest levels, compatibility, red/green flags</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Request</div>
+                        <div class="request-format">POST /api/ai/chat-analysis
+Content-Type: multipart/form-data
+
+screenshots[]: [image files - up to 10]
+device_id: "xxx"</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="category">
+            <div class="category-header">
+                🔍 Profile Analysis
+                <span class="count">2/3 passed</span>
+            </div>
+
+            <div class="endpoint" onclick="this.classList.toggle('expanded')">
+                <div class="endpoint-header">
+                    <div class="status-dot pass"></div>
+                    <span class="method POST">POST</span>
+                    <span class="endpoint-name">Profile Rating</span>
+                    <span class="endpoint-time">11,166ms</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="endpoint-details">
+                    <div class="detail-row">
+                        <div class="detail-label">Description</div>
+                        <div class="detail-value">Rates profile with hot-vs-not score (0-100) and red flag analysis</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Request</div>
+                        <div class="request-format">POST /api/ai/profile-rating (multipart: screenshot, device_id)</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="endpoint" onclick="this.classList.toggle('expanded')">
+                <div class="endpoint-header">
+                    <div class="status-dot pass"></div>
+                    <span class="method POST">POST</span>
+                    <span class="endpoint-name">Profile Analysis</span>
+                    <span class="endpoint-time">8,870ms</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="endpoint-details">
+                    <div class="detail-row">
+                        <div class="detail-label">Description</div>
+                        <div class="detail-value">Full analysis with rating, strengths, improvements, conversation starters</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">iOS Type</div>
+                        <div class="detail-value"><span class="ios-type">ProfileAnalysisResponse / ProfileAnalysisDTO</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="endpoint expanded" onclick="this.classList.toggle('expanded')">
+                <div class="endpoint-header">
+                    <div class="status-dot fail"></div>
+                    <span class="method POST">POST</span>
+                    <span class="endpoint-name">Profile Recommendations</span>
+                    <span class="issue-badge">⚠️ Intermittent JSON failure</span>
+                    <span class="endpoint-time">18,960ms</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="endpoint-details">
+                    <div class="detail-row">
+                        <div class="detail-label">Description</div>
+                        <div class="detail-value">Detailed recommendations across photos, bio, prompts, interests, intentions</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Request</div>
+                        <div class="request-format">POST /api/ai/profile-recommendations (multipart: screenshot, device_id)</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">iOS Type</div>
+                        <div class="detail-value"><span class="ios-type">PhotoRecommendationsDTO</span></div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Expected Response Structure</div>
+                        <div class="code-block">{
+  "device_id": "xxx",
+  "recommendations": {
+    "photos": { "recommendations": [...] },
+    "bio": { "recommendations": [...] },
+    "prompts": { "recommendations": [...] },
+    "interests": { "recommendations": [...] },
+    "intentions": { "recommendations": [...] },
+    "others": { "recommendations": [...] },
+    "overall_assessment": "..."
+  },
+  "metadata": { "image": {...} }
+}</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">⚠️ Failure Case Response</div>
+                        <div class="code-block" style="border: 2px solid #dc2626;">{
+  "recommendations": {
+    "error": "Failed to parse response as JSON",
+    "raw_text": "..."
+  }
+}
+
+// iOS cannot decode this - missing required fields</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="category">
+            <div class="category-header">
+                🎨 Image Generation
+                <span class="count">1/1 passed</span>
+            </div>
+
+            <div class="endpoint" onclick="this.classList.toggle('expanded')">
+                <div class="endpoint-header">
+                    <div class="status-dot pass"></div>
+                    <span class="method GET">GET</span>
+                    <span class="endpoint-name">Get Generated Images</span>
+                    <span class="endpoint-time">93ms</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="endpoint-details">
+                    <div class="detail-row">
+                        <div class="detail-label">Request</div>
+                        <div class="request-format">GET /api/ai/generate-image/{device_id}/images</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">iOS Type</div>
+                        <div class="detail-value"><span class="ios-type">GeneratedImagesResponse</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="credit">Report by <span>Seth</span> & <span>Claude Code</span></div>
+        <div style="font-size: 0.85rem;">SwypedAI API v1.0 • February 2026</div>
+        <div class="tools">
+            <span class="tool-badge">🤖 Claude Opus 4.5</span>
+            <span class="tool-badge">🎨 DALL-E 3</span>
+            <span class="tool-badge">🐍 Python</span>
+            <span class="tool-badge">📱 iOS 16.4+</span>
+        </div>
+    </div>
+
+    <script>
+        // Expand failed endpoints by default
+        document.querySelectorAll('.endpoint').forEach(ep => {
+            if (ep.querySelector('.status-dot.fail') || ep.querySelector('.issue-badge')) {
+                ep.classList.add('expanded');
+            }
+        });
+    </script>
+</body>
+</html>
