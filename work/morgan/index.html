@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Morgan & Scarlet — Business Plan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #FAF6F0;
+      --warm-white: #FFFDF9;
+      --burgundy: #6B2D3E;
+      --burgundy-light: #8B3D4E;
+      --burgundy-dark: #4A1E2B;
+      --gold: #C4964A;
+      --gold-light: #D4A65A;
+      --olive: #5B6B4A;
+      --olive-light: #7B8B6A;
+      --terracotta: #C27B5A;
+      --blush: #E8D0C8;
+      --blush-light: #F0E0D8;
+      --charcoal: #2C2C2C;
+      --warm-gray: #6B6260;
+      --border: #E0D6CC;
+      --card-shadow: 0 2px 20px rgba(107, 45, 62, 0.06);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'DM Sans', -apple-system, sans-serif;
+      background: var(--cream);
+      color: var(--charcoal);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, var(--burgundy-dark) 0%, var(--burgundy) 40%, var(--burgundy-light) 100%);
+      padding: 80px 40px 70px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(ellipse at 30% 20%, rgba(196, 150, 74, 0.15) 0%, transparent 60%),
+                  radial-gradient(ellipse at 70% 80%, rgba(194, 123, 90, 0.1) 0%, transparent 50%);
+    }
+
+    .hero-content { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+
+    .hero-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 52px;
+      font-weight: 700;
+      color: var(--cream);
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    .hero p {
+      font-size: 17px;
+      color: rgba(250, 246, 240, 0.75);
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    .hero-divider {
+      width: 60px;
+      height: 1px;
+      background: var(--gold);
+      margin: 28px auto;
+      opacity: 0.5;
+    }
+
+    .hero-founders {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin-top: 28px;
+    }
+
+    .founder-pill {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 1px;
+      color: var(--cream);
+      background: rgba(250, 246, 240, 0.1);
+      border: 1px solid rgba(250, 246, 240, 0.15);
+      padding: 8px 20px;
+      border-radius: 100px;
+    }
+
+    /* Layout */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Section */
+    .section {
+      padding: 56px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section:last-child { border-bottom: none; }
+
+    .section-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      color: var(--warm-gray);
+      margin-bottom: 12px;
+    }
+
+    .section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 30px;
+      font-weight: 600;
+      color: var(--burgundy);
+      margin-bottom: 20px;
+      line-height: 1.25;
+    }
+
+    .section h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin: 28px 0 12px;
+    }
+
+    .section p, .section li {
+      font-size: 15px;
+      color: var(--charcoal);
+      line-height: 1.75;
+    }
+
+    .section p + p { margin-top: 14px; }
+
+    .section ul, .section ol {
+      padding-left: 20px;
+      margin-top: 10px;
+    }
+
+    .section li { margin-bottom: 6px; }
+
+    .lead {
+      font-size: 17px;
+      color: var(--warm-gray);
+      line-height: 1.75;
+    }
+
+    strong { color: var(--charcoal); }
+
+    /* Callout Card */
+    .callout {
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--burgundy);
+      border-radius: 8px;
+      padding: 24px 28px;
+      margin: 24px 0;
+    }
+
+    .callout.gold { border-left-color: var(--gold); }
+    .callout.olive { border-left-color: var(--olive); }
+    .callout.terracotta { border-left-color: var(--terracotta); }
+
+    .callout-title {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--burgundy);
+      margin-bottom: 8px;
+    }
+
+    .callout.gold .callout-title { color: var(--gold); }
+    .callout.olive .callout-title { color: var(--olive); }
+    .callout.terracotta .callout-title { color: var(--terracotta); }
+
+    /* Stat Grid */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin: 24px 0;
+    }
+
+    .stat-card {
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--burgundy);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--warm-gray);
+      margin-top: 8px;
+    }
+
+    /* Tables */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 20px 0;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    th {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--warm-gray);
+      background: var(--blush-light);
+      text-align: left;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    tr:last-child td { border-bottom: none; }
+
+    tr:nth-child(even) { background: rgba(250, 246, 240, 0.5); }
+
+    td:first-child { font-weight: 500; }
+
+    .table-total td {
+      font-weight: 600;
+      background: var(--blush-light);
+      color: var(--burgundy);
+    }
+
+    /* Tag / Badge */
+    .badge {
+      display: inline-block;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 4px 10px;
+      border-radius: 100px;
+      margin-right: 6px;
+      margin-bottom: 4px;
+    }
+
+    .badge-burgundy { background: rgba(107, 45, 62, 0.1); color: var(--burgundy); }
+    .badge-gold { background: rgba(196, 150, 74, 0.15); color: var(--gold); }
+    .badge-olive { background: rgba(91, 107, 74, 0.12); color: var(--olive); }
+    .badge-terracotta { background: rgba(194, 123, 90, 0.12); color: var(--terracotta); }
+
+    /* Space Listing Cards */
+    .space-card {
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 28px;
+      margin: 16px 0;
+      position: relative;
+    }
+
+    .space-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; bottom: 0;
+      width: 4px;
+      border-radius: 10px 0 0 10px;
+    }
+
+    .space-card.gv::before { background: var(--burgundy); }
+    .space-card.cv::before { background: var(--olive); }
+
+    .space-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .space-address {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--charcoal);
+    }
+
+    .space-price {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--burgundy);
+      background: rgba(107, 45, 62, 0.08);
+      padding: 4px 12px;
+      border-radius: 6px;
+    }
+
+    .space-meta {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .space-meta span {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      color: var(--warm-gray);
+    }
+
+    .space-desc {
+      font-size: 14px;
+      color: var(--warm-gray);
+      line-height: 1.65;
+    }
+
+    .space-verdict {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      font-style: italic;
+      color: var(--burgundy-light);
+    }
+
+    .star-pick {
+      display: inline-block;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      background: var(--gold);
+      color: white;
+      padding: 3px 10px;
+      border-radius: 4px;
+      margin-bottom: 12px;
+    }
+
+    /* Timeline */
+    .timeline {
+      position: relative;
+      padding-left: 28px;
+      margin: 20px 0;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 8px;
+      top: 4px;
+      bottom: 4px;
+      width: 1px;
+      background: var(--border);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 28px;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -24px;
+      top: 6px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--cream);
+      border: 2px solid var(--burgundy);
+    }
+
+    .timeline-item.active::before {
+      background: var(--burgundy);
+    }
+
+    .timeline-quarter {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--burgundy);
+      margin-bottom: 6px;
+    }
+
+    .timeline-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 8px;
+    }
+
+    .timeline-tasks {
+      list-style: none;
+      padding: 0;
+    }
+
+    .timeline-tasks li {
+      font-size: 14px;
+      padding: 4px 0;
+      padding-left: 20px;
+      position: relative;
+      color: var(--warm-gray);
+    }
+
+    .timeline-tasks li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 10px;
+      height: 10px;
+      border: 1.5px solid var(--border);
+      border-radius: 2px;
+    }
+
+    /* Permit flow */
+    .permit-flow {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin: 20px 0;
+    }
+
+    .permit-step {
+      flex: 1;
+      min-width: 160px;
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .permit-step-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--burgundy);
+      opacity: 0.25;
+      position: absolute;
+      top: 10px;
+      right: 14px;
+    }
+
+    .permit-step-title {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--charcoal);
+      margin-bottom: 6px;
+    }
+
+    .permit-step-detail {
+      font-size: 12px;
+      color: var(--warm-gray);
+    }
+
+    /* Two column */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 640px) {
+      .two-col { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 36px; }
+      .hero { padding: 50px 24px 40px; }
+      .stat-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* Risk / Opportunity */
+    .risk-item, .opp-item {
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .risk-item:last-child, .opp-item:last-child { border-bottom: none; }
+
+    .risk-title {
+      font-weight: 600;
+      font-size: 15px;
+      margin-bottom: 4px;
+      color: var(--terracotta);
+    }
+
+    .opp-title {
+      font-weight: 600;
+      font-size: 15px;
+      margin-bottom: 4px;
+      color: var(--olive);
+    }
+
+    .risk-mitigation, .opp-detail {
+      font-size: 13px;
+      color: var(--warm-gray);
+    }
+
+    /* Footer */
+    .footer {
+      padding: 40px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer p {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--warm-gray);
+      letter-spacing: 0.5px;
+    }
+
+    /* Structure callout */
+    .structure-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 16px 0;
+    }
+
+    @media (max-width: 640px) {
+      .structure-options { grid-template-columns: 1fr; }
+    }
+
+    .structure-opt {
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 24px;
+    }
+
+    .structure-opt.recommended {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 1px var(--gold);
+    }
+
+    .structure-opt h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    .structure-opt p {
+      font-size: 13px;
+      color: var(--warm-gray);
+    }
+
+    .rec-badge {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      background: var(--gold);
+      color: white;
+      padding: 2px 8px;
+      border-radius: 3px;
+      margin-bottom: 8px;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-content">
+      <div class="hero-label">Columbus, Ohio &middot; Business Plan 2026</div>
+      <h1>Coffee by morning.<br><em>Cocktails by night.</em><br>Vintage always.</h1>
+      <div class="hero-divider"></div>
+      <p>A hybrid coffee shop, cocktail bar, and curated vintage goods shop. One space, three revenue streams, two founders with taste.</p>
+      <div class="hero-founders">
+        <span class="founder-pill">Morgan Taylor</span>
+        <span class="founder-pill">Scarlet</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- THE CONCEPT -->
+    <div class="section">
+      <div class="section-label">01 &mdash; The Concept</div>
+      <h2>The living room you wish you had &mdash; where the shelves happen to be shoppable</h2>
+      <p class="lead">Morning: specialty coffee, pastries, a warm place to sit and work. Evening: craft cocktails, natural wine, small plates. Always: a curated vintage clothing and home goods section personally sourced by the founders.</p>
+      <p>Not three businesses duct-taped together &mdash; one cohesive space with a personality that shifts from day to night. The model is proven and trending nationally. <strong>Cuties</strong> (Portland, ME), <strong>Agency</strong> (Milwaukee), and <strong>Two Dollar Radio HQ</strong> (Columbus) all operate as day-to-night hybrids.</p>
+
+      <div class="callout gold">
+        <div class="callout-title">The Columbus Signal</div>
+        <p>A February 2025 Columbus Foodletter headline reads: <strong>"Coffee Shop-Bar Hybrids are Popping Up All Over Columbus."</strong> The wave is building. Morgan and Scarlet's edge is the vintage retail layer &mdash; that's the differentiator nobody else is doing well.</p>
+      </div>
+
+      <h3>The Founders</h3>
+      <div class="two-col">
+        <div class="callout" style="margin: 0;">
+          <div class="callout-title">Morgan Taylor</div>
+          <p><strong>Abercrombie & Fitch</strong> (corporate), ~$130K. Design-minded, strong aesthetic sense, obsessive vintage sourcer. Eye for spaces, interiors, and curation. Husband Seth runs Pipedream Ventures LLC and Rapchat (C-Corp).</p>
+        </div>
+        <div class="callout" style="margin: 0;">
+          <div class="callout-title">Scarlet</div>
+          <p><strong>Abercrombie & Fitch</strong> (corporate). Co-founder and partner. Both planning to leave by end of 2026. Complementary skills &mdash; operational and creative partnership.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TARGET CUSTOMER -->
+    <div class="section">
+      <div class="section-label">02 &mdash; Target Customer</div>
+      <h2>Who's walking through the door</h2>
+      <p><strong>Primary:</strong> Women 25-45 in Columbus who care about aesthetics, experience, and community. They follow vintage accounts on Instagram, shop at Grandview Mercantile, brunch in German Village, and want a "third place" that isn't a chain.</p>
+      <p><strong>Secondary:</strong> Remote workers who want a beautiful place to post up during the day. Couples looking for an evening spot that isn't another brewery. Weekend visitors exploring Columbus neighborhoods.</p>
+
+      <div class="callout olive">
+        <div class="callout-title">The gap</div>
+        <p>Nobody in Columbus does all three well &mdash; good coffee, good cocktails, and something to browse &mdash; in one curated space with real taste behind it. Fox in the Snow does pastries. Law Bird does cocktails. Grandview Mercantile does vintage. Nobody combines them.</p>
+      </div>
+    </div>
+
+    <!-- LOCATION STRATEGY -->
+    <div class="section">
+      <div class="section-label">03 &mdash; Location Strategy</div>
+      <h2>German Village or Clintonville</h2>
+      <p class="lead">Two strong Columbus neighborhoods, different trade-offs. Both walkable, both have the right crowd. Short North is a skip &mdash; too saturated, too expensive, declining suburban visits (10-21% vacancy in spots).</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Factor</th>
+              <th><span class="badge badge-burgundy">German Village</span></th>
+              <th><span class="badge badge-olive">Clintonville</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Vibe fit</td>
+              <td>Perfect. Brick, walkable, affluent, brunch-to-cocktails crowd</td>
+              <td>Great. Eclectic, indie, community-driven, younger</td>
+            </tr>
+            <tr>
+              <td>Retail vacancy</td>
+              <td>&lt;4% (tight = desirable)</td>
+              <td>Moderate, storefronts available on N. High</td>
+            </tr>
+            <tr>
+              <td>Lease rate</td>
+              <td>~$22-35/SF/yr NNN</td>
+              <td>~$18-22/SF/yr NNN</td>
+            </tr>
+            <tr>
+              <td>Monthly rent (1,500 SF)</td>
+              <td>$2,750 - $4,375</td>
+              <td>$2,250 - $2,750</td>
+            </tr>
+            <tr>
+              <td>Competition</td>
+              <td>Law Bird (Top 10 US bar), Stauf's, Fox in the Snow. High quality &mdash; but no hybrid concept.</td>
+              <td>Kafe Kerouac (20-yr coffee+bar hybrid), indie cafes. More casual market.</td>
+            </tr>
+            <tr>
+              <td>The vibe for <em>this</em> concept</td>
+              <td><strong>Higher ceiling.</strong> Design-minded crowd will pay more for curated vintage + craft cocktails.</td>
+              <td><strong>More forgiving.</strong> Lower cost lets you experiment. Loyal community that supports local hard.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ACTUAL SPACES -->
+      <h3>Spaces Available Right Now</h3>
+      <p>These are real, active listings as of early 2026. The market moves &mdash; these are starting points for scouting, not your final options.</p>
+
+      <div class="star-pick">Top Pick</div>
+      <div class="space-card gv">
+        <div class="space-header">
+          <div class="space-address">970 Parsons Ave</div>
+          <div class="space-price">$2,693/mo + NNN</div>
+        </div>
+        <div class="space-meta">
+          <span>1,469 SF + 1,205 SF basement</span>
+          <span>German Village / Merion Village</span>
+          <span>18,966 VPD</span>
+        </div>
+        <p class="space-desc">Fully renovated two-story bar/restaurant space at corner of Parsons & Whittier. Includes side patio, adjacent parking lot, updated restrooms, small kitchen. Both interior and exterior completely renovated. Basement provides storage and prep area.</p>
+        <p class="space-verdict">This one checks a lot of boxes. Right size, right price, patio for events, near GV without the premium GV lease rate. Parsons Ave is having a moment. Contact: John Mally, NAI Ohio Equities &mdash; jmally@ohioequities.com</p>
+      </div>
+
+      <div class="space-card gv">
+        <div class="space-header">
+          <div class="space-address">525 S 4th St</div>
+          <div class="space-price">$35.00/SF/yr (~$6,600/mo)</div>
+        </div>
+        <div class="space-meta">
+          <span>2,266 SF</span>
+          <span>German Village (heart of)</span>
+          <span>4 parking spaces</span>
+        </div>
+        <p class="space-desc">Restaurant space in the core of German Village. Larger than needed and at the top of the budget range, but prime GV location.</p>
+        <p class="space-verdict">Premium price for premium address. Could work if you can fill the extra square footage, or negotiate down. Listed on LoopNet.</p>
+      </div>
+
+      <div class="space-card gv">
+        <div class="space-header">
+          <div class="space-address">900 S High St</div>
+          <div class="space-price">Contact for pricing</div>
+        </div>
+        <div class="space-meta">
+          <span>1,026 SF</span>
+          <span>German Village (High & Whittier)</span>
+        </div>
+        <p class="space-desc">Retail space right at the German Village gateway on S. High Street. Might be a touch small for the full concept, but great visibility.</p>
+        <p class="space-verdict">Worth seeing in person. If the layout works for a compact coffee bar + retail, the location is excellent. Listed on LoopNet.</p>
+      </div>
+
+      <div class="space-card gv">
+        <div class="space-header">
+          <div class="space-address">739 S 3rd St</div>
+          <div class="space-price">$24.50-$30.00/SF/yr</div>
+        </div>
+        <div class="space-meta">
+          <span>1,694 - 4,389 SF</span>
+          <span>German Village</span>
+        </div>
+        <p class="space-desc">Flexible size &mdash; divisible from 1,694 SF up to 4,389 SF. S. 3rd St is a charming GV corridor.</p>
+        <p class="space-verdict">The 1,694 SF option is right in the sweet spot. Worth a look at the smaller end of the range.</p>
+      </div>
+
+      <div class="space-card cv">
+        <div class="space-header">
+          <div class="space-address">4269 N High St &mdash; "Clintonville Building"</div>
+          <div class="space-price">Contact for pricing</div>
+        </div>
+        <div class="space-meta">
+          <span>1,727 SF (full building)</span>
+          <span>Clintonville (High & Cooke)</span>
+          <span>Walk Score: 79</span>
+        </div>
+        <p class="space-desc">Retail space at the heavily trafficked N. High & W. Cooke intersection. Directly next to Northstar Cafe, Hot Chicken Takeover, Jeni's Splendid Ice Creams, and Jersey Mike's. Monument signage available. 17,999 VPD.</p>
+        <p class="space-verdict">Dream Clintonville location. Already surrounded by the exact dining audience you want. Jeni's + Northstar traffic = built-in foot traffic. Contact: Chad Hamrick, Goodman Real Estate Services.</p>
+      </div>
+
+      <div class="space-card cv">
+        <div class="space-header">
+          <div class="space-address">2469 N High St</div>
+          <div class="space-price">$18.46/SF/yr NNN (~$3,000/mo)</div>
+        </div>
+        <div class="space-meta">
+          <span>1,950 SF</span>
+          <span>Clintonville / North Campus border</span>
+          <span>14,000+ VPD</span>
+        </div>
+        <p class="space-desc">Open floor plan with private office and restroom. Corner of Blake Ave and N. High St, between OSU campus and Clintonville. Multi-tenant building (14 units, renovated 2010).</p>
+        <p class="space-verdict">Good size, good price, but the campus-adjacent location skews younger. Could work if the vintage angle draws the Clintonville crowd south.</p>
+      </div>
+    </div>
+
+    <!-- REVENUE -->
+    <div class="section">
+      <div class="section-label">04 &mdash; Revenue Streams</div>
+      <h2>Three revenue streams, one space</h2>
+
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-number">35-40%</div>
+          <div class="stat-label">Coffee & Daytime</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">40-45%</div>
+          <div class="stat-label">Cocktails & Wine</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">15-20%</div>
+          <div class="stat-label">Vintage Retail</div>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Stream</th>
+              <th>Avg Ticket</th>
+              <th>Daily Volume</th>
+              <th>Annual Revenue</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Coffee, matcha, pastries</td>
+              <td>$7</td>
+              <td>~120 transactions</td>
+              <td>~$306K</td>
+            </tr>
+            <tr>
+              <td>Cocktails, wine, beer</td>
+              <td>$16</td>
+              <td>~60 transactions</td>
+              <td>~$350K</td>
+            </tr>
+            <tr>
+              <td>Vintage clothing & goods</td>
+              <td>$25-60</td>
+              <td>Ongoing</td>
+              <td>~$80-120K</td>
+            </tr>
+            <tr>
+              <td>Events & pop-ups</td>
+              <td>Varies</td>
+              <td>Monthly</td>
+              <td>~$20-40K</td>
+            </tr>
+          </tbody>
+          <tr class="table-total">
+            <td colspan="3">Year 2 Total (stabilized)</td>
+            <td>$740K - $820K</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="callout">
+        <div class="callout-title">Owner Income (Year 2)</div>
+        <p>Industry net margin for a well-run cafe/bar: 10-15%. With two co-founders splitting: <strong>$37K-$60K each</strong> in Year 2. This won't replace $130K salaries immediately. But it builds equity, the retail side scales with sourcing ability, and the bar has the best margins. Year 3+ with a following: $50K-$80K each is realistic.</p>
+      </div>
+    </div>
+
+    <!-- STARTUP COSTS -->
+    <div class="section">
+      <div class="section-label">05 &mdash; Startup Costs</div>
+      <h2>What it actually costs</h2>
+      <p class="lead">For a ~1,500 SF space in German Village or Clintonville. Two founders sourcing furniture and fixtures themselves saves real money.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Low</th>
+              <th>High</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Lease deposit + first/last</td>
+              <td>$8,000</td>
+              <td>$15,000</td>
+              <td>Typically 2-3 months upfront</td>
+            </tr>
+            <tr>
+              <td>Build-out & renovation</td>
+              <td>$90,000</td>
+              <td>$180,000</td>
+              <td>$60-120/SF. Plumbing for bar + espresso, electrical. Biggest variable.</td>
+            </tr>
+            <tr>
+              <td>Espresso machine + grinders</td>
+              <td>$8,000</td>
+              <td>$20,000</td>
+              <td>La Marzocco Linea or similar commercial 2-group</td>
+            </tr>
+            <tr>
+              <td>Bar equipment</td>
+              <td>$10,000</td>
+              <td>$25,000</td>
+              <td>Ice machine, speed wells, glassware, back bar, small kitchen</td>
+            </tr>
+            <tr>
+              <td>Furniture & fixtures</td>
+              <td>$5,000</td>
+              <td>$15,000</td>
+              <td>Source vintage tables, chairs, decor yourselves &mdash; huge cost saver + on-brand</td>
+            </tr>
+            <tr>
+              <td>Vintage inventory (opening)</td>
+              <td>$5,000</td>
+              <td>$12,000</td>
+              <td>Estate sales, bins, flea markets. 60-70% margins. Start stockpiling now.</td>
+            </tr>
+            <tr>
+              <td>POS, tech, music</td>
+              <td>$3,000</td>
+              <td>$6,000</td>
+              <td>Toast or Square, speakers, lighting</td>
+            </tr>
+            <tr>
+              <td>Liquor license</td>
+              <td>$15,000</td>
+              <td>$50,000</td>
+              <td>D-5 transfer in Franklin County. See licensing section.</td>
+            </tr>
+            <tr>
+              <td>Permits, legal, insurance</td>
+              <td>$5,000</td>
+              <td>$12,000</td>
+              <td>LLC, food service, liability, liquor liability insurance</td>
+            </tr>
+            <tr>
+              <td>Marketing & branding</td>
+              <td>$3,000</td>
+              <td>$8,000</td>
+              <td>Logo, signage, social media launch, soft opening events</td>
+            </tr>
+            <tr>
+              <td>Working capital (6 months)</td>
+              <td>$40,000</td>
+              <td>$60,000</td>
+              <td>Rent, payroll, COGS while building customer base</td>
+            </tr>
+          </tbody>
+          <tr class="table-total">
+            <td>Total</td>
+            <td>$192,000</td>
+            <td>$403,000</td>
+            <td></td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-number">$275K</div>
+          <div class="stat-label">Realistic Target</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">$325K</div>
+          <div class="stat-label">Comfortable Budget</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEAN PATH -->
+    <div class="section">
+      <div class="section-label">05b &mdash; The Lean Path</div>
+      <h2>How to do it without a big loan</h2>
+      <p class="lead">The $275K number assumes building from scratch. You don't have to. Here's how to cut the startup cost by 60-70% and skip the SBA entirely.</p>
+
+      <h3>The three biggest cost-killers</h3>
+
+      <div class="callout gold">
+        <div class="callout-title">1. Take over an already-built-out space</div>
+        <p>That 970 Parsons Ave listing? It's a <strong>fully renovated bar</strong> &mdash; kitchen, restrooms, patio, done. If the previous tenant was a bar or coffee shop, you inherit their build-out. The $90-180K build-out line drops to <strong>$15-30K</strong> in cosmetic changes to make it yours.</p>
+      </div>
+
+      <div class="callout olive">
+        <div class="callout-title">2. Skip the D-5 &mdash; start beer + wine only</div>
+        <p>D-1 (beer) + D-2 (wine) are <strong>not quota-limited the same way</strong> as the D-5. Cheaper, faster, no $20-50K transfer fee. Serve natural wine, craft beer, and batched cocktails. Add full spirits in year 2 when cash flow supports the D-5 purchase.</p>
+      </div>
+
+      <div class="callout terracotta">
+        <div class="callout-title">3. Finance equipment separately</div>
+        <p>Espresso machines and bar equipment qualify for <strong>equipment financing</strong> &mdash; basically lease-to-own. Often <strong>$0 down</strong>, $500-800/mo payments. That's $20-40K you don't need upfront.</p>
+      </div>
+
+      <h3>The Lean Budget</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Lean Cost</th>
+              <th>How</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Take over existing bar space (cosmetic refresh)</td>
+              <td>$15,000 - $30,000</td>
+              <td>Paint, lighting, vintage furniture you source yourselves</td>
+            </tr>
+            <tr>
+              <td>Espresso + bar equipment</td>
+              <td>$0 down</td>
+              <td>Equipment financing, $500-800/mo</td>
+            </tr>
+            <tr>
+              <td>Beer + wine license (no D-5)</td>
+              <td>$1,000 - $2,000</td>
+              <td>D-1 ($376) + D-2 ($564) + D-6 (Sunday)</td>
+            </tr>
+            <tr>
+              <td>Vintage inventory</td>
+              <td>$5,000</td>
+              <td>Stockpile from estate sales, bins, flea markets starting now</td>
+            </tr>
+            <tr>
+              <td>Lease deposit</td>
+              <td>$5,000 - $8,000</td>
+              <td>First + last month</td>
+            </tr>
+            <tr>
+              <td>Legal, permits, branding</td>
+              <td>$5,000 - $8,000</td>
+              <td>LLC, operating agreement, food service, signage</td>
+            </tr>
+            <tr>
+              <td>Working capital (3 months)</td>
+              <td>$20,000 - $30,000</td>
+              <td>Rent, initial inventory, payroll buffer</td>
+            </tr>
+          </tbody>
+          <tr class="table-total">
+            <td colspan="2">Total: $51,000 - $83,000</td>
+            <td></td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-number" style="color: var(--olive);">$17-28K</div>
+          <div class="stat-label">Per Person (split 3 ways)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" style="color: var(--olive);">$0</div>
+          <div class="stat-label">SBA Loan Needed</div>
+        </div>
+      </div>
+
+      <h3>The Phased Approach</h3>
+      <p>Before signing any lease, prove the concept with zero risk:</p>
+      <ol>
+        <li><strong>Pop up first.</strong> Vintage pop-ups at Columbus flea markets, farmers markets, local events ($0-200/booth). Build the Instagram. Generate actual revenue.</li>
+        <li><strong>Pop-up coffee + vintage</strong> at an existing space &mdash; rent someone's bar or restaurant on Saturday mornings when they're closed.</li>
+        <li><strong>Walk into an SBA meeting with real sales data</strong> instead of projections. Bankers love proof.</li>
+        <li><strong>Sign a lease on a built-out space</strong> when you're ready &mdash; use pop-up revenue + savings. No bank needed.</li>
+      </ol>
+
+      <div class="callout">
+        <div class="callout-title">The Real Move</div>
+        <p>Start selling vintage and pouring coffee at markets <strong>this spring</strong>. Open the real space when the brand already has a following. That's how you go from "we need $275K" to "we need a weekend, a card table, and good taste."</p>
+      </div>
+    </div>
+
+    <!-- BUSINESS STRUCTURE -->
+    <div class="section">
+      <div class="section-label">06 &mdash; Business Structure</div>
+      <h2>How to structure Morgan + Scarlet</h2>
+      <p class="lead">Two co-founders need a clear operating agreement from day one. This is where partnerships either work or blow up. Get it right early.</p>
+
+      <div class="structure-options">
+        <div class="structure-opt recommended">
+          <div class="rec-badge">Recommended</div>
+          <h4>New LLC (50/50)</h4>
+          <p>Form a new Ohio LLC specifically for this business. Equal ownership, clean operating agreement. Separate from Seth's entities (Pipedream / Rapchat). Seth can invest or loan money without being a member. Keeps liability clean for everyone.</p>
+        </div>
+        <div class="structure-opt">
+          <h4>Under Pipedream Ventures</h4>
+          <p>Could house the business under Seth's existing LLC. Simpler setup but tangles Morgan's business with Seth's other ventures. If Morgan and Scarlet are equal partners, this gets complicated. <strong>Not recommended.</strong></p>
+        </div>
+      </div>
+
+      <div class="callout gold">
+        <div class="callout-title">The Operating Agreement Must Cover</div>
+        <ul>
+          <li><strong>Ownership split</strong> &mdash; 50/50? Based on capital contribution? Sweat equity?</li>
+          <li><strong>Decision-making</strong> &mdash; Who has final call on what? (e.g., Morgan on design/curation, Scarlet on operations?)</li>
+          <li><strong>Capital contributions</strong> &mdash; How much does each person put in? Is Seth's money a loan or investment?</li>
+          <li><strong>Salary vs. distributions</strong> &mdash; When do founders start taking a salary? What happens before the business is profitable?</li>
+          <li><strong>Exit/buyout</strong> &mdash; If one person wants out in 3 years, what happens? Define it now.</li>
+          <li><strong>Day-to-day roles</strong> &mdash; Who does what? Avoid "we both do everything" &mdash; that breeds resentment.</li>
+        </ul>
+        <p style="margin-top: 12px; font-size: 13px; color: var(--warm-gray);">Budget $2,000-$4,000 for a business attorney to draft this. It's the best money you'll spend.</p>
+      </div>
+
+      <h3>Funding the $275K</h3>
+      <ul>
+        <li><strong>SBA 7(a) loan:</strong> Up to $5M, typically 10-20% down. Good for first-time owners. Huntington Bank is Columbus's strongest SBA lender.</li>
+        <li><strong>Personal savings + loan combo:</strong> If you can put $60-80K down between the two of you, finance the rest.</li>
+        <li><strong>Seth as lender (not owner):</strong> A formal loan from Pipedream or personal funds keeps ownership clean. Pay it back with interest. Document everything.</li>
+        <li><strong>Skip outside investors.</strong> For a lifestyle business this size, 100% founder ownership is worth protecting.</li>
+      </ul>
+    </div>
+
+    <!-- LIQUOR LICENSE DEEP DIVE -->
+    <div class="section">
+      <div class="section-label">07 &mdash; The Liquor License</div>
+      <h2>Ohio's liquor licensing &mdash; the real story</h2>
+      <p class="lead">This is the single biggest regulatory hurdle. Ohio's system is old, quota-based, and not intuitive. Here's what actually matters.</p>
+
+      <h3>How Ohio's System Works</h3>
+      <p>Ohio uses a <strong>quota system</strong>. A limited number of D-class permits are allocated to each city/township based on U.S. Census population data &mdash; roughly 1 permit per 1,000 residents. Franklin County (Columbus) is a large market, so permits do exist, but demand is high.</p>
+      <p>This means you usually <strong>cannot simply apply for a new permit</strong>. If the quota is full in your area, you need to <strong>buy and transfer an existing permit</strong> from another business.</p>
+
+      <div class="callout terracotta">
+        <div class="callout-title">Good News (June 2025)</div>
+        <p>Ohio launched <strong>OPAL</strong> (Ohio Permit and Licensing) &mdash; a fully digital system replacing all paper applications. This makes the process faster and more transparent. All applications, transfers, renewals, and tracking happen online at <strong>com.ohio.gov/opal</strong>.</p>
+      </div>
+
+      <h3>What You Need</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Permit</th>
+              <th>What It Covers</th>
+              <th>Annual State Fee</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>D-5</strong></td>
+              <td>All alcoholic beverages (beer, wine, spirits, mixed) for on-premises consumption</td>
+              <td>~$2,344</td>
+            </tr>
+            <tr>
+              <td>D-6</td>
+              <td>Sunday sales (add-on)</td>
+              <td>Additional</td>
+            </tr>
+            <tr>
+              <td>D-3A</td>
+              <td>Extended hours to 2:30 AM (add-on)</td>
+              <td>Additional</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>The <strong>D-5 is the gold standard</strong> &mdash; one permit that covers everything. The alternative is stacking D-1 (beer, $376) + D-2 (wine, $564) + D-3 (spirits, $750) + D-3A (late hours) + D-6 (Sunday). Same privileges, more paperwork.</p>
+
+      <h3>The Real Cost: Transfer Market</h3>
+      <p>State fees are cheap. The <strong>transfer cost is not.</strong> Buying a D-5 permit on the secondary market in Franklin County runs <strong>$20,000 - $50,000+</strong> depending on availability and demand.</p>
+
+      <p>Two broker marketplaces actively list Franklin County D-5 permits:</p>
+      <ul>
+        <li><strong>LiquorLicense.com</strong> &mdash; largest national broker, has a dedicated Ohio/Franklin County D-5 page</li>
+        <li><strong>Liquor License Auctioneers (LLA)</strong> &mdash; online marketplace, Franklin County page at liquorlicenseauctioneers.com</li>
+      </ul>
+
+      <h3>The Process</h3>
+      <div class="permit-flow">
+        <div class="permit-step">
+          <div class="permit-step-num">1</div>
+          <div class="permit-step-title">Find a Permit</div>
+          <div class="permit-step-detail">Browse brokers or hire an attorney. Watch the market for 2-3 months.</div>
+        </div>
+        <div class="permit-step">
+          <div class="permit-step-num">2</div>
+          <div class="permit-step-title">Negotiate & Agree</div>
+          <div class="permit-step-detail">Purchase agreement with the seller. $20K-$50K for a D-5 in Franklin County.</div>
+        </div>
+        <div class="permit-step">
+          <div class="permit-step-num">3</div>
+          <div class="permit-step-title">Apply via OPAL</div>
+          <div class="permit-step-detail">Submit transfer application online. Include financial verification, entity docs, lease agreement.</div>
+        </div>
+        <div class="permit-step">
+          <div class="permit-step-num">4</div>
+          <div class="permit-step-title">Approval</div>
+          <div class="permit-step-detail">60-120 days if no objections. DOLC reviews, inspects, and issues.</div>
+        </div>
+      </div>
+
+      <div class="callout olive">
+        <div class="callout-title">Plan B: Start Without Spirits</div>
+        <p>If the D-5 timeline or cost is prohibitive, open with <strong>D-1 (beer) + D-2 (wine/mixed)</strong> first. These are easier to get and cheaper. Serve craft beer, natural wine, and pre-mixed cocktails on day one. Add the D-3 (spirits) later when you find and transfer the permit. Many successful bars have launched this way.</p>
+      </div>
+
+      <h3>Other Permits & Registrations</h3>
+      <ul>
+        <li><strong>Ohio food service license</strong> &mdash; Columbus Public Health</li>
+        <li><strong>Columbus business license</strong> &mdash; City of Columbus</li>
+        <li><strong>ServSafe certification</strong> &mdash; At least one manager/owner</li>
+        <li><strong>Ohio vendor's license</strong> &mdash; Sales tax collection for retail goods</li>
+        <li><strong>Building/occupancy permits</strong> &mdash; Columbus Dept of Building & Zoning</li>
+        <li><strong>Fire inspection</strong> &mdash; Required before opening</li>
+        <li><strong>Signage permit</strong> &mdash; Columbus has district-specific rules</li>
+      </ul>
+      <p><strong>German Village note:</strong> The German Village Commission reviews exterior changes to buildings. Budget extra time for signage or facade approvals.</p>
+    </div>
+
+    <!-- TIMELINE -->
+    <div class="section">
+      <div class="section-label">08 &mdash; Timeline</div>
+      <h2>What to do now &mdash; while still employed</h2>
+
+      <div class="timeline">
+        <div class="timeline-item active">
+          <div class="timeline-quarter">Q1-Q2 2026 &mdash; Foundation</div>
+          <div class="timeline-title">Nights & weekends. Keep the paycheck.</div>
+          <ul class="timeline-tasks">
+            <li>Form the LLC. New entity, 50/50 Morgan Taylor & Scarlet. Draft operating agreement.</li>
+            <li>Start the Instagram/TikTok. Post vintage finds, sourcing trips, mood boards. Build the brand before the space exists.</li>
+            <li>Build vintage inventory. Estate sales, Goodwill bins, flea markets every weekend. Store at home. This becomes opening stock AND content.</li>
+            <li>Take a barista course. Even a weekend workshop at a local roastery (One Line, Brioso, Stauf's).</li>
+            <li>Start watching D-5 permits on LiquorLicense.com and LLA. Know the going rate.</li>
+            <li>Talk to Columbus SCORE mentors (free SBA mentorship for food/bev startups).</li>
+            <li>Visit Kafe Kerouac, Two Dollar Radio HQ. Road trip to Cuties (Portland, ME) if possible.</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-quarter">Q3 2026 &mdash; Get Serious</div>
+          <div class="timeline-title">Scout spaces. Secure the license. Get pre-approved.</div>
+          <ul class="timeline-tasks">
+            <li>Write the full SBA business plan (for the bank, not for yourselves).</li>
+            <li>Walk German Village and Clintonville. Talk to commercial brokers. Schedule tours.</li>
+            <li>Get pre-qualified for SBA 7(a) loan &mdash; Huntington Bank in Columbus.</li>
+            <li>Begin liquor license acquisition. Engage a broker or Ohio liquor attorney (Walter Haverfield).</li>
+            <li>Line up a contractor. Get 3 quotes for build-out once you identify a space.</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-quarter">Q4 2026 &mdash; Commit</div>
+          <div class="timeline-title">Sign the lease. Give notice. Start building.</div>
+          <ul class="timeline-tasks">
+            <li>Leave Abercrombie (timing depends on lease signing &mdash; don't quit before you sign).</li>
+            <li>Sign the lease. Negotiate 3-6 months free rent during build-out (standard for restaurant/bar spaces).</li>
+            <li>Begin build-out. Target 3-4 months for a 1,500 SF space.</li>
+            <li>Hire an experienced bar manager for the cocktail program.</li>
+            <li>Partner with a local roastery for coffee program support.</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-quarter">Q1 2027 &mdash; Open</div>
+          <div class="timeline-title">Soft launch. Then grand opening.</div>
+          <ul class="timeline-tasks">
+            <li>Soft opening with friends, family, Instagram followers.</li>
+            <li>Grand opening event &mdash; vintage pop-up market + cocktails + press.</li>
+            <li>First 90 days: dial in coffee service first, add evening bar in month 2, refine retail ongoing.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- WHY IT WORKS / RISKS -->
+    <div class="section">
+      <div class="section-label">09 &mdash; Honest Assessment</div>
+      <h2>Why it works &mdash; and what could go wrong</h2>
+
+      <div class="two-col">
+        <div>
+          <h3 style="color: var(--olive);">Why This Works in Columbus</h3>
+          <div class="opp-item">
+            <div class="opp-title">Validated hybrid model</div>
+            <div class="opp-detail">Coffee-bar hybrids are a documented trend in Columbus. Nobody is adding vintage retail to the mix.</div>
+          </div>
+          <div class="opp-item">
+            <div class="opp-title">German Village wants this</div>
+            <div class="opp-detail">Affluent, walkable, design-conscious. Law Bird (Food & Wine Top 10). Fox in the Snow. The audience exists. The hybrid concept doesn't.</div>
+          </div>
+          <div class="opp-item">
+            <div class="opp-title">Columbus vintage scene is thriving</div>
+            <div class="opp-detail">Grandview Mercantile does $4.9M/yr. Flower Child Vintage, Ohio Thrift, dozens of Instagram sellers prove demand.</div>
+          </div>
+          <div class="opp-item">
+            <div class="opp-title">The economics favor hybrids</div>
+            <div class="opp-detail">Coffee-only nets $40-60K. Bar-only is evenings. Hybrid maximizes every daypart. Vintage adds high-margin revenue with minimal labor.</div>
+          </div>
+          <div class="opp-item">
+            <div class="opp-title">Two founders > one</div>
+            <div class="opp-detail">Morgan and Scarlet can split day/night shifts, share the capital burden, and keep each other sane during year one.</div>
+          </div>
+        </div>
+
+        <div>
+          <h3 style="color: var(--terracotta);">What Could Go Wrong</h3>
+          <div class="risk-item">
+            <div class="risk-title">Running out of money</div>
+            <div class="risk-mitigation">~60% of coffee shops close in 5 years, mostly from undercapitalization. Budget 12 months of runway, not 6.</div>
+          </div>
+          <div class="risk-item">
+            <div class="risk-title">Liquor license delays</div>
+            <div class="risk-mitigation">Ohio's quota system is slow and expensive. Mitigate: start with beer + wine only (Plan B), add spirits later.</div>
+          </div>
+          <div class="risk-item">
+            <div class="risk-title">Build-out surprises</div>
+            <div class="risk-mitigation">Old GV buildings hide plumbing/electrical nightmares. Budget 20% overage and get a thorough inspection before signing.</div>
+          </div>
+          <div class="risk-item">
+            <div class="risk-title">Doing too much at once</div>
+            <div class="risk-mitigation">Launch coffee first. Add bar in month 2. Refine retail over time. Don't try to perfect all three on day one.</div>
+          </div>
+          <div class="risk-item">
+            <div class="risk-title">Partnership tension</div>
+            <div class="risk-mitigation">The operating agreement must be airtight. Define roles, decisions, exits, and money before you sign a lease.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- THE NAME -->
+    <div class="section" style="text-align: center; padding: 60px 0;">
+      <div class="section-label">10 &mdash; The Name</div>
+      <h2 style="font-size: 26px;">Leave this for Morgan and Scarlet</h2>
+      <p style="max-width: 440px; margin: 0 auto; color: var(--warm-gray);">The concept calls for something warm, personal, slightly vintage. One or two words. A real name, not a pun. Something that feels like it's always been there.</p>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <p>Prepared February 2026 for Morgan Taylor & Scarlet</p>
+    <p style="margin-top: 6px; font-size: 10px;">Research: Ohio Div. of Liquor Control, Roth RE Group, Colliers Columbus, Columbus Foodletter, Food & Wine, Niekamp Law, Walter Haverfield, LoopNet, TenantBase, CommercialSearch</p>
+  </div>
+
+</body>
+</html>
