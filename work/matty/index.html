@@ -187,7 +187,7 @@
       padding:12px;
       flex-shrink:0;
     }
-    .email-layout { display:flex; min-height:340px; }
+    .email-layout { display:flex; }
     .sidebar-item {
       padding:8px 10px;
       border-radius:6px;
@@ -242,9 +242,87 @@
     .footer { padding:32px 24px; text-align:center; border-top:1px solid var(--brd); margin-top:16px; background:var(--bg2); }
     .footer p { font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--mu); }
 
-    @media(max-width:600px) {
+    @media(max-width:640px) {
+      .hero { padding:48px 16px 24px; }
+      .hero h1 { font-size:28px; letter-spacing:-0.3px; }
+      .hero h1 span { display:inline; }
+      .hero-sub { font-size:13px; max-width:300px; }
+      .wrap { padding:0 12px; }
+      .section { padding:28px 0; }
+      .stitle { font-size:16px; }
+      .slabel { font-size:8px; letter-spacing:1px; }
+      .sdesc { font-size:12px; }
+
+      /* TL;DR */
+      .tldr { padding:16px 18px; }
+      .tldr-title { font-size:20px; }
+      .tldr-list li { font-size:16px; padding-left:26px; }
+      .tldr-note { font-size:14px; }
+
+      /* Diagrams: horizontal scroll */
+      .diagram { padding:14px 6px; overflow-x:auto; -webkit-overflow-scrolling:touch; }
+      .flow-svg { min-width:560px; }
+
+      /* Device frames */
+      .device { border-radius:10px; margin:10px 0; }
+      .device-bar { padding:8px 10px; gap:4px; }
+      .device-dot { width:8px; height:8px; }
+      .device-tab { font-size:9px; padding:3px 8px; margin-left:8px; gap:4px; }
+      .device-tab-icon { font-size:10px; }
+
+      /* Email */
       .email-sidebar { display:none; }
-      .diagram { padding:20px 8px; }
+      .email-layout { flex-direction:column; }
+      .email-main { padding:12px 14px; }
+      .email-subj { font-size:13px; }
+      .email-meta { font-size:10px; }
+
+      /* Slack */
+      .slack-bar { padding:6px 12px; }
+      .slack-ws { font-size:12px; }
+      .slack-ch { font-size:10px; }
+      .slack-msg-area { padding:12px; }
+      .slack-header { gap:6px; margin-bottom:6px; }
+      .slack-avi { width:24px; height:24px; font-size:12px; border-radius:5px; }
+      .slack-name { font-size:12px; }
+      .slack-time { font-size:9px; }
+      .slack-body { font-size:12px; line-height:1.5; }
+      .slack-attach { padding:8px 10px; font-size:11px; line-height:1.5; }
+      .slack-deal { font-size:11px; line-height:1.4; }
+      .slack-dot { width:5px; height:5px; margin-top:4px; }
+      .slack-btns { gap:4px; }
+      .slack-btn { font-size:11px; padding:5px 10px; }
+
+      /* Pipeline bar + deals */
+      .pbar { height:24px; }
+      .pbar div { font-size:9px; }
+      .deal { padding:8px 0; gap:8px; }
+      .deal-dot { width:5px; height:5px; margin-top:5px; }
+      .deal-n { font-size:12px; gap:4px; }
+      .deal-d { font-size:11px; }
+      .deal-v { font-size:9px; }
+
+      /* Endcard */
+      .endcard-inner { padding:20px 18px; }
+      .endcard-headline { font-size:20px; }
+      .endcard-body { font-size:16px; }
+
+      /* Future notes */
+      .future-note { padding:14px 16px; }
+      .future-note p { font-size:15px; line-height:1.4; }
+      .future-divider span { font-size:18px; }
+
+      /* Tabs */
+      .tabs { gap:1px; padding:2px; }
+      .tab { font-size:9px; padding:6px 6px; }
+
+      /* Cards */
+      .card-h { padding:10px 14px; }
+      .card-t { font-size:10px; }
+      .card-b { padding:12px 14px; }
+
+      /* Footer */
+      .footer { padding:24px 16px; }
     }
 
     /* TLDR NOTE */
