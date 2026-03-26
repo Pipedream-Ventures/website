@@ -4,7 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
-  <title>Pipeline Intel Agent</title>
+  <title>Pipeline Intel Agent &mdash; Matty Dub Edition</title>
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Pipeline Intel Agent">
+  <meta property="og:description" content="Salesforce → AI analysis → your approval → personalized coaching emails to every rep. Every Monday, on autopilot.">
+  <meta property="og:image" content="https://pipedream.ventures/work/matty/og-image.png">
+  <meta property="og:url" content="https://pipedream.ventures/work/matty/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Pipeline Intel Agent — Matty Dub Edition">
+  <meta name="twitter:image" content="https://pipedream.ventures/work/matty/og-image.png">
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -369,6 +377,40 @@
       font-size:7px;
       fill:#fff;
       letter-spacing:0.5px;
+    }
+
+    /* ENDCARD */
+    .endcard {
+      margin:24px 0;
+      padding:2px;
+      border-radius:14px;
+      background:linear-gradient(135deg, var(--blu), var(--pur), var(--amb), var(--blu));
+      background-size:300% 300%;
+      animation:borderShift 6s ease infinite;
+    }
+    @keyframes borderShift {
+      0% { background-position:0% 50%; }
+      50% { background-position:100% 50%; }
+      100% { background-position:0% 50%; }
+    }
+    .endcard-inner {
+      background:var(--white);
+      border-radius:12px;
+      padding:32px 36px;
+    }
+    .endcard-headline {
+      font-family:'Caveat',cursive;
+      font-size:28px;
+      font-weight:700;
+      color:var(--navy);
+      margin-bottom:10px;
+      line-height:1.2;
+    }
+    .endcard-body {
+      font-family:'Caveat',cursive;
+      font-size:20px;
+      color:var(--dim);
+      line-height:1.5;
     }
 
     .fi { opacity:0; transform:translateY(10px); transition:opacity 0.4s,transform 0.4s; }
@@ -842,8 +884,11 @@
       </div>
     </div>
 
-    <div class="future-note" style="transform:rotate(-0.2deg);margin-top:20px;">
-      <p><strong>Same data, same brain, different outputs.</strong> The Monday pipeline email is level 1. Everything above is just more prompts on the same system &mdash; call recordings from Granola feed the context, Salesforce feeds the numbers, calendar feeds the timing. The agent connects the dots that no human has time to connect.</p>
+    <div class="endcard">
+      <div class="endcard-inner">
+        <p class="endcard-headline">Same data, same brain, different outputs.</p>
+        <p class="endcard-body">The Monday pipeline email is level 1. Everything above is just more prompts on the same system &mdash; call recordings from Granola feed the context, Salesforce feeds the numbers, calendar feeds the timing. The agent connects the dots that no human has time to connect.</p>
+      </div>
     </div>
   </div>
 
