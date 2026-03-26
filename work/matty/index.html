@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Pipeline Intel Agent</title>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F6F3EE;
+      --bg2: #EFEBE5;
+      --white: #FEFDFB;
+      --surface: #FFFFFF;
+      --card: #FAFAF8;
+      --navy: #1A2332;
+      --navy2: #2D3F56;
+      --brd: #DDD8CF;
+      --brd2: #CFC9BF;
+      --tx: #1A2332;
+      --dim: #5C6B7F;
+      --mu: #8D99A8;
+      --blu: #3B82F6;
+      --blu-l: #60A5FA;
+      --grn: #22C55E;
+      --grn-bg: #F0FDF4;
+      --amb: #F59E0B;
+      --amb-bg: #FFFBEB;
+      --red: #EF4444;
+      --red-bg: #FEF2F2;
+      --pur: #8B5CF6;
+      --cyn: #06B6D4;
+
+      /* Device chrome */
+      --chrome: #2C2F36;
+      --chrome2: #3B3E46;
+      --chrome-brd: #404350;
+    }
+    * { margin:0;padding:0;box-sizing:border-box; }
+    body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--tx); -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+    .wrap { max-width:720px; margin:0 auto; padding:0 20px; }
+
+    /* HERO */
+    .hero {
+      padding:72px 24px 36px;
+      text-align:center;
+      position:relative;
+    }
+    .hero-tag { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--mu); margin-bottom:14px; }
+    .hero h1 { font-size:clamp(32px,6vw,48px); font-weight:800; line-height:1.08; letter-spacing:-1px; color:var(--navy); }
+    .hero h1 span { background:linear-gradient(135deg, var(--blu) 0%, var(--cyn) 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    .hero-sub { font-size:15px; color:var(--dim); max-width:420px; margin:14px auto 0; line-height:1.65; }
+    .hero-line { width:48px; height:3px; background:linear-gradient(90deg, var(--blu), var(--cyn)); border-radius:2px; margin:20px auto 0; }
+
+    /* ---- FLOW DIAGRAM ---- */
+    .diagram-wrap { padding:24px 0 0; }
+    .diagram {
+      background:var(--surface);
+      border:1px solid var(--brd);
+      border-radius:16px;
+      padding:28px 20px 24px;
+      box-shadow:0 2px 16px rgba(0,0,0,0.04);
+    }
+    .diagram-label {
+      font-family:'JetBrains Mono',monospace;
+      font-size:9px; letter-spacing:1.5px; text-transform:uppercase;
+      color:var(--mu); margin-bottom:16px;
+    }
+    .flow-svg { width:100%; }
+    .flow-svg text { font-family:'Inter',sans-serif; }
+    .flow-svg .node-bg { fill:var(--card); stroke:var(--brd); stroke-width:1.5; rx:10; }
+    .flow-svg .node-bg.active { stroke:var(--blu); fill:rgba(59,130,246,0.04); }
+    .flow-svg .node-label { font-size:10px; fill:var(--mu); font-weight:500; }
+    .flow-svg .node-title { font-size:12px; fill:var(--tx); font-weight:600; }
+    .flow-svg .conn { stroke:var(--brd2); stroke-width:1.5; fill:none; }
+    .flow-svg .conn-active { stroke:var(--blu); stroke-width:1.5; fill:none; stroke-dasharray:6 4; }
+    .flow-svg .arrow { fill:var(--brd2); }
+    .flow-svg .arrow-active { fill:var(--blu); }
+    .flow-svg .branch-label { font-family:'JetBrains Mono',monospace; font-size:8px; fill:var(--mu); letter-spacing:0.5px; }
+    .flow-svg .output-box { fill:var(--card); stroke:var(--brd); stroke-width:1; rx:6; }
+    .flow-svg .output-label { font-size:9px; fill:var(--mu); font-family:'JetBrains Mono',monospace; }
+    .flow-svg .output-val { font-size:10px; fill:var(--tx); font-weight:500; }
+
+    /* SECTION */
+    .section { padding:36px 0; border-top:1px solid var(--brd); }
+    .slabel { font-family:'JetBrains Mono',monospace; font-size:9px; text-transform:uppercase; letter-spacing:1.5px; color:var(--mu); margin-bottom:6px; }
+    .stitle { font-size:18px; font-weight:700; letter-spacing:-0.3px; margin-bottom:4px; color:var(--navy); }
+    .sdesc { font-size:13px; color:var(--dim); line-height:1.6; }
+
+    /* ---- DEVICE FRAME ---- */
+    .device {
+      background:var(--chrome);
+      border-radius:12px;
+      overflow:hidden;
+      margin:14px 0;
+      box-shadow:0 8px 32px rgba(0,0,0,0.1), 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .device-bar {
+      background:var(--chrome);
+      padding:10px 14px;
+      display:flex;
+      align-items:center;
+      gap:6px;
+    }
+    .device-dot { width:10px; height:10px; border-radius:50%; }
+    .device-dot.r { background:#FF5F57; } .device-dot.y { background:#FFBD2E; } .device-dot.g { background:#28C840; }
+    .device-tab {
+      margin-left:12px;
+      background:var(--chrome2);
+      border-radius:6px;
+      padding:4px 14px;
+      font-family:'JetBrains Mono',monospace;
+      font-size:10px;
+      color:#94A3B8;
+      display:flex;
+      align-items:center;
+      gap:6px;
+    }
+    .device-tab-icon { font-size:12px; }
+    .device-body {
+      background:var(--surface);
+      min-height:40px;
+    }
+
+    /* ---- SLACK in device ---- */
+    .slack-chrome .device-body { background:#1A1D21; }
+    .slack-bar {
+      background:#350D36;
+      padding:8px 14px;
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    .slack-ws {
+      font-size:13px;
+      font-weight:700;
+      color:#fff;
+    }
+    .slack-ch {
+      font-size:12px;
+      color:rgba(255,255,255,0.6);
+      margin-left:auto;
+    }
+    .slack-msg-area { padding:16px; }
+    .slack-header { display:flex; align-items:center; gap:8px; margin-bottom:8px; }
+    .slack-avi { width:28px; height:28px; border-radius:6px; background:linear-gradient(135deg,var(--blu),var(--pur)); display:flex; align-items:center; justify-content:center; font-size:14px; }
+    .slack-name { font-size:13px; font-weight:700; color:#fff; }
+    .slack-time { font-size:10px; color:#616061; margin-left:4px; }
+    .slack-body { font-size:13px; line-height:1.6; color:#D1D2D3; }
+    .slack-body strong { color:#fff; }
+    .slack-attach {
+      background:#222529;
+      border-left:3px solid var(--blu);
+      border-radius:0 8px 8px 0;
+      padding:10px 14px;
+      margin:8px 0;
+      font-size:12px; line-height:1.6; color:#ABABAD;
+    }
+    .slack-attach .val { color:#D1D2D3; font-weight:500; }
+    .slack-row { display:flex; gap:6px; margin:4px 0; }
+    .slack-dot { width:6px; height:6px; border-radius:50%; margin-top:5px; flex-shrink:0; }
+    .slack-dot.g { background:var(--grn); } .slack-dot.a { background:var(--amb); } .slack-dot.r { background:var(--red); }
+    .slack-deal { font-size:12px; color:#ABABAD; }
+    .slack-deal strong { color:#D1D2D3; font-weight:600; }
+    .slack-btns { display:flex; gap:6px; margin-top:10px; }
+    .slack-btn {
+      font-family:'Inter',sans-serif; font-size:11px; font-weight:600;
+      padding:5px 12px; border-radius:5px;
+      border:1px solid #444; background:#2A2D31; color:#D1D2D3; cursor:pointer;
+    }
+    .slack-btn.primary { background:#007A5A; border-color:#007A5A; color:#fff; }
+    .slack-btn:hover { filter:brightness(1.1); }
+
+    /* ---- EMAIL in device ---- */
+    .email-sidebar {
+      width:200px;
+      background:#F7F7F7;
+      border-right:1px solid #E5E5E5;
+      padding:12px;
+      flex-shrink:0;
+    }
+    .email-layout { display:flex; min-height:340px; }
+    .sidebar-item {
+      padding:8px 10px;
+      border-radius:6px;
+      margin-bottom:2px;
+      font-size:11px;
+      color:#666;
+      cursor:default;
+    }
+    .sidebar-item.active {
+      background:#fff;
+      color:var(--tx);
+      font-weight:600;
+      box-shadow:0 1px 3px rgba(0,0,0,0.06);
+    }
+    .sidebar-item .count {
+      float:right;
+      font-family:'JetBrains Mono',monospace;
+      font-size:9px;
+      background:var(--blu);
+      color:#fff;
+      padding:1px 5px;
+      border-radius:10px;
+    }
+    .sidebar-dot { display:inline-block; width:5px; height:5px; border-radius:50%; margin-right:6px; }
+    .email-main { flex:1; padding:16px 20px; overflow:hidden; }
+    .email-subj { font-size:16px; font-weight:700; color:var(--tx); margin-bottom:4px; }
+    .email-meta { font-size:11px; color:var(--mu); margin-bottom:14px; }
+
+    /* Pipeline bar (light mode) */
+    .pbar { display:flex; border-radius:6px; overflow:hidden; height:28px; margin:10px 0; }
+    .pbar div { display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:600; color:#fff; }
+    .pbar .g { background:var(--grn); } .pbar .a { background:var(--amb); } .pbar .r { background:var(--red); }
+
+    /* Deal rows (light) */
+    .deal { display:flex; align-items:flex-start; gap:10px; padding:9px 0; border-bottom:1px solid #F0EEEB; }
+    .deal:last-child { border-bottom:none; }
+    .deal-dot { width:6px; height:6px; border-radius:50%; margin-top:6px; flex-shrink:0; }
+    .deal-dot.g { background:var(--grn); } .deal-dot.a { background:var(--amb); } .deal-dot.r { background:var(--red); }
+    .deal-info { flex:1; }
+    .deal-n { font-size:13px; font-weight:600; display:flex; gap:6px; align-items:center; }
+    .deal-v { font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--mu); font-weight:400; }
+    .deal-d { font-size:12px; color:var(--dim); margin-top:1px; }
+
+    /* TABS */
+    .tabs { display:flex; gap:2px; background:var(--bg2); border-radius:8px; padding:3px; margin:16px 0 0; }
+    .tab { flex:1; font-family:'JetBrains Mono',monospace; font-size:10px; padding:7px 10px; border:none; background:none; color:var(--mu); cursor:pointer; border-radius:6px; text-align:center; transition:all 0.15s; }
+    .tab:hover { color:var(--tx); }
+    .tab.on { background:var(--surface); color:var(--tx); box-shadow:0 1px 3px rgba(0,0,0,0.06); }
+    .panel { display:none; }
+    .panel.on { display:block; }
+
+    .footer { padding:32px 24px; text-align:center; border-top:1px solid var(--brd); margin-top:16px; background:var(--bg2); }
+    .footer p { font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--mu); }
+
+    @media(max-width:600px) {
+      .email-sidebar { display:none; }
+      .diagram { padding:20px 8px; }
+    }
+
+    /* TLDR NOTE */
+    .tldr {
+      background:#FFFEF8;
+      border:1.5px solid #E8E3D6;
+      border-radius:4px;
+      padding:24px 28px;
+      margin:8px 0 0;
+      position:relative;
+      box-shadow:0 2px 12px rgba(0,0,0,0.03), 0 1px 2px rgba(0,0,0,0.02);
+      transform:rotate(-0.4deg);
+    }
+    .tldr::before {
+      content:'';
+      position:absolute;
+      top:0; left:28px;
+      width:24px; height:6px;
+      background:#F59E0B;
+      border-radius:0 0 3px 3px;
+      opacity:0.7;
+    }
+    .tldr-title {
+      font-family:'Caveat',cursive;
+      font-size:22px;
+      font-weight:700;
+      color:var(--navy);
+      margin-bottom:10px;
+    }
+    .tldr-list {
+      list-style:none;
+      padding:0;
+    }
+    .tldr-list li {
+      font-family:'Caveat',cursive;
+      font-size:19px;
+      color:#475569;
+      padding:3px 0 3px 28px;
+      position:relative;
+      line-height:1.4;
+    }
+    .tldr-list li::before {
+      content:'';
+      position:absolute;
+      left:2px;
+      top:10px;
+      width:16px;
+      height:16px;
+      border:2px solid #CBD5E1;
+      border-radius:3px;
+    }
+    .tldr-list li.checked::before {
+      border-color:var(--grn);
+      background:var(--grn);
+    }
+    .tldr-list li.checked::after {
+      content:'';
+      position:absolute;
+      left:6px;
+      top:12px;
+      width:8px;
+      height:5px;
+      border-left:2px solid #fff;
+      border-bottom:2px solid #fff;
+      transform:rotate(-45deg);
+    }
+    .tldr-note {
+      font-family:'Caveat',cursive;
+      font-size:16px;
+      color:var(--blu);
+      margin-top:12px;
+      padding-left:4px;
+    }
+    .tldr-arrow {
+      font-family:'Caveat',cursive;
+      font-size:24px;
+      color:var(--amb);
+      display:inline-block;
+      transform:rotate(-8deg);
+      margin-right:4px;
+    }
+
+    /* FUTURE SECTION */
+    .future-divider {
+      text-align:center;
+      padding:40px 0 8px;
+      position:relative;
+    }
+    .future-divider::before {
+      content:'';
+      position:absolute;
+      top:50%; left:0; right:0;
+      height:1px;
+      background:var(--brd);
+    }
+    .future-divider span {
+      position:relative;
+      background:var(--bg);
+      padding:0 16px;
+      font-family:'Caveat',cursive;
+      font-size:20px;
+      color:var(--mu);
+    }
+
+    .future-note {
+      background:#FFFEF8;
+      border:1.5px solid #E8E3D6;
+      border-radius:4px;
+      padding:20px 24px;
+      margin:16px 0 24px;
+      transform:rotate(0.3deg);
+      box-shadow:0 2px 12px rgba(0,0,0,0.03);
+    }
+    .future-note p {
+      font-family:'Caveat',cursive;
+      font-size:18px;
+      color:#5C6B7F;
+      line-height:1.5;
+    }
+    .future-note strong { color:var(--navy); }
+
+    .flow-svg .node-future { fill:#F0EDFF; stroke:var(--pur); stroke-width:1.5; rx:10; stroke-dasharray:4 3; }
+    .flow-svg .node-future-solid { fill:#F0EDFF; stroke:var(--pur); stroke-width:1.5; rx:10; }
+    .flow-svg .conn-pur { stroke:var(--pur); stroke-width:1.5; fill:none; }
+    .flow-svg .conn-pur-dash { stroke:var(--pur); stroke-width:1.5; fill:none; stroke-dasharray:5 3; }
+    .flow-svg .arrow-pur { fill:var(--pur); }
+    .flow-svg .node-label-pur { font-size:10px; fill:var(--pur); font-weight:500; }
+    .flow-svg .tag-new {
+      font-family:'JetBrains Mono',monospace;
+      font-size:7px;
+      fill:#fff;
+      letter-spacing:0.5px;
+    }
+
+    .fi { opacity:0; transform:translateY(10px); transition:opacity 0.4s,transform 0.4s; }
+    .fi.v { opacity:1; transform:translateY(0); }
+  </style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-tag">For Matty</div>
+  <h1>Pipeline <span>Intel Agent</span></h1>
+  <p style="font-family:'Caveat',cursive;font-size:22px;color:var(--amb);margin-top:6px;">Matty Dub Edition</p>
+  <p class="hero-sub">Salesforce &rarr; AI analysis &rarr; your approval &rarr; personalized coaching emails to every rep. Every Monday, on autopilot.</p>
+  <div class="hero-line"></div>
+</div>
+
+<div class="wrap">
+
+  <!-- TLDR NOTE -->
+  <div class="tldr fi">
+    <div class="tldr-title">TL;DR</div>
+    <ul class="tldr-list">
+      <li class="checked">Pull Salesforce pipeline data every Monday at 7am</li>
+      <li class="checked">AI analyzes every deal across every rep</li>
+      <li class="checked">Sends YOU a summary to approve on Slack first</li>
+      <li class="checked">Then fires personalized coaching emails to each rep</li>
+      <li class="checked">Each rep only sees their own deals &mdash; feels 1:1</li>
+    </ul>
+    <div class="tldr-note"><span class="tldr-arrow">&darr;</span> no n8n, no scripts, no servers &mdash; just a scheduled Claude agent</div>
+  </div>
+
+  <!-- FLOW DIAGRAM -->
+  <div class="diagram-wrap fi">
+    <div class="diagram">
+      <div class="diagram-label">System Flow</div>
+      <svg class="flow-svg" viewBox="0 0 680 330" xmlns="http://www.w3.org/2000/svg">
+        <!-- Row 1: Trigger -->
+        <rect class="node-bg" x="60" y="30" width="120" height="56"/>
+        <text class="node-label" x="120" y="52" text-anchor="middle">TRIGGER</text>
+        <text class="node-title" x="120" y="70" text-anchor="middle">Monday 7am</text>
+
+        <line class="conn" x1="180" y1="58" x2="228" y2="58"/>
+        <polygon class="arrow" points="228,53 238,58 228,63"/>
+        <text class="branch-label" x="204" y="48" text-anchor="middle">wake</text>
+
+        <!-- Row 1: Salesforce -->
+        <rect class="node-bg" x="238" y="30" width="120" height="56"/>
+        <text class="node-label" x="298" y="52" text-anchor="middle">SALESFORCE</text>
+        <text class="node-title" x="298" y="70" text-anchor="middle">Pull Pipeline</text>
+
+        <line class="conn" x1="358" y1="58" x2="406" y2="58"/>
+        <polygon class="arrow" points="406,53 416,58 406,63"/>
+        <text class="branch-label" x="382" y="48" text-anchor="middle">data</text>
+
+        <!-- Row 1: Claude -->
+        <rect class="node-bg active" x="416" y="22" width="140" height="72"/>
+        <text class="node-label" x="486" y="46" text-anchor="middle" style="fill:var(--blu)">CLAUDE</text>
+        <text class="node-title" x="486" y="64" text-anchor="middle">Analyze &amp; Draft</text>
+        <text class="branch-label" x="486" y="82" text-anchor="middle">summary + rep emails</text>
+
+        <!-- Down to Approve -->
+        <line class="conn-active" x1="486" y1="94" x2="486" y2="144"/>
+        <polygon class="arrow-active" points="481,144 486,154 491,144"/>
+
+        <!-- Row 2: Approve -->
+        <rect class="node-bg" x="421" y="156" width="130" height="56"/>
+        <text class="node-label" x="486" y="178" text-anchor="middle">YOU</text>
+        <text class="node-title" x="486" y="196" text-anchor="middle">Approve on Slack</text>
+
+        <!-- Down + split -->
+        <line class="conn" x1="486" y1="212" x2="486" y2="244"/>
+        <line class="conn" x1="200" y1="244" x2="486" y2="244"/>
+        <line class="conn" x1="486" y1="244" x2="520" y2="244"/>
+
+        <!-- Left branch: Manager -->
+        <line class="conn" x1="200" y1="244" x2="200" y2="264"/>
+        <polygon class="arrow" points="195,264 200,274 205,264"/>
+        <text class="branch-label" x="148" y="258" text-anchor="middle">full pipeline view</text>
+        <rect class="output-box" x="120" y="276" width="160" height="40"/>
+        <text class="output-label" x="200" y="292" text-anchor="middle">SEND</text>
+        <text class="output-val" x="200" y="306" text-anchor="middle">Manager Report</text>
+
+        <!-- Right branch: Reps -->
+        <line class="conn" x1="520" y1="244" x2="520" y2="264"/>
+        <polygon class="arrow" points="515,264 520,274 525,264"/>
+        <text class="branch-label" x="572" y="258" text-anchor="middle">their deals only</text>
+        <rect class="output-box" x="440" y="276" width="160" height="40"/>
+        <text class="output-label" x="520" y="292" text-anchor="middle">SEND &times; N</text>
+        <text class="output-val" x="520" y="306" text-anchor="middle">Per-Rep Coaching</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- SLACK APPROVAL -->
+  <div class="section fi">
+    <div class="slabel">Step 1 &mdash; Approval</div>
+    <div class="stitle">Agent pings you on Slack</div>
+    <p class="sdesc">Nothing sends without your OK.</p>
+
+    <div class="device slack-chrome">
+      <div class="device-bar">
+        <div class="device-dot r"></div><div class="device-dot y"></div><div class="device-dot g"></div>
+        <div class="device-tab"><span class="device-tab-icon">&#128172;</span> Slack</div>
+      </div>
+      <div class="device-body">
+        <div class="slack-bar">
+          <div class="slack-ws">Matty's Workspace</div>
+          <div class="slack-ch"># pipeline-intel</div>
+        </div>
+        <div class="slack-msg-area">
+          <div class="slack-header">
+            <div class="slack-avi">&#129504;</div>
+            <div><span class="slack-name">Pipeline Intel</span> <span class="slack-time">7:02 AM</span></div>
+          </div>
+          <div class="slack-body"><strong>Pipeline report ready.</strong> 4 reps, 14 deals.</div>
+          <div class="slack-attach">
+            <div><span class="val">Pipeline:</span> $2.47M vs $2.1M target</div>
+            <div style="margin-top:6px;">
+              <div class="slack-row"><div class="slack-dot g"></div><div class="slack-deal"><strong>Sarah M.</strong> $680K, on track</div></div>
+              <div class="slack-row"><div class="slack-dot a"></div><div class="slack-deal"><strong>James T.</strong> $420K, GlobalTech stale 16d</div></div>
+              <div class="slack-row"><div class="slack-dot r"></div><div class="slack-deal"><strong>Priya K.</strong> $310K, 2 stalled</div></div>
+              <div class="slack-row"><div class="slack-dot g"></div><div class="slack-deal"><strong>Dan R.</strong> $280K, strong week</div></div>
+            </div>
+          </div>
+          <div class="slack-btns">
+            <button class="slack-btn primary" id="slackApprove">&#10003; Send All</button>
+            <button class="slack-btn">Edit</button>
+            <button class="slack-btn">Skip</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EMAIL OUTPUTS -->
+  <div class="section fi">
+    <div class="slabel">Step 2 &mdash; What Gets Sent</div>
+    <div class="stitle">After you approve</div>
+
+    <div class="tabs">
+      <button class="tab on" data-t="mgr">Manager Report</button>
+      <button class="tab" data-t="rep">Rep Email (James)</button>
+    </div>
+
+    <!-- MANAGER EMAIL -->
+    <div class="panel on" id="t-mgr">
+      <div class="device" style="margin-top:14px;">
+        <div class="device-bar">
+          <div class="device-dot r"></div><div class="device-dot y"></div><div class="device-dot g"></div>
+          <div class="device-tab"><span class="device-tab-icon">&#128231;</span> Mail</div>
+        </div>
+        <div class="device-body">
+          <div class="email-layout">
+            <div class="email-sidebar">
+              <div class="sidebar-item active"><span class="sidebar-dot" style="background:var(--blu)"></span>Inbox <span class="count">1</span></div>
+              <div class="sidebar-item"><span class="sidebar-dot" style="background:#ccc"></span>Sent</div>
+              <div class="sidebar-item"><span class="sidebar-dot" style="background:#ccc"></span>Drafts</div>
+              <div class="sidebar-item"><span class="sidebar-dot" style="background:#ccc"></span>Archive</div>
+            </div>
+            <div class="email-main">
+              <div class="email-subj">&#128202; Pipeline Intelligence &mdash; Week of Mar 24</div>
+              <div class="email-meta">From: Pipeline Intel Agent &middot; 7:04 AM</div>
+              <div class="pbar">
+                <div class="g" style="flex:1.84">$1.84M</div>
+                <div class="a" style="flex:0.42">$420K</div>
+                <div class="r" style="flex:0.21">$210K</div>
+              </div>
+              <p style="font-size:12px;color:var(--dim);margin-bottom:10px;">Down 14% vs 4-week avg. 3 deals stale 14+ days.</p>
+              <div class="deal"><div class="deal-dot g"></div><div class="deal-info"><div class="deal-n">Sarah M. <span class="deal-v">$680K</span></div><div class="deal-d">On track. Acme Corp closing Friday.</div></div></div>
+              <div class="deal"><div class="deal-dot a"></div><div class="deal-info"><div class="deal-n">James T. <span class="deal-v">$420K</span></div><div class="deal-d">GlobalTech ($180K) no activity 16 days.</div></div></div>
+              <div class="deal"><div class="deal-dot r"></div><div class="deal-info"><div class="deal-n">Priya K. <span class="deal-v">$310K</span></div><div class="deal-d">2 deals stalled. Needs a 1:1.</div></div></div>
+              <div class="deal"><div class="deal-dot g"></div><div class="deal-info"><div class="deal-n">Dan R. <span class="deal-v">$280K</span></div><div class="deal-d">Best week in 6. 2 new opps.</div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REP EMAIL -->
+    <div class="panel" id="t-rep">
+      <div class="device" style="margin-top:14px;">
+        <div class="device-bar">
+          <div class="device-dot r"></div><div class="device-dot y"></div><div class="device-dot g"></div>
+          <div class="device-tab"><span class="device-tab-icon">&#128231;</span> Mail &mdash; james.t@company.com</div>
+        </div>
+        <div class="device-body">
+          <div class="email-layout">
+            <div class="email-sidebar">
+              <div class="sidebar-item active"><span class="sidebar-dot" style="background:var(--blu)"></span>Inbox <span class="count">1</span></div>
+              <div class="sidebar-item"><span class="sidebar-dot" style="background:#ccc"></span>Sent</div>
+              <div class="sidebar-item"><span class="sidebar-dot" style="background:#ccc"></span>Drafts</div>
+              <div class="sidebar-item"><span class="sidebar-dot" style="background:#ccc"></span>Archive</div>
+            </div>
+            <div class="email-main">
+              <div class="email-subj">Your pipeline this week &mdash; 3 action items</div>
+              <div class="email-meta">From: Pipeline Intel Agent &middot; 7:05 AM</div>
+              <p style="font-size:13px;line-height:1.7;margin-bottom:10px;">Hi James &mdash; <strong>$420K across 3 deals.</strong></p>
+              <div class="deal"><div class="deal-dot r"></div><div class="deal-info"><div class="deal-n">GlobalTech <span class="deal-v">$180K</span></div><div class="deal-d">No activity 16 days. Call before Thursday to keep in Q1.</div></div></div>
+              <div class="deal"><div class="deal-dot a"></div><div class="deal-info"><div class="deal-n">Redstone Ltd <span class="deal-v">$140K</span></div><div class="deal-d">Closes Mar 31. 7 days. Update stage.</div></div></div>
+              <div class="deal"><div class="deal-dot g"></div><div class="deal-info"><div class="deal-n">NovaBuild <span class="deal-v">$100K</span></div><div class="deal-d">Proposal sent, awaiting decision. No action needed.</div></div></div>
+              <p style="margin-top:14px;font-size:11px;color:var(--mu);">Each rep only sees their own deals.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LEVEL 2 -->
+  <div class="future-divider fi"><span>but wait...</span></div>
+
+  <div class="section fi" style="border-top:none;padding-top:0;">
+    <div class="slabel">Level 2 &mdash; The real vision</div>
+    <div class="stitle">An agent that knows everything</div>
+
+    <div class="future-note">
+      <p>The weekly email is <strong>level 1</strong>. But the agent doesn't have to be dumb &mdash; it can ingest call recordings (Granola, Gong, Fireflies), CRM activity, email threads, calendar context. Now it <strong>actually knows</strong> every deal like you do. Daily briefs. EOD recaps. 1:1 prep. Real-time alerts. All from the same brain.</p>
+    </div>
+
+    <!-- SYSTEM DIAGRAM -->
+    <div class="diagram" style="margin-top:12px;">
+      <div class="diagram-label">Full Coaching Intelligence System</div>
+      <svg class="flow-svg" viewBox="0 0 680 480" xmlns="http://www.w3.org/2000/svg">
+        <!-- DATA SOURCES (top row, 3 inputs) -->
+        <rect class="node-bg" x="30" y="10" width="130" height="52"/>
+        <text class="node-label" x="95" y="30" text-anchor="middle">CRM</text>
+        <text class="node-title" x="95" y="46" text-anchor="middle">Salesforce</text>
+
+        <rect class="node-bg" x="200" y="10" width="130" height="52"/>
+        <text class="node-label" x="265" y="30" text-anchor="middle">CALLS</text>
+        <text class="node-title" x="265" y="46" text-anchor="middle">Granola / Gong</text>
+
+        <rect class="node-bg" x="370" y="10" width="130" height="52"/>
+        <text class="node-label" x="435" y="30" text-anchor="middle">ACTIVITY</text>
+        <text class="node-title" x="435" y="46" text-anchor="middle">Email + Calendar</text>
+
+        <!-- Lines down to brain -->
+        <line class="conn" x1="95" y1="62" x2="95" y2="90"/>
+        <line class="conn" x1="265" y1="62" x2="265" y2="90"/>
+        <line class="conn" x1="435" y1="62" x2="435" y2="90"/>
+        <line class="conn" x1="95" y1="90" x2="435" y2="90"/>
+        <line class="conn" x1="265" y1="90" x2="265" y2="108"/>
+        <polygon class="arrow" points="260,108 265,118 270,108"/>
+
+        <!-- AI BRAIN -->
+        <rect class="node-bg active" x="185" y="120" width="160" height="52" rx="10"/>
+        <text class="node-label" x="265" y="140" text-anchor="middle" style="fill:var(--blu)">AI BRAIN</text>
+        <text class="node-title" x="265" y="156" text-anchor="middle">Full Deal Context</text>
+
+        <!-- Trunk down -->
+        <line class="conn-active" x1="265" y1="172" x2="265" y2="202"/>
+
+        <!-- Horizontal spread -->
+        <line class="conn" x1="68" y1="202" x2="600" y2="202"/>
+
+        <!-- OUTPUT 1: Morning Brief -->
+        <line class="conn" x1="68" y1="202" x2="68" y2="222"/>
+        <polygon class="arrow" points="63,222 68,232 73,222"/>
+        <rect class="node-bg" x="8" y="234" width="120" height="56"/>
+        <text class="node-label" x="68" y="254" text-anchor="middle">DAILY 7AM</text>
+        <text class="node-title" x="68" y="270" text-anchor="middle">Morning Brief</text>
+        <text class="branch-label" x="68" y="284" text-anchor="middle">your day, prepped</text>
+
+        <!-- OUTPUT 2: EOD Recap -->
+        <line class="conn-pur-dash" x1="200" y1="202" x2="200" y2="222"/>
+        <polygon class="arrow-pur" points="195,222 200,232 205,222"/>
+        <rect class="node-future" x="140" y="234" width="120" height="56"/>
+        <text class="node-label-pur" x="200" y="254" text-anchor="middle">DAILY 5PM</text>
+        <text class="node-title" x="200" y="270" text-anchor="middle">EOD Recap</text>
+        <text class="branch-label" x="200" y="284" text-anchor="middle">what moved today</text>
+
+        <!-- OUTPUT 3: 1:1 Prep -->
+        <line class="conn-pur-dash" x1="332" y1="202" x2="332" y2="222"/>
+        <polygon class="arrow-pur" points="327,222 332,232 337,222"/>
+        <rect class="node-future" x="272" y="234" width="120" height="56"/>
+        <text class="node-label-pur" x="332" y="254" text-anchor="middle">30 MIN BEFORE</text>
+        <text class="node-title" x="332" y="270" text-anchor="middle">1:1 Prep</text>
+        <text class="branch-label" x="332" y="284" text-anchor="middle">talking points ready</text>
+
+        <!-- OUTPUT 4: Deal Alerts -->
+        <line class="conn-pur-dash" x1="464" y1="202" x2="464" y2="222"/>
+        <polygon class="arrow-pur" points="459,222 464,232 469,222"/>
+        <rect class="node-future" x="404" y="234" width="120" height="56"/>
+        <text class="node-label-pur" x="464" y="254" text-anchor="middle">REAL-TIME</text>
+        <text class="node-title" x="464" y="270" text-anchor="middle">Deal Alerts</text>
+        <text class="branch-label" x="464" y="284" text-anchor="middle">something changed</text>
+
+        <!-- OUTPUT 5: Rep Chat -->
+        <line class="conn-pur-dash" x1="600" y1="202" x2="600" y2="222"/>
+        <polygon class="arrow-pur" points="595,222 600,232 605,222"/>
+        <rect class="node-future" x="540" y="234" width="120" height="56"/>
+        <text class="node-label-pur" x="600" y="254" text-anchor="middle">ON-DEMAND</text>
+        <text class="node-title" x="600" y="270" text-anchor="middle">Rep Asks AI</text>
+        <text class="branch-label" x="600" y="284" text-anchor="middle">"prep me for this call"</text>
+
+        <!-- WHO GETS WHAT -->
+        <!-- Manager row -->
+        <line class="conn" x1="68" y1="290" x2="68" y2="320"/>
+        <line class="conn-pur-dash" x1="200" y1="290" x2="200" y2="320"/>
+        <line class="conn-pur-dash" x1="332" y1="290" x2="332" y2="320"/>
+        <line class="conn-pur-dash" x1="464" y1="290" x2="464" y2="320"/>
+        <line class="conn" x1="68" y1="320" x2="464" y2="320"/>
+        <line class="conn" x1="265" y1="320" x2="265" y2="340"/>
+        <polygon class="arrow" points="260,340 265,350 270,340"/>
+
+        <rect class="output-box" x="185" y="352" width="160" height="36"/>
+        <text class="output-label" x="265" y="366" text-anchor="middle">MANAGER</text>
+        <text class="output-val" x="265" y="380" text-anchor="middle">Slack + Email</text>
+
+        <!-- Rep row -->
+        <line class="conn-pur-dash" x1="600" y1="290" x2="600" y2="340"/>
+        <polygon class="arrow-pur" points="595,340 600,350 605,340"/>
+        <rect class="output-box" x="520" y="352" width="160" height="36"/>
+        <text class="output-label" x="600" y="366" text-anchor="middle">EACH REP</text>
+        <text class="output-val" x="600" y="380" text-anchor="middle">Slack Bot</text>
+
+        <!-- Feedback loop -->
+        <line class="conn-pur-dash" x1="265" y1="388" x2="265" y2="420"/>
+        <line class="conn-pur-dash" x1="600" y1="388" x2="600" y2="420"/>
+        <line class="conn-pur-dash" x1="265" y1="420" x2="600" y2="420"/>
+        <line class="conn-pur-dash" x1="432" y1="420" x2="432" y2="440"/>
+        <polygon class="arrow-pur" points="427,440 432,450 437,440"/>
+        <rect class="node-future-solid" x="342" y="452" width="180" height="24" rx="4"/>
+        <text style="font-family:'JetBrains Mono',monospace;font-size:9px;fill:var(--pur);letter-spacing:0.5px;" x="432" y="468" text-anchor="middle">LEARNS + IMPROVES OVER TIME</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- SAMPLE OUTPUTS FOR LEVEL 2 -->
+  <div class="section fi">
+    <div class="slabel">Level 2 &mdash; Morning Brief</div>
+    <div class="stitle">Every day at 7am, not just Mondays</div>
+
+    <div class="device slack-chrome">
+      <div class="device-bar">
+        <div class="device-dot r"></div><div class="device-dot y"></div><div class="device-dot g"></div>
+        <div class="device-tab"><span class="device-tab-icon">&#128172;</span> Slack</div>
+      </div>
+      <div class="device-body">
+        <div class="slack-bar">
+          <div class="slack-ws">Matty's Workspace</div>
+          <div class="slack-ch"># pipeline-intel</div>
+        </div>
+        <div class="slack-msg-area">
+          <div class="slack-header">
+            <div class="slack-avi">&#9728;&#65039;</div>
+            <div><span class="slack-name">Morning Brief</span> <span class="slack-time">7:00 AM</span></div>
+          </div>
+          <div class="slack-body"><strong>Wednesday, Mar 26 &mdash; your day:</strong></div>
+          <div class="slack-attach">
+            <div style="margin-bottom:8px;"><span class="val">&#128197; 3 meetings today</span></div>
+            <div class="slack-row"><div class="slack-dot a"></div><div class="slack-deal"><strong>9:30am &mdash; 1:1 with James T.</strong><br/>His GlobalTech deal ($180K) went dark 16 days. Yesterday he logged a call note in Granola: <em>"Left VM, contact on PTO til Thursday."</em> Ask him about a champion play &mdash; who else can he reach?</div></div>
+            <div class="slack-row" style="margin-top:6px;"><div class="slack-dot g"></div><div class="slack-deal"><strong>11:00am &mdash; Pipeline review</strong><br/>You're at $2.47M vs $2.1M target. Sarah's Acme deal ($240K) moved to Verbal Commit in Salesforce last night. Might close before the meeting.</div></div>
+            <div class="slack-row" style="margin-top:6px;"><div class="slack-dot r"></div><div class="slack-deal"><strong>2:00pm &mdash; 1:1 with Priya K.</strong><br/>Both her deals stalled 20+ days. From her Granola notes last week: <em>"Budget holder changed, new contact unresponsive."</em> This is a coaching moment &mdash; help her re-qualify or cut bait.</div></div>
+            <div style="margin-top:10px;border-top:1px solid #333;padding-top:8px;">
+              <span class="val">&#128293; Overnight alerts:</span><br/>
+              Dan R. just opened a $150K opp at 11:47pm. New logo. Worth a shoutout today.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section fi">
+    <div class="slabel">Level 2 &mdash; EOD Recap</div>
+    <div class="stitle">What moved today, what didn't</div>
+
+    <div class="device slack-chrome">
+      <div class="device-bar">
+        <div class="device-dot r"></div><div class="device-dot y"></div><div class="device-dot g"></div>
+        <div class="device-tab"><span class="device-tab-icon">&#128172;</span> Slack</div>
+      </div>
+      <div class="device-body">
+        <div class="slack-bar">
+          <div class="slack-ws">Matty's Workspace</div>
+          <div class="slack-ch"># pipeline-intel</div>
+        </div>
+        <div class="slack-msg-area">
+          <div class="slack-header">
+            <div class="slack-avi">&#127769;</div>
+            <div><span class="slack-name">EOD Recap</span> <span class="slack-time">5:15 PM</span></div>
+          </div>
+          <div class="slack-body"><strong>Here's what happened today:</strong></div>
+          <div class="slack-attach">
+            <div><span class="val">&#9989; Moved forward</span></div>
+            <div class="slack-row"><div class="slack-dot g"></div><div class="slack-deal"><strong>Acme Corp</strong> &mdash; Sarah closed it. $240K. Signed contract in DocuSign at 3:12pm.</div></div>
+            <div class="slack-row"><div class="slack-dot g"></div><div class="slack-deal"><strong>GlobalTech</strong> &mdash; James reached the VP of Engineering (from Granola: <em>"Great 20 min call, sending revised proposal tonight"</em>). Deal back from the dead.</div></div>
+            <div style="margin-top:8px;"><span class="val">&#9888;&#65039; No movement</span></div>
+            <div class="slack-row"><div class="slack-dot r"></div><div class="slack-deal"><strong>Priya's 2 deals</strong> &mdash; no calls logged, no emails sent, no stage changes. Day 21 stale. After your 1:1, she said she'd call tomorrow.</div></div>
+            <div style="margin-top:8px;"><span class="val">&#128200; Pipeline delta</span></div>
+            <div class="slack-deal" style="margin-top:4px;">Pipeline: $2.47M &rarr; $2.38M (Acme closed-won, removed from open). Net bookings today: +$240K</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section fi">
+    <div class="slabel">Level 2 &mdash; Real-Time Alert</div>
+    <div class="stitle">The agent catches things you'd miss</div>
+
+    <div class="device slack-chrome">
+      <div class="device-bar">
+        <div class="device-dot r"></div><div class="device-dot y"></div><div class="device-dot g"></div>
+        <div class="device-tab"><span class="device-tab-icon">&#128172;</span> Slack</div>
+      </div>
+      <div class="device-body">
+        <div class="slack-bar">
+          <div class="slack-ws">Matty's Workspace</div>
+          <div class="slack-ch"># pipeline-intel</div>
+        </div>
+        <div class="slack-msg-area">
+          <div class="slack-header">
+            <div class="slack-avi">&#128680;</div>
+            <div><span class="slack-name">Deal Alert</span> <span class="slack-time">2:34 PM</span></div>
+          </div>
+          <div class="slack-body"><strong>Heads up &mdash; NovaBuild might be slipping.</strong></div>
+          <div class="slack-attach">
+            <div class="slack-deal">James's NovaBuild deal ($100K, closes Apr 7) &mdash; the buyer's calendar just cleared all meetings with James for next week. Cross-referenced with Granola notes from last call: <em>"They mentioned evaluating a competitor's proposal."</em></div>
+            <div style="margin-top:8px;" class="slack-deal"><strong>Suggested action:</strong> Have James call today. Waiting until next week is risky. He could offer an incentive to accelerate.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section fi">
+    <div class="slabel">Level 2 &mdash; Rep Self-Serve</div>
+    <div class="stitle">Reps ask the bot directly</div>
+
+    <div class="device slack-chrome">
+      <div class="device-bar">
+        <div class="device-dot r"></div><div class="device-dot y"></div><div class="device-dot g"></div>
+        <div class="device-tab"><span class="device-tab-icon">&#128172;</span> Slack</div>
+      </div>
+      <div class="device-body">
+        <div class="slack-bar">
+          <div class="slack-ws">Matty's Workspace</div>
+          <div class="slack-ch">DM with Pipeline Intel</div>
+        </div>
+        <div class="slack-msg-area">
+          <div class="slack-header">
+            <div class="slack-avi" style="background:#444;font-size:12px;">JT</div>
+            <div><span class="slack-name">James T.</span> <span class="slack-time">8:45 AM</span></div>
+          </div>
+          <div class="slack-body">Prep me for my GlobalTech call at 10</div>
+
+          <div style="margin-top:14px;">
+            <div class="slack-header">
+              <div class="slack-avi">&#129504;</div>
+              <div><span class="slack-name">Pipeline Intel</span> <span class="slack-time">8:45 AM</span></div>
+            </div>
+          </div>
+          <div class="slack-attach">
+            <div><span class="val">GlobalTech &mdash; $180K &mdash; Proposal stage</span></div>
+            <div style="margin-top:6px;" class="slack-deal">
+              <strong>Context from your last 3 calls:</strong><br/>
+              &bull; Mar 7: Left VM, contact on PTO<br/>
+              &bull; Mar 20 (yesterday): 20 min call with VP Eng, <em>"interested but needs CFO sign-off"</em><br/>
+              &bull; Revised proposal sent last night at 9:47pm
+            </div>
+            <div style="margin-top:6px;" class="slack-deal">
+              <strong>For today's call:</strong><br/>
+              &bull; Ask about CFO timeline &mdash; can you get 15 min with them directly?<br/>
+              &bull; VP mentioned Q2 budget freeze risk. If deal slips past Apr 15, it could push to H2.<br/>
+              &bull; Your close date is Mar 31 &mdash; probably needs to move to Apr 10. Update Salesforce after the call.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="future-note" style="transform:rotate(-0.2deg);margin-top:20px;">
+      <p><strong>Same data, same brain, different outputs.</strong> The Monday pipeline email is level 1. Everything above is just more prompts on the same system &mdash; call recordings from Granola feed the context, Salesforce feeds the numbers, calendar feeds the timing. The agent connects the dots that no human has time to connect.</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p style="font-family:'Caveat',cursive;font-size:18px;color:var(--dim);margin-bottom:6px;">We'll get after it soon &#128170;</p>
+  <p>&mdash; Seth, Fitz &amp; Claude</p>
+  <p style="margin-top:8px;font-size:9px;color:var(--mu);">crafted with love in my boxers at 426 arden rd</p>
+</div>
+
+<script>
+document.querySelectorAll('.tab').forEach(t=>{
+  t.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
+    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));
+    t.classList.add('on');
+    document.getElementById('t-'+t.dataset.t).classList.add('on');
+  });
+});
+document.getElementById('slackApprove').addEventListener('click',function(){
+  this.textContent='\u2713 Sent to 4 reps';
+  this.style.background='#1a7';
+  this.style.pointerEvents='none';
+});
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('v')})},{threshold:0.1});
+document.querySelectorAll('.fi').forEach(e=>obs.observe(e));
+</script>
+</body>
+</html>
