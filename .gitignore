@@ -1,0 +1,4 @@
+# Local agent overrides — personal/secret, never commit
+CLAUDE.local.md
+AGENTS.local.md
+.claude/settings.local.json
