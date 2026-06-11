@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<title>WC26 · FLOODLIGHT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pitch: #0A0F0C;          /* near-black with a green undertone */
+    --pitch-2: #0F1712;        /* raised surface */
+    --pitch-3: #16221B;        /* hover / inset */
+    --chalk: #EDF2EC;          /* off-white chalk line */
+    --chalk-dim: rgba(237,242,236,0.55);
+    --chalk-faint: rgba(237,242,236,0.14);
+    --volt: #C6F53F;           /* kit-launch volt green */
+    --volt-dim: rgba(198,245,63,0.14);
+    --coral: #FF5A5F;          /* bangers */
+    --coral-dim: rgba(255,90,95,0.14);
+    --sky: #5BC9FF;            /* USA */
+    --sky-dim: rgba(91,201,255,0.13);
+    --gold: #FFC53D;
+    --gold-dim: rgba(255,197,61,0.14);
+    --display: "Barlow Condensed", "Arial Narrow", sans-serif;
+    --body: "Inter", -apple-system, system-ui, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background:
+      radial-gradient(1100px 540px at 50% -180px, rgba(198,245,63,0.09), transparent 64%),
+      var(--pitch);
+    color: var(--chalk);
+    font-family: var(--body);
+    font-size: 14px;
+    line-height: 1.6;
+    padding-bottom: 90px;
+  }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 22px; }
+  ::selection { background: var(--volt); color: var(--pitch); }
+
+  /* ---- pitch markings watermark ---- */
+  .pitchlines {
+    position: fixed; inset: 0; pointer-events: none; opacity: 0.05; z-index: 0;
+  }
+  .pitchlines svg { width: 100%; height: 100%; }
+  .layer { position: relative; z-index: 1; }
+
+  /* ---- header / scoreboard ---- */
+  header { padding: 40px 0 26px; }
+  .eyebrow {
+    font-family: var(--display); font-weight: 700; font-size: 13px;
+    letter-spacing: 0.34em; text-transform: uppercase; color: var(--volt);
+  }
+  h1 {
+    font-family: var(--display); font-weight: 900; text-transform: uppercase;
+    font-size: clamp(52px, 9vw, 96px); line-height: 0.92; letter-spacing: 0.01em;
+    margin: 8px 0 4px;
+  }
+  h1 .outline {
+    color: transparent; -webkit-text-stroke: 2px var(--chalk);
+  }
+  .sub { color: var(--chalk-dim); font-size: 14px; max-width: 560px; }
+
+  .scoreboard {
+    margin-top: 24px; display: inline-flex; align-items: stretch;
+    border: 1px solid var(--chalk-faint); border-radius: 10px; overflow: hidden;
+    background: var(--pitch-2);
+  }
+  .scoreboard .cell { padding: 12px 20px; border-right: 1px solid var(--chalk-faint); }
+  .scoreboard .cell:last-child { border-right: none; }
+  .scoreboard .lbl { font-family: var(--display); font-weight: 700; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--chalk-dim); }
+  .scoreboard .val { font-family: var(--display); font-weight: 900; font-size: 30px; line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .scoreboard .val.volt { color: var(--volt); }
+
+  /* ---- nav ---- */
+  nav { position: sticky; top: 0; z-index: 60; background: rgba(10,15,12,0.88); backdrop-filter: blur(14px); border-top: 1px solid var(--chalk-faint); border-bottom: 1px solid var(--chalk-faint); }
+  .tabs { display: flex; gap: 0; overflow-x: auto; }
+  .tab {
+    font-family: var(--display); font-weight: 700; font-size: 16px; letter-spacing: 0.12em; text-transform: uppercase;
+    background: none; border: none; color: var(--chalk-dim); padding: 15px 22px; cursor: pointer;
+    border-bottom: 3px solid transparent; white-space: nowrap; transition: color .15s;
+  }
+  .tab:hover { color: var(--chalk); }
+  .tab.active { color: var(--volt); border-bottom-color: var(--volt); }
+
+  section.panel { display: none; padding-top: 34px; }
+  section.panel.active { display: block; }
+
+  .sec {
+    display: flex; align-items: center; gap: 14px; margin: 34px 0 16px;
+  }
+  .sec:first-child { margin-top: 0; }
+  .sec h2 { font-family: var(--display); font-weight: 900; font-size: 26px; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; }
+  .sec .rule { height: 1px; background: var(--chalk-faint); flex: 1; }
+  .sec .tag { font-family: var(--display); font-weight: 700; font-size: 12px; letter-spacing: 0.2em; color: var(--chalk-dim); text-transform: uppercase; }
+
+  /* ---- stat blocks ---- */
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+  .stat { background: var(--pitch-2); border: 1px solid var(--chalk-faint); border-radius: 10px; padding: 16px 16px 13px; }
+  .stat .n { font-family: var(--display); font-weight: 900; font-size: 40px; line-height: 1; color: var(--volt); font-variant-numeric: tabular-nums; }
+  .stat .l { font-size: 11px; color: var(--chalk-dim); margin-top: 5px; }
+
+  /* ---- cards & callouts ---- */
+  .card { background: var(--pitch-2); border: 1px solid var(--chalk-faint); border-radius: 12px; padding: 20px 22px; margin-bottom: 14px; }
+  .note { border-left: 3px solid var(--volt); padding: 14px 18px; background: var(--volt-dim); border-radius: 0 10px 10px 0; margin: 16px 0; font-size: 13.5px; }
+  .note.hot { border-left-color: var(--coral); background: var(--coral-dim); }
+  .note.gold { border-left-color: var(--gold); background: var(--gold-dim); }
+  .note b { color: #fff; }
+
+  /* ---- pills ---- */
+  .pill {
+    display: inline-block; font-family: var(--display); font-weight: 700; font-size: 11.5px;
+    letter-spacing: 0.14em; text-transform: uppercase; padding: 2px 9px; border-radius: 4px; vertical-align: middle;
+  }
+  .p-volt { background: var(--volt); color: var(--pitch); }
+  .p-coral { background: var(--coral); color: var(--pitch); }
+  .p-sky { background: var(--sky); color: var(--pitch); }
+  .p-gold { background: var(--gold); color: var(--pitch); }
+  .p-ghost { border: 1px solid var(--chalk-faint); color: var(--chalk-dim); }
+
+  /* ---- timeline (touchline) ---- */
+  .tl { position: relative; padding-left: 26px; }
+  .tl::before { content: ""; position: absolute; left: 7px; top: 4px; bottom: 4px; width: 2px; background: var(--chalk-faint); }
+  .tl-item { position: relative; padding-bottom: 16px; }
+  .tl-item::before { content: ""; position: absolute; left: -25px; top: 6px; width: 10px; height: 10px; border-radius: 50%; background: var(--pitch); border: 2px solid var(--chalk-dim); }
+  .tl-item.big::before { background: var(--volt); border-color: var(--volt); box-shadow: 0 0 12px rgba(198,245,63,0.5); }
+  .tl-item .d { font-family: var(--display); font-weight: 700; font-size: 15px; letter-spacing: 0.14em; text-transform: uppercase; }
+  .tl-item.big .d { color: var(--volt); }
+  .tl-item .t { color: var(--chalk-dim); font-size: 13px; }
+
+  /* ---- status rows ---- */
+  .row { display: flex; justify-content: space-between; gap: 18px; padding: 10px 0; border-bottom: 1px dashed var(--chalk-faint); font-size: 13.5px; }
+  .row:last-child { border-bottom: none; }
+  .row .k { color: var(--chalk-dim); }
+  .row .v { font-weight: 600; text-align: right; }
+
+  /* ---- groups ---- */
+  .groups { display: grid; grid-template-columns: repeat(auto-fill, minmax(245px, 1fr)); gap: 12px; }
+  .group { background: var(--pitch-2); border: 1px solid var(--chalk-faint); border-radius: 12px; overflow: hidden; transition: transform .15s, border-color .15s; }
+  .group:hover { transform: translateY(-2px); border-color: rgba(237,242,236,0.3); }
+  .group .gh { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: var(--pitch-3); }
+  .group .gh .gn { font-family: var(--display); font-weight: 900; font-size: 19px; letter-spacing: 0.12em; }
+  .group ul { list-style: none; }
+  .group li { display: flex; justify-content: space-between; align-items: center; padding: 9px 14px; border-top: 1px solid var(--chalk-faint); font-size: 13.5px; }
+  .group li .fl { margin-right: 7px; }
+  .group li.fav { box-shadow: inset 3px 0 0 var(--volt); background: var(--volt-dim); font-weight: 700; }
+  .group li.us { box-shadow: inset 3px 0 0 var(--sky); background: var(--sky-dim); font-weight: 700; }
+
+  /* ---- ticket-stub matches ---- */
+  .filters { display: flex; gap: 8px; margin-bottom: 18px; }
+  .fbtn {
+    font-family: var(--display); font-weight: 700; font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase;
+    background: var(--pitch-2); color: var(--chalk-dim); border: 1px solid var(--chalk-faint); border-radius: 999px;
+    padding: 7px 18px; cursor: pointer;
+  }
+  .fbtn.active { background: var(--volt); border-color: var(--volt); color: var(--pitch); }
+
+  .ticket {
+    display: flex; align-items: stretch; background: var(--pitch-2);
+    border: 1px solid var(--chalk-faint); border-radius: 12px; margin-bottom: 10px; overflow: hidden;
+  }
+  .ticket .when {
+    min-width: 108px; display: flex; flex-direction: column; justify-content: center; align-items: center;
+    padding: 12px 10px; border-right: 1px dashed rgba(237,242,236,0.25); position: relative;
+  }
+  .ticket .when::before, .ticket .when::after {
+    content: ""; position: absolute; right: -7px; width: 14px; height: 14px; border-radius: 50%;
+    background: var(--pitch); border: 1px solid var(--chalk-faint);
+  }
+  .ticket .when::before { top: -8px; }
+  .ticket .when::after { bottom: -8px; }
+  .ticket .when .dow { font-family: var(--display); font-weight: 700; font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--chalk-dim); }
+  .ticket .when .day { font-family: var(--display); font-weight: 900; font-size: 30px; line-height: 1; }
+  .ticket .body { flex: 1; padding: 13px 18px; display: flex; flex-direction: column; justify-content: center; gap: 3px; }
+  .ticket .vs { font-family: var(--display); font-weight: 700; font-size: 21px; letter-spacing: 0.03em; text-transform: uppercase; }
+  .ticket .meta { font-size: 12px; color: var(--chalk-dim); }
+  .ticket.t-usa .when { background: var(--sky-dim); } .ticket.t-usa .day { color: var(--sky); }
+  .ticket.t-banger .when { background: var(--coral-dim); } .ticket.t-banger .day { color: var(--coral); }
+  .ticket.t-opener .when { background: var(--gold-dim); } .ticket.t-opener .day { color: var(--gold); }
+
+  /* ---- tables ---- */
+  table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+  th { font-family: var(--display); font-weight: 700; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--chalk-dim); text-align: left; padding: 8px 10px; border-bottom: 2px solid var(--chalk-dim); }
+  td { padding: 10px; border-bottom: 1px solid var(--chalk-faint); font-size: 13.5px; }
+  tr:hover td { background: var(--pitch-3); }
+  .r { text-align: right; }
+  td.odds { font-family: var(--display); font-weight: 900; font-size: 19px; color: var(--volt); }
+
+  /* ---- roster ---- */
+  .poshead { font-family: var(--display); font-weight: 700; font-size: 14px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--sky); margin: 20px 0 8px; }
+  .roster { display: grid; grid-template-columns: repeat(auto-fill, minmax(215px, 1fr)); gap: 8px; }
+  .pl { background: var(--pitch-2); border: 1px solid var(--chalk-faint); border-radius: 9px; padding: 9px 13px; font-size: 12.5px; }
+  .pl b { display: block; font-size: 13.5px; }
+  .pl span { color: var(--chalk-dim); font-size: 11.5px; }
+
+  /* ---- star cards ---- */
+  .stars { display: grid; grid-template-columns: repeat(auto-fill, minmax(305px, 1fr)); gap: 12px; }
+  .star { background: var(--pitch-2); border: 1px solid var(--chalk-faint); border-radius: 12px; padding: 18px 20px; }
+  .star .top { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-bottom: 6px; }
+  .star .nm { font-family: var(--display); font-weight: 900; font-size: 22px; letter-spacing: 0.04em; text-transform: uppercase; }
+  .star p { font-size: 13px; color: var(--chalk-dim); }
+  .star p b { color: var(--chalk); }
+
+  footer { margin-top: 48px; border-top: 1px solid var(--chalk-faint); padding-top: 16px; font-size: 11.5px; color: var(--chalk-dim); }
+  a { color: var(--sky); }
+  @media (max-width: 640px) {
+    .scoreboard { display: grid; grid-template-columns: 1fr 1fr; }
+    .scoreboard .cell { border-bottom: 1px solid var(--chalk-faint); }
+  }
+</style>
+</head>
+<body>
+
+<div class="pitchlines">
+  <svg viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#EDF2EC" stroke-width="2" fill="none">
+      <circle cx="600" cy="400" r="160"/>
+      <line x1="0" y1="400" x2="1200" y2="400"/>
+      <rect x="-80" y="180" width="240" height="440"/>
+      <rect x="1040" y="180" width="240" height="440"/>
+      <circle cx="600" cy="400" r="4" fill="#EDF2EC"/>
+    </g>
+  </svg>
+</div>
+
+<div class="layer">
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">FIFA World Cup · USA — Mexico — Canada</div>
+    <h1>WORLD CUP <span class="outline">26</span></h1>
+    <p class="sub">48 teams. 104 matches. 39 nights under the lights. Everything you need to walk into the tournament cold and sound like you never left.</p>
+    <div class="scoreboard">
+      <div class="cell"><div class="lbl">Kickoff</div><div class="val volt" id="countdown">—</div></div>
+      <div class="cell"><div class="lbl">Opener</div><div class="val">MEX – RSA</div></div>
+      <div class="cell"><div class="lbl">Venue</div><div class="val">AZTECA</div></div>
+      <div class="cell"><div class="lbl">Final</div><div class="val">JUL 19</div></div>
+    </div>
+  </div>
+</header>
+
+<nav>
+  <div class="wrap tabs">
+    <button class="tab active" data-panel="overview">Kickoff</button>
+    <button class="tab" data-panel="groups">Groups</button>
+    <button class="tab" data-panel="watch">Must-Watch</button>
+    <button class="tab" data-panel="usa">USA</button>
+    <button class="tab" data-panel="players">Stars</button>
+    <button class="tab" data-panel="betting">The Board</button>
+    <button class="tab" data-panel="betslip">Bet Slip</button>
+    <button class="tab" data-panel="takes">Fable's Takes</button>
+  </div>
+</nav>
+
+<div class="wrap">
+
+<!-- ============ OVERVIEW ============ -->
+<section class="panel active" id="overview">
+  <div class="sec"><h2>The Shape Of It</h2><div class="rule"></div><span class="tag">format</span></div>
+  <div class="stats">
+    <div class="stat"><div class="n">48</div><div class="l">teams — up from 32</div></div>
+    <div class="stat"><div class="n">104</div><div class="l">matches — up from 64</div></div>
+    <div class="stat"><div class="n">12</div><div class="l">groups of four</div></div>
+    <div class="stat"><div class="n">16</div><div class="l">host cities, 3 countries</div></div>
+    <div class="stat"><div class="n">39</div><div class="l">days of soccer</div></div>
+  </div>
+  <div class="note">
+    <b>Learn the format once:</b> top 2 from each group advance <i>plus</i> the 8 best third-place teams → a brand-new Round of 32. Third place can still live, group winners earn softer draws, and there's meaningful soccer basically every day for a month.
+  </div>
+
+  <div class="sec"><h2>Key Dates</h2><div class="rule"></div><span class="tag">all times ET</span></div>
+  <div class="card">
+    <div class="tl">
+      <div class="tl-item big"><div class="d">Thu Jun 11 — Tomorrow</div><div class="t">Opening match: Mexico v South Africa, Estadio Azteca, 3pm</div></div>
+      <div class="tl-item big"><div class="d">Fri Jun 12</div><div class="t">USA opens v Paraguay — SoFi Stadium, 9pm, Fox</div></div>
+      <div class="tl-item"><div class="d">Jun 11 – 27</div><div class="t">Group stage — 72 games in 17 days</div></div>
+      <div class="tl-item"><div class="d">Jun 28 – Jul 3</div><div class="t">Round of 32 — single elimination begins</div></div>
+      <div class="tl-item"><div class="d">Jul 4 – 7</div><div class="t">Round of 16 — knockout soccer on the 4th of July</div></div>
+      <div class="tl-item"><div class="d">Jul 9 – 11</div><div class="t">Quarterfinals — Boston, LA, Miami, Kansas City</div></div>
+      <div class="tl-item"><div class="d">Jul 14 – 15</div><div class="t">Semifinals — Arlington TX, then Atlanta</div></div>
+      <div class="tl-item big"><div class="d">Sun Jul 19</div><div class="t">THE FINAL — MetLife Stadium, East Rutherford NJ</div></div>
+    </div>
+  </div>
+
+  <div class="sec"><h2>How To Watch</h2><div class="rule"></div><span class="tag">US broadcast</span></div>
+  <div class="card">
+    <div class="row"><span class="k">English</span><span class="v">Fox / FS1</span></div>
+    <div class="row"><span class="k">Spanish</span><span class="v">Telemundo / Peacock</span></div>
+    <div class="row"><span class="k">USA games</span><span class="v">All three on Fox, prime slots</span></div>
+    <div class="row"><span class="k">Time zones</span><span class="v">Marquee games mostly 3–9pm ET — Columbus-friendly</span></div>
+  </div>
+
+  <div class="note gold">
+    <b>Bar-stool storylines:</b> Messi's (almost certainly) last World Cup. Ronaldo's too. Spain's new golden generation with Yamal &amp; Pedri as favorites. Ancelotti now coaching Brazil. Mbappé v Haaland inside the same group. And the USMNT under Pochettino on home soil — the biggest American soccer moment since 1994.
+  </div>
+</section>
+
+<!-- ============ GROUPS ============ -->
+<section class="panel" id="groups">
+  <div class="sec"><h2>All 12 Groups</h2><div class="rule"></div><span class="tag">drawn Dec 5 · DC</span></div>
+  <p style="color:var(--chalk-dim); font-size:13px; margin-bottom:16px;">Volt rail = bookmakers' group favorite. Blue rail = your guys. Top 2 + best 8 thirds advance.</p>
+  <div class="groups">
+    <div class="group"><div class="gh"><span class="gn">A</span><span class="pill p-gold">Host MEX</span></div><ul>
+      <li class="fav"><span><span class="fl">🇲🇽</span>Mexico</span><span class="pill p-volt">Fav</span></li>
+      <li><span><span class="fl">🇰🇷</span>South Korea</span></li>
+      <li><span><span class="fl">🇿🇦</span>South Africa</span></li>
+      <li><span><span class="fl">🇨🇿</span>Czech Republic</span></li>
+    </ul></div>
+    <div class="group"><div class="gh"><span class="gn">B</span><span class="pill p-gold">Host CAN</span></div><ul>
+      <li><span><span class="fl">🇨🇦</span>Canada</span></li>
+      <li class="fav"><span><span class="fl">🇨🇭</span>Switzerland</span><span class="pill p-volt">Fav</span></li>
+      <li><span><span class="fl">🇧🇦</span>Bosnia &amp; Herz.</span></li>
+      <li><span><span class="fl">🇶🇦</span>Qatar</span></li>
+    </ul></div>
+    <div class="group"><div class="gh"><span class="gn">C</span><span class="pill p-coral">Spicy</span></div><ul>
+      <li class="fav"><span><span class="fl">🇧🇷</span>Brazil</span><span class="pill p-volt">Fav</span></li>
+      <li><span><span class="fl">🇲🇦</span>Morocco</span><span class="pill p-coral">'22 SF</span></li>
+      <li><span><span class="fl">🏴󠁧󠁢󠁳󠁣󠁴󠁿</span>Scotland</span></li>
+      <li><span><span class="fl">🇭🇹</span>Haiti</span></li>
+    </ul></div>
+    <div class="group"><div class="gh"><span class="gn">D</span><span class="pill p-sky">USA</span></div><ul>
+      <li class="us"><span><span class="fl">🇺🇸</span>United States</span><span class="pill p-sky">Fav</span></li>
+      <li><span><span class="fl">🇹🇷</span>Türkiye</span></li>
+      <li><span><span class="fl">🇵🇾</span>Paraguay</span></li>
+      <li><span><span class="fl">🇦🇺</span>Australia</span></li>
+    </ul></div>
+    <div class="group"><div class="gh"><span class="gn">E</span></div><ul>
+      <li class="fav"><span><span class="fl">🇩🇪</span>Germany</span><span class="pill p-volt">Fav</span></li>
+      <li><span><span class="fl">🇪🇨</span>Ecuador</span></li>
+      <li><span><span class="fl">🇨🇮</span>Ivory Coast</span></li>
+      <li><span><span class="fl">🇨🇼</span>Curaçao</span><span class="pill p-ghost">Debut</span></li>
+    </ul></div>
+    <div class="group"><div class="gh"><span class="gn">F</span><span class="pill p-coral">Deep</span></div><ul>
+      <li class="fav"><span><span class="fl">🇳🇱</span>Netherlands</span><span class="pill p-volt">Fav</span></li>
+      <li><span><span class="fl">🇯🇵</span>Japan</span></li>
+      <li><span><span class="fl">🇸🇪</span>Sweden</span></li>
+      <li><span><span class="fl">🇹🇳</span>Tunisia</span></li>
+    </ul></div>
+    <div class="group"><div class="gh"><span class="gn">G</span></div><ul>
+      <li class="fav"><span><span class="fl">🇧🇪</span>Belgium</span><span class="pill p-volt">Fav</span></li>
+      <li><span><span class="fl">🇪🇬</span>Egypt</span><span class="pill p-gold">Salah</span></li>
+      <li><span><span class="fl">🇮🇷</span>Iran</span></li>
+      <li><span><span class="fl">🇳🇿</span>New Zealand</span></li>
+    </ul></div>
+    <div class="group"><div class="gh"><span class="gn">H</span><span class="pill p-coral">Death-ish</span></div><ul>
+      <li class="fav"><span><span class="fl">🇪🇸</span>Spain</span><span class="pill p-volt">#1 Fav</span></li>
+      <li><span><span class="fl">🇺🇾</span>Uruguay</span><span class="pill p-coral">Loaded</span></li>
+      <li><span><span class="fl">🇸🇦</span>Saudi Arabia</span></li>
+      <li><span><span class="fl">🇨🇻</span>Cape Verde</span><span class="pill p-ghost">Debut</span></li>
+    </ul></div>
+    <div class="group"><div class="gh"><span class="gn">I</span><span class="pill p-coral">Spicy</span></div><ul>
+      <li class="fav"><span><span class="fl">🇫🇷</span>France</span><span class="pill p-volt">Fav</span></li>
+      <li><span><span class="fl">🇳🇴</span>Norway</span><span class="pill p-gold">Haaland</span></li>
+      <li><span><span class="fl">🇸🇳</span>Senegal</span></li>
+      <li><span><span class="fl">🇮🇶</span>Iraq</span></li>
+    </ul></div>
+    <div class="group"><div class="gh"><span class="gn">J</span></div><ul>
+      <li class="fav"><span><span class="fl">🇦🇷</span>Argentina</span><span class="pill p-volt">Champs</span></li>
+      <li><span><span class="fl">🇦🇹</span>Austria</span></li>
+      <li><span><span class="fl">🇩🇿</span>Algeria</span></li>
+      <li><span><span class="fl">🇯🇴</span>Jordan</span><span class="pill p-ghost">Debut</span></li>
+    </ul></div>
+    <div class="group"><div class="gh"><span class="gn">K</span><span class="pill p-coral">Sneaky</span></div><ul>
+      <li class="fav"><span><span class="fl">🇵🇹</span>Portugal</span><span class="pill p-volt">Fav</span></li>
+      <li><span><span class="fl">🇨🇴</span>Colombia</span><span class="pill p-coral">Live dog</span></li>
+      <li><span><span class="fl">🇺🇿</span>Uzbekistan</span><span class="pill p-ghost">Debut</span></li>
+      <li><span><span class="fl">🇨🇩</span>DR Congo</span></li>
+    </ul></div>
+    <div class="group"><div class="gh"><span class="gn">L</span><span class="pill p-coral">Spicy</span></div><ul>
+      <li class="fav"><span><span class="fl">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>England</span><span class="pill p-volt">Fav</span></li>
+      <li><span><span class="fl">🇭🇷</span>Croatia</span><span class="pill p-gold">Modrić</span></li>
+      <li><span><span class="fl">🇬🇭</span>Ghana</span></li>
+      <li><span><span class="fl">🇵🇦</span>Panama</span></li>
+    </ul></div>
+  </div>
+  <div class="note" style="margin-top:18px;">
+    <b>Bracket note:</b> FIFA seeded Spain/Argentina and France/England to opposite halves — if they all win their groups, those pairs can only meet in the <i>final</i>, and the four can't collide before the semis. The dream finals are protected.
+  </div>
+</section>
+
+<!-- ============ MUST-WATCH ============ -->
+<section class="panel" id="watch">
+  <div class="sec"><h2>Circle These</h2><div class="rule"></div><span class="tag">verified · times ET</span></div>
+  <div class="filters">
+    <button class="fbtn active" data-f="all">All</button>
+    <button class="fbtn" data-f="usa">USA</button>
+    <button class="fbtn" data-f="banger">Bangers</button>
+  </div>
+  <div id="matchlist">
+    <div class="ticket t-opener" data-tags="all banger"><div class="when"><span class="dow">Thu Jun</span><span class="day">11</span></div><div class="body"><div class="vs">🇲🇽 Mexico v South Africa 🇿🇦</div><div class="meta">3pm · Estadio Azteca, CDMX — <span class="pill p-gold">The Opener</span></div></div></div>
+    <div class="ticket t-usa" data-tags="all usa banger"><div class="when"><span class="dow">Fri Jun</span><span class="day">12</span></div><div class="body"><div class="vs">🇺🇸 USA v Paraguay 🇵🇾</div><div class="meta">9pm · SoFi, LA · Fox — <span class="pill p-sky">USA Opener</span></div></div></div>
+    <div class="ticket" data-tags="all"><div class="when"><span class="dow">Sat Jun</span><span class="day">13</span></div><div class="body"><div class="vs">🇦🇺 Australia v Türkiye 🇹🇷</div><div class="meta">12am · BC Place, Vancouver · FS1 — Group D scouting</div></div></div>
+    <div class="ticket t-banger" data-tags="all banger"><div class="when"><span class="dow">Sat Jun</span><span class="day">13</span></div><div class="body"><div class="vs">🇧🇷 Brazil v Morocco 🇲🇦</div><div class="meta">6pm · MetLife, NJ — <span class="pill p-coral">Banger</span> Vini Jr v Hakimi · Ancelotti's Brazil debut</div></div></div>
+    <div class="ticket" data-tags="all"><div class="when"><span class="dow">Mon Jun</span><span class="day">15</span></div><div class="body"><div class="vs">🇪🇸 Spain v Cape Verde 🇨🇻</div><div class="meta">12pm · Atlanta — favorite's first look</div></div></div>
+    <div class="ticket" data-tags="all"><div class="when"><span class="dow">Mon Jun</span><span class="day">15</span></div><div class="body"><div class="vs">🇸🇦 Saudi Arabia v Uruguay 🇺🇾</div><div class="meta">6pm · Hard Rock, Miami</div></div></div>
+    <div class="ticket t-banger" data-tags="all banger"><div class="when"><span class="dow">Tue Jun</span><span class="day">16</span></div><div class="body"><div class="vs">🇫🇷 France v Senegal 🇸🇳</div><div class="meta">3pm · MetLife, NJ — <span class="pill p-coral">Banger</span> Mbappé v Mané's last ride</div></div></div>
+    <div class="ticket t-usa" data-tags="all usa banger"><div class="when"><span class="dow">Fri Jun</span><span class="day">19</span></div><div class="body"><div class="vs">🇺🇸 USA v Australia 🇦🇺</div><div class="meta">3pm · Lumen Field, Seattle · Fox — <span class="pill p-sky">USA</span> long-lunch Friday</div></div></div>
+    <div class="ticket" data-tags="all"><div class="when"><span class="dow">Fri Jun</span><span class="day">19</span></div><div class="body"><div class="vs">🇹🇷 Türkiye v Paraguay 🇵🇾</div><div class="meta">11pm · Levi's, Santa Clara · FS1</div></div></div>
+    <div class="ticket t-usa" data-tags="all usa banger"><div class="when"><span class="dow">Thu Jun</span><span class="day">25</span></div><div class="body"><div class="vs">🇹🇷 Türkiye v USA 🇺🇸</div><div class="meta">10pm · SoFi, LA · Fox — <span class="pill p-sky">USA</span> group finale, simultaneous with PAR–AUS</div></div></div>
+    <div class="ticket t-banger" data-tags="all banger"><div class="when"><span class="dow">Late</span><span class="day">GRP</span></div><div class="body"><div class="vs">🇪🇸 Spain v Uruguay 🇺🇾 + 🇫🇷 France v Norway 🇳🇴</div><div class="meta">Group H / I finales — <span class="pill p-coral">Bangers</span> Mbappé v Haaland head-to-head</div></div></div>
+    <div class="ticket t-banger" data-tags="all banger"><div class="when"><span class="dow">Late</span><span class="day">GRP</span></div><div class="body"><div class="vs">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England v Croatia 🇭🇷</div><div class="meta">Group L heavyweight — <span class="pill p-coral">Banger</span> Bellingham v Modrić</div></div></div>
+  </div>
+
+  <div class="sec"><h2>Block The Calendar</h2><div class="rule"></div></div>
+  <div class="card">
+    <div class="row"><span class="k">Thu Jun 11 (tomorrow)</span><span class="v">Opening day at the Azteca — the whole planet watching</span></div>
+    <div class="row"><span class="k">Fri Jun 12</span><span class="v">USA opener, 9pm — order food, invite people</span></div>
+    <div class="row"><span class="k">Sat Jun 13</span><span class="v">First full Saturday + Brazil–Morocco prime time</span></div>
+    <div class="row"><span class="k">Fri Jun 19</span><span class="v">USA at 3pm — "long lunch" Friday</span></div>
+    <div class="row"><span class="k">Thu Jun 25</span><span class="v">Group D decided — simultaneous kickoffs, max drama</span></div>
+    <div class="row"><span class="k">Jul 4 weekend</span><span class="v">Round of 16 over July 4th — all-timer holiday weekend</span></div>
+    <div class="row"><span class="k">Jul 14–15</span><span class="v">Semifinals — Arlington, Atlanta</span></div>
+    <div class="row"><span class="k">Sun Jul 19</span><span class="v">THE FINAL — MetLife, NJ</span></div>
+  </div>
+</section>
+
+<!-- ============ USA ============ -->
+<section class="panel" id="usa">
+  <div class="sec"><h2>USMNT · Group D</h2><div class="rule"></div><span class="tag">first home WC since '94</span></div>
+  <div class="stats">
+    <div class="stat"><div class="n">+6000</div><div class="l">to win it all (FanDuel)</div></div>
+    <div class="stat"><div class="n">3</div><div class="l">group games, all on Fox</div></div>
+    <div class="stat"><div class="n">13/13</div><div class="l">WC returnees / debutants</div></div>
+    <div class="stat"><div class="n">26</div><div class="l">man roster · Pochettino</div></div>
+  </div>
+
+  <div style="margin-top:18px;"></div>
+  <div class="ticket t-usa"><div class="when"><span class="dow">Fri Jun</span><span class="day">12</span></div><div class="body"><div class="vs">USA v Paraguay 🇵🇾</div><div class="meta">9pm ET · SoFi Stadium, LA · Fox</div></div></div>
+  <div class="ticket t-usa"><div class="when"><span class="dow">Fri Jun</span><span class="day">19</span></div><div class="body"><div class="vs">USA v Australia 🇦🇺</div><div class="meta">3pm ET · Lumen Field, Seattle · Fox</div></div></div>
+  <div class="ticket t-usa"><div class="when"><span class="dow">Thu Jun</span><span class="day">25</span></div><div class="body"><div class="vs">Türkiye 🇹🇷 v USA</div><div class="meta">10pm ET · SoFi Stadium, LA · Fox</div></div></div>
+
+  <div class="note">
+    <b>The honest read:</b> Group D is winnable — Paraguay are physical but limited, Australia are organized, Türkiye (Çalhanoğlu, Güler) are the trickiest opponent and the finale could decide the group. Win it and the bracket opens up; even third can advance in this format. Anything less than the Round of 16 is a failure; a quarterfinal would be the best US run since 2002.
+  </div>
+
+  <div class="sec"><h2>The 26</h2><div class="rule"></div><span class="tag">named May 26</span></div>
+  <div class="poshead">Goalkeepers</div>
+  <div class="roster">
+    <div class="pl"><b>Matt Freese</b><span>NYCFC</span></div>
+    <div class="pl"><b>Matt Turner</b><span>New England</span></div>
+    <div class="pl"><b>Chris Brady</b><span>Chicago Fire</span></div>
+  </div>
+  <div class="poshead">Defenders</div>
+  <div class="roster">
+    <div class="pl"><b>Sergiño Dest</b><span>PSV</span></div>
+    <div class="pl"><b>Antonee Robinson</b><span>Fulham</span></div>
+    <div class="pl"><b>Chris Richards</b><span>Crystal Palace</span></div>
+    <div class="pl"><b>Tim Ream</b><span>Charlotte FC</span></div>
+    <div class="pl"><b>Joe Scally</b><span>M'gladbach</span></div>
+    <div class="pl"><b>Miles Robinson</b><span>FC Cincinnati</span></div>
+    <div class="pl"><b>Mark McKenzie</b><span>Toulouse</span></div>
+    <div class="pl"><b>Alex Freeman</b><span>Villarreal</span></div>
+    <div class="pl"><b>Max Arfsten</b><span>Columbus Crew ⭐</span></div>
+    <div class="pl"><b>Auston Trusty</b><span>Celtic</span></div>
+  </div>
+  <div class="poshead">Midfielders</div>
+  <div class="roster">
+    <div class="pl"><b>Tyler Adams</b><span>Bournemouth · the engine</span></div>
+    <div class="pl"><b>Weston McKennie</b><span>Juventus</span></div>
+    <div class="pl"><b>Malik Tillman</b><span>Bayer Leverkusen</span></div>
+    <div class="pl"><b>Gio Reyna</b><span>M'gladbach · redemption arc</span></div>
+    <div class="pl"><b>Sebastian Berhalter</b><span>Vancouver</span></div>
+    <div class="pl"><b>Cristian Roldan</b><span>Seattle</span></div>
+  </div>
+  <div class="poshead">Forwards</div>
+  <div class="roster">
+    <div class="pl"><b>Christian Pulisic</b><span>AC Milan · the guy</span></div>
+    <div class="pl"><b>Folarin Balogun</b><span>Monaco · the 9</span></div>
+    <div class="pl"><b>Tim Weah</b><span>Marseille</span></div>
+    <div class="pl"><b>Ricardo Pepi</b><span>PSV</span></div>
+    <div class="pl"><b>Haji Wright</b><span>Coventry City</span></div>
+    <div class="pl"><b>Brenden Aaronson</b><span>Leeds</span></div>
+    <div class="pl"><b>Alex Zendejas</b><span>Club América</span></div>
+  </div>
+
+  <div class="note gold" style="margin-top:18px;">
+    <b>Roster drama:</b> Gio Reyna made it. Tanner Tessmann and Diego Luna were the notable cuts. 13 of the 26 were on the 2022 Qatar squad that reached the Round of 16. Columbus shoutout: the Crew's Max Arfsten made the plane.
+  </div>
+</section>
+
+<!-- ============ PLAYERS ============ -->
+<section class="panel" id="players">
+  <div class="sec"><h2>Names To Know</h2><div class="rule"></div><span class="tag">bar-stool cheat sheet</span></div>
+  <div class="stars">
+    <div class="star"><div class="top"><span class="nm">🇫🇷 Mbappé</span><span class="pill p-gold">Boot fav +600</span></div><p>The headliner. WC final hat trick in '22, a title in '18, Real Madrid's monster. <b>Going for back-to-back Golden Boots.</b></p></div>
+    <div class="star"><div class="top"><span class="nm">🇪🇸 Yamal</span><span class="pill p-volt">The future</span></div><p>Barcelona's teenage phenom, face of favorite Spain, Euro 2024 winner. First World Cup — <b>could be his coronation.</b> Boot +2200.</p></div>
+    <div class="star"><div class="top"><span class="nm">🇳🇴 Haaland</span><span class="pill p-gold">Boot +1400</span></div><p>Norway's first WC since '98. Goal robot — but if Norway exit early he has to feast fast. <b>France–Norway = Mbappé v Haaland.</b></p></div>
+    <div class="star"><div class="top"><span class="nm">🇦🇷 Messi</span><span class="pill p-coral">Last dance</span></div><p>Defending champ, 38, almost certainly the final World Cup. The Boot (+1600) is <b>the one trophy missing from the cabinet.</b></p></div>
+    <div class="star"><div class="top"><span class="nm">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Kane</span><span class="pill p-gold">Boot +700</span></div><p>Coming off a ridiculous <b>61-goal season at Bayern.</b> England desperate to finally win something. So is he.</p></div>
+    <div class="star"><div class="top"><span class="nm">🇧🇷 Vini Jr</span><span class="pill p-volt">Showtime</span></div><p>Brazil's main man — now coached by <b>Carlo Ancelotti</b> (yes, really). Opens against Hakimi's Morocco. Instant test.</p></div>
+    <div class="star"><div class="top"><span class="nm">🇵🇹 Ronaldo</span><span class="pill p-coral">Last dance</span></div><p>41. Final World Cup, the only trophy he's never touched, and <b>Portugal are legitimately deep</b> around him (+900).</p></div>
+    <div class="star"><div class="top"><span class="nm">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Bellingham</span><span class="pill p-volt">Prime</span></div><p>Real Madrid's midfield superstar in his prime. England ride on him and Kane clicking. <b>England–Croatia is appointment TV.</b></p></div>
+    <div class="star"><div class="top"><span class="nm">🇲🇦 Hakimi</span><span class="pill p-volt">Elite</span></div><p>World-class right back. Morocco: 2022 semifinalists, reigning African champs — <b>the most dangerous non-favorite in the field.</b></p></div>
+    <div class="star"><div class="top"><span class="nm">🇺🇸 Pulisic</span><span class="pill p-sky">Captain America</span></div><p>AC Milan winger, face of the program since 17. Home World Cup at 27 — <b>the tournament his whole career pointed at.</b></p></div>
+  </div>
+</section>
+
+<!-- ============ BETTING ============ -->
+<section class="panel" id="betting">
+  <div class="sec"><h2>Title Odds</h2><div class="rule"></div><span class="tag">FanDuel / BetMGM · Jun 10</span></div>
+  <div class="card">
+    <table>
+      <thead><tr><th>Team</th><th>Why</th><th class="r">Odds</th></tr></thead>
+      <tbody>
+        <tr><td>🇪🇸 Spain</td><td>Euro 2024 champs, Yamal + Pedri, consensus pick</td><td class="r odds">+450</td></tr>
+        <tr><td>🇫🇷 France</td><td>Mbappé + absurd depth, two straight finals</td><td class="r odds">+500</td></tr>
+        <tr><td>🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</td><td>Kane + Bellingham, always knocking</td><td class="r odds">+650</td></tr>
+        <tr><td>🇧🇷 Brazil</td><td>The Ancelotti effect, best non-Euro odds</td><td class="r odds">+800</td></tr>
+        <tr><td>🇵🇹 Portugal</td><td>Deep squad, Ronaldo's farewell</td><td class="r odds">+900</td></tr>
+        <tr><td>🇦🇷 Argentina</td><td>Defending champs, Messi's last ride</td><td class="r odds">+900</td></tr>
+        <tr><td>🇩🇪 Germany</td><td>Never count them out at a WC</td><td class="r odds">+1300</td></tr>
+        <tr><td>🇳🇱 Netherlands</td><td>Perennial almost-team</td><td class="r odds">+1600</td></tr>
+        <tr><td>🇳🇴 Norway</td><td>Haaland + Ødegaard, fun longshot</td><td class="r odds">+3500</td></tr>
+        <tr><td>🇺🇸 USA</td><td>Home soil, Pochettino, dream scenario</td><td class="r odds">+6000</td></tr>
+        <tr><td>🇲🇽 Mexico</td><td>Azteca magic, never past the QF</td><td class="r odds">+6000</td></tr>
+        <tr><td>🇨🇦 Canada</td><td>Davies + home games</td><td class="r odds">+17500</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sec"><h2>Golden Boot</h2><div class="rule"></div></div>
+  <div class="card">
+    <table>
+      <thead><tr><th>Player</th><th>Team</th><th class="r">Odds</th></tr></thead>
+      <tbody>
+        <tr><td>Kylian Mbappé</td><td>🇫🇷 France</td><td class="r odds">+600</td></tr>
+        <tr><td>Harry Kane</td><td>🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</td><td class="r odds">+700</td></tr>
+        <tr><td>Erling Haaland</td><td>🇳🇴 Norway</td><td class="r odds">+1400</td></tr>
+        <tr><td>Lionel Messi</td><td>🇦🇷 Argentina</td><td class="r odds">+1600</td></tr>
+        <tr><td>Lamine Yamal</td><td>🇪🇸 Spain</td><td class="r odds">+2200</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sec"><h2>Angles</h2><div class="rule"></div><span class="tag">what the sharps see</span></div>
+  <div class="card">
+    <div class="row"><span class="k">Group winner value</span><span class="v">Colombia (Grp K over Portugal), Paraguay (D), Egypt (G) flagged as plus-money plays by SI</span></div>
+    <div class="row"><span class="k">More games, more goals</span><span class="v">104 matches + R32 → Boot winner may need 7–9; favor easy groups</span></div>
+    <div class="row"><span class="k">Third-place safety net</span><span class="v">8 of 12 thirds advance — "reach knockouts" bets on mid-tier teams hide value</span></div>
+    <div class="row"><span class="k">Host bump is real</span><span class="v">Hosts overperform historically — USA "reach the semis" props may be the smarter hype bet</span></div>
+    <div class="row"><span class="k">Protected bracket</span><span class="v">Spain/Argentina &amp; France/England on opposite halves — final-matchup props priced accordingly</span></div>
+  </div>
+
+  <div class="note hot">
+    <b>Reality check:</b> these are a Jun 10 snapshot — lines move constantly, verify before betting, and bet for fun, not rent. The Spain–France chalk is chalk for a reason, but World Cups love chaos. Morocco '22 says hi.
+  </div>
+</section>
+
+<!-- ============ BET SLIP ============ -->
+<section class="panel" id="betslip">
+  <div class="sec"><h2>Game Bets</h2><div class="rule"></div><span class="tag">opening slate · lines Jun 10</span></div>
+  <div class="card">
+    <table>
+      <thead><tr><th>Match</th><th>Line</th><th>The Read</th></tr></thead>
+      <tbody>
+        <tr><td><b>🇲🇽 MEX v RSA 🇿🇦</b><br><span style="color:var(--chalk-dim); font-size:11.5px;">Thu Jun 11 · Azteca</span></td><td class="odds">MEX −240<br><span style="font-size:13px; color:var(--chalk);">RSA +700</span></td><td style="font-size:12.5px;">Books give Mexico ~68% at home in the cathedral. ML is unbettable juice — the play is Mexico-flavored props (see below), not the chalk.</td></tr>
+        <tr><td><b>🇺🇸 USA v PAR 🇵🇾</b><br><span style="color:var(--chalk-dim); font-size:11.5px;">Fri Jun 12 · SoFi</span></td><td class="odds">USA −105<br><span style="font-size:13px; color:var(--chalk);">Draw +230 · PAR +310</span></td><td style="font-size:12.5px;">Market says coin-flip-ish (~50% USA, ~26% draw). Paraguay are a low-block, low-event team — World Cup openers are historically tight and nervy. The draw at +230 is the sneaky-respectable side; USA ML is the heart bet.</td></tr>
+        <tr><td><b>🇦🇺 AUS v TUR 🇹🇷</b><br><span style="color:var(--chalk-dim); font-size:11.5px;">Sat Jun 13 · Vancouver</span></td><td class="odds">—</td><td style="font-size:12.5px;">The other Group D opener. Türkiye have the talent edge (Çalhanoğlu, Güler); Australia have the shape. Watch it for scouting — whoever wins becomes our June 25 problem.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sec"><h2>Prop Bets</h2><div class="rule"></div><span class="tag">tournament + match props</span></div>
+  <div class="card">
+    <div class="row"><span class="k">Mexico to reach the R16 <span class="pill p-volt">+125</span></span><span class="v">El Tri have made the R16 in 7 of the last 8 World Cups — now add host crowd + a soft Group A. Closest thing to free money on the board.</span></div>
+    <div class="row"><span class="k">Raúl Jiménez first scorer v RSA</span><span class="v">Expert-flagged prop for the opener — 3rd-most goals in Mexico history, the designated Azteca moment.</span></div>
+    <div class="row"><span class="k">Yamal Golden Boot <span class="pill p-volt">+2200</span></span><span class="v">Best value in the top 10: Spain are the title favorite (deep run = more games) with a soft group to feast on, and he's their talisman.</span></div>
+    <div class="row"><span class="k">Kane Golden Boot <span class="pill p-volt">+700</span></span><span class="v">61 goals for Bayern this season, England's penalty taker, and a group with Ghana + Panama in it. Volume is destiny.</span></div>
+    <div class="row"><span class="k">USA "reach the semis" props</span><span class="v">Smarter hype-bet than +6000 to win it all — hosts historically overperform, and the payout still stings less when the dream dies.</span></div>
+  </div>
+
+  <div class="sec"><h2>Sneaky Picks</h2><div class="rule"></div><span class="tag">plus-money, with logic</span></div>
+  <div class="stars">
+    <div class="star"><div class="top"><span class="nm">🇨🇴 Colombia win Grp K</span><span class="pill p-volt">Plus money</span></div><p>SI's flagged play. Portugal are the favorite on brand name, but <b>Ronaldo is 41</b> and the squad skews old. Colombia have Luis Díaz in his prime, zero pressure, and already get Portugal in a one-off where chaos reigns. Group winner ≠ beating them twice.</p></div>
+    <div class="star"><div class="top"><span class="nm">🇳🇴 Norway deep run</span><span class="pill p-volt">+3500</span></div><p>Only team besides England with a <b>perfect qualifying record</b> — and they scored 37 in 8 (4.6/game). Haaland + Ødegaard is a real spine. The catch: likely 2nd in Group I behind France = uglier bracket. Small stake, big smile.</p></div>
+    <div class="star"><div class="top"><span class="nm">🇨🇭 Switzerland quietly</span><span class="pill p-volt">Dark horse</span></div><p>Tied <b>Spain</b> for second-fewest goals conceded in qualifying, and landed the softest top-seed-free group on the board (Canada, Qatar, Bosnia). Boring teams that don't concede win knockout games 1-0.</p></div>
+    <div class="star"><div class="top"><span class="nm">🇪🇬 Egypt advance Grp G</span><span class="pill p-volt">Plus money</span></div><p>Salah against an aging Belgium core and beatable Iran/New Zealand. Plus the format cheat code: <b>8 of 12 third-place teams advance</b>, so "Egypt to reach knockouts" has a double safety net.</p></div>
+    <div class="star"><div class="top"><span class="nm">🇵🇾 Paraguay Grp D</span><span class="pill p-coral">Traitor bet</span></div><p>The contrarian play the sharps flagged — betting against your own boys. Logic: USA pressure on home soil, Paraguay's low block travels well. <b>Listed for completeness. We do not endorse treason.</b></p></div>
+    <div class="star"><div class="top"><span class="nm">🇲🇦 Morocco priced wrong</span><span class="pill p-volt">Chaos hedge</span></div><p>2022 semifinalists, reigning African champions, Hakimi in his prime — and still priced like an outsider because of the Brazil group. If they escape Group C, <b>nobody wants them in a knockout</b>.</p></div>
+  </div>
+  <div class="note hot"><b>House rules:</b> all plus-money picks are small-stake plays — singles, not a parlay. Lines verified Jun 10 and they will move by kickoff. Fun money only.</div>
+</section>
+
+<!-- ============ FABLE'S TAKES ============ -->
+<section class="panel" id="takes">
+  <div class="sec"><h2>Injury Watch</h2><div class="rule"></div><span class="tag">the context for everything below</span></div>
+  <div class="card">
+    <div class="row"><span class="k">🇧🇷 Brazil</span><span class="v"><b>Rodrygo OUT</b> (torn ACL + meniscus) · <b>Estêvão OUT</b> (hamstring, off the squad)</span></div>
+    <div class="row"><span class="k">🇳🇱 Netherlands</span><span class="v"><b>Timber OUT</b> (groin) · <b>Xavi Simons OUT</b> (knee)</span></div>
+    <div class="row"><span class="k">🇩🇪 Germany</span><span class="v"><b>ter Stegen OUT</b> (hasn't played since June '25) — <b>Neuer un-retired at 40</b> · Lennart Karl OUT (thigh)</span></div>
+    <div class="row"><span class="k">🇪🇸 Spain</span><span class="v"><b>Fermín López OUT</b> (broken foot) — depth piece, core intact</span></div>
+    <div class="row"><span class="k">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</span><span class="v"><b>Cole Palmer misses out</b> — notable absence from the squad</span></div>
+    <div class="row"><span class="k">🇺🇸 USA</span><span class="v"><b>Pulisic FIT</b> (back strain, returned as a sub for Milan) · <b>Richards RACE</b> (ankle ligaments May 17, missed the final tuneup — Pochettino "annoyed") · Weah managing a knock · already out pre-roster: Klinsmann (neck), Agyemang (Achilles), Tolkin (knee)</span></div>
+  </div>
+
+  <div class="sec"><h2>My Takes</h2><div class="rule"></div><span class="tag">reasoned, not gospel</span></div>
+  <div class="stars">
+    <div class="star"><div class="top"><span class="nm">1 · Fade the Dutch</span><span class="pill p-coral">Fade</span></div><p>+1600 is priced for the full-strength Netherlands. They lost <b>Timber AND Xavi Simons</b> — a top defender and their creative connector — in a group with Japan and Sweden, two teams built to punish slow buildup. The price hasn't caught up to the injury report. Pass at +1600, and Japan to advance gets interesting.</p></div>
+    <div class="star"><div class="top"><span class="nm">2 · Brazil is the trap</span><span class="pill p-coral">Fade-ish</span></div><p>+800 is paying for the badge. The actual team: no Rodrygo, no Estêvão, a new manager installing a new idea on zero runway, and a <b>Day-3 collision with Morocco</b> that could shove them into the wrong half of the bracket. Vini can paper over a lot — but not bracket math. There's better value one row up or down the odds board.</p></div>
+    <div class="star"><div class="top"><span class="nm">3 · France over Spain</span><span class="pill p-volt">Title pick</span></div><p>The books say Spain (+450) by a nose over France (+500). I flip it. Near-identical implied odds, but France's core is <b>fully intact</b> (Spain lost a rotation piece, fine — but France lost nobody), Mbappé is at absolute peak, and they've made two straight finals — knockout pedigree is the one thing you can't fake in July. The protected bracket means they can only meet in the final. <b>My call: France beat Spain in it.</b></p></div>
+    <div class="star"><div class="top"><span class="nm">4 · Kane is the Boot</span><span class="pill p-volt">Value</span></div><p>Mbappé +600 is fair but France share goals around. Kane at +700 gets <b>Ghana and Panama in the group</b>, every England penalty, and arrives off a 61-goal season — the best scoring form of anyone in the field. Volume wins Boots. Anchor Kane, sprinkle Yamal +2200 as the lottery ticket.</p></div>
+    <div class="star"><div class="top"><span class="nm">5 · USA: bet the group</span><span class="pill p-sky">The honest one</span></div><p>The +6000 title ticket is a fan tax — fun, not a bet. The real risk nobody's pricing: <b>Chris Richards' ankle</b>. He's the defensive anchor and he missed the final tuneup; if he's not right, the CB depth behind him is thin and Türkiye's finale gets scary. The rational hype bet is <b>USA to win Group D</b> — opener vs Paraguay's low block decides the vibe, Jun 19 vs Australia is the banker, and a won group means a kinder R32. Sprinkle "reach the QF" if Richards trains this week.</p></div>
+    <div class="star"><div class="top"><span class="nm">6 · Chaos = Morocco</span><span class="pill p-volt">Lock it in</span></div><p>Every World Cup has one team the bracket learns to fear. The '26 candidate profile: elite defense, tournament scar tissue, one world-class star, zero fear of names. That's Morocco — <b>they already did it in '22</b> and got better (African champs since). If they take care of business in Group C, the Brazil rematch in the knockouts is the game I'd buy a ticket for.</p></div>
+  </div>
+  <div class="note"><b>How I got here:</b> synthesis of the Jun 10 odds board + the injury table above + qualifying form. Weight injuries over reputation, bracket position over raw talent, and knockout pedigree over group-stage style points. Not financial advice — it's a soccer argument with numbers.</div>
+</section>
+
+</div><!-- /wrap -->
+
+<footer>
+  <div class="wrap">
+    FLOODLIGHT · built Jun 10 2026 · Sources: FIFA, Wikipedia, ESPN, Yahoo Sports, FOX Sports, U.S. Soccer, CBS/SI betting desks, FanDuel/BetMGM · times ET · odds will move
+  </div>
+</footer>
+
+</div><!-- /layer -->
+
+<script>
+  var tabs = document.querySelectorAll('nav .tab');
+  var panels = document.querySelectorAll('section.panel');
+  tabs.forEach(function(t) {
+    t.addEventListener('click', function() {
+      tabs.forEach(function(x) { x.classList.remove('active'); });
+      panels.forEach(function(p) { p.classList.remove('active'); });
+      t.classList.add('active');
+      document.getElementById(t.dataset.panel).classList.add('active');
+      window.scrollTo({ top: 0 });
+    });
+  });
+
+  var fbtns = document.querySelectorAll('.fbtn');
+  fbtns.forEach(function(b) {
+    b.addEventListener('click', function() {
+      fbtns.forEach(function(x) { x.classList.remove('active'); });
+      b.classList.add('active');
+      var f = b.dataset.f;
+      document.querySelectorAll('#matchlist .ticket').forEach(function(m) {
+        m.style.display = (f === 'all' || m.dataset.tags.includes(f)) ? 'flex' : 'none';
+      });
+    });
+  });
+
+  var kickoff = new Date('2026-06-11T19:00:00Z').getTime();
+  function tick() {
+    var diff = kickoff - Date.now();
+    var el = document.getElementById('countdown');
+    if (diff <= 0) { el.textContent = "LIVE"; return; }
+    var h = Math.floor(diff / 3600000);
+    var m = Math.floor((diff % 3600000) / 60000);
+    var s = Math.floor((diff % 60000) / 1000);
+    el.textContent = h + ':' + String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+  }
+  tick();
+  setInterval(tick, 1000);
+</script>
+</body>
+</html>
