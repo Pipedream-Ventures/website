@@ -221,6 +221,16 @@
   .star .nm { font-family: var(--display); font-weight: 900; font-size: 22px; letter-spacing: 0.04em; text-transform: uppercase; }
   .star p { font-size: 13px; color: var(--ivory-dim); }
   .star p b { color: var(--ivory); }
+  .star.seth { border-color: rgba(86,168,96,0.5); background: linear-gradient(180deg, rgba(86,168,96,0.10), var(--night-2) 70%); }
+  .star.seth::before { border-color: #56A860; }
+  .p-seth { background: #56A860; color: var(--night); }
+
+  /* ---- quick hits ---- */
+  .qhs { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 10px; }
+  .qh { display: flex; gap: 12px; background: var(--night-2); border: 1px solid var(--ivory-faint); padding: 12px 14px 10px; font-size: 12.5px; line-height: 1.5; }
+  .qh .qn { font-family: var(--epic); color: var(--gold); font-weight: 700; font-size: 13px; padding-top: 1px; }
+  .qh b { color: var(--ivory); }
+  .qh .src { display: block; color: var(--gold-deep); font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; font-style: normal; margin-top: 5px; font-family: var(--display); font-weight: 700; }
 
   /* ---- THE PROPHECY (bracket) ---- */
   .epigraph {
@@ -305,6 +315,7 @@
     <div class="eyebrow">MMXXVI <span class="sep">·</span> The Twenty-Third Edition <span class="sep">·</span> USA — Mexico — Canada</div>
     <h1>World Cup <span class="foil">26</span></h1>
     <div class="ornament">✦ ✦ ✦</div>
+    <div class="eyebrow" style="font-size:10.5px; letter-spacing:0.36em; margin-bottom:14px;">Prepared for Seth Miller <span class="sep">·</span> by Claude <span class="sep">·</span> Mythos</div>
     <p class="sub"><b>48 nations. 104 battles. 39 nights. One crown.</b> Everything you need to walk into the tournament cold and sound like you never left.</p>
     <div class="scoreboard">
       <div class="cell"><div class="lbl">Kickoff</div><div class="val gilt" id="countdown">—</div></div>
@@ -325,7 +336,7 @@
     <button class="tab" data-panel="players"><span class="rn">VI</span>Stars</button>
     <button class="tab" data-panel="betting"><span class="rn">VII</span>The Board</button>
     <button class="tab" data-panel="betslip"><span class="rn">VIII</span>Bet Slip</button>
-    <button class="tab" data-panel="takes"><span class="rn">IX</span>Fable's Takes</button>
+    <button class="tab" data-panel="takes"><span class="rn">IX</span>Claude's Takes</button>
   </div>
 </nav>
 
@@ -374,7 +385,7 @@
 
 <!-- ============ THE PROPHECY ============ -->
 <section class="panel" id="prophecy">
-  <p class="epigraph">All 31 knockout matches, called before a ball was kicked. <b>Written Jun 10, MMXXVI.</b> Gold rail marks the champion's road.</p>
+  <p class="epigraph">All 31 knockout matches, called by Claude before a ball was kicked. <b>Written Jun 10, MMXXVI.</b> Gold rail marks the champion's road.</p>
 
   <div class="sec"><span class="gl">✦</span><h2>The Upper Half</h2><div class="rule"></div><span class="tag">→ semifinal I · Arlington · Jul 14</span></div>
   <div class="bx"><div class="bh">
@@ -461,7 +472,10 @@
   </div>
 
   <div class="note">
-    <b>Honesty clause:</b> the bracket tree (which group winner meets which runner-up, all venues and dates) is FIFA's official structure. The third-place slotting is my best allocation — FIFA's combination table assigns those 8 slots only after the groups end. Every result is one man's reasoned guess, written before kickoff. That's what makes it a prophecy.
+    <b>Honesty clause:</b> the bracket tree (which group winner meets which runner-up, all venues and dates) is FIFA's official structure. The third-place slotting is Claude's best allocation — FIFA's combination table assigns those 8 slots only after the groups end. Every result is one model's reasoned guess, written before kickoff. That's what makes it a prophecy.
+  </div>
+  <div class="note" style="border-left-color:#56A860; background:rgba(86,168,96,0.10);">
+    <b style="color:#9FD8A6;">The house dissent:</b> Seth — whose dashboard this is — is officially OFF the Japan-over-Brazil call. He has <b style="color:#9FD8A6;">Brasil surviving the R32 and making a run</b>. His full counter-take lives on tab IX. The bracket above is Claude's alone.
   </div>
 </section>
 
@@ -718,25 +732,60 @@
 
 <!-- ============ BET SLIP ============ -->
 <section class="panel" id="betslip">
-  <div class="sec"><span class="gl">✦</span><h2>Game Bets</h2><div class="rule"></div><span class="tag">opening slate · lines Jun 10</span></div>
+  <div class="sec"><span class="gl">✦</span><h2>Quick Hits — The Sharp Sheet</h2><div class="rule"></div><span class="tag">27 reads from the real desks · Jun 10</span></div>
+  <div class="qhs">
+    <div class="qh"><span class="qn">01</span><div><b>France is the sharp side of the futures board.</b> At BetMGM, France pulls more handle than tickets (12.9% v 12.5%) — big money. Spain and England skew the other way: public.<span class="src">Covers · BetMGM splits</span></div></div>
+    <div class="qh"><span class="qn">02</span><div><b>Three independent desks, same answer:</b> Yahoo's betting desk (+700), BettingPros (+500), and Bookies.com (+480) all made France their official winner pick.<span class="src">Yahoo · BettingPros · Bookies</span></div></div>
+    <div class="qh"><span class="qn">03</span><div><b>Chalk dies in July:</b> only two pre-tournament favorites have actually won the World Cup since 2002. Spain +450 is an uninspiring price for a coin-flip path.<span class="src">MyFootballFacts</span></div></div>
+    <div class="qh"><span class="qn">04</span><div><b>"To qualify" markets are dead value this year.</b> 8 of 12 third-place teams advance (75%) — the books shortened everything. Use group-winner markets for real prices on real teams.<span class="src">talkSPORT</span></div></div>
+    <div class="qh"><span class="qn">05</span><div><b>The quiet structural edge: group-winner stacking.</b> England + Spain + France all to win their groups parlays to roughly 2/1 — and winning the group also buys the softer bracket. Paid twice for one read.<span class="src">MyFootballFacts</span></div></div>
+    <div class="qh"><span class="qn">06</span><div><b>Türkiye to reach the R16 at +137</b> "shouldn't even be available at plus money" — Euro 2024 quarterfinalists in a soft group, and Paraguay just lost Julio Enciso to injury.<span class="src">Pickswise</span></div></div>
+    <div class="qh"><span class="qn">07</span><div><b>Mexico to reach the R16 at +125</b> — R16 in 7 of the last 8 World Cups, every group game at home, nobody else in Group A ranked better than #25.<span class="src">CBS / SportsLine</span></div></div>
+    <div class="qh"><span class="qn">08</span><div><b>Golden Boot rule of thumb:</b> every winner since 1998 played for a quarterfinal-or-better team. Five-plus games is the floor. Don't bet scorers on teams that die early.<span class="src">Yahoo betting desk</span></div></div>
+    <div class="qh"><span class="qn">09</span><div><b>Boot darts at 33-1:</b> Oyarzabal (Spain's likely 9, takes pens, soft group) and Raphinha (Brazil's penalty taker, gets Scotland + Haiti). Both flagged by Yahoo's model.<span class="src">Yahoo betting desk</span></div></div>
+    <div class="qh"><span class="qn">10</span><div><b>Bet the Boot each-way where offered</b> — most books pay 1/3 or 1/4 odds for top 2–3 scorers. Turns a coin-flip into a structured position.<span class="src">MyFootballFacts</span></div></div>
+    <div class="qh"><span class="qn">11</span><div><b>Matchday-1 unders are the most repeatable play in the tournament</b> — first-half unders hit ~65% historically. Openers are nervy; managers fear the red card more than they want the win.<span class="src">MyFootballFacts</span></div></div>
+    <div class="qh"><span class="qn">12</span><div><b>BTTS discipline:</b> both-teams-to-score hit only 46% of group games at the last World Cup. Target it in real fixtures, don't spray it.<span class="src">talkSPORT</span></div></div>
+    <div class="qh"><span class="qn">13</span><div><b>Knockout trap: 1X2 settles at 90 minutes.</b> If you mean "they go through," bet "To Qualify" — it covers extra time and penalties. The most-refunded mistake in soccer betting.<span class="src">MyFootballFacts</span></div></div>
+    <div class="qh"><span class="qn">14</span><div><b>The USA line is a patriotism tax in motion.</b> "The public will dump cash on the Stars and Stripes and shove that number higher than it deserves... refuse to pay a premium for the flag on the shirt."<span class="src">OddsTrader</span></div></div>
+    <div class="qh"><span class="qn">15</span><div><b>USA public tell:</b> 6.3% of BetMGM's tickets, only 3.1% of the handle. Lots of small heart bets, no big money. Believe the handle.<span class="src">Covers · BetMGM splits</span></div></div>
+    <div class="qh"><span class="qn">16</span><div><b>Paraguay are a wall:</b> 10 goals conceded in 18 CONMEBOL qualifiers (2nd-best). The sharp script for the USA opener is Under 2.5 (−130) + BTTS No (−110), not the moneyline.<span class="src">TopEndSports · DraftKings</span></div></div>
+    <div class="qh"><span class="qn">17</span><div><b>Action Network's USA build:</b> USA-or-draw double chance + under 3 goals at −111. The team doesn't even need to win.<span class="src">Action Network</span></div></div>
+    <div class="qh"><span class="qn">18</span><div><b>Neymar is a doubt for the opener</b> (grade 2 calf strain, late May). Brazil's attack is now down Rodrygo + Estêvão + maybe Neymar. The ML price hasn't caught up.<span class="src">Nigerian Matchday · ESPN tracker</span></div></div>
+    <div class="qh"><span class="qn">19</span><div><b>Morocco got thinner too:</b> Ez Abde (15 goals for Betis) likely out after the Norway friendly — and Morocco's attack was already set-piece-and-penalty dependent at AFCON.<span class="src">WagerTalk</span></div></div>
+    <div class="qh"><span class="qn">20</span><div><b>The sharps are split on Brazil–Morocco</b> — Action Network's best bet is BTTS at −105; WagerTalk likes Brazil to keep a clean sheet at +124. When the desks disagree, the total is the honest market.<span class="src">Action Network · WagerTalk</span></div></div>
+    <div class="qh"><span class="qn">21</span><div><b>"Avoid Brazil ML in the opener.</b> The market has not priced the injury chaos correctly. Morocco at 5.00+ offers far better expected value." Morocco double chance ≈ +120–140.<span class="src">Nigerian Matchday</span></div></div>
+    <div class="qh"><span class="qn">22</span><div><b>The Brazil counter-case:</b> they have won their group at every World Cup since 1978. The badge angle is real — it's the price that's wrong, not the team's floor.<span class="src">WagerTalk / GoldSheet</span></div></div>
+    <div class="qh"><span class="qn">23</span><div><b>Mexico arrive scorching:</b> 8–1 aggregate across their last three friendlies (Ghana, Australia, Serbia). Mexico −1.5 at +120/+130 is the statement-game play.<span class="src">FOX Sports · Bookies</span></div></div>
+    <div class="qh"><span class="qn">24</span><div><b>Set-piece darts at the Azteca:</b> Mexico's centre-backs are live — Montes anytime at 10/1 (3 goals in his last 6 club games), Vásquez at 12/1 (scored in back-to-back Mexico matches).<span class="src">Sporting Life</span></div></div>
+    <div class="qh"><span class="qn">25</span><div><b>Norway at +3000–3500 is the consensus fun longshot</b> — perfect qualifying record, 37 goals in 8 games, and a real Haaland–Ødegaard spine.<span class="src">Bookies · multiple desks</span></div></div>
+    <div class="qh"><span class="qn">26</span><div><b>The Argentina contrarian case at +800:</b> "great, consistent squad depth — and they'll handle the weather conditions well." Nobody repeats since '62 Brazil, but the desk case exists.<span class="src">Bookies / BetVictor desk</span></div></div>
+    <div class="qh"><span class="qn">27</span><div><b>Opening-weekend banker acca:</b> Switzerland (~1.22) + Germany (~1.05) + Scotland (~1.50) combines to roughly +360–420. Boring favorites, one ticket.<span class="src">Nigerian Matchday</span></div></div>
+  </div>
+
+  <div class="sec"><span class="gl">✦</span><h2>The Opening Slate</h2><div class="rule"></div><span class="tag">recommended bets · Jun 11–13 · lines Jun 10</span></div>
   <div class="card">
     <table>
-      <thead><tr><th>Match</th><th>Line</th><th>The Read</th></tr></thead>
+      <thead><tr><th>Match</th><th>The Bet</th><th>Backup / Darts</th></tr></thead>
       <tbody>
-        <tr><td><b>🇲🇽 MEX v RSA 🇿🇦</b><br><span style="color:var(--ivory-dim); font-size:11.5px;">Thu Jun 11 · Azteca</span></td><td class="odds">MEX −240<br><span style="font-size:13px; color:var(--ivory);">RSA +700</span></td><td style="font-size:12.5px;">Books give Mexico ~68% at home in the cathedral. ML is unbettable juice — the play is Mexico-flavored props (see below), not the chalk.</td></tr>
-        <tr><td><b>🇺🇸 USA v PAR 🇵🇾</b><br><span style="color:var(--ivory-dim); font-size:11.5px;">Fri Jun 12 · SoFi</span></td><td class="odds">USA −105<br><span style="font-size:13px; color:var(--ivory);">Draw +230 · PAR +310</span></td><td style="font-size:12.5px;">Market says coin-flip-ish (~50% USA, ~26% draw). Paraguay are a low-block, low-event team — World Cup openers are historically tight and nervy. The draw at +230 is the sneaky-respectable side; USA ML is the heart bet.</td></tr>
-        <tr><td><b>🇦🇺 AUS v TUR 🇹🇷</b><br><span style="color:var(--ivory-dim); font-size:11.5px;">Sat Jun 13 · Vancouver</span></td><td class="odds">—</td><td style="font-size:12.5px;">The other Group D opener. Türkiye have the talent edge (Çalhanoğlu, Güler); Australia have the shape. Watch it for scouting — whoever wins becomes our June 25 problem.</td></tr>
+        <tr><td><b>🇲🇽 MEX v RSA 🇿🇦</b><br><span style="color:var(--ivory-dim); font-size:11.5px;">Thu Jun 11 · 3pm · Azteca</span></td><td class="odds">MEX −1.5<br><span style="font-size:13px; color:var(--ivory);">+120 / +130</span></td><td style="font-size:12.5px;">Safer: Mexico to win + over 1.5 goals (5/6). Darts: Jiménez first scorer +135, Montes anytime 10/1. Skip the −240 ML — all juice, no payout.</td></tr>
+        <tr><td><b>🇺🇸 USA v PAR 🇵🇾</b><br><span style="color:var(--ivory-dim); font-size:11.5px;">Fri Jun 12 · 9pm · SoFi</span></td><td class="odds">UNDER 2.5<br><span style="font-size:13px; color:var(--ivory);">−130</span></td><td style="font-size:12.5px;">Pair: BTTS No (−110). Heart: USA ML −105 — <b>bet it early</b>, the public juices this line by kickoff. Both teams' xG says 1-0 script, either direction.</td></tr>
+        <tr><td><b>🇦🇺 AUS v TUR 🇹🇷</b><br><span style="color:var(--ivory-dim); font-size:11.5px;">Sat Jun 13 · 12am · Vancouver</span></td><td class="odds">TUR ML</td><td style="font-size:12.5px;">The talent edge (Çalhanoğlu, Güler) over the shape. Better expression of the same view: Türkiye to reach the R16 at +137 (futures, below).</td></tr>
+        <tr><td><b>🇧🇷 BRA v MAR 🇲🇦</b><br><span style="color:var(--ivory-dim); font-size:11.5px;">Sat Jun 13 · 6pm · MetLife</span></td><td class="odds">BTTS<br><span style="font-size:13px; color:var(--ivory);">−105</span></td><td style="font-size:12.5px;">The chaos game — sharps split (clean sheet +124 v BTTS). Value side: Morocco double chance ~+130. Seth's side: Brazil ML −145. Claude abstains from the ML entirely.</td></tr>
       </tbody>
     </table>
   </div>
 
-  <div class="sec"><span class="gl">✦</span><h2>Prop Bets</h2><div class="rule"></div><span class="tag">tournament + match props</span></div>
+  <div class="sec"><span class="gl">✦</span><h2>Futures Locker</h2><div class="rule"></div><span class="tag">winner · paths · boot</span></div>
   <div class="card">
-    <div class="row"><span class="k">Mexico to reach the R16 <span class="pill p-volt">+125</span></span><span class="v">El Tri have made the R16 in 7 of the last 8 World Cups — now add host crowd + a soft Group A. Closest thing to free money on the board.</span></div>
-    <div class="row"><span class="k">Raúl Jiménez first scorer v RSA</span><span class="v">Expert-flagged prop for the opener — 3rd-most goals in Mexico history, the designated Azteca moment.</span></div>
-    <div class="row"><span class="k">Yamal Golden Boot <span class="pill p-volt">+2200</span></span><span class="v">Best value in the top 10: Spain are the title favorite (deep run = more games) with a soft group to feast on, and he's their talisman.</span></div>
-    <div class="row"><span class="k">Kane Golden Boot <span class="pill p-volt">+700</span></span><span class="v">61 goals for Bayern this season, England's penalty taker, and a group with Ghana + Panama in it. Volume is destiny.</span></div>
-    <div class="row"><span class="k">USA "reach the semis" props</span><span class="v">Smarter hype-bet than +6000 to win it all — hosts historically overperform, and the payout still stings less when the dream dies.</span></div>
+    <div class="row"><span class="k">World Cup winner <span class="pill p-volt">France +500</span></span><span class="v">The sharp consensus — handle &gt; tickets at BetMGM, three desks' official pick, and Claude's Prophecy pick. Core position.</span></div>
+    <div class="row"><span class="k">Contrarian winner <span class="pill p-gold">Argentina +800</span></span><span class="v">Depth + heat tolerance + Messi gravity. The desk case for the champs — small, not core.</span></div>
+    <div class="row"><span class="k">Seth's heart future <span class="pill p-seth">Brazil +850</span></span><span class="v">The believer ticket — Seth's call, not Claude's (see his take, tab IX). Group winners every WC since 1978; if the badge wakes up, +850 looks silly.</span></div>
+    <div class="row"><span class="k">Group-winner stack <span class="pill p-volt">≈ 2/1</span></span><span class="v">England + Spain + France group winners, one ticket. Likely outcomes that ALSO buy each of them the softer knockout path.</span></div>
+    <div class="row"><span class="k">USA to win Group D</span><span class="v">The rational hype bet — not the +6000 moon. Won group = kinder R32 at home. Sprinkle "reach the QF" if Richards trains this week.</span></div>
+    <div class="row"><span class="k">Reach the R16 <span class="pill p-volt">TUR +137 · MEX +125</span></span><span class="v">The two flagged plus-money path props. Türkiye "shouldn't be plus money"; Mexico is 7-of-8 historically with home soil.</span></div>
+    <div class="row"><span class="k">Golden Boot <span class="pill p-volt">Kane +700</span></span><span class="v">Anchor — 61-goal season, every England pen, Ghana + Panama in group. Darts: Yamal +2200, Oyarzabal 33-1, Raphinha 33-1. Bet each-way where offered.</span></div>
+    <div class="row"><span class="k">Fun longshot <span class="pill p-gold">Norway +3500</span></span><span class="v">Perfect qualifying, 4.6 goals/game, Haaland. Likely 2nd in Group I = ugly bracket — small stake, big smile.</span></div>
   </div>
 
   <div class="sec"><span class="gl">✦</span><h2>Sneaky Picks</h2><div class="rule"></div><span class="tag">plus-money, with logic</span></div>
@@ -755,7 +804,8 @@
 <section class="panel" id="takes">
   <div class="sec"><span class="gl">✦</span><h2>Injury Watch</h2><div class="rule"></div><span class="tag">the context for everything below</span></div>
   <div class="card">
-    <div class="row"><span class="k">🇧🇷 Brazil</span><span class="v"><b>Rodrygo OUT</b> (torn ACL + meniscus) · <b>Estêvão OUT</b> (hamstring, off the squad)</span></div>
+    <div class="row"><span class="k">🇧🇷 Brazil</span><span class="v"><b>Rodrygo OUT</b> (torn ACL + meniscus) · <b>Estêvão OUT</b> (hamstring, off the squad) · <b>Neymar DOUBT</b> for the opener (grade 2 calf strain, late May)</span></div>
+    <div class="row"><span class="k">🇲🇦 Morocco</span><span class="v"><b>Ez Abde likely OUT</b> (leg injury in the Norway friendly — 15 goals for Betis this season) · Mazraoui also came off early</span></div>
     <div class="row"><span class="k">🇳🇱 Netherlands</span><span class="v"><b>Timber OUT</b> (groin) · <b>Xavi Simons OUT</b> (knee)</span></div>
     <div class="row"><span class="k">🇩🇪 Germany</span><span class="v"><b>ter Stegen OUT</b> (hasn't played since June '25) — <b>Neuer un-retired at 40</b> · Lennart Karl OUT (thigh)</span></div>
     <div class="row"><span class="k">🇪🇸 Spain</span><span class="v"><b>Fermín López OUT</b> (broken foot) — depth piece, core intact</span></div>
@@ -763,23 +813,29 @@
     <div class="row"><span class="k">🇺🇸 USA</span><span class="v"><b>Pulisic FIT</b> (back strain, returned as a sub for Milan) · <b>Richards RACE</b> (ankle ligaments May 17, missed the final tuneup — Pochettino "annoyed") · Weah managing a knock · already out pre-roster: Klinsmann (neck), Agyemang (Achilles), Tolkin (knee)</span></div>
   </div>
 
-  <div class="sec"><span class="gl">✦</span><h2>My Takes</h2><div class="rule"></div><span class="tag">reasoned, not gospel</span></div>
+  <div class="sec"><span class="gl">✦</span><h2>Claude's Mythos Takes</h2><div class="rule"></div><span class="tag">the model's reads · reasoned, not gospel</span></div>
   <div class="stars">
     <div class="star"><div class="top"><span class="nm">1 · Fade the Dutch</span><span class="pill p-coral">Fade</span></div><p>+1600 is priced for the full-strength Netherlands. They lost <b>Timber AND Xavi Simons</b> — a top defender and their creative connector — in a group with Japan and Sweden, two teams built to punish slow buildup. The price hasn't caught up to the injury report. Pass at +1600, and Japan to advance gets interesting.</p></div>
-    <div class="star"><div class="top"><span class="nm">2 · Brazil is the trap</span><span class="pill p-coral">Fade-ish</span></div><p>+800 is paying for the badge. The actual team: no Rodrygo, no Estêvão, a new manager installing a new idea on zero runway, and a <b>Day-3 collision with Morocco</b> that could shove them into the wrong half of the bracket. Vini can paper over a lot — but not bracket math. There's better value one row up or down the odds board.</p></div>
+    <div class="star"><div class="top"><span class="nm">2 · Brazil is the trap</span><span class="pill p-coral">Fade-ish</span></div><p>+800 is paying for the badge. The actual team: no Rodrygo, no Estêvão, Neymar's calf, a new manager installing a new idea on zero runway, and a <b>Day-3 collision with Morocco</b> that could shove them into the wrong half of the bracket. Vini can paper over a lot — but not bracket math. There's better value one row up or down the odds board. <i>(Seth dissents — see his take below.)</i></p></div>
     <div class="star"><div class="top"><span class="nm">3 · France — and the final comes early</span><span class="pill p-volt">Title pick</span></div><p>The books say Spain (+450) by a nose over France (+500). I flip it — France's core is <b>fully intact</b>, Mbappé is at absolute peak, and two straight finals is knockout pedigree you can't fake in July. But here's what the chalk crowd missed: the draw protected Spain↔Argentina and France↔England — <b>not Spain↔France</b>. Win their groups and the two favorites share a half. <b>Jul 14, Arlington: France beat Spain in a semifinal that is the de facto final</b> — then beat Argentina at MetLife for the Doha revenge. Full path on The Prophecy tab.</p></div>
     <div class="star"><div class="top"><span class="nm">4 · Kane is the Boot</span><span class="pill p-volt">Value</span></div><p>Mbappé +600 is fair but France share goals around. Kane at +700 gets <b>Ghana and Panama in the group</b>, every England penalty, and arrives off a 61-goal season — the best scoring form of anyone in the field. Volume wins Boots. Anchor Kane, sprinkle Yamal +2200 as the lottery ticket.</p></div>
     <div class="star"><div class="top"><span class="nm">5 · USA: bet the group</span><span class="pill p-sky">The honest one</span></div><p>The +6000 title ticket is a fan tax — fun, not a bet. The real risk nobody's pricing: <b>Chris Richards' ankle</b>. He's the defensive anchor and he missed the final tuneup; if he's not right, the CB depth behind him is thin and Türkiye's finale gets scary. The rational hype bet is <b>USA to win Group D</b> — opener vs Paraguay's low block decides the vibe, Jun 19 vs Australia is the banker, and a won group means a kinder R32. Sprinkle "reach the QF" if Richards trains this week.</p></div>
     <div class="star"><div class="top"><span class="nm">6 · Chaos = Morocco</span><span class="pill p-volt">Lock it in</span></div><p>Every World Cup has one team the bracket learns to fear. The '26 candidate profile: elite defense, tournament scar tissue, one world-class star, zero fear of names. That's Morocco — <b>they already did it in '22</b> and got better (African champs since). If they take care of business in Group C, the Brazil rematch in the knockouts is the game I'd buy a ticket for.</p></div>
   </div>
-  <div class="note"><b>How I got here:</b> synthesis of the Jun 10 odds board + the injury table above + qualifying form + the actual bracket tree. Weight injuries over reputation, bracket position over raw talent, and knockout pedigree over group-stage style points. Not financial advice — it's a soccer argument with numbers.</div>
+  <div class="note"><b>How Claude got here:</b> synthesis of the Jun 10 odds board + the injury table above + qualifying form + the actual bracket tree. Weight injuries over reputation, bracket position over raw talent, and knockout pedigree over group-stage style points. Not financial advice — it's a soccer argument with numbers.</div>
+
+  <div class="sec"><span class="gl">✦</span><h2>Seth's Take</h2><div class="rule"></div><span class="tag">the owner dissents · his words, his money</span></div>
+  <div class="stars">
+    <div class="star seth"><div class="top"><span class="nm">🇧🇷 Brasil come back</span><span class="pill p-seth">Seth's call</span></div><p>This one is <b>Seth's, not Claude's</b> — and it's a direct dissent from take #2 and the bracket on tab II. Seth's read: this is still <b>Brasil</b>. Vini in his prime, Ancelotti's ring collection on the touchline, and the deepest well of tournament DNA in the sport — group winners at <b>every World Cup since 1978</b>. Injuries thin a squad; they don't kill the badge. His call: survive Morocco on Saturday, find their legs as the group rolls on, and <b>make a real run</b> — and don't be shocked if it goes deep. The tickets: Brazil +850 to lift it, Brazil ML −145 at MetLife. If he's right, tab II gets a correction in gold ink and Claude eats it publicly.</p></div>
+  </div>
+  <div class="note" style="border-left-color:#56A860; background:rgba(86,168,96,0.10);"><b style="color:#9FD8A6;">Scoreboard rules:</b> Claude's prophecy says Brazil die in the R32 on penalties to Japan. Seth says they make a run. Both positions are now in writing, timestamped Jun 10, the night before. One of us will be insufferable in July.</div>
 </section>
 
 </div><!-- /wrap -->
 
 <footer>
   <div class="wrap">
-    ✦ MYTHOS · written Jun 10 MMXXVI, the night before · Sources: FIFA, Wikipedia, ESPN, Yahoo Sports, FOX Sports, U.S. Soccer, CBS/SI betting desks, FanDuel/BetMGM · times ET · odds will move ✦
+    ✦ MYTHOS · prepared for Seth Miller by Claude · Jun 10 MMXXVI, the night before · Sources: FIFA, Wikipedia, ESPN, Yahoo Sports, FOX Sports, U.S. Soccer, CBS/SI, Covers, Pickswise, OddsTrader, WagerTalk, Action Network, Sporting Life, talkSPORT, BettingPros, Bookies.com, FanDuel/BetMGM/DraftKings · times ET · odds will move ✦
   </div>
 </footer>
 
