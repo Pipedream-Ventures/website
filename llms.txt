@@ -1,0 +1,23 @@
+# Pipedream Ventures
+
+Pipedream Ventures is an AI product studio based in Columbus, Ohio.
+
+## What we do
+
+- AI product and workflow sprints
+- Web, iOS, Android, API, and agent development
+- Product strategy, monetization, lifecycle, acquisition, and analytics
+- Monthly product and growth operating partnerships
+
+## Selected products
+
+- CancelPMI: https://cancelpmi.app
+- Front Porch: https://frontporch.house
+- OpenShifts: https://openshifts.co
+
+## Contact
+
+- Website: https://pipedream.ventures
+- Email: seth@pipedream.ventures
+
+Pipedream Ventures LLC is led by Seth Miller, founder of Rapchat.

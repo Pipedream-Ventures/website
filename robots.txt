@@ -10,3 +10,5 @@ Disallow: /logo-refined.html
 Allow: /index.html
 Allow: /privacy.html
 Allow: /terms.html
+
+Sitemap: https://pipedream.ventures/sitemap.xml
