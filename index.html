@@ -3,273 +3,1357 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pipedream Ventures - Product Strategy, Design & Development</title>
-  <meta name="description" content="Pipedream Ventures helps startups and founders build great products. 10+ years of experience in product strategy, design, and development.">
+  <title>Pipedream Ventures — AI Product Studio</title>
+  <meta name="description" content="Pipedream Ventures designs, builds, and grows AI-native products across web, mobile, agents, monetization, and acquisition.">
+  <link rel="canonical" href="https://pipedream.ventures/">
 
-  <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Pipedream Ventures - Product Strategy, Design & Development">
-  <meta property="og:description" content="We help startups and founders build great products. 10+ years of experience in product strategy, design, and development.">
+  <meta property="og:title" content="Pipedream Ventures — AI Product Studio">
+  <meta property="og:description" content="Senior product, engineering, AI, and growth work in one operating team.">
   <meta property="og:image" content="https://pipedream.ventures/pv-logo-512.png">
-  <meta property="og:url" content="https://pipedream.ventures">
+  <meta property="og:url" content="https://pipedream.ventures/">
 
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Pipedream Ventures">
-  <meta name="twitter:description" content="We help startups and founders build great products.">
+  <meta name="twitter:title" content="Pipedream Ventures — AI Product Studio">
+  <meta name="twitter:description" content="Senior product, engineering, AI, and growth work in one operating team.">
   <meta name="twitter:image" content="https://pipedream.ventures/pv-logo-512.png">
 
-  <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Pipedream Ventures",
+      "url": "https://pipedream.ventures/",
+      "logo": "https://pipedream.ventures/pv-logo-512.png",
+      "email": "seth@pipedream.ventures",
+      "areaServed": "United States",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Columbus",
+        "addressRegion": "OH",
+        "addressCountry": "US"
+      },
+      "sameAs": [
+        "https://github.com/Pipedream-Ventures"
+      ]
+    }
+  </script>
+
   <style>
+    :root {
+      --ink: #11120f;
+      --ink-soft: #363831;
+      --paper: #f4f0e7;
+      --paper-deep: #e9e2d5;
+      --card: rgba(255, 253, 248, 0.76);
+      --line: rgba(17, 18, 15, 0.16);
+      --red: #e9513f;
+      --orange: #f29f3f;
+      --yellow: #f3cd4f;
+      --green: #7faf62;
+      --blue: #4a85c6;
+      --violet: #7b63b5;
+      --shadow: 0 24px 80px rgba(36, 31, 22, 0.10);
+      --radius-sm: 12px;
+      --radius-md: 22px;
+      --radius-lg: 32px;
+      --max-width: 1180px;
+    }
+
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
       min-height: 100vh;
-      min-height: 100dvh;
-      background: #f5f0e6;
-      font-family: 'Space Mono', monospace;
-      color: #2d2d2d;
+      background:
+        radial-gradient(circle at 92% 4%, rgba(74, 133, 198, 0.13), transparent 28rem),
+        radial-gradient(circle at 6% 32%, rgba(233, 81, 63, 0.09), transparent 30rem),
+        var(--paper);
+      color: var(--ink);
+      font-family: "DM Sans", sans-serif;
       line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background-image:
+        linear-gradient(rgba(17, 18, 15, 0.038) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(17, 18, 15, 0.038) 1px, transparent 1px);
+      background-size: 28px 28px;
+      content: "";
+      mask-image: linear-gradient(to bottom, black, transparent 72%);
+      pointer-events: none;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    .shell {
+      width: min(calc(100% - 40px), var(--max-width));
+      margin: 0 auto;
+    }
+
+    .mono {
+      font-family: "Space Mono", monospace;
+    }
+
+    .eyebrow {
+      color: var(--ink-soft);
+      font-family: "Space Mono", monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid transparent;
+      transition: background 180ms ease, border-color 180ms ease, backdrop-filter 180ms ease;
+    }
+
+    .site-header.scrolled {
+      border-color: var(--line);
+      background: rgba(244, 240, 231, 0.86);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav {
       display: flex;
-      flex-direction: column;
+      min-height: 82px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: "Space Mono", monospace;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 38px;
+      height: 38px;
+      overflow: hidden;
+      border: 5px solid var(--ink);
+      border-radius: 3px;
+      box-shadow: 3px 3px 0 rgba(17, 18, 15, 0.18);
+      grid-template-columns: repeat(6, 1fr);
+      transform: rotate(-3deg);
+    }
+
+    .brand-mark span:nth-child(1) {
+      background: var(--red);
+    }
+
+    .brand-mark span:nth-child(2) {
+      background: var(--orange);
+    }
+
+    .brand-mark span:nth-child(3) {
+      background: var(--yellow);
+    }
+
+    .brand-mark span:nth-child(4) {
+      background: var(--green);
+    }
+
+    .brand-mark span:nth-child(5) {
+      background: var(--blue);
+    }
+
+    .brand-mark span:nth-child(6) {
+      background: var(--violet);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .nav-links a {
+      color: var(--ink-soft);
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .nav-links a:hover {
+      color: var(--ink);
+    }
+
+    .button {
+      display: inline-flex;
+      min-height: 48px;
       align-items: center;
       justify-content: center;
-      padding: 2rem;
+      gap: 10px;
+      border: 1px solid var(--ink);
+      border-radius: 999px;
+      padding: 0 22px;
+      background: var(--ink);
+      color: var(--paper);
+      cursor: pointer;
+      font-size: 0.88rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
     }
 
-    .page {
-      max-width: 600px;
-      width: 100%;
-      text-align: center;
+    .button:hover {
+      box-shadow: 4px 4px 0 var(--blue);
+      transform: translate(-2px, -2px);
     }
 
-    /* Polaroid frame - smaller */
-    .polaroid {
-      width: 180px;
-      background: #2d2d2d;
-      padding: 10px 10px 0 10px;
-      box-shadow: 0 6px 30px rgba(0,0,0,0.12);
-      border-radius: 2px;
-      margin: 0 auto 1.5rem;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    .button.secondary {
+      background: transparent;
+      color: var(--ink);
     }
 
-    .polaroid:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+    .button.secondary:hover {
+      background: rgba(255, 255, 255, 0.42);
     }
 
-    .window {
-      width: 160px;
-      height: 160px;
-      background: linear-gradient(
-        135deg,
-        #e63939 0%, #e63939 14.28%,
-        #f5a623 14.28%, #f5a623 28.56%,
-        #f8e71c 28.56%, #f8e71c 42.84%,
-        #7ed321 42.84%, #7ed321 57.12%,
-        #4a90d9 57.12%, #4a90d9 71.4%,
-        #9013fe 71.4%, #9013fe 85.68%,
-        #bd10e0 85.68%, #bd10e0 100%
-      );
-      border-radius: 1px;
+    .hero {
+      display: grid;
+      min-height: 710px;
+      align-items: center;
+      gap: clamp(44px, 8vw, 104px);
+      grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.95fr);
+      padding: 80px 0 96px;
     }
 
-    .tab {
-      height: 45px;
+    .hero-copy {
+      max-width: 700px;
+    }
+
+    .hero h1 {
+      max-width: 690px;
+      margin: 22px 0 24px;
+      font-size: clamp(3.4rem, 7vw, 6.9rem);
+      font-weight: 600;
+      letter-spacing: -0.075em;
+      line-height: 0.93;
+    }
+
+    .hero h1 span {
+      position: relative;
+      display: inline-block;
+    }
+
+    .hero h1 span::after {
+      position: absolute;
+      right: -0.02em;
+      bottom: -0.04em;
+      left: 0.03em;
+      height: 0.11em;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--red), var(--orange), var(--yellow), var(--green), var(--blue), var(--violet));
+      content: "";
+      transform: rotate(-1deg);
+    }
+
+    .hero-lead {
+      max-width: 620px;
+      color: var(--ink-soft);
+      font-size: clamp(1.08rem, 2vw, 1.28rem);
+      line-height: 1.65;
+    }
+
+    .hero-actions {
       display: flex;
       align-items: center;
-      justify-content: center;
+      gap: 14px;
+      margin-top: 34px;
+      flex-wrap: wrap;
     }
 
-    .tab h1 {
-      color: #f5f0e6;
-      font-size: 11px;
+    .availability {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 30px;
+      color: var(--ink-soft);
+      font-family: "Space Mono", monospace;
+      font-size: 0.73rem;
+    }
+
+    .availability-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 5px rgba(127, 175, 98, 0.16);
+    }
+
+    .hero-system {
+      position: relative;
+      min-height: 480px;
+    }
+
+    .system-card {
+      position: absolute;
+      width: min(100%, 390px);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: rgba(255, 253, 248, 0.94);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .system-card.primary {
+      top: 34px;
+      right: 16px;
+      z-index: 3;
+      transform: rotate(2deg);
+    }
+
+    .system-card.behind {
+      top: 140px;
+      right: 76px;
+      z-index: 2;
+      transform: rotate(-5deg);
+    }
+
+    .system-card.back {
+      top: 238px;
+      right: 6px;
+      z-index: 1;
+      transform: rotate(4deg);
+    }
+
+    .card-rainbow {
+      display: grid;
+      height: 9px;
+      grid-template-columns: repeat(6, 1fr);
+    }
+
+    .card-rainbow span:nth-child(1) {
+      background: var(--red);
+    }
+
+    .card-rainbow span:nth-child(2) {
+      background: var(--orange);
+    }
+
+    .card-rainbow span:nth-child(3) {
+      background: var(--yellow);
+    }
+
+    .card-rainbow span:nth-child(4) {
+      background: var(--green);
+    }
+
+    .card-rainbow span:nth-child(5) {
+      background: var(--blue);
+    }
+
+    .card-rainbow span:nth-child(6) {
+      background: var(--violet);
+    }
+
+    .system-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 22px 14px;
+    }
+
+    .system-label {
+      font-family: "Space Mono", monospace;
+      font-size: 0.72rem;
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
 
-    /* Tagline */
-    .tagline {
-      font-size: 13px;
-      color: #555;
-      margin-bottom: 2rem;
-      max-width: 380px;
-      margin-left: auto;
-      margin-right: auto;
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--green);
+      font-family: "Space Mono", monospace;
+      font-size: 0.64rem;
+      font-weight: 700;
+      text-transform: uppercase;
     }
 
-    /* Services - horizontal on desktop */
-    .services {
+    .status::before {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: currentColor;
+      content: "";
+    }
+
+    .model-row {
+      display: grid;
+      align-items: center;
+      gap: 12px;
+      grid-template-columns: 1fr auto;
+      padding: 13px 22px;
+      border-top: 1px solid var(--line);
+    }
+
+    .model-copy strong {
+      display: block;
+      font-size: 0.9rem;
+    }
+
+    .model-copy span {
+      color: #73766d;
+      font-size: 0.76rem;
+    }
+
+    .model-chip {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: var(--paper);
+      font-family: "Space Mono", monospace;
+      font-size: 0.61rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .behind .system-body,
+    .back .system-body {
+      padding: 4px 22px 22px;
+    }
+
+    .system-number {
+      margin-bottom: 4px;
+      font-size: 2.7rem;
+      font-weight: 600;
+      letter-spacing: -0.07em;
+      line-height: 1;
+    }
+
+    .system-note {
+      color: #6c6f66;
+      font-size: 0.8rem;
+    }
+
+    .system-tags {
       display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin-bottom: 2rem;
+      gap: 7px;
+      margin-top: 18px;
       flex-wrap: wrap;
     }
 
-    .service {
-      font-size: 11px;
+    .system-tags span {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 9px;
+      font-family: "Space Mono", monospace;
+      font-size: 0.58rem;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: #888;
     }
 
-    /* About */
-    .about {
-      font-size: 12px;
-      color: #666;
-      margin-bottom: 2rem;
+    .trust-strip {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .trust-inner {
+      display: grid;
+      align-items: center;
+      gap: 26px;
+      grid-template-columns: 0.8fr 2.2fr;
+      padding: 26px 0;
+    }
+
+    .capabilities {
+      display: grid;
+      gap: 16px 24px;
+      grid-template-columns: repeat(5, 1fr);
+    }
+
+    .capability {
+      color: var(--ink-soft);
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .section {
+      padding: 112px 0;
+    }
+
+    .section-head {
+      display: grid;
+      align-items: end;
+      gap: 28px;
+      grid-template-columns: 0.85fr 1.15fr;
+      margin-bottom: 52px;
+    }
+
+    .section h2 {
+      max-width: 600px;
+      font-size: clamp(2.4rem, 5vw, 4.8rem);
+      font-weight: 600;
+      letter-spacing: -0.06em;
+      line-height: 1;
+    }
+
+    .section-intro {
+      max-width: 520px;
+      color: var(--ink-soft);
+      font-size: 1.05rem;
+      justify-self: end;
+      line-height: 1.7;
+    }
+
+    .work-grid {
+      display: grid;
+      gap: 18px;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .work-card {
+      position: relative;
+      display: flex;
+      min-height: 410px;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 30px;
+      background: var(--card);
+      text-decoration: none;
+      transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+
+    .work-card:hover {
+      box-shadow: 0 20px 55px rgba(36, 31, 22, 0.12);
+      transform: translateY(-6px);
+    }
+
+    .work-card::after {
+      position: absolute;
+      right: -80px;
+      bottom: -110px;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: var(--accent, var(--blue));
+      content: "";
+      filter: blur(2px);
+      opacity: 0.18;
+    }
+
+    .work-card-number {
+      color: #777970;
+      font-family: "Space Mono", monospace;
+      font-size: 0.68rem;
+    }
+
+    .work-card h3 {
+      margin: 20px 0 12px;
+      font-size: 1.7rem;
+      letter-spacing: -0.04em;
+    }
+
+    .work-card p {
+      color: var(--ink-soft);
+      font-size: 0.93rem;
+      line-height: 1.65;
+    }
+
+    .work-card-footer {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .work-card-tag {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 11px;
+      background: rgba(255, 255, 255, 0.55);
+      font-family: "Space Mono", monospace;
+      font-size: 0.61rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .arrow {
+      font-size: 1.25rem;
+    }
+
+    .offer-section {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 253, 248, 0.36);
+    }
+
+    .offers {
+      border-top: 1px solid var(--line);
+    }
+
+    .offer {
+      display: grid;
+      align-items: start;
+      gap: 24px;
+      grid-template-columns: 0.2fr 0.8fr 1.3fr 0.8fr;
+      padding: 32px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .offer:last-child {
+      border-bottom: 0;
+    }
+
+    .offer-index,
+    .offer-duration {
+      color: #777970;
+      font-family: "Space Mono", monospace;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+    }
+
+    .offer h3 {
+      font-size: 1.2rem;
+      letter-spacing: -0.03em;
+    }
+
+    .offer p {
       max-width: 480px;
-      margin-left: auto;
-      margin-right: auto;
+      color: var(--ink-soft);
+      font-size: 0.92rem;
+      line-height: 1.65;
     }
 
-    /* Contact */
-    .contact {
-      font-size: 11px;
-      color: #888;
-      margin-bottom: 1.5rem;
+    .principles {
+      display: grid;
+      gap: 18px;
+      grid-template-columns: repeat(4, 1fr);
     }
 
-    .contact a {
-      color: #4a90d9;
-      text-decoration: none;
+    .principle {
+      min-height: 230px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      background: var(--card);
     }
 
-    .contact a:hover {
-      text-decoration: underline;
+    .principle strong {
+      display: block;
+      margin: 44px 0 10px;
+      font-size: 1.02rem;
     }
 
-    /* Footer */
-    footer {
-      font-size: 10px;
-      color: #aaa;
+    .principle p {
+      color: var(--ink-soft);
+      font-size: 0.86rem;
+      line-height: 1.6;
     }
 
-    footer a {
-      color: #aaa;
-      text-decoration: none;
-      margin: 0 0.75rem;
+    .contact-section {
+      padding-top: 36px;
+      padding-bottom: 128px;
     }
 
-    footer a:hover {
-      color: #666;
+    .contact-panel {
+      position: relative;
+      display: grid;
+      overflow: hidden;
+      gap: 64px;
+      grid-template-columns: 0.85fr 1.15fr;
+      border-radius: 40px;
+      padding: clamp(34px, 6vw, 72px);
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .contact-panel::before {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      height: 10px;
+      background: linear-gradient(90deg, var(--red), var(--orange), var(--yellow), var(--green), var(--blue), var(--violet));
+      content: "";
+    }
+
+    .contact-panel .eyebrow {
+      color: #b8bbaf;
+    }
+
+    .contact-panel h2 {
+      margin: 18px 0 20px;
+      font-size: clamp(2.4rem, 5vw, 4.6rem);
+      letter-spacing: -0.065em;
+    }
+
+    .contact-panel p {
+      max-width: 430px;
+      color: #bbbdb4;
+      line-height: 1.7;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 16px;
+    }
+
+    .field-grid {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .field label {
+      color: #d6d7d1;
+      font-family: "Space Mono", monospace;
+      font-size: 0.66rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: var(--radius-sm);
+      outline: none;
+      padding: 14px 16px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #ffffff;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(74, 133, 198, 0.18);
+    }
+
+    .field input::placeholder,
+    .field textarea::placeholder {
+      color: #83867d;
+    }
+
+    .field select {
+      appearance: none;
+    }
+
+    .field select option {
+      color: var(--ink);
+    }
+
+    .field textarea {
+      min-height: 124px;
+      resize: vertical;
+    }
+
+    .contact-form .button {
+      width: 100%;
+      border-color: var(--paper);
+      background: var(--paper);
+      color: var(--ink);
+    }
+
+    .form-note {
+      color: #8f9289;
+      font-size: 0.75rem;
+      text-align: center;
+    }
+
+    .site-footer {
+      padding: 28px 0 42px;
+      border-top: 1px solid var(--line);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      color: #74776e;
+      font-family: "Space Mono", monospace;
+      font-size: 0.68rem;
     }
 
     .footer-links {
-      margin-bottom: 0.5rem;
+      display: flex;
+      gap: 20px;
     }
 
-    /* Rainbow border snake */
-    .border-snake {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 9998;
+    .footer-links a {
+      text-decoration: none;
     }
 
-    .border-snake::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border: 5px solid transparent;
-      background: linear-gradient(
-        90deg,
-        #e63939, #f5a623, #f8e71c, #7ed321, #4a90d9, #9013fe, #bd10e0, #e63939
-      ) border-box;
-      -webkit-mask:
-        linear-gradient(#fff 0 0) padding-box,
-        linear-gradient(#fff 0 0);
-      mask:
-        linear-gradient(#fff 0 0) padding-box,
-        linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      background-size: 400% 100%;
-      animation: borderSnake 8s linear infinite;
+    .footer-links a:hover {
+      color: var(--ink);
     }
 
-    @keyframes borderSnake {
-      0% { background-position: 0% 0%; }
-      100% { background-position: 400% 0%; }
+    .mobile-cta {
+      display: none;
     }
 
-    /* Grain overlay */
-    body::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      opacity: 0.02;
-      pointer-events: none;
-      z-index: 9999;
+    @media (max-width: 900px) {
+      .hero {
+        min-height: auto;
+        grid-template-columns: 1fr;
+        padding-top: 64px;
+      }
+
+      .hero-system {
+        width: min(100%, 560px);
+        min-height: 430px;
+        margin: 0 auto;
+      }
+
+      .system-card.primary {
+        right: 4%;
+      }
+
+      .system-card.behind {
+        right: 18%;
+      }
+
+      .system-card.back {
+        right: 1%;
+      }
+
+      .trust-inner,
+      .section-head,
+      .contact-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .capabilities {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .section-intro {
+        justify-self: start;
+      }
+
+      .work-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .work-card {
+        min-height: 330px;
+      }
+
+      .offer {
+        grid-template-columns: 0.15fr 0.85fr 1.4fr;
+      }
+
+      .offer-duration {
+        grid-column: 2;
+      }
+
+      .principles {
+        grid-template-columns: 1fr 1fr;
+      }
     }
 
-    /* Fade in */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(15px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    @media (max-width: 640px) {
+      .shell {
+        width: min(calc(100% - 24px), var(--max-width));
+      }
 
-    .page {
-      animation: fadeIn 0.6s ease forwards;
-    }
+      .nav {
+        min-height: 68px;
+      }
 
-    /* Mobile adjustments */
-    @media (max-width: 500px) {
-      .services {
+      .brand {
+        font-size: 0.68rem;
+      }
+
+      .brand-mark {
+        width: 32px;
+        height: 32px;
+        border-width: 4px;
+      }
+
+      .nav-links a:not(.button) {
+        display: none;
+      }
+
+      .nav-links .button {
+        min-height: 40px;
+        padding: 0 16px;
+        font-size: 0.78rem;
+      }
+
+      .hero {
+        gap: 30px;
+        padding: 58px 0 72px;
+      }
+
+      .hero h1 {
+        margin-top: 16px;
+        font-size: clamp(3.2rem, 17vw, 5rem);
+      }
+
+      .hero-actions {
+        align-items: stretch;
         flex-direction: column;
-        gap: 0.75rem;
+      }
+
+      .hero-actions .button {
+        width: 100%;
+      }
+
+      .hero-system {
+        min-height: 392px;
+      }
+
+      .system-card {
+        width: 90%;
+      }
+
+      .system-card.primary {
+        top: 14px;
+        right: 2%;
+      }
+
+      .system-card.behind {
+        top: 132px;
+        right: 8%;
+      }
+
+      .system-card.back {
+        top: 230px;
+        right: 0;
+      }
+
+      .trust-inner {
+        gap: 18px;
+      }
+
+      .capabilities {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .section {
+        padding: 82px 0;
+      }
+
+      .section-head {
+        margin-bottom: 36px;
+      }
+
+      .work-card {
+        min-height: 350px;
+        padding: 24px;
+      }
+
+      .offer {
+        gap: 10px 16px;
+        grid-template-columns: auto 1fr;
+        padding: 26px 0;
+      }
+
+      .offer p,
+      .offer-duration {
+        grid-column: 2;
+      }
+
+      .principles {
+        grid-template-columns: 1fr;
+      }
+
+      .principle {
+        min-height: 190px;
+      }
+
+      .principle strong {
+        margin-top: 28px;
+      }
+
+      .contact-panel {
+        gap: 38px;
+        border-radius: 26px;
+        padding: 42px 22px 30px;
+      }
+
+      .field-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
       }
     }
   </style>
 </head>
 <body>
-  <div class="border-snake"></div>
+  <header class="site-header" id="site-header">
+    <div class="shell nav">
+      <a class="brand" href="#top" aria-label="Pipedream Ventures home">
+        <span class="brand-mark" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span><span></span>
+        </span>
+        <span>Pipedream Ventures</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#work">Work</a>
+        <a href="#engagements">Engagements</a>
+        <a class="button" href="#contact">Start a project <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </header>
 
-  <div class="page">
-    <div class="polaroid">
-      <div class="window"></div>
-      <div class="tab">
-        <h1>Pipedream Ventures</h1>
+  <main id="top">
+    <section class="shell hero">
+      <div class="hero-copy">
+        <p class="eyebrow">AI product studio · Columbus, Ohio</p>
+        <h1>Build. Ship. <span>Grow.</span></h1>
+        <p class="hero-lead">Pipedream Ventures combines product strategy, senior engineering, AI systems, and growth execution. One operating team from the first model call to the first paying customer.</p>
+        <div class="hero-actions">
+          <a class="button" href="#contact">Send us the problem <span aria-hidden="true">↗</span></a>
+          <a class="button secondary" href="#work">See what we build</a>
+        </div>
+        <p class="availability"><span class="availability-dot" aria-hidden="true"></span>Taking on one new operating partner</p>
       </div>
-    </div>
 
-    <p class="tagline">We help founders turn ideas into products people love.</p>
+      <div class="hero-system" aria-label="Pipedream operating system">
+        <article class="system-card primary">
+          <div class="card-rainbow" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <div class="system-head">
+            <span class="system-label">Model router</span>
+            <span class="status">Ready</span>
+          </div>
+          <div class="model-row">
+            <div class="model-copy">
+              <strong>Reasoning</strong>
+              <span>Research, decisions, complex workflows</span>
+            </div>
+            <span class="model-chip">Deep</span>
+          </div>
+          <div class="model-row">
+            <div class="model-copy">
+              <strong>Build</strong>
+              <span>Production code, tests, releases</span>
+            </div>
+            <span class="model-chip">Fast</span>
+          </div>
+          <div class="model-row">
+            <div class="model-copy">
+              <strong>Vision + voice</strong>
+              <span>Interfaces, documents, conversations</span>
+            </div>
+            <span class="model-chip">Native</span>
+          </div>
+        </article>
 
-    <div class="services">
-      <span class="service">Product Strategy</span>
-      <span class="service">Design & Development</span>
-      <span class="service">Scale & Growth</span>
-    </div>
+        <article class="system-card behind">
+          <div class="system-head">
+            <span class="system-label">Product loop</span>
+            <span class="status">Weekly</span>
+          </div>
+          <div class="system-body">
+            <p class="system-number">01 → 04</p>
+            <p class="system-note">Research · build · measure · improve</p>
+            <div class="system-tags">
+              <span>Web</span><span>iOS</span><span>Android</span><span>API</span>
+            </div>
+          </div>
+        </article>
 
-    <p class="about">
-      A product studio in Columbus, Ohio with 10+ years of experience building and shipping software. We partner with startups to design, build, and launch products that make an impact.
-    </p>
+        <article class="system-card back">
+          <div class="system-head">
+            <span class="system-label">Growth layer</span>
+            <span class="status">Measured</span>
+          </div>
+          <div class="system-body">
+            <p class="system-number">Signal → action</p>
+            <p class="system-note">Acquisition, activation, monetization, and lifecycle connected to product decisions.</p>
+          </div>
+        </article>
+      </div>
+    </section>
 
-    <div class="contact">
-      <strong>Pipedream Ventures LLC</strong><br>
-      Columbus, OH<br>
-      <a href="mailto:seth@pipedream.ventures">seth@pipedream.ventures</a>
-    </div>
+    <section class="trust-strip" aria-label="Capabilities">
+      <div class="shell trust-inner">
+        <p class="eyebrow">Built across the full stack</p>
+        <div class="capabilities">
+          <span class="capability">Product</span>
+          <span class="capability">Engineering</span>
+          <span class="capability">AI agents</span>
+          <span class="capability">Monetization</span>
+          <span class="capability">Acquisition</span>
+        </div>
+      </div>
+    </section>
 
-    <footer>
+    <section class="shell section" id="work">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Selected products</p>
+          <h2>Real systems in market.</h2>
+        </div>
+        <p class="section-intro">We use the same AI-assisted product and growth system on our own companies that we bring to operating partners.</p>
+      </div>
+
+      <div class="work-grid">
+        <a class="work-card" href="https://cancelpmi.app" target="_blank" rel="noopener" style="--accent: var(--green);">
+          <div>
+            <span class="work-card-number">01 / FINTECH</span>
+            <h3>CancelPMI</h3>
+            <p>Eligibility, document intake, personalized guidance, and automated cancellation letters for homeowners paying private mortgage insurance.</p>
+          </div>
+          <div class="work-card-footer">
+            <span class="work-card-tag">AI workflow</span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </div>
+        </a>
+
+        <a class="work-card" href="https://frontporch.house" target="_blank" rel="noopener" style="--accent: var(--orange);">
+          <div>
+            <span class="work-card-number">02 / REAL ESTATE</span>
+            <h3>Front Porch</h3>
+            <p>Conversational lead funnels that qualify homebuyer intent, preserve attribution, and hand clean context to the agent.</p>
+          </div>
+          <div class="work-card-footer">
+            <span class="work-card-tag">Lead system</span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </div>
+        </a>
+
+        <a class="work-card" href="https://openshifts.co" target="_blank" rel="noopener" style="--accent: var(--blue);">
+          <div>
+            <span class="work-card-number">03 / HIRING</span>
+            <h3>OpenShifts</h3>
+            <p>A 90-second, campaign-aware hiring conversation for restaurants that need qualified candidates without a long application.</p>
+          </div>
+          <div class="work-card-footer">
+            <span class="work-card-tag">Conversational product</span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="offer-section" id="engagements">
+      <div class="shell section">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Ways to work together</p>
+            <h2>Start at the bottleneck.</h2>
+          </div>
+          <p class="section-intro">Bring us a product, growth, or operating problem. We scope the smallest engagement that can create a measurable result.</p>
+        </div>
+
+        <div class="offers">
+          <article class="offer">
+            <span class="offer-index">01</span>
+            <h3>AI product sprint</h3>
+            <p>Turn one high-value workflow into a working prototype, tested with the people who will use it.</p>
+            <span class="offer-duration">2 weeks</span>
+          </article>
+          <article class="offer">
+            <span class="offer-index">02</span>
+            <h3>Production build</h3>
+            <p>Design, engineering, model integration, data, analytics, and launch for a focused product or major feature.</p>
+            <span class="offer-duration">6–12 weeks</span>
+          </article>
+          <article class="offer">
+            <span class="offer-index">03</span>
+            <h3>Operating partner</h3>
+            <p>A monthly product and growth cadence: roadmap, shipping, experiments, lifecycle, acquisition, and the decision system behind them.</p>
+            <span class="offer-duration">Monthly</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="shell section">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">How we operate</p>
+          <h2>Senior judgment, amplified.</h2>
+        </div>
+        <p class="section-intro">Pipedream is led by Seth Miller, founder of Rapchat and a product operator who has spent more than a decade shipping consumer software.</p>
+      </div>
+
+      <div class="principles">
+        <article class="principle">
+          <span class="eyebrow">01</span>
+          <strong>One accountable team</strong>
+          <p>Strategy, design, engineering, analytics, and growth stay in the same operating loop.</p>
+        </article>
+        <article class="principle">
+          <span class="eyebrow">02</span>
+          <strong>Models earn their place</strong>
+          <p>We route each task to the model and workflow that performs best, then test the output.</p>
+        </article>
+        <article class="principle">
+          <span class="eyebrow">03</span>
+          <strong>Production over theater</strong>
+          <p>Working software, clean handoffs, instrumentation, and customer response decide what survives.</p>
+        </article>
+        <article class="principle">
+          <span class="eyebrow">04</span>
+          <strong>Weekly evidence</strong>
+          <p>Each week ends with something shipped, learned, measured, or deliberately stopped.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="shell contact-section" id="contact">
+      <div class="contact-panel">
+        <div>
+          <p class="eyebrow">Start a project</p>
+          <h2>What is stuck?</h2>
+          <p>Give us the product, the constraint, and the result you need. We will reply with the fastest credible path forward.</p>
+        </div>
+
+        <form class="contact-form" id="project-brief">
+          <div class="field-grid">
+            <div class="field">
+              <label for="name">Your name</label>
+              <input id="name" name="name" autocomplete="name" placeholder="Name" required>
+            </div>
+            <div class="field">
+              <label for="company">Company or product</label>
+              <input id="company" name="company" autocomplete="organization" placeholder="Company" required>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="need">Where do you need help?</label>
+            <select id="need" name="need" required>
+              <option value="" disabled selected>Select one</option>
+              <option>AI product or workflow</option>
+              <option>Web or mobile product</option>
+              <option>Growth and monetization</option>
+              <option>Analytics and operating system</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="problem">The problem</label>
+            <textarea id="problem" name="problem" placeholder="What is blocked, and what result would make this worth doing?" required></textarea>
+          </div>
+
+          <button class="button" type="submit">Email the brief <span aria-hidden="true">↗</span></button>
+          <p class="form-note">Opens a pre-filled email to seth@pipedream.ventures.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <p>© <span id="year"></span> Pipedream Ventures LLC · Columbus, Ohio</p>
       <div class="footer-links">
+        <a href="mailto:seth@pipedream.ventures">Email</a>
         <a href="/privacy.html">Privacy</a>
         <a href="/terms.html">Terms</a>
       </div>
-      <p>&copy; 2025 Pipedream Ventures LLC</p>
-    </footer>
-  </div>
+    </div>
+  </footer>
+
+  <script>
+    const siteHeader = document.getElementById("site-header");
+    const year = document.getElementById("year");
+    const projectBrief = document.getElementById("project-brief");
+
+    year.textContent = String(new Date().getFullYear());
+
+    function updateHeader() {
+      if (window.scrollY > 12) {
+        siteHeader.classList.add("scrolled");
+      } else {
+        siteHeader.classList.remove("scrolled");
+      }
+    }
+
+    function submitProjectBrief(event) {
+      event.preventDefault();
+
+      const formData = new FormData(projectBrief);
+      const name = String(formData.get("name"));
+      const company = String(formData.get("company"));
+      const need = String(formData.get("need"));
+      const problem = String(formData.get("problem"));
+
+      const subject = encodeURIComponent("Pipedream project brief — " + company);
+      const body = encodeURIComponent(
+        "Name: " + name + "\n" +
+        "Company or product: " + company + "\n" +
+        "Help needed: " + need + "\n\n" +
+        "Problem and desired result:\n" + problem + "\n\n" +
+        "Sent from pipedream.ventures"
+      );
+
+      window.location.href = "mailto:seth@pipedream.ventures?subject=" + subject + "&body=" + body;
+    }
+
+    updateHeader();
+    window.addEventListener("scroll", updateHeader, { passive: true });
+    projectBrief.addEventListener("submit", submitProjectBrief);
+  </script>
 </body>
 </html>
