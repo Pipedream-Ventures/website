@@ -153,7 +153,6 @@
     .property.active { display: grid; }
     .property-visual { position: relative; display: grid; align-content: space-between; padding: 40px; background: var(--butter); }
     .property[data-property="own"] .property-visual { background: var(--forest); color: white; }
-    .property[data-property="wild"] .property-visual { background: var(--clay); }
     .address { max-width: 380px; font-family: "DM Serif Display", serif; font-size: clamp(42px, 5vw, 68px); line-height: .9; }
     .score { display: flex; width: 116px; height: 116px; align-items: center; justify-content: center; border: 2px solid currentColor; border-radius: 50%; font-size: 38px; font-weight: 700; transform: rotate(-8deg); }
     .property-detail { padding: 40px; }
@@ -380,7 +379,6 @@
         <div class="property-switch" role="tablist" aria-label="Property candidates">
           <button class="property-tab" role="tab" aria-selected="true" data-target="mozarts">4784 N High</button>
           <button class="property-tab" role="tab" aria-selected="false" data-target="own">2840 N High</button>
-          <button class="property-tab" role="tab" aria-selected="false" data-target="wild">4686 Indianola</button>
         </div>
 
         <article class="property active" id="mozarts" data-property="lease" role="tabpanel">
@@ -415,21 +413,6 @@
           </div>
         </article>
 
-        <article class="property" id="wild" data-property="wild" role="tabpanel">
-          <div class="property-visual"><div class="address">4686 Indianola Avenue</div><div class="score">6.4</div></div>
-          <div class="property-detail">
-            <span class="verdict">Wild-card conversion</span>
-            <h3>The old car-wash play</h3>
-            <p>A funky adaptive-reuse possibility with nearly an acre, but the conversion risk is high and the asking price is hard to justify. Interesting architecture exercise, weak version-one economics.</p>
-            <div class="facts">
-              <div class="fact"><strong>$1.4M</strong><span>Public asking price</span></div>
-              <div class="fact"><strong>5,580 SF</strong><span>Existing building</span></div>
-              <div class="fact"><strong>.81 acre</strong><span>Total site</span></div>
-              <div class="fact"><strong>High</strong><span>Conversion risk</span></div>
-            </div>
-            <a class="source-link" href="https://www.loopnet.com/Listing/4686-Indianola-Ave-Columbus-OH/26232316/" target="_blank" rel="noreferrer">View the public listing ↗</a>
-          </div>
-        </article>
       </div>
     </section>
 
