@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800&family=Caveat:wght@600&display=swap" rel="stylesheet">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      width:1200px;
+      height:630px;
+      background:#F6F3EE;
+      font-family:'Inter',sans-serif;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+      overflow:hidden;
+    }
+    .bg-glow {
+      position:absolute;
+      width:600px; height:600px;
+      border-radius:50%;
+      filter:blur(120px);
+      opacity:0.15;
+    }
+    .bg-glow.blue { background:#3B82F6; top:-100px; left:-100px; }
+    .bg-glow.purple { background:#8B5CF6; bottom:-150px; right:-50px; }
+    .bg-glow.amber { background:#F59E0B; top:100px; right:200px; opacity:0.08; }
+    .card {
+      position:relative;
+      z-index:1;
+      text-align:center;
+      max-width:900px;
+    }
+    .tag {
+      font-family:'Inter',sans-serif;
+      font-size:14px;
+      font-weight:700;
+      letter-spacing:3px;
+      text-transform:uppercase;
+      color:#8D99A8;
+      margin-bottom:20px;
+    }
+    h1 {
+      font-size:72px;
+      font-weight:800;
+      letter-spacing:-2px;
+      line-height:1.05;
+      color:#1A2332;
+    }
+    h1 span {
+      background:linear-gradient(135deg, #3B82F6, #06B6D4);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+    .sub {
+      font-family:'Caveat',cursive;
+      font-size:32px;
+      color:#F59E0B;
+      margin-top:12px;
+    }
+    .desc {
+      font-size:18px;
+      color:#5C6B7F;
+      margin-top:20px;
+      line-height:1.5;
+      max-width:600px;
+      margin-left:auto;
+      margin-right:auto;
+    }
+    .footer-line {
+      margin-top:28px;
+      font-size:13px;
+      font-weight:700;
+      letter-spacing:2px;
+      text-transform:uppercase;
+      color:#8D99A8;
+    }
+    /* Flow icons row */
+    .flow-row {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:0;
+      margin-top:24px;
+    }
+    .flow-icon {
+      width:48px; height:48px;
+      background:#fff;
+      border:1.5px solid #DDD8CF;
+      border-radius:12px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:22px;
+    }
+    .flow-icon.active {
+      border-color:#3B82F6;
+      background:rgba(59,130,246,0.05);
+    }
+    .flow-arrow {
+      color:#CFC9BF;
+      font-size:16px;
+      margin:0 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-glow blue"></div>
+  <div class="bg-glow purple"></div>
+  <div class="bg-glow amber"></div>
+  <div class="card">
+    <div class="tag">Pipedream Ventures</div>
+    <h1>Pipeline <span>Intel Agent</span></h1>
+    <div class="sub">Matty Dub Edition</div>
+    <div class="flow-row">
+      <div class="flow-icon">&#9200;</div>
+      <div class="flow-arrow">&rarr;</div>
+      <div class="flow-icon">&#9729;&#65039;</div>
+      <div class="flow-arrow">&rarr;</div>
+      <div class="flow-icon active">&#129504;</div>
+      <div class="flow-arrow">&rarr;</div>
+      <div class="flow-icon">&#9995;</div>
+      <div class="flow-arrow">&rarr;</div>
+      <div class="flow-icon">&#128231;</div>
+    </div>
+    <div class="desc">Salesforce &rarr; AI analysis &rarr; your approval &rarr; personalized coaching emails to every rep</div>
+    <div class="footer-line">pipedream.ventures</div>
+  </div>
+</body>
+</html>
