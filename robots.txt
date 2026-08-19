@@ -1,5 +1,6 @@
 User-agent: *
 Disallow: /work/
+Disallow: /scratch/
 Disallow: /plans/
 Disallow: /background-inspo.html
 Disallow: /index-full.html

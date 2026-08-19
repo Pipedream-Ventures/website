@@ -36,18 +36,20 @@ render deploys list srv-d60ildq4d50c73cr0ngg -o json
 ├── index.html              # Main landing page
 ├── privacy.html            # Privacy policy
 ├── terms.html              # Terms of service
-├── robots.txt              # Crawler rules (blocks /work/)
+├── robots.txt              # Crawler rules (blocks /work/ and /scratch/)
 ├── favicon.svg
 ├── logo.svg
-└── work/                   # Client deliverables (private)
-    └── swyped/
-        └── reports/        # Swyped API reports
+├── work/                   # Client deliverables (private)
+│   └── swyped/
+│       └── reports/        # Swyped API reports
+└── scratch/                # Unlisted one-off pages and experiments
 ```
 
 ## SEO / Robots
 
 - Only `/index.html`, `/privacy.html`, and `/terms.html` are crawlable
 - `/work/` is blocked in robots.txt
+- `/scratch/` is blocked in robots.txt
 - All client reports have `noindex, nofollow` meta tags
 
 ## Client Reports
