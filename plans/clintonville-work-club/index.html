@@ -38,7 +38,7 @@
       background: var(--paper);
       color: var(--ink);
       font-family: "DM Sans", sans-serif;
-      line-height: 1.55;
+      line-height: 1.68;
     }
     a { color: inherit; }
     button { font: inherit; }
@@ -99,10 +99,11 @@
     .marquee-track { display: inline-flex; gap: 30px; padding: 13px 0; animation: glide 22s linear infinite; font-size: 12px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; }
     @keyframes glide { to { transform: translateX(-50%); } }
 
-    section { padding: 94px 0; }
-    .section-head { display: grid; grid-template-columns: .72fr 1.28fr; gap: 48px; margin-bottom: 42px; }
+    section { padding: 116px 0; }
+    section + section { border-top: 1px solid rgba(23, 32, 27, .07); }
+    .section-head { display: grid; grid-template-columns: .72fr 1.28fr; gap: 70px; margin-bottom: 58px; }
     h2 { margin: 0; font-size: clamp(42px, 6vw, 76px); letter-spacing: -.045em; line-height: .95; }
-    .section-intro { max-width: 620px; margin: 8px 0 0; color: var(--muted); font-size: 18px; }
+    .section-intro { max-width: 650px; margin: 8px 0 0; color: #566057; font-size: 20px; line-height: 1.6; }
 
     .manifesto { border-radius: 28px; background: var(--forest); color: var(--white); box-shadow: var(--shadow); overflow: hidden; }
     .manifesto-grid { display: grid; grid-template-columns: 1.15fr .85fr; }
@@ -166,6 +167,31 @@
     .fact span { color: var(--muted); font-size: 11px; text-transform: uppercase; }
     .source-link { color: var(--forest); font-size: 13px; font-weight: 700; text-underline-offset: 4px; }
 
+    .comparison { margin-top: 24px; overflow: hidden; border: 1px solid var(--line); border-radius: 20px; background: var(--white); }
+    .comparison-row { display: grid; grid-template-columns: 1.1fr 1fr 1fr; }
+    .comparison-row + .comparison-row { border-top: 1px solid var(--line); }
+    .comparison-row > div { padding: 17px 20px; }
+    .comparison-row > div + div { border-left: 1px solid var(--line); }
+    .comparison-head { background: var(--ink); color: white; font-weight: 700; }
+    .comparison-label { color: var(--muted); font-size: 13px; font-weight: 700; }
+    .comparison strong { color: var(--forest); }
+
+    .sba-roadmap { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 30px; }
+    .sba-step { padding: 24px; border: 1px solid var(--line); border-radius: 16px; background: var(--white); }
+    .sba-step b { display: block; margin-bottom: 22px; color: var(--clay); font-size: 12px; }
+    .sba-step strong { display: block; margin-bottom: 8px; }
+    .sba-step p { margin: 0; color: var(--muted); font-size: 13px; }
+    .seller-note { margin-bottom: 30px; padding: 30px; border-radius: 18px; background: #e2eadb; }
+    .seller-note h3 { margin: 0 0 10px; font-family: "DM Serif Display", serif; font-size: 32px; font-weight: 400; }
+    .seller-note p { max-width: 900px; margin: 0; color: #435146; }
+
+    .truth { display: grid; grid-template-columns: .9fr 1.1fr; gap: 18px; margin-top: 22px; }
+    .truth-card { padding: 34px; border: 1px solid var(--line); border-radius: 20px; background: var(--white); }
+    .truth-card.warning { background: var(--butter); }
+    .truth-card h3 { margin: 0 0 14px; font-family: "DM Serif Display", serif; font-size: 38px; font-weight: 400; line-height: 1; }
+    .truth-card p { margin: 0 0 16px; color: #525b54; }
+    .truth-card p:last-child { margin-bottom: 0; }
+
     .scenario-tabs { display: flex; gap: 8px; margin-bottom: 22px; }
     .scenario-tab { padding: 11px 15px; border: 1px solid var(--line); border-radius: 10px; background: transparent; cursor: pointer; }
     .scenario-tab[aria-selected="true"] { background: var(--ink); color: white; }
@@ -216,7 +242,8 @@
     .footer-inner { display: flex; justify-content: space-between; gap: 24px; }
 
     @media (max-width: 900px) {
-      .hero-grid, .section-head, .manifesto-grid, .founder, .bar-plan, .property, .finance, .decision-card { grid-template-columns: 1fr; }
+      .hero-grid, .section-head, .manifesto-grid, .founder, .bar-plan, .property, .finance, .truth, .decision-card { grid-template-columns: 1fr; }
+      .sba-roadmap { grid-template-columns: repeat(2, 1fr); }
       .choice-grid { grid-template-columns: 1fr; }
       .zones, .revenue-grid { grid-template-columns: repeat(2, 1fr); }
       .gates { grid-template-columns: 1fr; }
@@ -231,9 +258,14 @@
       .private-note { display: none; }
       .hero { padding-top: 56px; }
       h1 { font-size: 62px; }
-      section { padding: 68px 0; }
+      section { padding: 78px 0; }
+      .section-head { gap: 26px; margin-bottom: 38px; }
+      .section-intro { font-size: 17px; }
       .zones, .revenue-grid { grid-template-columns: 1fr; }
       .talents { grid-template-columns: 1fr; }
+      .sba-roadmap { grid-template-columns: 1fr; }
+      .comparison-row { grid-template-columns: .85fr 1fr 1fr; font-size: 12px; }
+      .comparison-row > div { padding: 13px 10px; }
       .facts { grid-template-columns: 1fr 1fr; }
       .property-visual, .property-detail { padding: 28px; }
       .alt { grid-template-columns: 1fr .7fr; }
@@ -343,8 +375,8 @@
         <div class="zones">
           <article class="zone"><span class="zone-num">01 / Focus</span><h3>The Library</h3><p>A genuinely silent room. Deep work, writing, reading, and no calls. The promise members can trust every day.</p></article>
           <article class="zone"><span class="zone-num">02 / Connect</span><h3>The Café</h3><p>Great coffee, communal tables, soft seating, natural conversation, and the everyday hum of people making things.</p></article>
-          <article class="zone"><span class="zone-num">03 / Unwind</span><h3>The Bar</h3><p>A separate, lockable lounge that opens after work. Wine, beer, a tight cocktail list, and small plates without nightclub energy.</p></article>
-          <article class="zone"><span class="zone-num">04 / Discover</span><h3>Morgan's Shop</h3><p>Fashion, vintage, objects, and original furniture through Morgan's eye. Curated drops and commissions, not racks of random inventory.</p></article>
+          <article class="zone"><span class="zone-num">03 / Gather</span><h3>The Event Room</h3><p>A flexible room for workshops, dinners, team days, and private gatherings after work. Useful on day one, without a liquor license.</p></article>
+          <article class="zone"><span class="zone-num">04 / Later</span><h3>The Bar</h3><p>A future, separately controlled cocktail lounge only after membership works. Morgan's vintage and furniture can live through curated drops throughout the club.</p></article>
         </div>
       </div>
     </section>
@@ -352,8 +384,8 @@
     <section id="bar">
       <div class="shell">
         <div class="section-head">
-          <div><p class="eyebrow">The bar question</p><h2>Yes, it can<br>be attached.</h2></div>
-          <p class="section-intro">The bar should feel connected socially and separate operationally. The 24/7 club cannot become an unattended liquor premises.</p>
+          <div><p class="eyebrow">Phase two, only if earned</p><h2>Yes, a bar can<br>come later.</h2></div>
+          <p class="section-intro">Open as coworking, coffee, and events. If the club proves demand, add a bar that feels connected socially and stays separate operationally. No bar revenue belongs in the opening loan case.</p>
         </div>
         <div class="bar-plan">
           <article class="bar-card">
@@ -363,7 +395,7 @@
           <article class="rules-card">
             <div class="rule"><b>01</b><div><strong>Separate and lockable</strong><span>The bar and its inventory close independently while the work club remains open.</span></div></div>
             <div class="rule"><b>02</b><div><strong>License the exact premises</strong><span>Ohio permit availability, parcel eligibility, food-service requirements, and local notice must be confirmed before lease execution.</span></div></div>
-            <div class="rule"><b>03</b><div><strong>Start narrow</strong><span>Beer, wine, a small cocktail list, and simple food. No giant kitchen and no late-night identity crisis.</span></div></div>
+            <div class="rule"><b>03</b><div><strong>Earn phase two</strong><span>Do not build it until membership retention and event demand support a second operation.</span></div></div>
             <div class="rule"><b>04</b><div><strong>Protect the quiet room</strong><span>Real walls and acoustic separation, not plants and wishful thinking.</span></div></div>
           </article>
         </div>
@@ -382,11 +414,11 @@
         </div>
 
         <article class="property active" id="mozarts" data-property="lease" role="tabpanel">
-          <div class="property-visual"><div class="address">4784 N High Street</div><div class="score">9.2</div></div>
+          <div class="property-visual"><div class="address">4784 N High Street</div><div class="score">8.4</div></div>
           <div class="property-detail">
-            <span class="verdict">Best launch fit</span>
+            <span class="verdict">Easiest launch, not best vibe</span>
             <h3>The former Mozart's building</h3>
-            <p>The strongest public lead for a work club with a real attached bar. Known building, large patio, restaurant infrastructure, and unusually good parking. Expected delivery is early 2027.</p>
+            <p>The easiest public lead for a work club with a real attached bar. Known building, large patio, restaurant infrastructure, and unusually good parking. The tradeoff is a noisier, more car-oriented setting with weaker walkability.</p>
             <div class="facts">
               <div class="fact"><strong>5,244 SF</strong><span>Likely available suite</span></div>
               <div class="fact"><strong>72</strong><span>Parking spaces</span></div>
@@ -398,11 +430,11 @@
         </article>
 
         <article class="property" id="own" data-property="own" role="tabpanel">
-          <div class="property-visual"><div class="address">2840–2848 N High Street</div><div class="score">8.6</div></div>
+          <div class="property-visual"><div class="address">2840–2848 N High Street</div><div class="score">9.1</div></div>
           <div class="property-detail">
-            <span class="verdict">Best ownership thesis</span>
+            <span class="verdict">Current favorite, if available</span>
             <h3>Own the home of the club</h3>
-            <p>A larger historic retail property with a 7,697 SF potential owner suite and an existing 5,553 SF gym tenant. Strong walkability and rental income, but the listing status and tenant occupancy conflict across sources.</p>
+            <p>A larger historic retail property with a 7,697 SF potential owner suite and an existing 5,553 SF gym tenant. It is much more walkable and feels more like a neighborhood club. The tradeoffs are limited parking, a far larger cash requirement, and old-building risk.</p>
             <div class="facts">
               <div class="fact"><strong>$1.95M</strong><span>Public asking price</span></div>
               <div class="fact"><strong>13,250 SF</strong><span>Total building</span></div>
@@ -413,6 +445,17 @@
           </div>
         </article>
 
+        <div class="comparison" aria-label="Property comparison">
+          <div class="comparison-row comparison-head"><div>Difference</div><div>4784 / Mozart's</div><div>2840 N High</div></div>
+          <div class="comparison-row"><div class="comparison-label">Structure</div><div>Lease</div><div><strong>Buy the building</strong></div></div>
+          <div class="comparison-row"><div class="comparison-label">Walkability</div><div>60 Walk Score</div><div><strong>90 Walk Score</strong></div></div>
+          <div class="comparison-row"><div class="comparison-label">Parking</div><div><strong>72 spaces</strong></div><div>18 spaces + street</div></div>
+          <div class="comparison-row"><div class="comparison-label">Noise / feel</div><div>Busier, more car-oriented</div><div><strong>Denser neighborhood energy</strong></div></div>
+          <div class="comparison-row"><div class="comparison-label">Bar readiness</div><div><strong>Patio + food infrastructure</strong></div><div>Requires a heavier build</div></div>
+          <div class="comparison-row"><div class="comparison-label">Cash needed</div><div><strong>~$85K–$150K</strong></div><div>~$450K–$600K</div></div>
+          <div class="comparison-row"><div class="comparison-label">Why choose it</div><div>Test the idea with less cash</div><div><strong>Best concept + real-estate upside</strong></div></div>
+        </div>
+
       </div>
     </section>
 
@@ -420,8 +463,18 @@
       <div class="shell">
         <div class="section-head">
           <div><p class="eyebrow">SBA model</p><h2>What it may<br>actually cost.</h2></div>
-          <p class="section-intro">Screening estimates only. Final structure depends on lender underwriting, appraisal, tenant-improvement terms, contractor bids, and whether the project leases or buys.</p>
+          <p class="section-intro">SBA is not a grant and it is not automatic. It is a bank loan with an SBA guaranty. We still need cash, strong personal credit, a credible plan, relevant experience, and enough projected cash flow to repay it.</p>
         </div>
+        <div class="sba-roadmap">
+          <article class="sba-step"><b>01</b><strong>Get prequalified</strong><p>Share personal financial statements, tax returns, liquidity, credit, resumes, and the rough project thesis with two or three SBA lenders.</p></article>
+          <article class="sba-step"><b>02</b><strong>Choose the structure</strong><p>Use 7(a) for a business acquisition, startup, leasehold improvements, equipment, and working capital. Explore 504 when buying owner-occupied real estate.</p></article>
+          <article class="sba-step"><b>03</b><strong>Prove repayment</strong><p>For an acquisition, lenders underwrite tax returns and normalized cash flow. For the club, they scrutinize projections, deposits, experience, and contingency cash.</p></article>
+          <article class="sba-step"><b>04</b><strong>Close the gaps</strong><p>Complete appraisal, environmental review when applicable, lease or purchase diligence, contractor bids, insurance, licenses, and final equity verification.</p></article>
+        </div>
+        <aside class="seller-note">
+          <h3>Yes, seller financing can help on an acquisition.</h3>
+          <p>We can negotiate a seller note alongside the SBA loan. Under current SBA rules, a qualifying seller note may cover part of the required injection when it has no balloon and follows the required standby terms. At least one-quarter of the SBA-required injection must still come from a source other than the seller. A lender may require more buyer cash. Seller financing is most realistic on the operating businesses, and possible on a building only if that property owner agrees.</p>
+        </aside>
         <div class="scenario-tabs" role="tablist" aria-label="Financing scenarios">
           <button class="scenario-tab" role="tab" aria-selected="true" data-target="lease-finance">Lease + 7(a)</button>
           <button class="scenario-tab" role="tab" aria-selected="false" data-target="own-finance">Own + 504</button>
@@ -467,14 +520,29 @@
       <div class="shell">
         <div class="section-head">
           <div><p class="eyebrow">The engine</p><h2>More than<br>desk rent.</h2></div>
-          <p class="section-intro">The work club is the recurring base. The other pieces make the place culturally interesting and improve the economics without overwhelming the core experience.</p>
+          <p class="section-intro">Phase one is deliberately simpler: a beautiful members club for working, excellent coffee included, and selective rentals after hours. The cocktail bar is future upside, not something we need to make the deal work.</p>
         </div>
         <div class="revenue-grid">
-          <article class="revenue"><span>Membership</span><strong>$488K</strong><p>325 stabilized members at a $125 average monthly yield.</p></article>
-          <article class="revenue"><span>Bar + café</span><strong>$125K</strong><p>Target annual gross-profit contribution, not top-line sales.</p></article>
-          <article class="revenue"><span>Rooms + events</span><strong>$75K</strong><p>Meeting bookings, private gatherings, workshops, and team days.</p></article>
-          <article class="revenue"><span>Morgan's studio</span><strong>$35K+</strong><p>Vintage commissions, curated drops, original furniture, and selective interior projects. Upside intentionally excluded from the core underwriting.</p></article>
+          <article class="revenue"><span>Membership</span><strong>$483K</strong><p>350 stabilized members at a blended $115 monthly yield.</p></article>
+          <article class="revenue"><span>Rooms + day use</span><strong>$40K</strong><p>Team rooms, day passes, photo shoots, and small off-sites.</p></article>
+          <article class="revenue"><span>Events</span><strong>$72K</strong><p>Four private events a month at a $1,500 average booking.</p></article>
+          <article class="revenue"><span>Public coffee</span><strong>$25K</strong><p>Modest incremental sales only. Member coffee is an amenity, not a second startup.</p></article>
         </div>
+        <div class="truth">
+          <article class="truth-card warning">
+            <p class="eyebrow">The honest answer</p>
+            <h3>It can work. It is not automatically a great business.</h3>
+            <p>The base case produces about <strong>$620K in annual revenue</strong>. That is roughly break-even at the Mozart's lease after occupancy, SBA debt, payroll, utilities, coffee, cleaning, insurance, software, marketing, and repairs.</p>
+            <p>At 2840 N High, the same operation could clear roughly <strong>$30K before tax and before any verified gym rent</strong>. The real-estate upside is better, but the cash at risk is dramatically higher.</p>
+          </article>
+          <article class="truth-card">
+            <p class="eyebrow">What changes the outcome</p>
+            <h3>We need 400-ish members, not a heroic café.</h3>
+            <p>A strong case with 425 members, healthy room use, and six events a month approaches <strong>$825K in revenue</strong>. That can create a real six-figure operating cushion. A downside case with 275 members lands near <strong>$450K</strong> and loses money.</p>
+            <p>So the bet is recurring membership and retention. Events help use the building at night. Coffee makes membership lovable. Neither should be asked to rescue weak coworking demand.</p>
+          </article>
+        </div>
+        <p class="fine" style="margin-top:18px">Screening model, not a forecast. Benchmarked against <a href="https://www.switchyards.com/columbus/german-village" target="_blank" rel="noopener">Switchyards pricing</a>, <a href="https://www.officernd.com/wp-content/uploads/2026/02/FlexIndex-2025-q4.pdf" target="_blank" rel="noopener">OfficeRnD's Q4 2025 flex-space data</a>, <a href="https://www.deskmag.com/en/coworking-spaces/2025-global-coworking-space-trends-europe-north-america-market-business-survey-analysis-report" target="_blank" rel="noopener">Deskmag's 2025 operator survey</a>, and <a href="https://everythingcoworking.com/how-leslie-bailey-built-a-coworking-business-model-around-events-food-beverage-and-corporate-sponsors/" target="_blank" rel="noopener">an event-led coworking case study</a>. Actual capacity, staffing, debt terms, taxes, tenant income, and construction bids remain unverified.</p>
       </div>
     </section>
 
