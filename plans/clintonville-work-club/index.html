@@ -6,11 +6,11 @@
   <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
   <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet">
   <meta name="theme-color" content="#f4efe5">
-  <title>Clintonville Work Club | A Pipedream for Seth + Morgan</title>
-  <meta name="description" content="A private working plan for a neighborhood work club, cafe, bar, and rotating vintage shop in Clintonville.">
+  <title>Morgan, What Should We Build Next? | A Pipedream Ventures Proposal</title>
+  <meta name="description" content="A private proposal for Morgan: buy a great Columbus business, build Clintonville Work Club, or create a path to both.">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="Clintonville Work Club">
-  <meta property="og:description" content="A neighborhood clubhouse for doing good work, then staying for a drink.">
+  <meta property="og:title" content="Morgan, what should we build next?">
+  <meta property="og:description" content="A private proposal: buy a great Columbus business, build Clintonville Work Club, or find the path to both.">
   <meta property="og:url" content="https://pipedream.ventures/plans/clintonville-work-club/">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -79,6 +79,16 @@
     .hero-copy p { margin: 0 0 28px; color: #3f4942; font-size: clamp(18px, 2vw, 24px); line-height: 1.35; }
     .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; }
     .tag { padding: 8px 12px; border: 1px solid var(--line); border-radius: 999px; background: rgba(255,255,255,.35); font-size: 12px; font-weight: 600; }
+
+    .choice-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .choice { display: grid; min-height: 360px; align-content: space-between; padding: 30px; border: 1px solid var(--line); border-radius: 22px; background: var(--white); }
+    .choice:nth-child(2) { background: var(--forest); color: white; }
+    .choice:nth-child(3) { background: var(--butter); }
+    .choice-kicker { font-size: 11px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+    .choice h3 { margin: 0 0 12px; font-family: "DM Serif Display", serif; font-size: 40px; font-weight: 400; line-height: .96; }
+    .choice p { margin: 0; color: var(--muted); font-size: 14px; }
+    .choice:nth-child(2) p { color: rgba(255,255,255,.68); }
+    .choice-metric { margin-top: 28px; padding-top: 18px; border-top: 1px solid currentColor; font-size: 13px; }
 
     .marquee {
       overflow: hidden;
@@ -208,6 +218,7 @@
 
     @media (max-width: 900px) {
       .hero-grid, .section-head, .manifesto-grid, .founder, .bar-plan, .property, .finance, .decision-card { grid-template-columns: 1fr; }
+      .choice-grid { grid-template-columns: 1fr; }
       .zones, .revenue-grid { grid-template-columns: repeat(2, 1fr); }
       .gates { grid-template-columns: 1fr; }
       .manifesto-side { min-height: 300px; }
@@ -248,18 +259,39 @@
     <section class="hero">
       <div class="shell hero-grid">
         <div>
-          <p class="eyebrow">The next family adventure</p>
-          <h1>Clintonville<br><em>Work Club.</em></h1>
+          <p class="eyebrow">A proposal for Morgan</p>
+          <h1>What should<br><em>we build next?</em></h1>
         </div>
         <div class="hero-copy">
-          <p>A beautiful neighborhood clubhouse for doing good work, finding your people, then staying for a drink.</p>
+          <p>You are too talented to spend your life building somebody else's thing. What if we used SBA financing to buy or create something worthy of you?</p>
           <div class="hero-tags">
-            <span class="tag">24/7 work club</span>
-            <span class="tag">coffee by day</span>
-            <span class="tag">bar by night</span>
-            <span class="tag">vintage pop-ups</span>
-            <span class="tag">SBA financed</span>
+            <span class="tag">Option 1: buy cash flow</span>
+            <span class="tag">Option 2: build the club</span>
+            <span class="tag">Option 3: do both in sequence</span>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="proposal">
+      <div class="shell">
+        <div class="section-head">
+          <div><p class="eyebrow">The actual decision</p><h2>Three ways<br>forward.</h2></div>
+          <p class="section-intro">This is not a pitch for one predetermined answer. It is a proposal to investigate three paths together and choose the one that gives Morgan the best mix of freedom, creativity, income, and joy.</p>
+        </div>
+        <div class="choice-grid">
+          <article class="choice">
+            <span class="choice-kicker">01 / Buy</span>
+            <div><h3>Acquire a great Columbus business.</h3><p>Use SBA financing to buy proven cash flow, replace Morgan's salary, and improve a company that already has customers and operating history.</p><div class="choice-metric"><strong>Best for:</strong> financial safety and a faster exit from her job</div></div>
+          </article>
+          <article class="choice">
+            <span class="choice-kicker">02 / Build</span>
+            <div><h3>Create Clintonville Work Club.</h3><p>Build the neighborhood place we wish existed, with Morgan's interiors, furniture, fashion, vintage, and hospitality instincts at the center.</p><div class="choice-metric"><strong>Best for:</strong> creative ownership and long-term upside</div></div>
+          </article>
+          <article class="choice">
+            <span class="choice-kicker">03 / Sequence</span>
+            <div><h3>Buy the engine, then fund the dream.</h3><p>Acquire a strong operating business first, stabilize it with management, then use the cash flow and experience to launch the Work Club with less pressure.</p><div class="choice-metric"><strong>Best for:</strong> getting both without betting everything at once</div></div>
+          </article>
         </div>
       </div>
     </section>
@@ -275,7 +307,7 @@
       <div class="shell manifesto">
         <div class="manifesto-grid">
           <div class="manifesto-copy">
-            <blockquote>Not an office.<br>Not a coffee shop.<br><span>A neighborhood ritual.</span></blockquote>
+            <blockquote>If we build it:<br>not an office.<br>Not a coffee shop.<br><span>A neighborhood ritual.</span></blockquote>
           </div>
           <div class="manifesto-side">
             <div class="number">43214</div>
@@ -496,15 +528,17 @@
       <div class="shell decision-card">
         <div class="decision-label"><span>Go?</span></div>
         <div class="decision-copy">
-          <p class="eyebrow">The next 30 days</p>
-          <h2>Make the dream earn the right to exist.</h2>
+          <p class="eyebrow">The proposal</p>
+          <h2>Let's investigate this together, then choose.</h2>
           <ol class="steps">
+            <li>Talk through what Morgan actually wants her days to feel like: designing, building, styling, managing people, serving customers, or some mix.</li>
             <li>Call the brokers for 4784 and 2840. Confirm availability, full economics, permitted uses, delivery condition, parking rights, patio rights, and exclusivity.</li>
             <li>Have an Ohio liquor attorney perform a parcel-specific permit and premises check before relying on bar revenue.</li>
             <li>Interview three SBA lenders: one strong 7(a) acquisition lender, one startup-friendly lender, and one local 504 CDC.</li>
             <li>Launch a beautiful founding-member page with a refundable $100 deposit, a clear founding price, and Morgan's creative point of view at the center.</li>
             <li>Tour the serious properties only after the first demand signal, then price the actual build with a contractor.</li>
-            <li>Keep pursuing high-cash-flow acquisitions in parallel. We can choose the dream, the cash engine, or the sequence that gets us both.</li>
+            <li>Request financials on the best Columbus acquisitions and compare post-debt owner income, workload, creative fit, and downside against the Work Club.</li>
+            <li>Choose the dream, the cash engine, or the sequence that gets us both. No forcing it because a listing happens to exist.</li>
           </ol>
         </div>
       </div>
