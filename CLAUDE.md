@@ -50,6 +50,9 @@ render deploys list srv-d60ildq4d50c73cr0ngg -o json
 - Only `/index.html`, `/privacy.html`, and `/terms.html` are crawlable
 - `/work/` is blocked in robots.txt
 - `/scratch/` is blocked in robots.txt
+- Every `/scratch/**/index.html` must include complete Open Graph and X card
+  metadata with an absolute `pipedream.ventures` image URL. Run
+  `python scripts/validate-share-pages.py` before publishing.
 - All client reports have `noindex, nofollow` meta tags
 
 ## Client Reports
