@@ -2,274 +2,237 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pipedream Ventures - Product Strategy, Design & Development</title>
-  <meta name="description" content="Pipedream Ventures helps startups and founders build great products. 10+ years of experience in product strategy, design, and development.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f0e6">
+  <title>Pipedream Ventures</title>
+  <meta name="description" content="Something dope is coming.">
+  <link rel="canonical" href="https://pipedream.ventures/">
 
-  <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Pipedream Ventures - Product Strategy, Design & Development">
-  <meta property="og:description" content="We help startups and founders build great products. 10+ years of experience in product strategy, design, and development.">
+  <meta property="og:title" content="Pipedream Ventures">
+  <meta property="og:description" content="Something dope is coming.">
   <meta property="og:image" content="https://pipedream.ventures/pv-logo-512.png">
-  <meta property="og:url" content="https://pipedream.ventures">
+  <meta property="og:url" content="https://pipedream.ventures/">
 
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Pipedream Ventures">
-  <meta name="twitter:description" content="We help startups and founders build great products.">
+  <meta name="twitter:description" content="Something dope is coming.">
   <meta name="twitter:image" content="https://pipedream.ventures/pv-logo-512.png">
 
-  <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
   <style>
+    :root {
+      --cream: #f5f0e6;
+      --charcoal: #2d2d2d;
+      --muted: #8f8c86;
+      --red: #e63939;
+      --orange: #f5a623;
+      --yellow: #f8e71c;
+      --green: #7ed321;
+      --blue: #4a90d9;
+      --violet: #9013fe;
+      --magenta: #bd10e0;
+    }
+
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
+    }
+
+    html {
+      min-width: 320px;
+      background: var(--cream);
     }
 
     body {
+      display: grid;
       min-height: 100vh;
       min-height: 100dvh;
-      background: #f5f0e6;
-      font-family: 'Space Mono', monospace;
-      color: #2d2d2d;
-      line-height: 1.5;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
+      place-items: center;
+      overflow: hidden;
+      padding: clamp(2rem, 6vw, 5rem);
+      background:
+        radial-gradient(circle at 50% 42%, rgba(255, 255, 255, 0.56), transparent 42%),
+        var(--cream);
+      color: var(--charcoal);
+      font-family: "Space Mono", monospace;
     }
 
-    .page {
-      max-width: 600px;
-      width: 100%;
+    main {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      justify-items: center;
+      width: min(100%, 32rem);
       text-align: center;
+      animation: arrive 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
     }
 
-    /* Polaroid frame - smaller */
     .polaroid {
-      width: 180px;
-      background: #2d2d2d;
-      padding: 10px 10px 0 10px;
-      box-shadow: 0 6px 30px rgba(0,0,0,0.12);
-      border-radius: 2px;
-      margin: 0 auto 1.5rem;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      width: clamp(13.5rem, 56vw, 17.5rem);
+      padding: clamp(0.75rem, 3vw, 1rem) clamp(0.75rem, 3vw, 1rem) 0;
+      overflow: hidden;
+      border-radius: 3px;
+      background: var(--charcoal);
+      box-shadow:
+        0 1px 1px rgba(45, 45, 45, 0.08),
+        0 12px 36px rgba(45, 45, 45, 0.13);
+      transform: rotate(-0.7deg);
+      transition:
+        box-shadow 320ms ease,
+        transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     .polaroid:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+      box-shadow:
+        0 2px 2px rgba(45, 45, 45, 0.08),
+        0 20px 56px rgba(45, 45, 45, 0.19);
+      transform: translateY(-5px) rotate(0deg);
     }
 
     .window {
-      width: 160px;
-      height: 160px;
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 1px;
       background: linear-gradient(
         135deg,
-        #e63939 0%, #e63939 14.28%,
-        #f5a623 14.28%, #f5a623 28.56%,
-        #f8e71c 28.56%, #f8e71c 42.84%,
-        #7ed321 42.84%, #7ed321 57.12%,
-        #4a90d9 57.12%, #4a90d9 71.4%,
-        #9013fe 71.4%, #9013fe 85.68%,
-        #bd10e0 85.68%, #bd10e0 100%
+        var(--red) 0%,
+        var(--red) 14.28%,
+        var(--orange) 14.28%,
+        var(--orange) 28.56%,
+        var(--yellow) 28.56%,
+        var(--yellow) 42.84%,
+        var(--green) 42.84%,
+        var(--green) 57.12%,
+        var(--blue) 57.12%,
+        var(--blue) 71.4%,
+        var(--violet) 71.4%,
+        var(--violet) 85.68%,
+        var(--magenta) 85.68%,
+        var(--magenta) 100%
       );
-      border-radius: 1px;
     }
 
     .tab {
-      height: 45px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: grid;
+      height: clamp(3.7rem, 13vw, 4.4rem);
+      place-items: center;
     }
 
-    .tab h1 {
-      color: #f5f0e6;
-      font-size: 11px;
+    h1 {
+      color: var(--cream);
+      font-size: clamp(0.72rem, 3vw, 1rem);
       font-weight: 700;
       letter-spacing: 0.08em;
+      line-height: 1;
       text-transform: uppercase;
     }
 
-    /* Tagline */
     .tagline {
-      font-size: 13px;
-      color: #555;
-      margin-bottom: 2rem;
-      max-width: 380px;
-      margin-left: auto;
-      margin-right: auto;
+      margin-top: clamp(1.6rem, 5vw, 2rem);
+      color: var(--muted);
+      font-size: 0.75rem;
+      letter-spacing: 0.055em;
+      text-transform: lowercase;
     }
 
-    /* Services - horizontal on desktop */
-    .services {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
-    }
-
-    .service {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: #888;
-    }
-
-    /* About */
-    .about {
-      font-size: 12px;
-      color: #666;
-      margin-bottom: 2rem;
-      max-width: 480px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    /* Contact */
-    .contact {
-      font-size: 11px;
-      color: #888;
-      margin-bottom: 1.5rem;
-    }
-
-    .contact a {
-      color: #4a90d9;
-      text-decoration: none;
-    }
-
-    .contact a:hover {
-      text-decoration: underline;
-    }
-
-    /* Footer */
-    footer {
-      font-size: 10px;
-      color: #aaa;
-    }
-
-    footer a {
-      color: #aaa;
-      text-decoration: none;
-      margin: 0 0.75rem;
-    }
-
-    footer a:hover {
-      color: #666;
-    }
-
-    .footer-links {
-      margin-bottom: 0.5rem;
-    }
-
-    /* Rainbow border snake */
     .border-snake {
       position: fixed;
+      z-index: 2;
       inset: 0;
       pointer-events: none;
-      z-index: 9998;
     }
 
     .border-snake::before {
-      content: '';
       position: absolute;
-      inset: 0;
       border: 5px solid transparent;
-      background: linear-gradient(
-        90deg,
-        #e63939, #f5a623, #f8e71c, #7ed321, #4a90d9, #9013fe, #bd10e0, #e63939
-      ) border-box;
-      -webkit-mask:
-        linear-gradient(#fff 0 0) padding-box,
-        linear-gradient(#fff 0 0);
+      inset: 0;
+      animation: border-snake 9s linear infinite;
+      background:
+        linear-gradient(
+          90deg,
+          var(--red),
+          var(--orange),
+          var(--yellow),
+          var(--green),
+          var(--blue),
+          var(--violet),
+          var(--magenta),
+          var(--red)
+        ) border-box;
+      background-size: 400% 100%;
+      content: "";
       mask:
         linear-gradient(#fff 0 0) padding-box,
         linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
       mask-composite: exclude;
-      background-size: 400% 100%;
-      animation: borderSnake 8s linear infinite;
+      -webkit-mask:
+        linear-gradient(#fff 0 0) padding-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
     }
 
-    @keyframes borderSnake {
-      0% { background-position: 0% 0%; }
-      100% { background-position: 400% 0%; }
-    }
-
-    /* Grain overlay */
     body::after {
-      content: '';
       position: fixed;
+      z-index: 3;
       inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      opacity: 0.02;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      content: "";
+      opacity: 0.018;
       pointer-events: none;
-      z-index: 9999;
     }
 
-    /* Fade in */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(15px); }
-      to { opacity: 1; transform: translateY(0); }
+    @keyframes arrive {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    .page {
-      animation: fadeIn 0.6s ease forwards;
+    @keyframes border-snake {
+      from {
+        background-position: 0 0;
+      }
+
+      to {
+        background-position: 400% 0;
+      }
     }
 
-    /* Mobile adjustments */
-    @media (max-width: 500px) {
-      .services {
-        flex-direction: column;
-        gap: 0.75rem;
+    @media (prefers-reduced-motion: reduce) {
+      main,
+      .border-snake::before {
+        animation: none;
+      }
+
+      .polaroid {
+        transition: none;
       }
     }
   </style>
 </head>
 <body>
-  <div class="border-snake"></div>
+  <div class="border-snake" aria-hidden="true"></div>
 
-  <div class="page">
+  <main>
     <div class="polaroid">
-      <div class="window"></div>
+      <div class="window" aria-hidden="true"></div>
       <div class="tab">
         <h1>Pipedream Ventures</h1>
       </div>
     </div>
 
-    <p class="tagline">We help founders turn ideas into products people love.</p>
-
-    <div class="services">
-      <span class="service">Product Strategy</span>
-      <span class="service">Design & Development</span>
-      <span class="service">Scale & Growth</span>
-    </div>
-
-    <p class="about">
-      A product studio in Columbus, Ohio with 10+ years of experience building and shipping software. We partner with startups to design, build, and launch products that make an impact.
-    </p>
-
-    <div class="contact">
-      <strong>Pipedream Ventures LLC</strong><br>
-      Columbus, OH<br>
-      <a href="mailto:seth@pipedream.ventures">seth@pipedream.ventures</a>
-    </div>
-
-    <footer>
-      <div class="footer-links">
-        <a href="/privacy.html">Privacy</a>
-        <a href="/terms.html">Terms</a>
-      </div>
-      <p>&copy; 2025 Pipedream Ventures LLC</p>
-    </footer>
-  </div>
+    <p class="tagline">something dope is coming</p>
+  </main>
 </body>
 </html>
