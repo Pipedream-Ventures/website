@@ -132,6 +132,24 @@
       .filter:active { transform: translate(1px,1px); box-shadow: 0 0 0 var(--black); }
       .filter.active { background: var(--blue); color: white; }
 
+      .live-wire {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 10px 20px;
+        border-bottom: 2px solid var(--black);
+        background: var(--blue);
+        color: white;
+        font: 750 11px/1.3 "SFMono-Regular", Consolas, monospace;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+      .live-wire span { display: inline-flex; align-items: center; gap: 8px; }
+      .live-wire i { width: 8px; height: 8px; border-radius: 50%; background: var(--yellow); box-shadow: 0 0 0 4px rgba(244,200,75,0.2); animation: livePulse 1.6s ease-in-out infinite; }
+      .live-wire small { font: inherit; opacity: 0.7; }
+      @keyframes livePulse { 50% { opacity: 0.35; transform: scale(0.72); } }
+
       .section-label { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 20px; border-bottom: 2px solid var(--black); background: var(--yellow); font: 800 12px/1.2 "SFMono-Regular", Consolas, monospace; letter-spacing: 0.08em; text-transform: uppercase; }
       .ledger { display: grid; }
       .ticket {
@@ -155,6 +173,14 @@
       .pick { display: block; }
       .pick h2 { margin: 0 0 6px; font-size: 20px; line-height: 1.05; letter-spacing: -0.035em; text-wrap: balance; }
       .pick p { margin: 0; font-size: 12px; line-height: 1.35; opacity: 0.62; text-wrap: pretty; }
+      .trackline { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
+      .track-summary { width: 100%; margin-bottom: 1px; color: var(--blue); font: 750 10px/1.3 "SFMono-Regular", Consolas, monospace; letter-spacing: 0.02em; text-transform: uppercase; }
+      .leg { display: inline-flex; align-items: center; gap: 5px; padding: 4px 6px; background: #e4ddc9; color: var(--black); font: 700 9px/1 "SFMono-Regular", Consolas, monospace; text-transform: uppercase; white-space: nowrap; }
+      .leg::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: currentColor; opacity: 0.6; }
+      .leg.hit { background: var(--green); color: white; }
+      .leg.live { background: var(--yellow); color: var(--black); }
+      .leg.miss { background: var(--red); color: white; }
+      .leg.loading { opacity: 0.55; }
       .data { flex-direction: column; align-items: flex-start; justify-content: center; gap: 6px; font-family: "SFMono-Regular", Consolas, monospace; }
       .data small { font-size: 9px; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; opacity: 0.55; }
       .data b { font-size: 17px; letter-spacing: -0.04em; }
@@ -166,6 +192,8 @@
       .ticket.mezzatore .num { background: var(--blue); }
       .ticket.mezzatore .status { background: var(--yellow); color: var(--black); }
       .ticket.mezzatore .pick h2 { color: var(--yellow); font-size: 24px; }
+      .ticket.mezzatore .track-summary { color: var(--yellow); }
+      .ticket.mezzatore .leg { border: 1px solid rgba(255,255,255,0.18); }
       .ticket.mezzatore .open:hover { background: var(--yellow); color: var(--black); }
 
       .empty { display: none; padding: 64px 20px; border-bottom: 2px solid var(--black); background: var(--paper2); text-align: center; font: 700 14px/1.4 "SFMono-Regular", Consolas, monospace; }
@@ -202,6 +230,8 @@
         .open::before { content: "OPEN ON FANDUEL "; margin-right: 7px; font-size: 10px; letter-spacing: 0.06em; }
         .num { grid-row: 1 / span 2; }
         .ticket.mezzatore .pick h2 { font-size: 20px; }
+        .live-wire { align-items: flex-start; padding: 10px 12px; }
+        .live-wire small { max-width: 45%; text-align: right; }
         footer { flex-direction: column; gap: 6px; }
       }
       @media (prefers-reduced-motion: reduce) {
@@ -244,50 +274,145 @@
         <button class="filter" data-filter="mezzatore">Mezzatores</button>
       </nav>
 
+      <div class="live-wire" aria-live="polite">
+        <span><i></i><b id="liveSummary">Connecting live wire</b></span>
+        <small id="liveSource">Scores refresh every 45 seconds</small>
+      </div>
+
       <div class="section-label"><span>Placed 11:31 to 11:41 ET</span><span>Tap ↗ for FanDuel</span></div>
       <section id="ledger" class="ledger" aria-live="polite"></section>
       <div id="empty" class="empty">No tickets in this window.</div>
 
       <footer>
-        <p>21+ · Entertainment only · Wagers already placed</p>
-        <p>1 800 MY RESET · <span id="refreshed">status loaded</span></p>
+        <p>21+ · Entertainment only · Wagers already placed · Live grading is unofficial</p>
+        <p>1 800 MY RESET · <span id="refreshed">connecting</span></p>
       </footer>
     </main>
 
     <script>
       const tickets = [
-        {sport:'Soccer',title:'Manchester United SGP',detail:'Bruno score or assist · Bruno SOT · Mbeumo SOT · Enciso 2+ shots',odds:'+261',stake:10,profit:26.10,start:'2026-08-30T11:30:00-04:00',end:'2026-08-30T13:35:00-04:00',url:'https://sportsbook.fanduel.com/soccer/english-premier-league/man-utd-v-ipswich-35971122',type:'parlay'},
-        {sport:'Golf',title:'Adam Scott · Top 5',detail:'Tour Championship',odds:'+100',stake:25,profit:25,start:'2026-08-30T05:50:00-04:00',end:'2026-08-30T18:30:00-04:00',url:'https://sportsbook.fanduel.com/navigation/pga?tab=finishing-positions',type:'straight'},
-        {sport:'Golf',title:'Ryan Gerard · Win',detail:'Tour Championship outright',odds:'+390',stake:10,profit:39,start:'2026-08-30T05:50:00-04:00',end:'2026-08-30T18:30:00-04:00',url:'https://sportsbook.fanduel.com/navigation/pga',type:'straight'},
-        {sport:'MLB',title:'Willson Contreras · HR',detail:'Red Sox at Yankees',odds:'+370',stake:15,profit:55.50,start:'2026-08-30T13:36:00-04:00',end:'2026-08-30T17:30:00-04:00',url:'https://sportsbook.fanduel.com/baseball/mlb/boston-red-sox-@-new-york-yankees-35997377',type:'straight'},
-        {sport:'MLB',title:'Ronald Acuna Jr. · HR',detail:'Rockies at Braves',odds:'+420',stake:10,profit:42,start:'2026-08-30T13:36:00-04:00',end:'2026-08-30T17:30:00-04:00',url:'https://sportsbook.fanduel.com/baseball/mlb/colorado-rockies-@-atlanta-braves-35997381',type:'straight'},
-        {sport:'MLB',title:'Matt Olson · HR',detail:'Rockies at Braves',odds:'+310',stake:10,profit:31,start:'2026-08-30T13:36:00-04:00',end:'2026-08-30T17:30:00-04:00',url:'https://sportsbook.fanduel.com/baseball/mlb/colorado-rockies-@-atlanta-braves-35997381',type:'straight'},
-        {sport:'MLB',title:'Acuna + Olson · both HR',detail:'Atlanta two leg SGP',odds:'+1526',stake:5,profit:76.31,start:'2026-08-30T13:36:00-04:00',end:'2026-08-30T17:30:00-04:00',url:'https://sportsbook.fanduel.com/baseball/mlb/colorado-rockies-@-atlanta-braves-35997381',type:'parlay'},
-        {sport:'US Open',title:'Cameron Norrie · ML',detail:'vs. Luca Van Assche',odds:'-230',stake:20,profit:8.70,start:'2026-08-30T12:10:00-04:00',end:'2026-08-30T16:10:00-04:00',url:'https://sportsbook.fanduel.com/tennis/men%27s-us-open-2026/luca-van-assche-v-cameron-norrie-35991686',type:'straight'},
-        {sport:'US Open',title:'Norrie + Paul + Medvedev',detail:'Three leg moneyline parlay',odds:'-121',stake:10,profit:8.29,start:'2026-08-30T12:10:00-04:00',end:'2026-08-30T17:10:00-04:00',url:'https://sportsbook.fanduel.com/tennis',type:'parlay'},
-        {sport:'MLB',title:'Contreras + Acuna · both HR',detail:'Two games · two bombs',odds:'+2292',stake:15,profit:343.80,start:'2026-08-30T13:36:00-04:00',end:'2026-08-30T17:30:00-04:00',url:'https://sportsbook.fanduel.com/navigation/mlb',type:'parlay'},
-        {sport:'MLB',title:'Acuna + Olson + Goodman · HR',detail:'Atlanta three HR SGP',odds:'+6841',stake:10,profit:684.17,start:'2026-08-30T13:36:00-04:00',end:'2026-08-30T17:30:00-04:00',url:'https://sportsbook.fanduel.com/baseball/mlb/colorado-rockies-@-atlanta-braves-35997381',type:'parlay'},
-        {sport:'MLB',title:'The Cal Mezzatore',detail:'Acuna · Olson · Goodman · Contreras · Cal Raleigh · all HR',odds:'+113258',stake:10,profit:11325.87,start:'2026-08-30T13:36:00-04:00',end:'2026-08-30T17:45:00-04:00',url:'https://sportsbook.fanduel.com/baseball/mlb/seattle-mariners-@-toronto-blue-jays-35997379',type:'mezzatore'},
-        {sport:'MLB',title:'The Julio Mezzatore',detail:'Acuna · Olson · Goodman · Contreras · Julio Rodriguez · all HR',odds:'+169139',stake:10,profit:16913.97,start:'2026-08-30T13:36:00-04:00',end:'2026-08-30T17:45:00-04:00',url:'https://sportsbook.fanduel.com/baseball/mlb/seattle-mariners-@-toronto-blue-jays-35997379',type:'mezzatore'}
+        {sport:'Soccer',title:'Manchester United SGP',detail:'Bruno score or assist · Bruno SOT · Mbeumo SOT · Enciso 2+ shots',odds:'+261',stake:10,profit:26.10,start:'2026-08-30T11:30:00-04:00',end:'2026-08-30T13:35:00-04:00',url:'https://sportsbook.fanduel.com/soccer/english-premier-league/man-utd-v-ipswich-35971122',type:'parlay',tracking:{kind:'soccer',eventId:'401879293',legs:[['Bruno G/A','Bruno Fernandes','goalOrAssist',1],['Bruno SOT','Bruno Fernandes','shotsOnTarget',1],['Mbeumo SOT','Bryan Mbeumo','shotsOnTarget',1],['Enciso shots','Julio Enciso','totalShots',2]]}},
+        {sport:'Golf',title:'Adam Scott · Top 5',detail:'Tour Championship',odds:'+100',stake:25,profit:25,start:'2026-08-30T05:50:00-04:00',end:'2026-08-30T18:30:00-04:00',url:'https://sportsbook.fanduel.com/navigation/pga?tab=finishing-positions',type:'straight',tracking:{kind:'golf',eventId:'401811964',player:'Adam Scott',threshold:5,label:'Top 5'}},
+        {sport:'Golf',title:'Ryan Gerard · Win',detail:'Tour Championship outright',odds:'+390',stake:10,profit:39,start:'2026-08-30T05:50:00-04:00',end:'2026-08-30T18:30:00-04:00',url:'https://sportsbook.fanduel.com/navigation/pga',type:'straight',tracking:{kind:'golf',eventId:'401811964',player:'Ryan Gerard',threshold:1,label:'Win'}},
+        {sport:'MLB',title:'Willson Contreras · HR',detail:'Red Sox at Yankees',odds:'+370',stake:15,profit:55.50,start:'2026-08-30T13:36:00-04:00',end:'2026-08-30T17:30:00-04:00',url:'https://sportsbook.fanduel.com/baseball/mlb/boston-red-sox-@-new-york-yankees-35997377',type:'straight',tracking:{kind:'mlb',legs:[['Contreras','401816732','Willson Contreras']]}},
+        {sport:'MLB',title:'Ronald Acuna Jr. · HR',detail:'Rockies at Braves',odds:'+420',stake:10,profit:42,start:'2026-08-30T13:36:00-04:00',end:'2026-08-30T17:30:00-04:00',url:'https://sportsbook.fanduel.com/baseball/mlb/colorado-rockies-@-atlanta-braves-35997381',type:'straight',tracking:{kind:'mlb',legs:[['Acuna','401816733','Ronald Acuna Jr.']]}},
+        {sport:'MLB',title:'Matt Olson · HR',detail:'Rockies at Braves',odds:'+310',stake:10,profit:31,start:'2026-08-30T13:36:00-04:00',end:'2026-08-30T17:30:00-04:00',url:'https://sportsbook.fanduel.com/baseball/mlb/colorado-rockies-@-atlanta-braves-35997381',type:'straight',tracking:{kind:'mlb',legs:[['Olson','401816733','Matt Olson']]}},
+        {sport:'MLB',title:'Acuna + Olson · both HR',detail:'Atlanta two leg SGP',odds:'+1526',stake:5,profit:76.31,start:'2026-08-30T13:36:00-04:00',end:'2026-08-30T17:30:00-04:00',url:'https://sportsbook.fanduel.com/baseball/mlb/colorado-rockies-@-atlanta-braves-35997381',type:'parlay',tracking:{kind:'mlb',legs:[['Acuna','401816733','Ronald Acuna Jr.'],['Olson','401816733','Matt Olson']]}},
+        {sport:'US Open',title:'Cameron Norrie · ML',detail:'vs. Luca Van Assche',odds:'-230',stake:20,profit:8.70,start:'2026-08-30T12:30:00-04:00',end:'2026-08-30T16:10:00-04:00',url:'https://sportsbook.fanduel.com/tennis/men%27s-us-open-2026/luca-van-assche-v-cameron-norrie-35991686',type:'straight',tracking:{kind:'tennis',legs:[['Norrie','182678','Cameron Norrie']]}},
+        {sport:'US Open',title:'Norrie + Paul + Medvedev',detail:'Three leg moneyline parlay',odds:'-121',stake:10,profit:8.29,start:'2026-08-30T12:30:00-04:00',end:'2026-08-30T17:10:00-04:00',url:'https://sportsbook.fanduel.com/tennis',type:'parlay',tracking:{kind:'tennis',legs:[['Norrie','182678','Cameron Norrie'],['Paul','182667','Tommy Paul'],['Medvedev','182733','Daniil Medvedev']]}},
+        {sport:'MLB',title:'Contreras + Acuna · both HR',detail:'Two games · two bombs',odds:'+2292',stake:15,profit:343.80,start:'2026-08-30T13:36:00-04:00',end:'2026-08-30T17:30:00-04:00',url:'https://sportsbook.fanduel.com/navigation/mlb',type:'parlay',tracking:{kind:'mlb',legs:[['Contreras','401816732','Willson Contreras'],['Acuna','401816733','Ronald Acuna Jr.']]}},
+        {sport:'MLB',title:'Acuna + Olson + Goodman · HR',detail:'Atlanta three HR SGP',odds:'+6841',stake:10,profit:684.17,start:'2026-08-30T13:36:00-04:00',end:'2026-08-30T17:30:00-04:00',url:'https://sportsbook.fanduel.com/baseball/mlb/colorado-rockies-@-atlanta-braves-35997381',type:'parlay',tracking:{kind:'mlb',legs:[['Acuna','401816733','Ronald Acuna Jr.'],['Olson','401816733','Matt Olson'],['Goodman','401816733','Hunter Goodman']]}},
+        {sport:'MLB',title:'The Cal Mezzatore',detail:'Acuna · Olson · Goodman · Contreras · Cal Raleigh · all HR',odds:'+113258',stake:10,profit:11325.87,start:'2026-08-30T13:36:00-04:00',end:'2026-08-30T17:45:00-04:00',url:'https://sportsbook.fanduel.com/baseball/mlb/seattle-mariners-@-toronto-blue-jays-35997379',type:'mezzatore',tracking:{kind:'mlb',legs:[['Acuna','401816733','Ronald Acuna Jr.'],['Olson','401816733','Matt Olson'],['Goodman','401816733','Hunter Goodman'],['Contreras','401816732','Willson Contreras'],['Cal','401816739','Cal Raleigh']]}},
+        {sport:'MLB',title:'The Julio Mezzatore',detail:'Acuna · Olson · Goodman · Contreras · Julio Rodriguez · all HR',odds:'+169139',stake:10,profit:16913.97,start:'2026-08-30T13:36:00-04:00',end:'2026-08-30T17:45:00-04:00',url:'https://sportsbook.fanduel.com/baseball/mlb/seattle-mariners-@-toronto-blue-jays-35997379',type:'mezzatore',tracking:{kind:'mlb',legs:[['Acuna','401816733','Ronald Acuna Jr.'],['Olson','401816733','Matt Olson'],['Goodman','401816733','Hunter Goodman'],['Contreras','401816732','Willson Contreras'],['Julio','401816739','Julio Rodriguez']]}}
       ];
 
       let active = 'all';
       const ledger = document.getElementById('ledger');
       const empty = document.getElementById('empty');
+      const feed = {events:new Map(),soccerStats:new Map(),golfPlayers:new Map(),tennisMatches:new Map(),baseballHomeRuns:new Map(),updatedAt:null,error:false,loading:true};
+      const endpoints = {
+        mlb:'https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard?dates=20260830',
+        soccer:'https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard?dates=20260830',
+        tennis:'https://site.api.espn.com/apis/site/v2/sports/tennis/atp/scoreboard?dates=20260830',
+        golf:'https://site.api.espn.com/apis/site/v2/sports/golf/pga/scoreboard?dates=20260830'
+      };
       const money = value => new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',minimumFractionDigits:value % 1 === 0 ? 0 : 2}).format(value);
-      const statusFor = (ticket, now) => now < new Date(ticket.start) ? 'upcoming' : now <= new Date(ticket.end) ? 'live' : 'closed';
       const timeFor = value => new Intl.DateTimeFormat('en-US',{hour:'numeric',minute:'2-digit',timeZone:'America/New_York'}).format(new Date(value));
+      const cleanName = value => value.normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]/gi,'').toLowerCase();
+      const lastName = value => value.split(' ').at(-1).replace('Jr.','');
+      const eventState = eventId => feed.events.get(eventId)?.status?.type?.state;
+      const fallbackStatus = (ticket,now) => now < new Date(ticket.start) ? 'upcoming' : now <= new Date(ticket.end) ? 'live' : 'closed';
+      const stateToStatus = state => state === 'in' ? 'live' : state === 'post' ? 'closed' : state === 'pre' ? 'upcoming' : null;
+      const aggregateStatus = (states,ticket,now) => states.includes('in') ? 'live' : states.length && states.every(state => state === 'post') ? 'closed' : states.includes('pre') ? 'upcoming' : fallbackStatus(ticket,now);
+      const pill = (label,value,state='pending') => `<span class="leg ${state}">${label} ${value}</span>`;
+
+      function eventScore(event) {
+        if (!event?.competitions?.[0]) return '';
+        const competition = event.competitions[0];
+        const home = competition.competitors?.find(item => item.homeAway === 'home');
+        const away = competition.competitors?.find(item => item.homeAway === 'away');
+        if (!home || !away) return competition.status?.type?.shortDetail || '';
+        return `${away.team?.abbreviation || away.team?.shortDisplayName} ${away.score || 0} · ${home.team?.abbreviation || home.team?.shortDisplayName} ${home.score || 0} · ${competition.status?.type?.shortDetail || ''}`;
+      }
+
+      function trackedView(ticket,now) {
+        const tracking = ticket.tracking;
+        if (!tracking || feed.loading) return {status:fallbackStatus(ticket,now),summary:'Live data connecting',html:pill('Tracker','loading','loading')};
+
+        if (tracking.kind === 'soccer') {
+          const event = feed.events.get(tracking.eventId);
+          const state = event?.status?.type?.state;
+          const stats = feed.soccerStats;
+          const legs = tracking.legs.map(([label,player,stat,threshold]) => {
+            const playerStats = stats.get(cleanName(player));
+            let value = playerStats?.[stat];
+            if (stat === 'goalOrAssist' && playerStats) value = (playerStats.totalGoals || 0) + (playerStats.goalAssists || 0);
+            if (value === undefined) return pill(label,'—','loading');
+            const hit = value >= threshold;
+            const legState = hit ? 'hit' : state === 'post' ? 'miss' : state === 'in' ? 'live' : 'pending';
+            return pill(label,`${value}/${threshold}`,legState);
+          }).join('');
+          return {status:stateToStatus(state) || fallbackStatus(ticket,now),summary:eventScore(event) || 'Manchester United vs. Ipswich',html:legs};
+        }
+
+        if (tracking.kind === 'golf') {
+          const event = feed.events.get(tracking.eventId);
+          const player = feed.golfPlayers.get(cleanName(tracking.player));
+          const state = event?.status?.type?.state;
+          if (!player) return {status:stateToStatus(state) || fallbackStatus(ticket,now),summary:'Tour Championship',html:pill(tracking.label,'—','loading')};
+          const hit = player.order <= tracking.threshold;
+          const legState = state === 'post' ? (hit ? 'hit' : 'miss') : state === 'in' ? 'live' : 'pending';
+          return {status:stateToStatus(state) || fallbackStatus(ticket,now),summary:`Round ${event?.status?.period || 4} · ${player.athlete.displayName} T${player.order} at ${player.score}`,html:pill(tracking.label,`T${player.order}`,legState)};
+        }
+
+        if (tracking.kind === 'tennis') {
+          const states = [];
+          const legs = tracking.legs.map(([label,competitionId,playerName]) => {
+            const match = feed.tennisMatches.get(competitionId);
+            const state = match?.status?.type?.state;
+            if (state) states.push(state);
+            const player = match?.competitors?.find(item => cleanName(item.athlete?.displayName || '') === cleanName(playerName));
+            if (!match || !player) return pill(label,'—','loading');
+            const sets = player.linescores?.map(set => set.value).join('–');
+            if (state === 'post') return pill(label,player.winner ? 'won' : 'lost',player.winner ? 'hit' : 'miss');
+            if (state === 'in') return pill(label,sets || 'live','live');
+            return pill(label,timeFor(match.date),'pending');
+          }).join('');
+          return {status:aggregateStatus(states,ticket,now),summary:'US Open · match status from court',html:legs};
+        }
+
+        if (tracking.kind === 'mlb') {
+          const states = [];
+          const gameLabels = new Set();
+          const legs = tracking.legs.map(([label,eventId,playerName]) => {
+            const event = feed.events.get(eventId);
+            const state = event?.status?.type?.state;
+            if (state) states.push(state);
+            if (event) gameLabels.add(eventScore(event));
+            const homered = feed.baseballHomeRuns.get(`${eventId}:${cleanName(playerName)}`) === true;
+            if (homered) return pill(label,'HR ✓','hit');
+            if (state === 'post') return pill(label,'no HR','miss');
+            if (state === 'in') return pill(label,'0 HR','live');
+            return pill(label,event ? timeFor(event.date) : '—',event ? 'pending' : 'loading');
+          }).join('');
+          const summary = [...gameLabels].filter(Boolean).join(' · ') || 'MLB home run watch';
+          return {status:aggregateStatus(states,ticket,now),summary,html:legs};
+        }
+
+        return {status:fallbackStatus(ticket,now),summary:'Live tracker',html:pill('Tracker','unavailable','loading')};
+      }
 
       function render() {
         const now = new Date();
-        const visible = tickets.filter(ticket => active === 'all' || (active === 'mezzatore' ? ticket.type === 'mezzatore' : statusFor(ticket,now) === active));
-        ledger.innerHTML = visible.map((ticket,index) => {
-          const status = statusFor(ticket,now);
+        const decorated = tickets.map((ticket,index) => ({ticket,index,view:trackedView(ticket,now)}));
+        const visible = decorated.filter(({ticket,view}) => active === 'all' || (active === 'mezzatore' ? ticket.type === 'mezzatore' : view.status === active));
+        ledger.innerHTML = visible.map(({ticket,index,view}) => {
+          const status = view.status;
           const label = status === 'live' ? 'In play' : status === 'upcoming' ? timeFor(ticket.start) : 'Closed';
           return `<article class="ticket ${ticket.type}">
             <div class="num">${String(index + 1).padStart(2,'0')}</div>
             <div class="game"><span>${ticket.sport}</span><span class="status ${status}">${label}</span></div>
-            <div class="pick"><h2>${ticket.title}</h2><p>${ticket.detail}</p></div>
+            <div class="pick"><h2>${ticket.title}</h2><p>${ticket.detail}</p><div class="trackline"><span class="track-summary">${view.summary}</span>${view.html}</div></div>
             <div class="data odds"><small>Odds</small><b>${ticket.odds}</b></div>
             <div class="data risk"><small>Risk</small><b>${money(ticket.stake)}</b></div>
             <div class="data profit"><small>Profit</small><b>${money(ticket.profit)}</b></div>
@@ -295,7 +420,77 @@
           </article>`;
         }).join('');
         empty.style.display = visible.length ? 'none' : 'block';
-        document.getElementById('refreshed').textContent = `status ${timeFor(now.toISOString())} ET`;
+        const liveCount = decorated.filter(item => item.view.status === 'live').length;
+        const nextCount = decorated.filter(item => item.view.status === 'upcoming').length;
+        document.getElementById('liveSummary').textContent = feed.error ? 'Live wire interrupted · schedule fallback active' : `${liveCount} tickets in play · ${nextCount} waiting`;
+        document.getElementById('liveSource').textContent = feed.error ? 'Retrying in 45 seconds' : 'Unofficial live data via ESPN';
+        document.getElementById('refreshed').textContent = feed.updatedAt ? `live ${timeFor(feed.updatedAt)} ET` : 'connecting';
+      }
+
+      function collectPlayerStats(payload) {
+        const found = new Map();
+        const walk = value => {
+          if (!value || typeof value !== 'object') return;
+          if (value.athlete?.displayName && Array.isArray(value.stats) && value.stats.some(stat => stat && typeof stat === 'object' && stat.name)) {
+            const stats = Object.fromEntries(value.stats.map(stat => [stat.name,Number(stat.value || 0)]));
+            found.set(cleanName(value.athlete.displayName),stats);
+          }
+          Object.values(value).forEach(child => walk(child));
+        };
+        walk(payload);
+        return found;
+      }
+
+      function playerHomered(payload,playerName) {
+        const target = cleanName(playerName);
+        const playText = (payload.plays || []).map(play => play.text || play.shortText || play.type?.text || '').join(' ');
+        if (cleanName(playText).includes(target) && /home run|homers/i.test(playText)) return true;
+        for (const team of payload.boxscore?.players || []) {
+          for (const table of team.statistics || []) {
+            const hrIndex = (table.labels || []).indexOf('HR');
+            if (hrIndex < 0) continue;
+            const athlete = table.athletes?.find(item => cleanName(item.athlete?.displayName || '') === target);
+            if (athlete && Number(athlete.stats?.[hrIndex] || 0) > 0) return true;
+          }
+        }
+        return false;
+      }
+
+      async function refreshLiveData() {
+        try {
+          const [mlb,soccer,tennis,golf] = await Promise.all(Object.values(endpoints).map(url => fetch(url,{cache:'no-store'}).then(response => {
+            if (!response.ok) throw new Error(`Live feed ${response.status}`);
+            return response.json();
+          })));
+          feed.events.clear();
+          [...(mlb.events || []),...(soccer.events || []),...(golf.events || [])].forEach(event => feed.events.set(event.id,event));
+          feed.golfPlayers.clear();
+          golf.events?.[0]?.competitions?.[0]?.competitors?.forEach(player => feed.golfPlayers.set(cleanName(player.athlete?.displayName || ''),player));
+          feed.tennisMatches.clear();
+          tennis.events?.[0]?.groupings?.forEach(group => group.competitions?.forEach(match => feed.tennisMatches.set(match.id,match)));
+
+          const detailRequests = [];
+          const soccerEvent = feed.events.get('401879293');
+          if (['in','post'].includes(soccerEvent?.status?.type?.state)) {
+            detailRequests.push(fetch('https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/summary?event=401879293',{cache:'no-store'}).then(response => response.json()).then(payload => { feed.soccerStats = collectPlayerStats(payload); }));
+          }
+          const mlbEvents = ['401816732','401816733','401816739'];
+          mlbEvents.forEach(eventId => {
+            if (!['in','post'].includes(eventState(eventId))) return;
+            detailRequests.push(fetch(`https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/summary?event=${eventId}`,{cache:'no-store'}).then(response => response.json()).then(payload => {
+              tickets.flatMap(ticket => ticket.tracking?.kind === 'mlb' ? ticket.tracking.legs : []).filter(leg => leg[1] === eventId).forEach(([,id,player]) => feed.baseballHomeRuns.set(`${id}:${cleanName(player)}`,playerHomered(payload,player)));
+            }));
+          });
+          await Promise.all(detailRequests);
+          feed.updatedAt = new Date().toISOString();
+          feed.error = false;
+        } catch (error) {
+          console.warn('Live tracker refresh failed',error);
+          feed.error = true;
+        } finally {
+          feed.loading = false;
+          render();
+        }
       }
 
       document.querySelectorAll('.filter').forEach(button => button.addEventListener('click',() => {
@@ -304,7 +499,8 @@
         render();
       }));
       render();
-      setInterval(render,60000);
+      refreshLiveData();
+      setInterval(refreshLiveData,45000);
     </script>
   </body>
 </html>
