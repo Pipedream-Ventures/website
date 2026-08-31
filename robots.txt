@@ -8,8 +8,10 @@ Disallow: /logo-concepts.html
 Disallow: /logo-final.html
 Disallow: /logo-refined.html
 
-# Allow index, privacy, terms
+# Allow public company pages
 Allow: /index.html
+Allow: /about.html
+Allow: /contact.html
 Allow: /privacy.html
 Allow: /terms.html
 
