@@ -4,19 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5f0e6">
-  <title>Pipedream Ventures | We build products</title>
+  <title>Pipedream Ventures | We build things</title>
   <meta name="description" content="Pipedream Ventures builds and operates software products.">
   <link rel="canonical" href="https://pipedream.ventures/">
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="Pipedream Ventures LLC">
-  <meta property="og:description" content="We build products.">
+  <meta property="og:description" content="We build things.">
   <meta property="og:image" content="https://pipedream.ventures/pv-logo-512.png">
   <meta property="og:url" content="https://pipedream.ventures/">
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Pipedream Ventures LLC">
-  <meta name="twitter:description" content="We build products.">
+  <meta name="twitter:description" content="We build things.">
   <meta name="twitter:image" content="https://pipedream.ventures/pv-logo-512.png">
 
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -189,27 +189,37 @@
       letter-spacing: -0.05em;
     }
 
-    .primary-link {
-      display: inline-block;
+    .products {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.75rem;
       margin-top: 2rem;
-      padding: 0.5rem 0.75rem;
-      border: 2px solid var(--charcoal);
-      border-radius: 6px;
-      background: var(--charcoal);
-      color: var(--cream);
-      font-size: 1rem;
-      font-weight: 700;
+    }
+
+    .product-link {
+      display: grid;
+      gap: 0.25rem;
+      padding: 0.75rem;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.28);
+      font-size: 0.875rem;
       text-decoration: none;
       transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 320ms cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    .primary-link:hover {
+    .product-link:hover {
       box-shadow: 0 8px 20px rgba(45, 45, 45, 0.18);
       transform: translateY(-2px);
     }
 
-    .primary-link:active {
+    .product-link:active {
       transform: translateY(1px);
+    }
+
+    .product-link span {
+      color: var(--muted);
+      font-size: 0.75rem;
     }
 
     .polaroid {
@@ -313,7 +323,7 @@
         font-size: 2.25rem;
       }
 
-      .primary-link {
+      .products {
         margin-top: 1rem;
       }
 
@@ -336,7 +346,7 @@
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       .border-snake::before { animation: none; }
-      .primary-link { transition: none; }
+      .product-link { transition: none; }
     }
   </style>
 </head>
@@ -358,8 +368,17 @@
   <main id="main">
     <section class="hero" aria-labelledby="hero-heading">
       <div>
-        <h1 id="hero-heading">We build products.</h1>
-        <a class="primary-link" href="/products.html">Our products</a>
+        <h1 id="hero-heading">We build things.</h1>
+        <div class="products" aria-label="Products">
+          <a class="product-link" href="https://frontporch.house/">
+            <strong>Front Porch</strong>
+            <span>Real estate help over text.</span>
+          </a>
+          <a class="product-link" href="https://cancelpmi.app/">
+            <strong>CancelPMI</strong>
+            <span>Help removing PMI.</span>
+          </a>
+        </div>
       </div>
 
       <div class="polaroid" aria-label="Pipedream Ventures logo">
