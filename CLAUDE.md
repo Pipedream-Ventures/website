@@ -1,58 +1,22 @@
-# CLAUDE.md
+# Pipedream Ventures website
 
-This file provides guidance to Claude Code when working with this repository.
-
-## Project Overview
-
-Pipedream Ventures website — simple static site for the holding company.
-
-**Live URL:** https://pipedream.ventures
-
-## Hosting
-
-- **Platform:** Render (Static Site)
-- **Service ID:** `srv-d60ildq4d50c73cr0ngg`
-- **Workspace:** Pipedream Ventures (`tea-d60ijm4oud1c7395o3a0`)
-- **Auto-deploy:** Yes, triggers on commit to `main`
-- **Publish directory:** Root (`.`)
-
-### Deploy Commands
-
-```bash
-# Switch to Pipedream workspace
-render workspace set tea-d60ijm4oud1c7395o3a0 -o json
-
-# Trigger manual deploy
-render deploys create srv-d60ildq4d50c73cr0ngg --confirm -o json
-
-# Check deploy status
-render deploys list srv-d60ildq4d50c73cr0ngg -o json
-```
+Static holding-company site at https://pipedream.ventures. Render owns current
+deployment configuration and status; verify it there before a manual deploy.
 
 ## Structure
 
-```
-/
-├── index.html              # Main landing page
-├── privacy.html            # Privacy policy
-├── terms.html              # Terms of service
-├── robots.txt              # Crawler rules (blocks /work/ and /scratch/)
-├── favicon.svg
-├── logo.svg
-├── work/                   # Client deliverables (private)
-│   └── swyped/
-│       └── reports/        # Swyped API reports
-└── scratch/                # Unlisted one-off pages and experiments
-```
+- `index.html`, `privacy.html`, `terms.html`: public pages
+- `work/`: private client deliverables
+- `scratch/`: unlisted experiments
 
 ## SEO / Robots
 
 - Only `/index.html`, `/privacy.html`, and `/terms.html` are crawlable
 - `/work/` is blocked in robots.txt
 - `/scratch/` is blocked in robots.txt
-- Every `/scratch/**/index.html` must include complete Open Graph and X card
-  metadata with an absolute `pipedream.ventures` image URL. Run
-  `python scripts/validate-share-pages.py` before publishing.
+- Every `/scratch/**/index.html` needs complete Open Graph and X card metadata
+  with an absolute `pipedream.ventures` image URL. Validate changed pages with
+  `python scripts/validate-share-pages.py`.
 - All client reports have `noindex, nofollow` meta tags
 
 ## Client Reports
@@ -61,9 +25,3 @@ Client reports live in `/work/<client>/reports/`. Each report should have:
 - `noindex, nofollow` meta tag
 - Open Graph tags for Slack/social previews
 - Date-based naming: `api-2026-02-04.html`
-
-### Current Reports
-
-| Client | Report | URL |
-|--------|--------|-----|
-| Swyped | API Report (Feb 4, 2026) | `/work/swyped/reports/api-2026-02-04.html` |
