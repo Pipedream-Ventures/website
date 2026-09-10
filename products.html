@@ -19,7 +19,8 @@
     .product { padding: 2rem 0; border-top: 1px solid #d9d3c8; }
     h2 { margin-bottom: 0.75rem; font-size: 1.125rem; }
     p { margin-bottom: 1rem; color: #555; font-size: 0.875rem; text-wrap: pretty; }
-    a { color: #2563a8; text-underline-offset: 0.25rem; }
+    a { color: #2563a8; cursor: pointer; text-underline-offset: 0.25rem; }
+    a:hover { color: #2d2d2d; }
     a:focus-visible { outline: 3px solid #4a90d9; outline-offset: 4px; }
     footer { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #d9d3c8; }
   </style>
@@ -27,7 +28,19 @@
 <body>
   <main>
     <a class="back-link" href="/">&larr; Back to home</a>
-    <h1>Products</h1>
+    <h1>Product directory</h1>
+
+    <article class="product">
+      <h2>Music House</h2>
+      <p>Make songs, beats, and music videos.</p>
+      <p><a href="https://musichouse.app/">Visit musichouse.app</a></p>
+    </article>
+
+    <article class="product">
+      <h2>Rapchat</h2>
+      <p>Record music. Find your people.</p>
+      <p><a href="https://rapchat.com/">Visit rapchat.com</a></p>
+    </article>
 
     <article class="product">
       <h2>Front Porch</h2>

@@ -82,7 +82,8 @@
     .spectrum { width: min(100%, 480px); max-height: 50svh; overflow: visible; animation: drift 12s ease-in-out infinite; }
     .products { padding-block: 1rem 2rem; }
     .section-label { display: flex; align-items: center; justify-content: space-between; padding-bottom: 1.1rem; font: .62rem var(--mono); letter-spacing: .09em; text-transform: uppercase; }
-    .section-label span { color: var(--muted); }
+    .section-label a { color: var(--muted); text-decoration: underline; text-underline-offset: 4px; }
+    .section-label a:hover { color: var(--ink); }
     .product-link { position: relative; display: grid; grid-template-columns: 3.5rem 1fr 1fr 2rem; align-items: center; gap: 1rem; min-height: 90px; border-top: 1px solid var(--line); }
     .product-teaser { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 1.4rem; border-block: 1px solid var(--line); color: var(--muted); font-size: .8rem; }
     .teaser-status { flex-shrink: 0; font: .58rem var(--mono); letter-spacing: .06em; text-transform: uppercase; }
@@ -147,7 +148,7 @@
     <nav aria-label="Primary navigation">
       <ul>
         <li><a href="/about.html">About</a></li>
-        <li><a href="#products">Products</a></li>
+        <li><a href="/products.html">Products</a></li>
         <li><a href="/contact.html">Contact</a></li>
       </ul>
     </nav>
@@ -193,7 +194,7 @@
     </section>
 
     <section class="products" id="products" aria-labelledby="products-heading">
-      <h2 class="section-label" id="products-heading">Our products <span>01 / 02</span></h2>
+      <div class="section-label"><h2 id="products-heading" style="font: inherit;">Featured products</h2><a href="/products.html">All products ↗</a></div>
       <a class="product-link" href="https://rapchat.com/">
         <span class="product-number" aria-hidden="true">01</span>
         <span class="product-name">Rapchat</span>
@@ -224,7 +225,7 @@
     </div>
     <ul class="footer-links">
       <li><a href="/about.html">About</a></li>
-      <li><a href="#products">Products</a></li>
+      <li><a href="/products.html">Products</a></li>
       <li><a href="/contact.html">Contact</a></li>
       <li><a href="/privacy.html">Privacy</a></li>
       <li><a href="/terms.html">Terms</a></li>
