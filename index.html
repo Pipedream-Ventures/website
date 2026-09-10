@@ -84,7 +84,8 @@
     .section-label { display: flex; align-items: center; justify-content: space-between; padding-bottom: 1.1rem; font: .62rem var(--mono); letter-spacing: .09em; text-transform: uppercase; }
     .section-label span { color: var(--muted); }
     .product-link { position: relative; display: grid; grid-template-columns: 3.5rem 1fr 1fr 2rem; align-items: center; gap: 1rem; min-height: 90px; border-top: 1px solid var(--line); }
-    .product-link:last-child { border-bottom: 1px solid var(--line); }
+    .product-teaser { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 1.4rem; border-block: 1px solid var(--line); color: var(--muted); font-size: .8rem; }
+    .teaser-status { flex-shrink: 0; font: .58rem var(--mono); letter-spacing: .06em; text-transform: uppercase; }
     .product-number { color: var(--muted); font: .6rem var(--mono); }
     .product-name { font-size: clamp(1.65rem, 2.8vw, 2.7rem); font-weight: 500; letter-spacing: -.055em; transition: transform .3s ease; }
     .product-description { color: var(--muted); font-size: .83rem; }
@@ -193,18 +194,22 @@
 
     <section class="products" id="products" aria-labelledby="products-heading">
       <h2 class="section-label" id="products-heading">Our products <span>01 / 02</span></h2>
-      <a class="product-link" href="https://frontporch.house/">
+      <a class="product-link" href="https://rapchat.com/">
         <span class="product-number" aria-hidden="true">01</span>
-        <span class="product-name">Front Porch</span>
-        <span class="product-description">Get help from a local real estate agent.</span>
+        <span class="product-name">Rapchat</span>
+        <span class="product-description">Record music. Find your people.</span>
         <svg class="product-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19L19 5M5 5h14v14" stroke="currentColor" stroke-width="1.5"/></svg>
       </a>
-      <a class="product-link" href="https://cancelpmi.app/">
+      <a class="product-link" href="https://musichouse.app/">
         <span class="product-number" aria-hidden="true">02</span>
-        <span class="product-name">CancelPMI</span>
-        <span class="product-description">Get help removing PMI.</span>
+        <span class="product-name">Music House</span>
+        <span class="product-description">Make songs, beats, and music videos.</span>
         <svg class="product-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19L19 5M5 5h14v14" stroke="currentColor" stroke-width="1.5"/></svg>
       </a>
+      <div class="product-teaser">
+        <span>One more pipedream is taking shape.</span>
+        <span class="teaser-status">Coming soon</span>
+      </div>
     </section>
   </main>
 
@@ -219,7 +224,7 @@
     </div>
     <ul class="footer-links">
       <li><a href="/about.html">About</a></li>
-      <li><a href="/products.html">Products</a></li>
+      <li><a href="#products">Products</a></li>
       <li><a href="/contact.html">Contact</a></li>
       <li><a href="/privacy.html">Privacy</a></li>
       <li><a href="/terms.html">Terms</a></li>
