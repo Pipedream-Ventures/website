@@ -22,7 +22,7 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
 
   <script type="application/ld+json">
   {
@@ -46,316 +46,105 @@
   <style>
     :root {
       --cream: #f5f0e6;
-      --charcoal: #2d2d2d;
-      --muted: #6f6c67;
-      --line: #d9d3c8;
-      --red: #e63939;
-      --orange: #f5a623;
-      --yellow: #f8e71c;
-      --green: #7ed321;
-      --blue: #4a90d9;
-      --violet: #9013fe;
-      --magenta: #bd10e0;
+      --ink: #292923;
+      --muted: #737269;
+      --line: #d7d3c7;
+      --mono: "Space Mono", monospace;
     }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { min-width: 320px; background: var(--cream); scroll-behavior: smooth; }
+    body { min-height: 100svh; color: var(--ink); font-family: "DM Sans", sans-serif; -webkit-font-smoothing: antialiased; }
+    body::before { content: ""; position: fixed; inset: 0 0 auto; height: 4px; background: linear-gradient(90deg, #ed5136, #f4a52c, #eccc38, #9ab74e, #5b9aaa, #7775b4, #b680b6); z-index: 5; }
+    ::selection { background: #e7e1a1; color: var(--ink); }
+    a { color: inherit; cursor: pointer; text-decoration: none; }
+    a:focus-visible { outline: 2px solid #406c9c; outline-offset: 6px; }
+    .skip-link { position: fixed; z-index: 10; top: 1rem; left: 1rem; padding: .75rem 1rem; background: var(--ink); color: var(--cream); transform: translateY(-200%); }
+    .skip-link:focus { transform: translateY(0); }
+    .site-header, main, footer { width: min(100% - 7rem, 1440px); margin-inline: auto; }
+    .site-header { display: flex; align-items: center; justify-content: space-between; gap: 2rem; padding-block: 2.25rem; }
+    .wordmark { display: flex; align-items: center; gap: .8rem; font-size: .85rem; font-weight: 700; letter-spacing: -.025em; }
+    .brand-mark { width: 25px; height: 25px; }
+    .wordmark:hover .brand-mark { transform: rotate(90deg); }
+    .brand-mark { transition: transform .4s ease; }
+    nav ul, footer ul { display: flex; flex-wrap: wrap; gap: 1.75rem; list-style: none; }
+    nav a { font-size: .8rem; }
+    nav a, footer a { text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 5px; transition: text-decoration-color .2s; }
+    nav a:hover, footer a:hover { text-decoration-color: currentColor; }
+    .hero { position: relative; display: grid; grid-template-columns: 1.2fr 1fr; align-items: center; min-height: clamp(400px, calc(100svh - 400px), 660px); padding-block: 2rem 2.5rem; }
+    .hero-copy { position: relative; z-index: 1; }
+    .eyebrow { display: flex; align-items: center; gap: .75rem; font: .62rem var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #68854b; }
+    h1 { margin-top: 2rem; font-size: clamp(4rem, 7.7vw, 7.75rem); font-weight: 500; line-height: .99; letter-spacing: -.075em; }
+    h1 span { display: block; white-space: nowrap; }
+    h1 em { font-family: Georgia, serif; font-weight: 400; letter-spacing: -.075em; }
+    .hero-note { margin-top: 2rem; font-size: .9rem; color: var(--muted); }
+    .artwork { position: relative; display: grid; place-items: center; align-self: stretch; min-width: 0; margin-left: -2rem; }
+    .spectrum { width: min(100%, 480px); max-height: 50svh; overflow: visible; animation: drift 12s ease-in-out infinite; }
+    .products { padding-block: 1rem 2rem; }
+    .section-label { display: flex; align-items: center; justify-content: space-between; padding-bottom: 1.1rem; font: .62rem var(--mono); letter-spacing: .09em; text-transform: uppercase; }
+    .section-label a { color: var(--muted); text-decoration: underline; text-underline-offset: 4px; }
+    .section-label a:hover { color: var(--ink); }
+    .product-link { position: relative; display: grid; grid-template-columns: 3.5rem 1fr 1fr 2rem; align-items: center; gap: 1rem; min-height: 90px; border-top: 1px solid var(--line); }
+    .product-teaser { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 1.4rem; border-block: 1px solid var(--line); color: var(--muted); font-size: .8rem; }
+    .teaser-status { flex-shrink: 0; font: .58rem var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+    .product-number { color: var(--muted); font: .6rem var(--mono); }
+    .product-name { font-size: clamp(1.65rem, 2.8vw, 2.7rem); font-weight: 500; letter-spacing: -.055em; transition: transform .3s ease; }
+    .product-description { color: var(--muted); font-size: .83rem; }
+    .product-arrow { width: 23px; height: 23px; transition: transform .3s ease; }
+    .product-link::after { content: ""; position: absolute; bottom: -1px; left: 0; width: 100%; height: 1px; background: var(--ink); transform: scaleX(0); transform-origin: left; transition: transform .4s ease; }
+    .product-link:hover .product-name { transform: translateX(8px); }
+    .product-link:hover .product-arrow { transform: translate(3px, -3px); }
+    .product-link:hover::after { transform: scaleX(1); }
+    .product-link:active .product-name { transform: translateX(4px); }
+    footer { display: grid; grid-template-columns: 1.4fr 1fr auto; gap: 2rem; padding-bottom: 2rem; color: var(--muted); font-size: .65rem; line-height: 1.8; }
+    footer strong { font-weight: 500; color: var(--ink); }
+    address { font-style: normal; }
+    footer ul { gap: 1rem; }
+    @keyframes drift { 0%, 100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-12px) rotate(2deg); } }
+    @media (max-width: 900px) {
+      .site-header, main, footer { width: calc(100% - 3.5rem); }
+      .hero { min-height: 520px; }
+      h1 { font-size: clamp(3.5rem, 8.4vw, 6rem); }
+      .product-link { grid-template-columns: 2rem 1fr 1.1fr 1.5rem; }
+      footer { grid-template-columns: 1.5fr 1fr; }
+      footer ul { grid-column: 1 / -1; }
     }
-
-    html {
-      min-width: 320px;
-      scroll-behavior: smooth;
-      background: var(--cream);
+    @media (max-width: 600px) {
+      .site-header, main, footer { width: calc(100% - 2.5rem); }
+      .site-header { padding-block: 1.5rem; gap: 1rem; }
+      .wordmark { gap: .45rem; font-size: .73rem; }
+      .brand-mark { width: 21px; height: 21px; }
+      nav ul { gap: 1rem; }
+      nav a { font-size: .7rem; }
+      nav li:first-child { display: none; }
+      .hero { grid-template-columns: 1fr; gap: .5rem; padding-block: 2.5rem 2rem; }
+      h1 { margin-top: 1.5rem; font-size: clamp(3.15rem, 12.3vw, 5rem); }
+      .eyebrow { font-size: .54rem; }
+      .hero-note { margin-top: 1.5rem; font-size: .8rem; }
+      .artwork { height: 280px; margin: 0; }
+      .spectrum { width: 285px; }
+      .products { padding-block: 1.25rem 2rem; }
+      .product-link { grid-template-columns: 1.5rem 1fr 1.5rem; gap: .15rem .75rem; min-height: 105px; padding-block: 1.25rem; }
+      .product-number { grid-row: 1 / 3; align-self: start; padding-top: .55rem; }
+      .product-name { font-size: 1.9rem; }
+      .product-description { grid-column: 2; grid-row: 2; font-size: .7rem; }
+      .product-arrow { grid-column: 3; grid-row: 1 / 3; width: 20px; }
+      footer { grid-template-columns: 1fr; gap: .9rem; font-size: .6rem; }
+      footer ul { gap: 1.25rem; margin-top: .25rem; }
     }
-
-    body {
-      display: grid;
-      grid-template-rows: auto minmax(0, 1fr) auto;
-      min-height: 100vh;
-      min-height: 100dvh;
-      background: var(--cream);
-      color: var(--charcoal);
-      font-family: "Space Mono", monospace;
-      line-height: 1.7;
-    }
-
-    a {
-      color: inherit;
-    }
-
-    a:focus-visible {
-      outline: 3px solid var(--blue);
-      outline-offset: 4px;
-    }
-
-    .skip-link {
-      position: fixed;
-      z-index: 10;
-      top: 1rem;
-      left: 1rem;
-      padding: 0.5rem 0.75rem;
-      background: var(--charcoal);
-      color: var(--cream);
-      transform: translateY(-200%);
-    }
-
-    .skip-link:focus {
-      transform: translateY(0);
-    }
-
-    .border-snake {
-      position: fixed;
-      z-index: 5;
-      inset: 0;
-      pointer-events: none;
-    }
-
-    .border-snake::before {
-      position: absolute;
-      border: 5px solid transparent;
-      inset: 0;
-      animation: border-snake 9s linear infinite;
-      background: linear-gradient(90deg, var(--red), var(--orange), var(--yellow), var(--green), var(--blue), var(--violet), var(--magenta), var(--red)) border-box;
-      background-size: 400% 100%;
-      content: "";
-      mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-      mask-composite: exclude;
-      -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-    }
-
-    .site-header,
-    main,
-    footer {
-      width: min(100% - 2rem, 68rem);
-      margin-inline: auto;
-    }
-
-    main {
-      display: grid;
-      min-height: 0;
-    }
-
-    .site-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1.5rem;
-      padding-block: 1.5rem;
-    }
-
-    .wordmark {
-      font-size: 0.875rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-decoration: none;
-      text-transform: uppercase;
-    }
-
-    nav ul,
-    footer ul {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem 1.5rem;
-      list-style: none;
-    }
-
-    nav a,
-    footer a {
-      font-size: 0.75rem;
-      text-underline-offset: 0.25rem;
-    }
-
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(15rem, 22rem);
-      align-items: center;
-      gap: 4rem;
-      min-height: 0;
-      padding-block: 2rem;
-    }
-
-    h1,
-    h2 {
-      text-wrap: balance;
-    }
-
-    h1 {
-      max-width: 42.5rem;
-      font-size: clamp(2.25rem, 7vw, 4.5rem);
-      line-height: 1;
-      letter-spacing: -0.05em;
-    }
-
-    .products {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 0.75rem;
-      margin-top: 2rem;
-    }
-
-    .product-link {
-      display: grid;
-      gap: 0.25rem;
-      padding: 0.75rem;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.28);
-      font-size: 0.875rem;
-      text-decoration: none;
-      transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 320ms cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    .product-link:hover {
-      box-shadow: 0 8px 20px rgba(45, 45, 45, 0.18);
-      transform: translateY(-2px);
-    }
-
-    .product-link:active {
-      transform: translateY(1px);
-    }
-
-    .product-link span {
-      color: var(--muted);
-      font-size: 0.75rem;
-    }
-
-    .polaroid {
-      width: 100%;
-      padding: 1rem 1rem 0;
-      overflow: hidden;
-      border-radius: 3px;
-      background: var(--charcoal);
-      box-shadow: 0 12px 36px rgba(45, 45, 45, 0.13);
-      transform: rotate(-0.7deg);
-    }
-
-    .window {
-      width: 100%;
-      aspect-ratio: 1;
-      background: linear-gradient(135deg, var(--red) 0% 14.28%, var(--orange) 14.28% 28.56%, var(--yellow) 28.56% 42.84%, var(--green) 42.84% 57.12%, var(--blue) 57.12% 71.4%, var(--violet) 71.4% 85.68%, var(--magenta) 85.68% 100%);
-    }
-
-    .tab {
-      display: grid;
-      min-height: 4rem;
-      place-items: center;
-      color: var(--cream);
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    address {
-      font-style: normal;
-    }
-
-    footer {
-      display: grid;
-      grid-template-columns: 1.5fr 1fr auto;
-      align-items: start;
-      gap: 1.5rem;
-      padding-block: 1.5rem;
-      border-top: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 0.75rem;
-      line-height: 1.6;
-    }
-
-    footer strong {
-      color: var(--charcoal);
-    }
-
-    .footer-links {
-      justify-content: flex-end;
-    }
-
-    @keyframes border-snake {
-      from { background-position: 0 0; }
-      to { background-position: 400% 0; }
-    }
-
-    @media (max-width: 760px) {
-      .site-header,
-      footer {
-        align-items: flex-start;
-      }
-
-      .hero {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-        padding-block: 1.5rem;
-      }
-
-      .polaroid {
-        width: min(100%, 14rem);
-      }
-
-      footer {
-        grid-template-columns: 1fr 1fr;
-        gap: 1rem;
-      }
-
-      .footer-links {
-        grid-column: 1 / -1;
-        justify-content: flex-start;
-      }
-    }
-
-    @media (max-width: 520px) {
-      .site-header {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 0.75rem;
-        padding-block: 1rem;
-      }
-
-      .hero {
-        grid-template-columns: minmax(0, 1fr) 7rem;
-        gap: 1rem;
-        padding-block: 1rem;
-      }
-
-      h1 {
-        font-size: 2.25rem;
-      }
-
-      .products {
-        margin-top: 1rem;
-      }
-
-      .polaroid {
-        width: 7rem;
-        padding: 0.5rem 0.5rem 0;
-      }
-
-      .tab {
-        min-height: 2.5rem;
-        font-size: 0.625rem;
-        letter-spacing: 0;
-      }
-
-      footer {
-        padding-block: 1rem;
-      }
-    }
-
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      .border-snake::before { animation: none; }
-      .product-link { transition: none; }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
     }
   </style>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
-  <div class="border-snake" aria-hidden="true"></div>
-
   <header class="site-header">
-    <a class="wordmark" href="/" aria-current="page">Pipedream Ventures</a>
+    <a class="wordmark" href="/" aria-current="page">
+      <svg class="brand-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M16 0v32M0 16h32M4.7 4.7l22.6 22.6M4.7 27.3L27.3 4.7" stroke="currentColor" stroke-width="3.5"/></svg>
+      Pipedream Ventures
+    </a>
     <nav aria-label="Primary navigation">
       <ul>
         <li><a href="/about.html">About</a></li>
@@ -367,23 +156,60 @@
 
   <main id="main">
     <section class="hero" aria-labelledby="hero-heading">
-      <div>
-        <h1 id="hero-heading">Building apps for the 🌎</h1>
-        <div class="products" aria-label="Products">
-          <a class="product-link" href="https://frontporch.house/">
-            <strong>Front Porch</strong>
-            <span>Get help from a local real estate agent.</span>
-          </a>
-          <a class="product-link" href="https://cancelpmi.app/">
-            <strong>CancelPMI</strong>
-            <span>Get help removing PMI.</span>
-          </a>
-        </div>
+      <div class="hero-copy">
+        <p class="eyebrow">An independent app studio</p>
+        <h1 id="hero-heading"><span>Building apps</span><span>for the <em>world.</em></span></h1>
+        <p class="hero-note">Built in Columbus. Made for everywhere.</p>
       </div>
+      <div class="artwork" aria-hidden="true">
+        <svg class="spectrum" viewBox="0 0 560 560" fill="none">
+          <defs>
+            <linearGradient id="red" x1="100" y1="40" x2="430" y2="510" gradientUnits="userSpaceOnUse"><stop stop-color="#f06a47"/><stop offset=".5" stop-color="#df4937"/><stop offset="1" stop-color="#a72d38"/></linearGradient>
+            <linearGradient id="orange" x1="130" y1="70" x2="400" y2="490" gradientUnits="userSpaceOnUse"><stop stop-color="#ffc45f"/><stop offset=".6" stop-color="#f2a33b"/><stop offset="1" stop-color="#c66c30"/></linearGradient>
+            <linearGradient id="yellow" x1="150" y1="90" x2="390" y2="470" gradientUnits="userSpaceOnUse"><stop stop-color="#f4e67d"/><stop offset=".55" stop-color="#e9cc49"/><stop offset="1" stop-color="#cba03e"/></linearGradient>
+            <linearGradient id="green" x1="160" y1="110" x2="380" y2="450" gradientUnits="userSpaceOnUse"><stop stop-color="#bed187"/><stop offset=".5" stop-color="#8fae67"/><stop offset="1" stop-color="#557b59"/></linearGradient>
+            <linearGradient id="blue" x1="180" y1="130" x2="360" y2="430" gradientUnits="userSpaceOnUse"><stop stop-color="#98c8ca"/><stop offset=".5" stop-color="#639cae"/><stop offset="1" stop-color="#416a94"/></linearGradient>
+            <linearGradient id="violet" x1="190" y1="150" x2="340" y2="410" gradientUnits="userSpaceOnUse"><stop stop-color="#b5b1d3"/><stop offset=".5" stop-color="#8a84b8"/><stop offset="1" stop-color="#635789"/></linearGradient>
+            <linearGradient id="pink" x1="210" y1="180" x2="330" y2="390" gradientUnits="userSpaceOnUse"><stop stop-color="#d7b6ca"/><stop offset=".5" stop-color="#b98da9"/><stop offset="1" stop-color="#855e81"/></linearGradient>
+            <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="18"/></filter>
+            <filter id="grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".65" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope=".12"/></feComponentTransfer><feBlend in="SourceGraphic" mode="soft-light"/></filter>
+            <mask id="ring-mask"><ellipse cx="280" cy="272" rx="186" ry="237" fill="white"/><ellipse cx="280" cy="272" rx="64" ry="115" fill="black"/></mask>
+          </defs>
+          <ellipse cx="290" cy="497" rx="148" ry="15" fill="#625042" opacity=".16" filter="url(#shadow)"/>
+          <g transform="rotate(32 280 272)">
+            <g mask="url(#ring-mask)">
+              <g filter="url(#grain)">
+                <ellipse cx="280" cy="272" rx="186" ry="237" fill="url(#red)"/>
+                <ellipse cx="280" cy="272" rx="168" ry="219" fill="url(#orange)"/>
+                <ellipse cx="280" cy="272" rx="150" ry="201" fill="url(#yellow)"/>
+                <ellipse cx="280" cy="272" rx="132" ry="183" fill="url(#green)"/>
+                <ellipse cx="280" cy="272" rx="114" ry="165" fill="url(#blue)"/>
+                <ellipse cx="280" cy="272" rx="96" ry="147" fill="url(#violet)"/>
+                <ellipse cx="280" cy="272" rx="78" ry="129" fill="url(#pink)"/>
+              </g>
+            </g>
+          </g>
+        </svg>
+      </div>
+    </section>
 
-      <div class="polaroid" aria-label="Pipedream Ventures logo">
-        <div class="window" aria-hidden="true"></div>
-        <div class="tab">Pipedream Ventures</div>
+    <section class="products" id="products" aria-labelledby="products-heading">
+      <div class="section-label"><h2 id="products-heading" style="font: inherit;">Featured products</h2><a href="/products.html">All products ↗</a></div>
+      <a class="product-link" href="https://rapchat.com/">
+        <span class="product-number" aria-hidden="true">01</span>
+        <span class="product-name">Rapchat</span>
+        <span class="product-description">Record music. Find your people.</span>
+        <svg class="product-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19L19 5M5 5h14v14" stroke="currentColor" stroke-width="1.5"/></svg>
+      </a>
+      <a class="product-link" href="https://musichouse.app/">
+        <span class="product-number" aria-hidden="true">02</span>
+        <span class="product-name">Music House</span>
+        <span class="product-description">Make songs, beats, and music videos.</span>
+        <svg class="product-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19L19 5M5 5h14v14" stroke="currentColor" stroke-width="1.5"/></svg>
+      </a>
+      <div class="product-teaser">
+        <span>One more pipedream is taking shape.</span>
+        <span class="teaser-status">Coming soon</span>
       </div>
     </section>
   </main>
