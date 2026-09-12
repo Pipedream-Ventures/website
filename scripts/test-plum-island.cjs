@@ -1,0 +1,21 @@
+// Run with: node scripts/test-plum-island.cjs
+const assert = require('node:assert/strict');
+const { defaults, calculate, payment, balance } = require('../plans/plum-island/model.js');
+const close = (actual, expected) => assert.ok(Math.abs(actual - expected) < 0.02, `${actual} != ${expected}`);
+const base = calculate(defaults);
+close(base.upfront, 213000);
+close(base.gross, 60000);
+close(base.cash, -19731.674532991);
+close(payment(600000, 0, 30), 1666.6666666667);
+close(balance(600000, 0, 30, 5), 500000);
+close(balance(600000, 6, 30, 5), 558326.14);
+close(calculate({ ...defaults, down: 100 }).debt, 0);
+close(calculate({ ...defaults, family: 0 }).gross - base.gross, 14400);
+close(calculate({ ...defaults, family: 12 }).peak, 0);
+close(calculate({ ...defaults, peakOcc: 0, shoulderOcc: 0, offOcc: 0 }).gross, 0);
+close(calculate({ ...defaults, maintenance: defaults.maintenance + 20000 }).cash, base.cash - 20000);
+close(calculate({ ...defaults, management: 0 }).cash - base.cash, base.gross * 0.18);
+assert.ok(calculate({ ...defaults, down: 0 }).upfront < base.upfront);
+assert.ok(calculate({ ...defaults, down: 0 }).cash < base.cash);
+close(base.breakEven * (1 - base.feeRate) - base.fixed - base.debt - defaults.capex, 0);
+console.log('15 cash-model checks passed.');
