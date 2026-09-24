@@ -79,7 +79,7 @@
     h1 em { font-family: Georgia, serif; font-weight: 400; letter-spacing: -.075em; }
     .hero-note { margin-top: 2rem; font-size: .9rem; color: var(--muted); }
     .artwork { position: relative; display: grid; place-items: center; align-self: stretch; min-width: 0; margin-left: -2rem; }
-    .spectrum { width: min(100%, 480px); max-height: 50svh; overflow: visible; animation: drift 12s ease-in-out infinite; }
+    .hero-logo { display: block; width: min(100%, 350px); height: auto; max-height: 50svh; object-fit: contain; filter: drop-shadow(0 16px 24px #29292320); transform: rotate(-1deg); }
     .products { padding-block: 1rem 2rem; }
     .section-label { display: flex; align-items: center; justify-content: space-between; padding-bottom: 1.1rem; font: .62rem var(--mono); letter-spacing: .09em; text-transform: uppercase; }
     .section-label a { color: var(--muted); text-decoration: underline; text-underline-offset: 4px; }
@@ -100,7 +100,6 @@
     footer strong { font-weight: 500; color: var(--ink); }
     address { font-style: normal; }
     footer ul { gap: 1rem; }
-    @keyframes drift { 0%, 100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-12px) rotate(2deg); } }
     @media (max-width: 900px) {
       .site-header, main, footer { width: calc(100% - 3.5rem); }
       .hero { min-height: 520px; }
@@ -122,7 +121,7 @@
       .eyebrow { font-size: .54rem; }
       .hero-note { margin-top: 1.5rem; font-size: .8rem; }
       .artwork { height: 280px; margin: 0; }
-      .spectrum { width: 285px; }
+      .hero-logo { width: 210px; }
       .products { padding-block: 1.25rem 2rem; }
       .product-link { grid-template-columns: 1.5rem 1fr 1.5rem; gap: .15rem .75rem; min-height: 105px; padding-block: 1.25rem; }
       .product-number { grid-row: 1 / 3; align-self: start; padding-top: .55rem; }
@@ -162,34 +161,7 @@
         <p class="hero-note">Built in Columbus. Made for everywhere.</p>
       </div>
       <div class="artwork" aria-hidden="true">
-        <svg class="spectrum" viewBox="0 0 560 560" fill="none">
-          <defs>
-            <linearGradient id="red" x1="100" y1="40" x2="430" y2="510" gradientUnits="userSpaceOnUse"><stop stop-color="#f06a47"/><stop offset=".5" stop-color="#df4937"/><stop offset="1" stop-color="#a72d38"/></linearGradient>
-            <linearGradient id="orange" x1="130" y1="70" x2="400" y2="490" gradientUnits="userSpaceOnUse"><stop stop-color="#ffc45f"/><stop offset=".6" stop-color="#f2a33b"/><stop offset="1" stop-color="#c66c30"/></linearGradient>
-            <linearGradient id="yellow" x1="150" y1="90" x2="390" y2="470" gradientUnits="userSpaceOnUse"><stop stop-color="#f4e67d"/><stop offset=".55" stop-color="#e9cc49"/><stop offset="1" stop-color="#cba03e"/></linearGradient>
-            <linearGradient id="green" x1="160" y1="110" x2="380" y2="450" gradientUnits="userSpaceOnUse"><stop stop-color="#bed187"/><stop offset=".5" stop-color="#8fae67"/><stop offset="1" stop-color="#557b59"/></linearGradient>
-            <linearGradient id="blue" x1="180" y1="130" x2="360" y2="430" gradientUnits="userSpaceOnUse"><stop stop-color="#98c8ca"/><stop offset=".5" stop-color="#639cae"/><stop offset="1" stop-color="#416a94"/></linearGradient>
-            <linearGradient id="violet" x1="190" y1="150" x2="340" y2="410" gradientUnits="userSpaceOnUse"><stop stop-color="#b5b1d3"/><stop offset=".5" stop-color="#8a84b8"/><stop offset="1" stop-color="#635789"/></linearGradient>
-            <linearGradient id="pink" x1="210" y1="180" x2="330" y2="390" gradientUnits="userSpaceOnUse"><stop stop-color="#d7b6ca"/><stop offset=".5" stop-color="#b98da9"/><stop offset="1" stop-color="#855e81"/></linearGradient>
-            <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="18"/></filter>
-            <filter id="grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".65" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope=".12"/></feComponentTransfer><feBlend in="SourceGraphic" mode="soft-light"/></filter>
-            <mask id="ring-mask"><ellipse cx="280" cy="272" rx="186" ry="237" fill="white"/><ellipse cx="280" cy="272" rx="64" ry="115" fill="black"/></mask>
-          </defs>
-          <ellipse cx="290" cy="497" rx="148" ry="15" fill="#625042" opacity=".16" filter="url(#shadow)"/>
-          <g transform="rotate(32 280 272)">
-            <g mask="url(#ring-mask)">
-              <g filter="url(#grain)">
-                <ellipse cx="280" cy="272" rx="186" ry="237" fill="url(#red)"/>
-                <ellipse cx="280" cy="272" rx="168" ry="219" fill="url(#orange)"/>
-                <ellipse cx="280" cy="272" rx="150" ry="201" fill="url(#yellow)"/>
-                <ellipse cx="280" cy="272" rx="132" ry="183" fill="url(#green)"/>
-                <ellipse cx="280" cy="272" rx="114" ry="165" fill="url(#blue)"/>
-                <ellipse cx="280" cy="272" rx="96" ry="147" fill="url(#violet)"/>
-                <ellipse cx="280" cy="272" rx="78" ry="129" fill="url(#pink)"/>
-              </g>
-            </g>
-          </g>
-        </svg>
+        <img class="hero-logo" src="/logo.svg" width="280" height="334" alt="">
       </div>
     </section>
 
