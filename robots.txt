@@ -1,6 +1,7 @@
 User-agent: *
 Disallow: /work/
 Disallow: /scratch/
+Allow: /scratch/groovfold/
 Disallow: /plans/
 Disallow: /background-inspo.html
 Disallow: /index-full.html
