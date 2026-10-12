@@ -1,0 +1,32 @@
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1200px;height:630px;overflow:hidden}
+body{background:#f5f0e6;color:#292923;font-family:"DM Sans",sans-serif;display:grid;grid-template-columns:1fr 470px;position:relative}
+body::before{content:"";position:absolute;inset:0 0 auto;height:8px;background:linear-gradient(90deg,#ed5136,#f4a52c,#eccc38,#9ab74e,#5b9aaa,#7775b4,#b680b6)}
+.txt{padding:76px 0 64px 76px;display:flex;flex-direction:column;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:14px;font-weight:700;font-size:24px;letter-spacing:-.025em}
+.brand img{width:38px;height:38px}
+.label{font:700 17px "Space Mono",monospace;letter-spacing:.09em;text-transform:uppercase;color:#737269}
+h1{margin-top:22px;font-weight:500;font-size:88px;line-height:.96;letter-spacing:-.065em}
+h1 em{font-family:Georgia,serif;font-weight:400;letter-spacing:-.03em}
+.app{display:flex;align-items:center;gap:18px;font-size:22px;color:#737269}
+.app img{width:60px;height:60px;border-radius:14px;border:1px solid #d7d3c7}
+.app b{color:#292923;font-weight:500}
+.phones{position:relative}
+.ph{position:absolute;width:236px;border-radius:30px;overflow:hidden;border:6px solid #292923;background:#292923;box-shadow:0 26px 46px rgba(41,41,35,.22)}
+.ph img{width:100%;display:block}
+.a{left:6px;top:96px;transform:rotate(-4deg)}
+.b{left:204px;top:56px;transform:rotate(3deg)}
+</style></head><body>
+<div class="txt">
+  <div class="brand"><img src="../../icon.svg">Pipedream Ventures</div>
+  <div><div class="label">First audit · iOS</div><h1>Core of<br>the Heart, <em>first look.</em></h1></div>
+  <div class="app"><img src="app-icon.jpg"><span><b>Core of the Heart Daily</b> · 4.96 from 13,806 ratings</span></div>
+</div>
+<div class="phones">
+  <div class="ph a"><img src="onboarding.jpg"></div>
+  <div class="ph b"><img src="devo.jpg"></div>
+</div>
+</body></html>

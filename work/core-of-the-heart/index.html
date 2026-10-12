@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Core of the Heart: First Audit · Pipedream Ventures</title>
+  <meta name="description" content="A first-pass audit of Core of the Heart Daily for iOS: store, onboarding, the daily devo, pricing, and where to lean in.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Pipedream Ventures">
+  <meta property="og:title" content="Core of the Heart: First Audit">
+  <meta property="og:description" content="Store, onboarding, the daily devo, pricing, and where to lean in.">
+  <meta property="og:url" content="https://pipedream.ventures/work/core-of-the-heart/">
+  <meta property="og:image" content="https://pipedream.ventures/work/core-of-the-heart/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Core of the Heart first audit by Pipedream Ventures">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Core of the Heart: First Audit">
+  <meta name="twitter:description" content="Store, onboarding, the daily devo, pricing, and where to lean in.">
+  <meta name="twitter:image" content="https://pipedream.ventures/work/core-of-the-heart/og-image.png">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+  <style>
+    /* Pipedream house style: cream paper, ink type, mono labels, hairline rows. Findings pair a phone with numbered notes. */
+    :root {
+      --cream: #f5f0e6;
+      --paper: #fbf8f2;
+      --ink: #292923;
+      --muted: #737269;
+      --line: #d7d3c7;
+      --red: #c8442c;
+      --green: #5f7d45;
+      --blue: #406c9c;
+      --violet: #75609c;
+      --mono: "Space Mono", ui-monospace, monospace;
+      --sans: "DM Sans", -apple-system, "Helvetica Neue", sans-serif;
+      color-scheme: light;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { background: var(--cream); }
+    body { background: var(--cream); color: var(--ink); font-family: var(--sans); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    body::before { content: ""; position: fixed; inset: 0 0 auto; height: 4px; background: linear-gradient(90deg, #ed5136, #f4a52c, #eccc38, #9ab74e, #5b9aaa, #7775b4, #b680b6); z-index: 5; }
+    ::selection { background: #e7e1a1; }
+    a { color: inherit; }
+    a:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
+    .shell { width: min(100% - 7rem, 1080px); margin-inline: auto; }
+    .label { font: 700 .66rem/1.4 var(--mono); letter-spacing: .09em; text-transform: uppercase; color: var(--muted); }
+    em { font-family: Georgia, serif; font-style: italic; font-weight: 400; letter-spacing: -.02em; }
+
+    .site-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 2.25rem; }
+    .wordmark { display: flex; align-items: center; gap: .7rem; font-size: .85rem; font-weight: 700; letter-spacing: -.025em; text-decoration: none; }
+    .wordmark img { width: 25px; height: 25px; }
+
+    /* Cover */
+    .cover { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 3rem; align-items: end; padding-block: 3.5rem 3rem; border-bottom: 1px solid var(--line); }
+    .cover h1 { margin-top: 1.4rem; font-size: clamp(3rem, 6.4vw, 5.6rem); font-weight: 500; line-height: .98; letter-spacing: -.065em; text-wrap: balance; }
+    .cover .lede { margin-top: 1.6rem; max-width: 52ch; color: var(--muted); }
+    .app { display: grid; gap: 1.1rem; padding: 1.4rem; background: var(--paper); border: 1px solid var(--line); border-radius: 4px; }
+    .app-id { display: flex; gap: 1rem; align-items: center; }
+    .app-id img { width: 64px; height: 64px; border-radius: 15px; border: 1px solid var(--line); flex: none; }
+    .app-id b { display: block; font-size: 1.05rem; font-weight: 600; letter-spacing: -.02em; line-height: 1.25; }
+    .app-id span { color: var(--muted); font-size: .85rem; }
+    .facts { display: grid; grid-template-columns: 1fr 1fr; gap: .9rem 1.2rem; border-top: 1px solid var(--line); padding-top: 1rem; }
+    .facts div { display: grid; gap: .1rem; }
+    .facts dd { font-size: .95rem; font-weight: 500; font-variant-numeric: tabular-nums; }
+    .facts dt { order: -1; }
+    .byline { display: flex; flex-wrap: wrap; gap: .4rem 2rem; margin-top: 2rem; }
+    .byline span { color: var(--muted); font-size: .85rem; }
+    .byline b { color: var(--ink); font-weight: 600; }
+
+    /* Sections */
+    section { padding-block: 4rem; border-bottom: 1px solid var(--line); }
+    .sec-head { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: 1.5rem; margin-bottom: 2.2rem; align-items: baseline; }
+    .sec-head h2 { font-size: clamp(1.9rem, 3.4vw, 2.7rem); font-weight: 500; letter-spacing: -.05em; line-height: 1.05; text-wrap: balance; }
+    .sec-head p:not(.label) { grid-column: 2; color: var(--muted); max-width: 60ch; margin-top: .6rem; }
+
+    .tag { display: inline-flex; align-items: center; gap: .5rem; font: 700 .62rem var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    .tag::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+    .tag.bug { color: var(--red); } .tag.ux { color: var(--blue); } .tag.growth { color: var(--green); } .tag.ask { color: var(--violet); }
+
+    /* Priority rows, echoing the homepage product list */
+    .rows { border-top: 1px solid var(--line); }
+    .row { display: grid; grid-template-columns: 3rem minmax(0, 1.1fr) minmax(0, 1fr) 7rem; gap: 1.25rem; align-items: baseline; padding-block: 1.5rem; border-bottom: 1px solid var(--line); }
+    .row .n { font: .66rem var(--mono); color: var(--muted); }
+    .row h3 { font-size: clamp(1.25rem, 2vw, 1.6rem); font-weight: 500; letter-spacing: -.04em; line-height: 1.15; }
+    .row p { color: var(--muted); font-size: .92rem; }
+    .row .tag { justify-self: end; }
+
+    .wins { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; }
+    .win b { display: block; font-size: clamp(2.4rem, 4.5vw, 3.6rem); font-weight: 500; letter-spacing: -.06em; line-height: 1; font-variant-numeric: tabular-nums; }
+    .win p { margin-top: .7rem; color: var(--muted); font-size: .92rem; max-width: 30ch; }
+
+    /* Screenshot + numbered callouts */
+    .finding { display: grid; grid-template-columns: 9rem 270px minmax(0, 1fr); gap: 1.5rem 3rem; align-items: start; }
+    .finding + .finding { margin-top: 3.5rem; }
+    .finding .where { padding-top: .2rem; }
+    .phone { position: relative; width: 100%; max-width: 270px; border-radius: 30px; overflow: hidden; border: 6px solid var(--ink); background: var(--ink); box-shadow: 0 22px 40px rgba(41, 41, 35, .16); line-height: 0; }
+    .phone img { width: 100%; height: auto; display: block; }
+    .ring { position: absolute; border: 2px solid var(--cream); border-radius: 8px; box-shadow: 0 0 0 1.5px var(--ink); pointer-events: none; }
+    .ring .pin { position: absolute; top: -10px; right: -4px; }
+    .pin { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--cream); color: var(--ink); font: 700 .66rem/1 var(--mono); border: 1.5px solid var(--ink); flex: none; }
+    .notes { display: grid; gap: 1.9rem; min-width: 0; }
+    .note { display: grid; gap: .45rem; }
+    .note-head { display: flex; align-items: center; gap: .8rem; }
+    .note h3 { font-size: 1.2rem; font-weight: 600; letter-spacing: -.025em; line-height: 1.25; }
+    .note p { max-width: 58ch; }
+    .cap { margin-top: .9rem; font: .64rem/1.5 var(--mono); color: var(--muted); letter-spacing: .03em; max-width: 270px; }
+
+    /* Pricing table */
+    .pricing { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: 1.5rem; }
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; min-width: 520px; }
+    th, td { text-align: left; padding: .8rem .9rem .8rem 0; border-bottom: 1px solid var(--line); }
+    th { font: 700 .62rem var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+    td { font-size: .98rem; }
+    td.num, th.num { text-align: right; }
+    tr.flag td { color: var(--red); font-weight: 600; }
+    .pricing .copy { grid-column: 2; display: grid; gap: .8rem; max-width: 62ch; margin-top: 1.4rem; }
+    .src { font: .62rem var(--mono); color: var(--muted); letter-spacing: .03em; }
+
+    .ideas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 3rem; border-top: 1px solid var(--line); }
+    .idea { display: grid; gap: .5rem; padding-block: 1.5rem; border-bottom: 1px solid var(--line); align-content: start; }
+    .idea h3 { font-size: 1.25rem; font-weight: 600; letter-spacing: -.03em; }
+    .idea p { color: var(--muted); font-size: .95rem; }
+
+    .asks { list-style: none; display: grid; gap: 0; border-top: 1px solid var(--line); counter-reset: ask; }
+    .asks li { display: grid; grid-template-columns: 3rem 1fr; padding-block: 1rem; border-bottom: 1px solid var(--line); font-size: 1.05rem; counter-increment: ask; }
+    .asks li::before { content: counter(ask, decimal-leading-zero); font: .66rem var(--mono); color: var(--muted); padding-top: .35rem; }
+
+    .signoff { padding-block: 4.5rem 2rem; }
+    .signoff p { font-size: clamp(1.8rem, 3.6vw, 2.8rem); font-weight: 500; letter-spacing: -.05em; line-height: 1.1; max-width: 22ch; }
+    footer { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding-block: 2rem 3rem; color: var(--muted); font-size: .7rem; }
+
+    @media (max-width: 900px) {
+      .shell { width: calc(100% - 3.5rem); }
+      .cover { grid-template-columns: 1fr; gap: 2.2rem; }
+      .sec-head, .pricing { grid-template-columns: 1fr; gap: .6rem; }
+      .sec-head p:not(.label), .pricing .copy { grid-column: 1; }
+      .finding { grid-template-columns: 240px minmax(0, 1fr); gap: 1.2rem 2rem; }
+      .finding .where { grid-column: 1 / -1; }
+      .row { grid-template-columns: 2.2rem minmax(0, 1fr) 6rem; }
+      .row p { grid-column: 2; grid-row: 2; }
+      .row .tag { grid-column: 3; grid-row: 1; }
+    }
+    @media (max-width: 620px) {
+      body { font-size: 16px; }
+      .shell { width: calc(100% - 2.5rem); }
+      .site-header { padding-block: 1.5rem; }
+      .cover { padding-block: 2rem 2.5rem; }
+      .facts { grid-template-columns: 1fr 1fr; }
+      section { padding-block: 3rem; }
+      .finding { grid-template-columns: 1fr; }
+      .phone { max-width: 230px; }
+      .wins, .ideas { grid-template-columns: 1fr; gap: 1.6rem; }
+      .ideas { gap: 0; }
+      .row { grid-template-columns: 1.8rem minmax(0, 1fr); gap: .4rem .8rem; }
+      .row .tag { grid-column: 2; grid-row: 3; justify-self: start; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header shell">
+    <a class="wordmark" href="/"><img src="/icon.svg" width="25" height="25" alt="">Pipedream Ventures</a>
+    <span class="label">Client work</span>
+  </header>
+
+  <main class="shell">
+    <div class="cover">
+      <div>
+        <p class="label">First audit · October 2026</p>
+        <h1>Core of the Heart, <em>first look.</em></h1>
+        <p class="lede">I installed the app fresh and walked the App Store page, onboarding, and the daily devo. These are unfiltered first impressions, so take everything with a grain of salt.</p>
+        <div class="byline">
+          <span>From <b>Seth</b></span>
+          <span>For <b>Justin &amp; Christian</b></span>
+          <span>Tested <b>Oct 12, 2026 · iPhone</b></span>
+        </div>
+      </div>
+      <aside class="app" aria-label="App at a glance">
+        <div class="app-id">
+          <img src="app-icon.jpg" width="64" height="64" alt="Core of the Heart Daily app icon">
+          <div><b>Core of the Heart Daily</b><span>Live Classes &amp; Daily Devotions</span></div>
+        </div>
+        <dl class="facts">
+          <div><dt class="label">Rating</dt><dd>4.96 · 13,806</dd></div>
+          <div><dt class="label">Version</dt><dd>1.5.0 · Oct 1</dd></div>
+          <div><dt class="label">Launched</dt><dd>Mar 11, 2026</dd></div>
+          <div><dt class="label">Platform</dt><dd>iPhone only</dd></div>
+        </dl>
+        <p class="src">Source: App Store, US, Oct 12, 2026</p>
+      </aside>
+    </div>
+
+    <section aria-labelledby="first-h">
+      <div class="sec-head">
+        <p class="label">Start here</p>
+        <h2 id="first-h">What I'd look at first</h2>
+      </div>
+      <div class="rows">
+        <div class="row"><span class="n">01</span><h3>Lean in even more on Johnny</h3><p>More of him in the store, maybe the icon, maybe in-app.</p><span class="tag growth">Growth</span></div>
+        <div class="row"><span class="n">02</span><h3>Fix the Premium Annual price</h3><p>It costs more than twelve months of Premium Monthly.</p><span class="tag bug">Pricing</span></div>
+        <div class="row"><span class="n">03</span><h3>Defend your brand on Apple Ads</h3><p>A competitor ad sits above you for your own name.</p><span class="tag growth">Growth</span></div>
+        <div class="row"><span class="n">04</span><h3>Measure install to paywall</h3><p>Would show which of these notes actually matter.</p><span class="tag ask">Data</span></div>
+        <div class="row"><span class="n">05</span><h3>Notification step can stall</h3><p>I got stuck and couldn't tell if it worked.</p><span class="tag bug">Bug</span></div>
+      </div>
+    </section>
+
+    <section aria-labelledby="wins-h">
+      <div class="sec-head">
+        <p class="label">What's working</p>
+        <h2 id="wins-h">Users love it</h2>
+      </div>
+      <div class="wins">
+        <div class="win"><b>4.96</b><p>From 13,806 ratings since March. Amazing feedback on the store.</p></div>
+        <div class="win"><b>151</b><p>Comments on a single day's devo. Super popular and sticky.</p></div>
+        <div class="win"><b><em>Johnny</em></b><p>The intro video is very cool. Users seem to be here for him.</p></div>
+      </div>
+    </section>
+
+    <section aria-labelledby="walk-h">
+      <div class="sec-head">
+        <p class="label">Walkthrough</p>
+        <h2 id="walk-h">Screen by screen</h2>
+      </div>
+
+      <div class="finding">
+        <p class="label where">App Store</p>
+        <div>
+          <div class="phone">
+            <img src="store.jpg" width="900" height="1388" alt="App Store search for 'core of the heart daily' with a Bible Captions ad ranked above the Core of the Heart Daily listing" loading="lazy">
+            <span class="ring" style="top:22%;left:3%;width:94%;height:58%"><span class="pin">1</span></span>
+            <span class="ring" style="top:86.5%;left:3%;width:94%;height:12%"><span class="pin">2</span></span>
+          </div>
+          <p class="cap">Search: "core of the heart daily"</p>
+        </div>
+        <div class="notes">
+          <div class="note">
+            <div class="note-head"><span class="pin">1</span><span class="tag growth">Growth</span></div>
+            <h3>Competitors are bidding on your name</h3>
+            <p>A Bible Captions ad sits above you for your own brand search. I'd defend the brand on Apple Ads, especially if organic or social is sending people to search for you. We deal with this at Rapchat. It sucks to pay for it, but it's usually worth it.</p>
+          </div>
+          <div class="note">
+            <div class="note-head"><span class="pin">2</span><span class="tag ux">Store</span></div>
+            <h3>Put Johnny front and center</h3>
+            <p>Johnny could be way more prominent in the screenshots, and they could use a polish. He might even belong on the app icon.</p>
+          </div>
+          <div class="note">
+            <div class="note-head"><span class="tag ux">Store</span></div>
+            <h3>The old app is still live</h3>
+            <p>"Old app - Core of the Heart" (Fourthwall, 788 ratings) is still for sale and shows up under "You Might Also Like" on your new listing. Once migration is done I'd pull it from sale, and until then make sure it points people to the new app.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="finding">
+        <p class="label where">Onboarding</p>
+        <div>
+          <div class="phone">
+            <img src="onboarding.jpg" width="900" height="1957" alt="Onboarding 'Here's what I heard' card from Pastor Johnny ending with the quote 'Give me 14 days. I'll walk it with you.'" loading="lazy">
+            <span class="ring" style="top:63.5%;left:8%;width:62%;height:8%"><span class="pin">3</span></span>
+          </div>
+          <p class="cap">"Here's what I heard," after the survey</p>
+        </div>
+        <div class="notes">
+          <div class="note">
+            <div class="note-head"><span class="pin">3</span><span class="tag bug">Bug</span></div>
+            <h3>Small layout bug on the quote</h3>
+            <p>The closing quote mark on "Give me 14 days" floats away from the text, and the block sits awkwardly against Johnny's photo.</p>
+          </div>
+          <div class="note">
+            <div class="note-head"><span class="tag ux">UX</span></div>
+            <h3>The survey feels a bit laggy</h3>
+            <p>Some form fields and the onboarding survey are a tad laggy, and the date picker doesn't look like iOS. Not a big deal, just noticed. What's the tech stack? Is it native?</p>
+          </div>
+          <div class="note">
+            <div class="note-head"><span class="tag ux">UX</span></div>
+            <h3>Catch the people who skip the video</h3>
+            <p>If someone skips the intro video before 30 seconds, the next few screens could still introduce Johnny in a quick slideshow.</p>
+          </div>
+          <div class="note">
+            <div class="note-head"><span class="tag bug">Bug</span></div>
+            <h3>Stuck on enable notifications</h3>
+            <p>I got stuck on this step and couldn't tell whether notifications actually got enabled. Analytics would show how many people hit this.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="finding">
+        <p class="label where">Daily devo</p>
+        <div>
+          <div class="phone">
+            <img src="devo.jpg" width="900" height="1957" alt="Daily Devo screen for October 12, 2026 with a floating toolbar showing a 151 comment badge" loading="lazy">
+            <span class="ring" style="top:9%;left:4%;width:92%;height:7.5%"><span class="pin">4</span></span>
+            <span class="ring" style="top:79.5%;left:38%;width:15%;height:7%"><span class="pin">5</span></span>
+          </div>
+          <p class="cap">Today's devo, mid-read</p>
+        </div>
+        <div class="notes">
+          <div class="note">
+            <div class="note-head"><span class="pin">4</span><span class="tag ux">UX</span></div>
+            <h3>Nav bars jump around</h3>
+            <p>The top nav sometimes sits lower or in a different spot between screens. Probably the component or tech stack. Worth making it consistent.</p>
+          </div>
+          <div class="note">
+            <div class="note-head"><span class="pin">5</span><span class="tag ux">UX</span></div>
+            <h3>Comments are sticky but in a weird spot</h3>
+            <p>Comments look super popular, but they live in the floating bar with a red badge count that pulls attention while you're reading. I'd find a calmer home that still shows they're active.</p>
+          </div>
+          <div class="note">
+            <div class="note-head"><span class="tag ask">Question</span></div>
+            <h3>Johnny or Gospel Bot?</h3>
+            <p>Not sure how much Gospel Bot gets used. If it's light, that tab might be better spent on Johnny himself.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="price-h">
+      <div class="sec-head">
+        <p class="label">Pricing</p>
+        <h2 id="price-h">Six plans, and one costs more on annual</h2>
+      </div>
+      <div class="pricing">
+        <span></span>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Plan</th><th class="num">Monthly</th><th class="num">12 × monthly</th><th class="num">Annual</th><th class="num">Annual vs monthly</th></tr></thead>
+            <tbody>
+              <tr><td>Silver</td><td class="num">$33</td><td class="num">$396</td><td class="num">$349</td><td class="num">12% less</td></tr>
+              <tr class="flag"><td>Premium</td><td class="num">$44</td><td class="num">$528</td><td class="num">$590</td><td class="num">12% more</td></tr>
+              <tr><td>Gold</td><td class="num">$77</td><td class="num">$924</td><td class="num">$819</td><td class="num">11% less</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="copy">
+          <p>Premium Annual is $62 more than paying monthly for a year. Anyone who does the math picks monthly. If Premium is a legacy tier, I'd retire it. If it's live on the paywall, I'd reprice it in line with the others.</p>
+          <p>Six SKUs is also a lot of choice, and "Premium" doesn't say where it sits between Silver and Gold. The plans are pricey in general, which may be by design. Conversion and retention by plan would tell us if it's working.</p>
+          <p class="src">Source: in-app purchases listed on the US App Store page. I haven't confirmed which of these appear on the paywall.</p>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="ideas-h">
+      <div class="sec-head">
+        <p class="label">Bigger ideas</p>
+        <h2 id="ideas-h">Where it could go</h2>
+      </div>
+      <div class="ideas">
+        <div class="idea"><span class="tag growth">Idea</span><h3>Lean in even more on Johnny</h3><p>Johnny seems so central to the whole thing. I'd lean in harder across the App Store presence, potentially the app icon, and maybe in-app in place of the bot.</p></div>
+        <div class="idea"><span class="tag growth">Idea</span><h3>Forums as a main tab</h3><p>Given how active comments are, forums could be very popular as a core part of the app. Maybe even a main tab.</p></div>
+        <div class="idea"><span class="tag growth">Idea</span><h3>More social features</h3><p>Wonder if there's room for more social stuff that gets people coming back and sharing.</p></div>
+        <div class="idea"><span class="tag ask">Open</span><h3>Live streaming and watching</h3><p>Haven't tried the live and watch side yet. Seems really important, so that's next.</p></div>
+      </div>
+    </section>
+
+    <section aria-labelledby="next-h">
+      <div class="sec-head">
+        <p class="label">To go deeper</p>
+        <h2 id="next-h">What would help me next</h2>
+        <p>Not a ton of big feedback here. Mostly small design and UX things, nothing crazy. To give more useful direction I'd want to know:</p>
+      </div>
+      <ol class="asks">
+        <li>The tech stack</li>
+        <li>Who your users are and their full journey</li>
+        <li>Analytics: funnel, retention, and which features are stickiest</li>
+        <li>How much Gospel Bot actually gets used</li>
+        <li>Which plans the paywall shows today</li>
+        <li>Your rough roadmap</li>
+      </ol>
+    </section>
+
+    <div class="signoff">
+      <p>In general, a super fun and unique app. <em>Congrats guys.</em></p>
+    </div>
+  </main>
+
+  <footer class="shell">
+    <span>Seth · Pipedream Ventures</span>
+    <span>Built in Columbus</span>
+  </footer>
+</body>
+</html>
