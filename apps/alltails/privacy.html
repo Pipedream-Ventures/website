@@ -26,41 +26,58 @@
     .card { margin: 1.75rem 0; padding: 1.25rem 1.4rem; background: #FFFFFF; border-radius: 20px; box-shadow: 0 8px 24px rgba(17,19,31,.07); }
     .card p:last-child { margin-bottom: 0; }
     footer { margin-top: 3.5rem; color: #8A8C97; font-size: 0.85rem; }
+    .back { display: inline-block; margin-bottom: 2rem; font-size: 0.95rem; }
   </style>
 </head>
 <body>
   <main>
+    <a class="back" href="/apps/alltails/">&larr; AllTails</a>
     <h1>AllTails Privacy Policy</h1>
-    <p class="updated">Last updated October 2, 2026</p>
+    <p class="updated">Last updated October 13, 2026</p>
 
-    <p>AllTails is made by Pipedream Ventures LLC. The short version: your walks, dogs, and photos stay on your iPhone. We don't run accounts, servers, ads, or analytics for AllTails, and we don't collect or sell your data.</p>
+    <p>AllTails is made by Pipedream Ventures LLC. The short version: your walks, dogs, and photos stay on your iPhone. AllTails has no account, no ads, and no analytics SDK. We don't sell your data or use it for advertising. Data leaves your iPhone only when you share a pack through iCloud, make an optional AI image, or share a card yourself.</p>
 
     <h2>What stays on your iPhone</h2>
     <ul>
       <li><strong>Walks:</strong> route, time, distance, pace, and any trims or notes.</li>
       <li><strong>Dogs and walkers:</strong> names, photos, breed, weight, age, and energy you enter.</li>
-      <li><strong>Photos:</strong> pictures you pick or take for dog profiles and walks. Dog cutouts and character looks are made on your device.</li>
+      <li><strong>Photos:</strong> pictures you pick or take for dog profiles and walks. Photo ranking, dog cutouts, and character looks are made on your device.</li>
+      <li><strong>Apple Health data:</strong> workouts, heart rate, calories, and walks you import from Health.</li>
     </ul>
-    <p>This data is included in your iPhone backups and is deleted when you delete the app.</p>
+    <p>This data can be included in your iPhone backups. Deleting the app deletes its local copy. It does not delete copies in a shared pack or in Apple Health.</p>
+
+    <h2>Packs</h2>
+    <p>Packs are optional. If you invite someone to your pack or accept an invite, AllTails stores the pack in Apple's iCloud. Only the people in that pack can see it. Apple sends the invites and stores the data under <a href="https://www.apple.com/legal/privacy/">Apple's privacy policy</a>. We don't run a server for packs and can't read them.</p>
+    <p>A pack gets:</p>
+    <ul>
+      <li><strong>Dog profiles:</strong> name, profile photo, breed, weight, age, and energy for the dogs in that pack.</li>
+      <li><strong>Walks with those dogs:</strong> the GPS route and time that AllTails records, the dogs, the walker's name, and the note.</li>
+    </ul>
+    <p>A pack never gets Apple Health data. Walks imported from Health, Health distance, heart rate, and calories stay on your iPhone. A dog walker can be in many packs. Each pack gets only walks with its own dogs, so clients never see each other.</p>
+    <p>You manage who is in your pack through Apple's sharing sheet. You can leave someone else's pack from the Pack tab.</p>
+
+    <h2>Optional AI images</h2>
+    <p>Before you make an AI card or a person illustration, AllTails asks for your permission. If you agree, it sends the photos you chose through our Cloudflare service to OpenRouter, which uses a Google image model. AI cards also send the dog names, walk title, distance, duration, and neighborhood name when available. Person illustrations send the photo and an illustration instruction. AI requests never include GPS coordinates or Apple Health data.</p>
+    <p>Our Cloudflare service uses a random installation ID and daily counters to limit requests. The counters expire after two days. OpenRouter and Google process requests under their own terms and privacy policies. If you cancel, nothing is sent. Regular cards, replays, and profile photos don't use AI.</p>
 
     <h2>Permissions</h2>
     <ul>
       <li><strong>Location</strong> draws the route and measures distance while a walk is running.</li>
-      <li><strong>Notifications</strong> remind you if you stop for a while and may have forgotten to end the walk.</li>
-      <li><strong>Apple Health</strong> (optional) saves walks as workouts and reads heart rate and past walks so you can import them. Health data is never used for advertising and never leaves your device through AllTails.</li>
-      <li><strong>Photos and Camera</strong> (optional) let you add dog photos and find pictures from a walk.</li>
+      <li><strong>Notifications</strong> send walk reminders and a prompt if you stop for a while and may have forgotten to end the walk.</li>
+      <li><strong>Apple Health</strong> (optional) saves walks as workouts, reads heart rate from Apple Watch, and imports past walks. Health data is never used for advertising and never goes to iCloud, a pack, or an AI service.</li>
+      <li><strong>Photos and Camera</strong> (optional) let you add dog photos and walk pictures.</li>
     </ul>
 
     <h2>Sharing</h2>
-    <p>Nothing is shared unless you tap Share or Save. Share cards and replays hide the start and end of the route by default. Once you share an image or video, the app you share it to handles it under its own policy.</p>
+    <p>Nothing is posted unless you tap Share or Save. Share cards and replays trim about 150 m from each end of the route. A photo can still show a place, so check the image before you share it. Once you share an image or video, the app you share it to handles it under its own policy.</p>
 
     <h2>Children</h2>
     <p>AllTails is not directed to children under 13 and does not knowingly collect their information.</p>
 
     <h2>Changes and contact</h2>
-    <p>If this policy changes, we'll update the date above. Questions: <a href="mailto:seth@pipedream.ventures">seth@pipedream.ventures</a>.</p>
+    <p>If this policy changes, we'll update the date above. Questions or data-removal requests: <a href="mailto:seth@pipedream.ventures">seth@pipedream.ventures</a>.</p>
     <footer>
-      <p>&copy; 2026 Pipedream Ventures LLC</p>
+      <p>&copy; 2026 Pipedream Ventures LLC &middot; <a href="/apps/alltails/support.html">Support</a></p>
     </footer>
   </main>
 </body>
