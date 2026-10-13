@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Join a Pack on AllTails</title>
-  <meta name="description" content="Someone wants to share dog walks with you on AllTails. Get the app, then invite them to your pack.">
+  <meta name="description" content="Track dog walks together. Open this link on your iPhone.">
   <meta name="robots" content="noindex">
   <meta name="color-scheme" content="light">
   <meta name="theme-color" content="#F7F8FB">
   <link rel="icon" type="image/png" href="/apps/alltails/img/icon.png">
   <link rel="apple-touch-icon" href="/apps/alltails/img/icon.png">
-  <meta property="og:title" content="Add me to your pack on AllTails">
-  <meta property="og:description" content="Share dog walks with family and your dog walker.">
+  <meta property="og:title" content="Join a pack on AllTails">
+  <meta property="og:description" content="Track dog walks together. Open this link on your iPhone.">
   <meta property="og:image" content="https://pipedream.ventures/apps/alltails/img/icon.png">
   <meta name="apple-itunes-app" content="app-id=6818644293">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,6 +32,11 @@
     p { color: var(--slate); font-size: 1.05rem; }
     .btn { display: inline-flex; align-items: center; justify-content: center; height: var(--btn-h); padding: 0 26px; border-radius: calc(var(--btn-h) / 2); background: var(--cobalt); color: var(--white); font-weight: 700; font-size: 1.05rem; text-decoration: none; margin: 28px 0 32px; }
     .btn:hover { background: var(--cobalt-deep); }
+    .actions { display: grid; gap: 12px; margin: 28px 0 20px; }
+    .actions .btn { margin: 0; }
+    .btn.alt { background: var(--white); color: var(--cobalt); box-shadow: var(--shadow); }
+    .btn.alt:hover { background: var(--white); color: var(--cobalt-deep); }
+    [hidden] { display: none !important; }
     ol { text-align: left; background: var(--white); border-radius: var(--card-r); box-shadow: var(--shadow); padding: 20px 20px 20px 40px; display: grid; gap: 10px; }
     li { color: var(--ink); }
     .more { margin-top: 24px; font-size: .95rem; }
@@ -41,15 +46,35 @@
 <body>
   <main>
     <img class="icon" src="/apps/alltails/img/icon.png" alt="AllTails app icon" width="96" height="96">
-    <h1>Add them to your pack</h1>
-    <p>Someone you walk with uses AllTails. Share your pack and their walks with your dogs show up for you.</p>
-    <a class="btn" href="https://apps.apple.com/app/id6818644293">Get AllTails</a>
-    <ol>
-      <li>Install AllTails and add your dog.</li>
-      <li>Tap this link again, or tap Invite in the app.</li>
-      <li>Send the invite. They tap it and join your pack.</li>
-    </ol>
+    <section id="join" hidden>
+      <h1>Join the pack on AllTails</h1>
+      <p>You're invited to share dog walks. See every walk with the pack's dogs and log your own.</p>
+      <div class="actions">
+        <a class="btn" href="https://apps.apple.com/app/id6818644293">Get AllTails</a>
+        <a class="btn alt" id="open" href="alltails://invite">Open in AllTails</a>
+      </div>
+      <p>Install AllTails, then come back and tap Open in AllTails.</p>
+    </section>
+    <section id="ask">
+      <h1>Add them to your pack</h1>
+      <p>Someone you walk with uses AllTails. Share your pack and their walks with your dogs show up for you.</p>
+      <a class="btn" href="https://apps.apple.com/app/id6818644293">Get AllTails</a>
+      <ol>
+        <li>Install AllTails and add your dog.</li>
+        <li>Tap this link again, or tap Invite in the app.</li>
+        <li>Send the invite. They tap it and join your pack.</li>
+      </ol>
+    </section>
     <p class="more"><a href="/apps/alltails/">About AllTails</a> · <a href="/apps/alltails/support">Support</a></p>
   </main>
+  <script>
+    (function () {
+      var t = new URLSearchParams(location.search).get("t") || "";
+      if (!/^[A-Za-z0-9]+$/.test(t)) return;
+      document.getElementById("open").href = "alltails://invite?t=" + encodeURIComponent(t);
+      document.getElementById("join").hidden = false;
+      document.getElementById("ask").hidden = true;
+    })();
+  </script>
 </body>
 </html>
