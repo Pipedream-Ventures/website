@@ -88,6 +88,19 @@
     .glass .who b { color: #fff; font-weight: 600; }
     .glass .ver { margin-top: .9rem; font: 700 .68rem/1.4 var(--mono); letter-spacing: .09em; text-transform: uppercase; color: rgba(238, 241, 244, .6); }
 
+    /* Reviews: real App Store quotes drifting under the hero card */
+    .reviews { position: relative; margin-top: -1.5rem; padding-bottom: clamp(2.5rem, 6vw, 4rem); overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
+    .reviews-track { display: flex; gap: .9rem; width: max-content; list-style: none; animation: drift 60s linear infinite; }
+    .reviews:hover .reviews-track { animation-play-state: paused; }
+    .reviews li { display: grid; gap: .45rem; align-content: start; width: 280px; padding: 1rem 1.15rem; border-radius: 20px; color: rgba(238, 241, 244, .92);
+      background: linear-gradient(135deg, rgba(255,255,255,.14), rgba(255,255,255,.04)); border: 1px solid rgba(255,255,255,.18);
+      -webkit-backdrop-filter: blur(16px) saturate(1.3); backdrop-filter: blur(16px) saturate(1.3); box-shadow: inset 0 1px 0 rgba(255,255,255,.25); }
+    .reviews .stars { color: #f4c542; letter-spacing: .12em; font-size: .8rem; }
+    .reviews q { font-size: 1rem; line-height: 1.4; font-weight: 500; letter-spacing: -.01em; }
+    .reviews cite { font: 700 .62rem/1.3 var(--mono); font-style: normal; letter-spacing: .06em; text-transform: uppercase; color: rgba(238, 241, 244, .55); }
+    @keyframes drift { to { transform: translateX(calc(-50% - .45rem)); } }
+    @media (prefers-reduced-motion: reduce) { .reviews-track { animation: none; } .reviews { overflow-x: auto; } }
+
     /* Sections */
     section { padding-block: clamp(3.5rem, 7vw, 5.5rem) 0; }
     .sec-head { display: grid; gap: .7rem; margin-bottom: clamp(1.8rem, 3.5vw, 2.6rem); max-width: 46rem; }
@@ -186,6 +199,9 @@
         </div>
       </div>
     </div>
+    <div class="reviews" aria-label="Recent App Store reviews">
+      <ul class="reviews-track"><li><span class="stars" aria-label="5 stars">★★★★★</span><q>The only app that genuinely changed my life completely</q><cite>Spiritual Walk with Jesus</cite></li><li><span class="stars" aria-label="5 stars">★★★★★</span><q>Way better than scrolling on your phone right when you wake up.</q><cite>Riffsnb</cite></li><li><span class="stars" aria-label="5 stars">★★★★★</span><q>The sense of community that Core of the Heart brings is unmatched.</q><cite>Mnegrelli4</cite></li><li><span class="stars" aria-label="5 stars">★★★★★</span><q>Going to God became a habit without me even realizing.</q><cite>Maurice863</cite></li><li><span class="stars" aria-label="5 stars">★★★★★</span><q>Got me into reading my Bible daily again.</q><cite>apostolicdoug</cite></li><li><span class="stars" aria-label="5 stars">★★★★★</span><q>All biblical. Raw and real. Life changing.</q><cite>MrBSmooth</cite></li><li><span class="stars" aria-label="5 stars">★★★★★</span><q>The UI is lovely</q><cite>Itutujazz</cite></li><li aria-hidden="true"><span class="stars" aria-label="5 stars">★★★★★</span><q>The only app that genuinely changed my life completely</q><cite>Spiritual Walk with Jesus</cite></li><li aria-hidden="true"><span class="stars" aria-label="5 stars">★★★★★</span><q>Way better than scrolling on your phone right when you wake up.</q><cite>Riffsnb</cite></li><li aria-hidden="true"><span class="stars" aria-label="5 stars">★★★★★</span><q>The sense of community that Core of the Heart brings is unmatched.</q><cite>Mnegrelli4</cite></li><li aria-hidden="true"><span class="stars" aria-label="5 stars">★★★★★</span><q>Going to God became a habit without me even realizing.</q><cite>Maurice863</cite></li><li aria-hidden="true"><span class="stars" aria-label="5 stars">★★★★★</span><q>Got me into reading my Bible daily again.</q><cite>apostolicdoug</cite></li><li aria-hidden="true"><span class="stars" aria-label="5 stars">★★★★★</span><q>All biblical. Raw and real. Life changing.</q><cite>MrBSmooth</cite></li><li aria-hidden="true"><span class="stars" aria-label="5 stars">★★★★★</span><q>The UI is lovely</q><cite>Itutujazz</cite></li></ul>
+    </div>
   </div>
 
   <main class="shell">
@@ -240,6 +256,11 @@
           <p class="cap">"Here's what I heard," after the survey</p>
         </div>
         <div class="notes">
+          <div class="note">
+            <div class="note-head"><span class="tag growth">Love it</span></div>
+            <h3>"Here's what I heard" is a great moment</h3>
+            <p>Playing the survey back in Johnny's voice feels personal, like he actually listened. That's a strong beat to build the rest of onboarding around.</p>
+          </div>
           <div class="note">
             <div class="note-head"><span class="pin">3</span><span class="tag bug">Bug</span></div>
             <h3>Small layout bug on the quote</h3>
