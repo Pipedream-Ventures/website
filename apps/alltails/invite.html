@@ -30,9 +30,9 @@
       body { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 64 64'%3E%3Cg fill='%23606CFF' stroke='white' stroke-width='3'%3E%3Cellipse cx='14' cy='26' rx='7' ry='9'/%3E%3Cellipse cx='26' cy='14' rx='7' ry='9'/%3E%3Cellipse cx='40' cy='14' rx='7' ry='9'/%3E%3Cellipse cx='52' cy='26' rx='7' ry='9'/%3E%3Cpath d='M33 30c-10 0-19 11-19 20 0 7 7 9 19 9s19-2 19-9c0-9-9-20-19-20z'/%3E%3C/g%3E%3C/svg%3E") 14 14, auto; }
       a { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 64 64'%3E%3Cg fill='%23C8F45D' stroke='%2311131F' stroke-width='3'%3E%3Cellipse cx='14' cy='26' rx='7' ry='9'/%3E%3Cellipse cx='26' cy='14' rx='7' ry='9'/%3E%3Cellipse cx='40' cy='14' rx='7' ry='9'/%3E%3Cellipse cx='52' cy='26' rx='7' ry='9'/%3E%3Cpath d='M33 30c-10 0-19 11-19 20 0 7 7 9 19 9s19-2 19-9c0-9-9-20-19-20z'/%3E%3C/g%3E%3C/svg%3E") 16 16, pointer; }
     }
-    .layout { position: relative; z-index: 1; width: min(100%, 1040px); display: grid; gap: 48px; align-items: center; }
-    main { width: min(100%, 440px); margin: 0 auto; text-align: center; }
-    @media (min-width: 900px) { .layout { grid-template-columns: 440px 1fr; } }
+    body { grid-template-rows: 1fr auto; padding-bottom: 0; }
+    .layout { position: relative; z-index: 1; width: min(100%, 440px); }
+    main { width: 100%; text-align: center; }
 
     /* Walking paws behind everything */
     #paws { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
@@ -41,18 +41,16 @@
     @keyframes step { 0% { opacity: 0; transform: var(--t) scale(.6); } 12% { opacity: .55; transform: var(--t) scale(1); } 70% { opacity: .35; } 100% { opacity: 0; transform: var(--t) scale(1); } }
 
     /* Phones: inner radius = outer radius minus bezel */
-    .phones { position: relative; height: 560px; display: none; }
-    @media (min-width: 900px) { .phones { display: block; } }
-    .phone { --bezel: 9px; --r: 44px; position: absolute; width: 250px; padding: var(--bezel); border-radius: var(--r); background: var(--ink); box-shadow: 0 30px 60px rgba(17, 19, 31, .18); }
+    .phones { display: flex; justify-content: center; gap: 16px; margin-top: 40px; }
+    .phone { --bezel: 7px; --r: 34px; width: 46%; max-width: 200px; padding: var(--bezel); border-radius: var(--r); background: var(--ink); box-shadow: 0 24px 48px rgba(17, 19, 31, .16); }
     .phone img { display: block; width: 100%; height: auto; border-radius: calc(var(--r) - var(--bezel)); }
-    .phone.a { left: 0; top: 40px; transform: rotate(-6deg); animation: float 6s ease-in-out infinite; }
-    .phone.b { right: 0; top: 0; transform: rotate(5deg); animation: float 6s ease-in-out -3s infinite; }
-    @keyframes float { 50% { translate: 0 -12px; } }
-    .mini-phones { display: flex; justify-content: center; gap: 14px; margin-top: 36px; }
-    .mini-phones .phone { position: static; width: 46%; max-width: 190px; --r: 32px; --bezel: 7px; animation: none; }
-    .mini-phones .phone:first-child { transform: rotate(-4deg); }
-    .mini-phones .phone:last-child { transform: rotate(4deg); }
-    @media (min-width: 900px) { .mini-phones { display: none; } }
+    .phone:first-child { transform: rotate(-4deg); }
+    .phone:last-child { transform: rotate(4deg); }
+
+    /* Footer: quiet, bottom center */
+    footer { position: relative; z-index: 1; align-self: end; padding: 40px 0 calc(20px + env(safe-area-inset-bottom)); text-align: center; font-size: .85rem; color: #8A8C99; }
+    footer a { color: inherit; text-decoration: none; }
+    footer a:hover { color: var(--ink); }
 
     /* Scan from a computer */
     .qr { display: none; margin: 28px auto 0; padding: 16px; width: max-content; background: var(--white); border-radius: var(--card-r); box-shadow: var(--shadow); align-items: center; gap: 16px; text-align: left; }
@@ -62,7 +60,7 @@
     .qr strong { display: block; font-size: 1rem; }
     .qr span { color: var(--slate); font-size: .9rem; }
     @media (hover: hover) and (pointer: fine) { .qr { display: flex; } }
-    @media (prefers-reduced-motion: reduce) { .phone { animation: none !important; } #paws { display: none; } }
+    @media (prefers-reduced-motion: reduce) { #paws { display: none; } }
     .icon { width: 96px; height: 96px; border-radius: 22px; box-shadow: var(--shadow); margin: 0 auto 24px; display: block; }
     h1 { font-family: "Parkinsans", "Figtree", system-ui, sans-serif; font-weight: 800; letter-spacing: -0.02em; line-height: 1.05; font-size: 2.2rem; margin-bottom: 12px; }
     p { color: var(--slate); font-size: 1.05rem; }
@@ -73,6 +71,7 @@
     .btn.alt { background: var(--white); color: var(--cobalt); box-shadow: var(--shadow); }
     .btn.alt:hover { background: var(--white); color: var(--cobalt-deep); }
     [hidden] { display: none !important; }
+    .hint { font-size: .95rem; }
     ol { text-align: left; background: var(--white); border-radius: var(--card-r); box-shadow: var(--shadow); padding: 20px 20px 20px 40px; display: grid; gap: 10px; }
     li { color: var(--ink); }
     .more { margin-top: 24px; font-size: .95rem; }
@@ -88,15 +87,16 @@
       <h1>Join the pack on AllTails</h1>
       <p>You're invited to share dog walks. See every walk with the pack's dogs and log your own.</p>
       <div class="actions">
-        <a class="btn" href="https://apps.apple.com/app/id6818644293">Get AllTails</a>
-        <a class="btn alt" id="open" href="alltails://invite">Open in AllTails</a>
+        <a class="btn open-app" href="https://apps.apple.com/app/id6818644293">Open AllTails</a>
       </div>
-      <p>Install AllTails, then come back and tap Open in AllTails.</p>
+      <p class="hint">No app yet? The button gets it. Then tap this link again.</p>
     </section>
     <section id="ask">
       <h1>Add them to your pack</h1>
       <p>Someone you walk with uses AllTails. Share your pack and their walks with your dogs show up for you.</p>
-      <a class="btn" href="https://apps.apple.com/app/id6818644293">Get AllTails</a>
+      <div class="actions">
+        <a class="btn open-app" href="https://apps.apple.com/app/id6818644293">Open AllTails</a>
+      </div>
       <ol>
         <li>Install AllTails and add your dog.</li>
         <li>Tap this link again, or tap Invite in the app.</li>
@@ -107,17 +107,13 @@
       <div class="qr-code"><div id="qr-svg"></div><img src="/apps/alltails/img/icon.png" alt=""></div>
       <div><strong>On a computer?</strong><span>Scan with your iPhone camera<br>to open this invite there.</span></div>
     </div>
-    <div class="mini-phones" aria-hidden="true">
-      <div class="phone"><img src="/apps/alltails/img/screen-recap.webp" width="720" height="1565" alt=""></div>
-      <div class="phone"><img src="/apps/alltails/img/screen-history.webp" width="720" height="1565" alt=""></div>
+    <div class="phones">
+      <div class="phone"><img src="/apps/alltails/img/screen-recap.webp" width="720" height="1565" alt="AllTails walk recap with the route on a map."></div>
+      <div class="phone"><img src="/apps/alltails/img/screen-history.webp" width="720" height="1565" alt="AllTails pack history with every walk."></div>
     </div>
-    <p class="more"><a href="/apps/alltails/">About AllTails</a> · <a href="/apps/alltails/support">Support</a></p>
   </main>
-  <div class="phones">
-    <div class="phone a"><img src="/apps/alltails/img/screen-recap.webp" width="720" height="1565" alt="AllTails walk recap with the route on a map."></div>
-    <div class="phone b"><img src="/apps/alltails/img/screen-history.webp" width="720" height="1565" alt="AllTails pack history with every walk."></div>
   </div>
-  </div>
+  <footer><a href="/apps/alltails/">AllTails</a> · <a href="/apps/alltails/support">Support</a> · <a href="/apps/alltails/privacy">Privacy</a></footer>
   <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
   <script>
     // QR of this exact link, so a desktop visitor can open it on their iPhone.
@@ -172,9 +168,24 @@
     (function () {
       var t = new URLSearchParams(location.search).get("t") || "";
       if (!/^[A-Za-z0-9]+$/.test(t)) return;
-      document.getElementById("open").href = "alltails://invite?t=" + encodeURIComponent(t);
+      window.alltailsLink = "alltails://invite?t=" + encodeURIComponent(t);
       document.getElementById("join").hidden = false;
       document.getElementById("ask").hidden = true;
+    })();
+    // One button: open the app if it's here, else the App Store.
+    (function () {
+      var store = "https://apps.apple.com/app/id6818644293";
+      var mobile = /iPhone|iPad|iPod/.test(navigator.userAgent);
+      document.querySelectorAll(".open-app").forEach(function (a) {
+        a.addEventListener("click", function (e) {
+          if (!mobile) return;
+          e.preventDefault();
+          var left = false;
+          document.addEventListener("visibilitychange", function () { if (document.hidden) left = true; }, { once: true });
+          location.href = window.alltailsLink || "alltails://invite";
+          setTimeout(function () { if (!left) location.href = store; }, 1400);
+        });
+      });
     })();
   </script>
 </body>
