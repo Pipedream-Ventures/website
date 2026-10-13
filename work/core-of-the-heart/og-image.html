@@ -1,32 +1,40 @@
 <!DOCTYPE html><html><head><meta charset="utf-8">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{width:1200px;height:630px;overflow:hidden}
-body{background:#f5f0e6;color:#292923;font-family:"DM Sans",sans-serif;display:grid;grid-template-columns:1fr 470px;position:relative}
-body::before{content:"";position:absolute;inset:0 0 auto;height:8px;background:linear-gradient(90deg,#ed5136,#f4a52c,#eccc38,#9ab74e,#5b9aaa,#7775b4,#b680b6)}
-.txt{padding:76px 0 64px 76px;display:flex;flex-direction:column;justify-content:space-between}
-.brand{display:flex;align-items:center;gap:14px;font-weight:700;font-size:24px;letter-spacing:-.025em}
-.brand img{width:38px;height:38px}
-.label{font:700 17px "Space Mono",monospace;letter-spacing:.09em;text-transform:uppercase;color:#737269}
-h1{margin-top:22px;font-weight:500;font-size:88px;line-height:.96;letter-spacing:-.065em}
-h1 em{font-family:Georgia,serif;font-weight:400;letter-spacing:-.03em}
-.app{display:flex;align-items:center;gap:18px;font-size:22px;color:#737269}
-.app img{width:60px;height:60px;border-radius:14px;border:1px solid #d7d3c7}
-.app b{color:#292923;font-weight:500}
-.phones{position:relative}
-.ph{position:absolute;width:236px;border-radius:30px;overflow:hidden;border:6px solid #292923;background:#292923;box-shadow:0 26px 46px rgba(41,41,35,.22)}
+body{position:relative;isolation:isolate;background:#101317;color:#eef1f4;font-family:"DM Sans",sans-serif}
+.glow{position:absolute;inset:-20%;z-index:-3;background:
+  radial-gradient(38% 55% at 72% 45%,rgba(110,150,178,.55),transparent 70%),
+  radial-gradient(30% 45% at 12% 90%,rgba(72,98,122,.5),transparent 70%),
+  radial-gradient(28% 40% at 40% 0%,rgba(160,190,210,.2),transparent 70%)}
+.mark{position:absolute;z-index:-2;left:-120px;top:50%;width:640px;transform:translateY(-50%);opacity:.14;filter:blur(3px)}
+.mark img{width:100%;display:block;border-radius:22%}
+.txt{position:absolute;left:72px;top:0;bottom:0;width:520px;display:flex;flex-direction:column;justify-content:center;gap:26px}
+.icon{width:104px;height:104px;border-radius:24%;box-shadow:0 14px 30px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.12)}
+h1{font-weight:500;font-size:84px;line-height:.95;letter-spacing:-.06em}
+.stars{display:flex;align-items:center;gap:12px;font-size:22px;color:rgba(238,241,244,.75)}
+.stars span{color:#f4c542;letter-spacing:.1em;font-size:24px}
+.stars b{color:#fff;font-weight:600}
+.chip{display:inline-flex;align-items:center;gap:12px;width:fit-content;padding:8px 18px 8px 8px;border-radius:999px;font-size:19px;font-weight:500;color:rgba(238,241,244,.9);
+  background:linear-gradient(135deg,rgba(255,255,255,.18),rgba(255,255,255,.06));border:1px solid rgba(255,255,255,.22);box-shadow:inset 0 1px 0 rgba(255,255,255,.3)}
+.chip img{width:34px;height:34px;border-radius:8px;background:#fff;padding:3px}
+.chip b{color:#fff;font-weight:600}
+.ph{position:absolute;width:240px;border-radius:34px;overflow:hidden;border:7px solid #05070a;background:#05070a;box-shadow:0 30px 60px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.1)}
 .ph img{width:100%;display:block}
-.a{left:6px;top:96px;transform:rotate(-4deg)}
-.b{left:204px;top:56px;transform:rotate(3deg)}
+.a{left:660px;top:92px;transform:rotate(-6deg);width:262px}
+.b{left:880px;top:44px;transform:rotate(4deg);z-index:2;width:276px}
+.bar{position:absolute;inset:0 0 auto;height:6px;background:linear-gradient(90deg,#ed5136,#f4a52c,#eccc38,#9ab74e,#5b9aaa,#7775b4,#b680b6)}
 </style></head><body>
+<div class="glow"></div>
+<div class="mark"><img src="app-icon.jpg"></div>
+<div class="bar"></div>
 <div class="txt">
-  <div class="brand"><img src="../../icon.svg">Pipedream Ventures</div>
-  <div><div class="label">First audit · iOS</div><h1>Core of<br>the Heart, <em>first look.</em></h1></div>
-  <div class="app"><img src="app-icon.jpg"><span><b>Core of the Heart Daily</b> · 4.96 from 13,806 ratings</span></div>
+  <img class="icon" src="app-icon.jpg">
+  <h1>Core of<br>the Heart</h1>
+  <div class="stars"><span>★★★★★</span><b>4.96</b> from 13.8K ratings</div>
+  <div class="chip"><img src="../../icon.svg"><span>Reviewed by <b>Seth</b> · Pipedream Ventures</span></div>
 </div>
-<div class="phones">
-  <div class="ph a"><img src="onboarding.jpg"></div>
-  <div class="ph b"><img src="devo.jpg"></div>
-</div>
+<div class="ph a"><img src="onboarding.jpg"></div>
+<div class="ph b"><img src="devo.jpg"></div>
 </body></html>
