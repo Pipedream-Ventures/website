@@ -25,8 +25,44 @@
       --gutter: 16px; --btn-h: 52px; --card-r: 22px;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background: var(--paper); color: var(--ink); font-family: "Figtree", -apple-system, system-ui, sans-serif; line-height: 1.55; min-height: 100vh; display: grid; place-items: center; padding: 40px var(--gutter); }
-    main { width: min(100%, 440px); text-align: center; }
+    body { background: var(--paper); color: var(--ink); font-family: "Figtree", -apple-system, system-ui, sans-serif; line-height: 1.55; min-height: 100vh; display: grid; place-items: center; padding: 40px var(--gutter); overflow-x: hidden; }
+    @media (hover: hover) and (pointer: fine) {
+      body { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 64 64'%3E%3Cg fill='%23606CFF' stroke='white' stroke-width='3'%3E%3Cellipse cx='14' cy='26' rx='7' ry='9'/%3E%3Cellipse cx='26' cy='14' rx='7' ry='9'/%3E%3Cellipse cx='40' cy='14' rx='7' ry='9'/%3E%3Cellipse cx='52' cy='26' rx='7' ry='9'/%3E%3Cpath d='M33 30c-10 0-19 11-19 20 0 7 7 9 19 9s19-2 19-9c0-9-9-20-19-20z'/%3E%3C/g%3E%3C/svg%3E") 14 14, auto; }
+      a { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 64 64'%3E%3Cg fill='%23C8F45D' stroke='%2311131F' stroke-width='3'%3E%3Cellipse cx='14' cy='26' rx='7' ry='9'/%3E%3Cellipse cx='26' cy='14' rx='7' ry='9'/%3E%3Cellipse cx='40' cy='14' rx='7' ry='9'/%3E%3Cellipse cx='52' cy='26' rx='7' ry='9'/%3E%3Cpath d='M33 30c-10 0-19 11-19 20 0 7 7 9 19 9s19-2 19-9c0-9-9-20-19-20z'/%3E%3C/g%3E%3C/svg%3E") 16 16, pointer; }
+    }
+    .layout { position: relative; z-index: 1; width: min(100%, 1040px); display: grid; gap: 48px; align-items: center; }
+    main { width: min(100%, 440px); margin: 0 auto; text-align: center; }
+    @media (min-width: 900px) { .layout { grid-template-columns: 440px 1fr; } }
+
+    /* Walking paws behind everything */
+    #paws { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+    .paw { position: absolute; width: 26px; height: 26px; opacity: 0; animation: step 4.2s ease-out forwards; }
+    .paw svg { width: 100%; height: 100%; display: block; }
+    @keyframes step { 0% { opacity: 0; transform: var(--t) scale(.6); } 12% { opacity: .55; transform: var(--t) scale(1); } 70% { opacity: .35; } 100% { opacity: 0; transform: var(--t) scale(1); } }
+
+    /* Phones: inner radius = outer radius minus bezel */
+    .phones { position: relative; height: 560px; display: none; }
+    @media (min-width: 900px) { .phones { display: block; } }
+    .phone { --bezel: 9px; --r: 44px; position: absolute; width: 250px; padding: var(--bezel); border-radius: var(--r); background: var(--ink); box-shadow: 0 30px 60px rgba(17, 19, 31, .18); }
+    .phone img { display: block; width: 100%; height: auto; border-radius: calc(var(--r) - var(--bezel)); }
+    .phone.a { left: 0; top: 40px; transform: rotate(-6deg); animation: float 6s ease-in-out infinite; }
+    .phone.b { right: 0; top: 0; transform: rotate(5deg); animation: float 6s ease-in-out -3s infinite; }
+    @keyframes float { 50% { translate: 0 -12px; } }
+    .mini-phones { display: flex; justify-content: center; gap: 14px; margin-top: 36px; }
+    .mini-phones .phone { position: static; width: 46%; max-width: 190px; --r: 32px; --bezel: 7px; animation: none; }
+    .mini-phones .phone:first-child { transform: rotate(-4deg); }
+    .mini-phones .phone:last-child { transform: rotate(4deg); }
+    @media (min-width: 900px) { .mini-phones { display: none; } }
+
+    /* Scan from a computer */
+    .qr { display: none; margin: 28px auto 0; padding: 16px; width: max-content; background: var(--white); border-radius: var(--card-r); box-shadow: var(--shadow); align-items: center; gap: 16px; text-align: left; }
+    .qr-code { position: relative; width: 132px; height: 132px; }
+    .qr-code svg { width: 100%; height: 100%; display: block; }
+    .qr-code img { position: absolute; left: 50%; top: 50%; width: 34px; height: 34px; translate: -50% -50%; border-radius: 9px; border: 3px solid var(--white); }
+    .qr strong { display: block; font-size: 1rem; }
+    .qr span { color: var(--slate); font-size: .9rem; }
+    @media (hover: hover) and (pointer: fine) { .qr { display: flex; } }
+    @media (prefers-reduced-motion: reduce) { .phone { animation: none !important; } #paws { display: none; } }
     .icon { width: 96px; height: 96px; border-radius: 22px; box-shadow: var(--shadow); margin: 0 auto 24px; display: block; }
     h1 { font-family: "Parkinsans", "Figtree", system-ui, sans-serif; font-weight: 800; letter-spacing: -0.02em; line-height: 1.05; font-size: 2.2rem; margin-bottom: 12px; }
     p { color: var(--slate); font-size: 1.05rem; }
@@ -44,6 +80,8 @@
   </style>
 </head>
 <body>
+  <div id="paws" aria-hidden="true"></div>
+  <div class="layout">
   <main>
     <img class="icon" src="/apps/alltails/img/icon.png" alt="AllTails app icon" width="96" height="96">
     <section id="join" hidden>
@@ -65,9 +103,72 @@
         <li>Send the invite. They tap it and join your pack.</li>
       </ol>
     </section>
+    <div class="qr" id="qr">
+      <div class="qr-code"><div id="qr-svg"></div><img src="/apps/alltails/img/icon.png" alt=""></div>
+      <div><strong>On a computer?</strong><span>Scan with your iPhone camera<br>to open this invite there.</span></div>
+    </div>
+    <div class="mini-phones" aria-hidden="true">
+      <div class="phone"><img src="/apps/alltails/img/screen-recap.webp" width="720" height="1565" alt=""></div>
+      <div class="phone"><img src="/apps/alltails/img/screen-history.webp" width="720" height="1565" alt=""></div>
+    </div>
     <p class="more"><a href="/apps/alltails/">About AllTails</a> · <a href="/apps/alltails/support">Support</a></p>
   </main>
+  <div class="phones">
+    <div class="phone a"><img src="/apps/alltails/img/screen-recap.webp" width="720" height="1565" alt="AllTails walk recap with the route on a map."></div>
+    <div class="phone b"><img src="/apps/alltails/img/screen-history.webp" width="720" height="1565" alt="AllTails pack history with every walk."></div>
+  </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
   <script>
+    // QR of this exact link, so a desktop visitor can open it on their iPhone.
+    (function () {
+      if (typeof qrcode !== "function") return;
+      var qr = qrcode(0, "H");
+      qr.addData(location.href);
+      qr.make();
+      var n = qr.getModuleCount(), cells = "";
+      for (var r = 0; r < n; r++) for (var c = 0; c < n; c++) {
+        if (qr.isDark(r, c)) cells += "M" + c + " " + r + "h1v1h-1z";
+      }
+      document.getElementById("qr-svg").innerHTML =
+        '<svg viewBox="-1 -1 ' + (n + 2) + ' ' + (n + 2) + '" shape-rendering="crispEdges"><path fill="#11131F" d="' + cells + '"/></svg>';
+    })();
+
+    // Little paws that walk across the page, then fade.
+    (function () {
+      if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      var box = document.getElementById("paws");
+      var colors = ["#606CFF", "#C8F45D", "#FF8A5B", "#F06FA8", "#11131F"];
+      var paw = function (fill) {
+        return '<svg viewBox="0 0 64 64"><g fill="' + fill + '"><ellipse cx="14" cy="26" rx="7" ry="9"/><ellipse cx="26" cy="14" rx="7" ry="9"/><ellipse cx="40" cy="14" rx="7" ry="9"/><ellipse cx="52" cy="26" rx="7" ry="9"/><path d="M33 30c-10 0-19 11-19 20 0 7 7 9 19 9s19-2 19-9c0-9-9-20-19-20z"/></g></svg>';
+      };
+      function walk() {
+        var w = innerWidth, h = innerHeight;
+        var x = Math.random() * w, y = h + 20;
+        var angle = -Math.PI / 2 + (Math.random() - .5) * 1.2;
+        var color = colors[Math.floor(Math.random() * colors.length)];
+        var steps = 14 + Math.floor(Math.random() * 10), i = 0;
+        (function step() {
+          if (i++ > steps) return;
+          angle += (Math.random() - .5) * .35;
+          x += Math.cos(angle) * 46; y += Math.sin(angle) * 46;
+          var side = i % 2 ? 1 : -1;
+          var px = x + Math.cos(angle + Math.PI / 2) * 11 * side;
+          var py = y + Math.sin(angle + Math.PI / 2) * 11 * side;
+          var el = document.createElement("div");
+          el.className = "paw";
+          el.style.left = px + "px"; el.style.top = py + "px";
+          el.style.setProperty("--t", "rotate(" + (angle * 180 / Math.PI + 90) + "deg)");
+          el.innerHTML = paw(color);
+          box.appendChild(el);
+          setTimeout(function () { el.remove(); }, 4300);
+          setTimeout(step, 260);
+        })();
+      }
+      walk(); setTimeout(walk, 1400);
+      setInterval(walk, 3200);
+    })();
+
     (function () {
       var t = new URLSearchParams(location.search).get("t") || "";
       if (!/^[A-Za-z0-9]+$/.test(t)) return;
