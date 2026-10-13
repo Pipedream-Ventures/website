@@ -69,6 +69,21 @@
       box-shadow: inset 0 1px 0 rgba(255,255,255,.22), 0 30px 60px rgba(0,0,0,.35); }
     .glass > img { width: clamp(76px, 10vw, 112px); height: auto; border-radius: 24%; flex: none; box-shadow: 0 10px 24px rgba(0,0,0,.4); }
     .glass h1 { font-size: clamp(2.2rem, 5.6vw, 4.4rem); font-weight: 500; line-height: 1; letter-spacing: -.055em; }
+    /* Byline chip: frosted pill with Seth's avatar and Claude's spark */
+    .byline { display: inline-flex; align-items: center; gap: .6rem; margin-bottom: 1.1rem; padding: .35rem .9rem .35rem .35rem; border-radius: 999px; font-size: .86rem; font-weight: 500; color: rgba(238, 241, 244, .9);
+      background: linear-gradient(135deg, rgba(255,255,255,.18), rgba(255,255,255,.06)); border: 1px solid rgba(255,255,255,.22);
+      -webkit-backdrop-filter: blur(16px) saturate(1.4); backdrop-filter: blur(16px) saturate(1.4); box-shadow: inset 0 1px 0 rgba(255,255,255,.3), 0 8px 20px rgba(0,0,0,.25); }
+    .byline b { color: #fff; font-weight: 600; }
+    .faces { display: flex; }
+    .face { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; border: 2px solid rgba(16, 19, 23, .85); }
+    .face + .face { margin-left: -8px; }
+    .face.seth { background: conic-gradient(from 200deg, #ed5136, #f4a52c, #eccc38, #9ab74e, #5b9aaa, #7775b4, #b680b6, #ed5136); font: 700 .8rem/1 var(--sans); color: #101317; animation: wave 2.4s ease-in-out 1s 2; }
+    .face.seth span { display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: #fbf8f2; }
+    .face.claude { background: #faf9f5; }
+    .face.claude svg { width: 18px; height: 18px; animation: twirl 12s linear infinite; }
+    @keyframes wave { 25% { transform: rotate(-12deg); } 75% { transform: rotate(12deg); } }
+    @keyframes twirl { to { transform: rotate(360deg); } }
+    @media (prefers-reduced-motion: reduce) { .face.seth, .face.claude svg { animation: none; } }
     .glass .who { margin-top: .8rem; font-size: clamp(1rem, 1.6vw, 1.2rem); color: rgba(238, 241, 244, .85); }
     .glass .who b { color: #fff; font-weight: 600; }
     .glass .ver { margin-top: .9rem; font: 700 .68rem/1.4 var(--mono); letter-spacing: .09em; text-transform: uppercase; color: rgba(238, 241, 244, .6); }
@@ -160,8 +175,15 @@
       <div class="glass">
         <img src="app-icon.jpg" width="112" height="112" alt="Core of the Heart Daily app icon">
         <div>
+          <p class="byline">
+            <span class="faces" aria-hidden="true">
+              <span class="face seth"><span>S</span></span>
+              <span class="face claude"><svg viewBox="0 0 24 24" fill="#d97757"><rect x="11" y="1.5" width="2" height="9" rx="1" transform="rotate(0 12 12)"/><rect x="11" y="1.5" width="2" height="9" rx="1" transform="rotate(45 12 12)"/><rect x="11" y="1.5" width="2" height="9" rx="1" transform="rotate(90 12 12)"/><rect x="11" y="1.5" width="2" height="9" rx="1" transform="rotate(135 12 12)"/><rect x="11" y="1.5" width="2" height="9" rx="1" transform="rotate(180 12 12)"/><rect x="11" y="1.5" width="2" height="9" rx="1" transform="rotate(225 12 12)"/><rect x="11" y="1.5" width="2" height="9" rx="1" transform="rotate(270 12 12)"/><rect x="11" y="1.5" width="2" height="9" rx="1" transform="rotate(315 12 12)"/></svg></span>
+            </span>
+            <span>Prepared by <b>Seth</b> with <b>Claude</b></span>
+          </p>
           <h1>Core of the Heart review</h1>
-          <p class="who">From <b>Seth</b> for <b>Justin &amp; Christian</b></p>
+          <p class="who">For <b>Justin &amp; Christian</b></p>
           <p class="ver">Tested v1.5.0 · iPhone · Oct 12, 2026</p>
         </div>
       </div>
