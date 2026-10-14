@@ -75,6 +75,24 @@
     ol { text-align: left; background: var(--white); border-radius: var(--card-r); box-shadow: var(--shadow); padding: 20px 20px 20px 40px; display: grid; gap: 10px; }
     li { color: var(--ink); }
     .more { margin-top: 24px; font-size: .95rem; }
+    /* Personal invite: owner face overlapping the dogs */
+    .faces { display: flex; justify-content: center; margin: 0 auto 24px; padding-left: 14px; }
+    .face { --d: 76px; width: var(--d); height: var(--d); border-radius: calc(var(--d) / 2); margin-left: -14px; background: var(--white); box-shadow: 0 0 0 4px var(--paper), var(--shadow); display: grid; place-items: center; overflow: hidden; font-size: 2.2rem; line-height: 1; }
+    .face img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .face.owner { --d: 88px; z-index: 2; background: var(--cobalt); color: var(--white); }
+    .face.owner svg { width: 46%; height: 46%; }
+    .face:nth-child(3n+2) { background: #EEF6D8; }
+    .face:nth-child(3n+3) { background: #FFE8DE; }
+    .face:nth-child(3n+4) { background: #FCE4EF; }
+    .faces.wiggle .face { animation: hop .5s ease-out backwards; }
+    .faces.wiggle .face:nth-child(2) { animation-delay: .08s; }
+    .faces.wiggle .face:nth-child(3) { animation-delay: .16s; }
+    .faces.wiggle .face:nth-child(4) { animation-delay: .24s; }
+    @keyframes hop { 0% { transform: translateY(10px) scale(.85); } 70% { transform: translateY(-4px) scale(1.03); } 100% { transform: none; } }
+    .code { --h: 56px; display: inline-flex; align-items: center; height: var(--h); padding: 0 28px; border-radius: calc(var(--h) / 2); background: var(--white); box-shadow: var(--shadow); font-family: "Parkinsans", "Figtree", system-ui, sans-serif; font-weight: 800; font-size: 1.6rem; letter-spacing: .14em; color: var(--ink); border: 0; cursor: inherit; -webkit-tap-highlight-color: transparent; }
+    .code-box { margin: -6px 0 0; }
+    .code-box .hint { margin-top: 12px; }
+
     .more a { color: var(--cobalt); font-weight: 600; text-decoration: none; }
   </style>
 </head>
@@ -82,14 +100,19 @@
   <div id="paws" aria-hidden="true"></div>
   <div class="layout">
   <main>
-    <img class="icon" src="/apps/alltails/img/icon.png" alt="AllTails app icon" width="96" height="96">
+    <div class="faces" id="faces" hidden></div>
+    <img class="icon" id="icon" src="/apps/alltails/img/icon.png" alt="AllTails app icon" width="96" height="96">
     <section id="join" hidden>
       <h1>Join the pack on AllTails</h1>
       <p>You're invited to share dog walks. See every walk with the pack's dogs and log your own.</p>
       <div class="actions">
         <a class="btn open-app" href="https://apps.apple.com/app/id6818644293">Open AllTails</a>
       </div>
-      <p class="hint">No app yet? The button gets it. Then tap this link again.</p>
+      <p class="hint" id="join-hint">No app yet? The button gets it. Then tap this link again.</p>
+      <div class="code-box" id="code-box" hidden>
+        <button class="code" id="code" type="button" aria-label="Copy invite link"></button>
+        <p class="hint">New to AllTails? Get the app, open it, tap Got an invite? and paste.</p>
+      </div>
     </section>
     <section id="ask">
       <h1>Add them to your pack</h1>
@@ -172,12 +195,69 @@
       document.getElementById("join").hidden = false;
       document.getElementById("ask").hidden = true;
     })();
+
+    // Personal invite: alltailsapp.com injects who sent it.
+    (function () {
+      var el = document.getElementById("invite-preview");
+      if (!el || !window.alltailsLink) return;
+      var data;
+      try { data = JSON.parse(el.textContent); } catch (e) { return; }
+      if (!data || !data.code) return;
+      var dogs = (data.dogs || []).filter(function (d) { return d && d.name; });
+      var person = '<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8" r="4.5"/><path d="M3.5 21c0-4.7 3.8-8 8.5-8s8.5 3.3 8.5 8z"/></svg>';
+      var faces = document.getElementById("faces");
+      function face(cls, photo, fallback, alt) {
+        var f = document.createElement("div");
+        f.className = "face" + cls;
+        if (photo) {
+          var img = new Image();
+          img.src = photo; img.alt = alt;
+          img.onerror = function () { f.innerHTML = fallback; };
+          f.appendChild(img);
+        } else f.innerHTML = fallback;
+        faces.appendChild(f);
+      }
+      face(" owner", data.owner_avatar, person, data.owner_name || "");
+      dogs.slice(0, 4).forEach(function (d) {
+        var span = document.createElement("span");
+        span.textContent = d.symbol || "\uD83D\uDC15";
+        face("", d.photo, span.outerHTML, d.name);
+      });
+      faces.hidden = false;
+      faces.classList.add("wiggle");
+      document.getElementById("icon").hidden = true;
+
+      var list = dogs.map(function (d) { return d.name; });
+      var names = list.length < 3 ? list.join(" and ") : list.slice(0, -1).join(", ") + ", and " + list[list.length - 1];
+      var join = document.getElementById("join");
+      if (data.owner_name && data.pack_name) join.querySelector("h1").textContent = data.owner_name + " invited you to " + data.pack_name;
+      else if (data.pack_name) join.querySelector("h1").textContent = "Join " + data.pack_name + " on AllTails";
+      if (list.length) join.querySelector("p").textContent = names + (list.length === 1 ? " is" : " are") + " waiting for a walk.";
+
+      if (data.code.length <= 8) {
+        document.getElementById("join-hint").hidden = true;
+        document.getElementById("code-box").hidden = false;
+      }
+      var code = document.getElementById("code");
+      code.textContent = data.code.toUpperCase();
+      code.addEventListener("click", function () {
+        if (navigator.clipboard) navigator.clipboard.writeText(location.href).then(function () {
+          code.textContent = "Copied";
+          setTimeout(function () { code.textContent = data.code.toUpperCase(); }, 1200);
+        }, function () {});
+      });
+      // The app reads the invite from the clipboard after install.
+      window.copyInvite = function () {
+        try { navigator.clipboard.writeText(location.href).catch(function () {}); } catch (e) {}
+      };
+    })();
     // One button: open the app if it's here, else the App Store.
     (function () {
       var store = "https://apps.apple.com/app/id6818644293";
       var mobile = /iPhone|iPad|iPod/.test(navigator.userAgent);
       document.querySelectorAll(".open-app").forEach(function (a) {
         a.addEventListener("click", function (e) {
+          if (window.copyInvite) window.copyInvite();
           if (!mobile) return;
           e.preventDefault();
           var left = false;
