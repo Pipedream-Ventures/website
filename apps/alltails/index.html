@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AllTails: Dog Walking App</title>
+  <title>AllTails: Dog Walk Tracker</title>
   <meta name="description" content="Track every walk with your dogs and share an animated replay. Packs for family and dog walkers. No sign-up, no ads.">
   <meta name="robots" content="index, follow">
   <meta name="color-scheme" content="light">
@@ -12,14 +12,14 @@
   <link rel="icon" type="image/png" href="/apps/alltails/img/icon.png">
   <link rel="apple-touch-icon" href="/apps/alltails/img/icon.png">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://pipedream.ventures/apps/alltails/">
-  <meta property="og:title" content="AllTails: Dog Walking App">
+  <meta property="og:url" content="https://alltailsapp.com/">
+  <meta property="og:title" content="AllTails: Dog Walk Tracker">
   <meta property="og:description" content="Track walks. Share the replay.">
-  <meta property="og:image" content="https://pipedream.ventures/apps/alltails/img/icon.png">
+  <meta property="og:image" content="https://alltailsapp.com/apps/alltails/img/og.jpg">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="AllTails: Dog Walking App">
   <meta name="twitter:description" content="Track walks. Share the replay.">
-  <meta name="twitter:image" content="https://pipedream.ventures/apps/alltails/img/icon.png">
+  <meta name="twitter:image" content="https://alltailsapp.com/apps/alltails/img/og.jpg">
   <meta name="apple-itunes-app" content="app-id=6818644293">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -71,7 +71,7 @@
 
     /* Phone frame: inner radius = outer radius minus bezel */
     .phone { --bezel: 10px; --r: 50px; width: min(300px, 78vw); margin: 0 auto; padding: var(--bezel); border-radius: var(--r); background: var(--ink); box-shadow: 0 30px 60px rgba(17, 19, 31, .18); }
-    .phone img { width: 100%; border-radius: calc(var(--r) - var(--bezel)); }
+    .phone img, .phone video { display: block; width: 100%; height: auto; aspect-ratio: 720 / 1560; object-fit: cover; border-radius: calc(var(--r) - var(--bezel)); }
 
     section { padding: 64px 0; }
     .kicker { display: block; margin-bottom: 10px; color: var(--cobalt); font-size: .8rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
@@ -139,7 +139,7 @@
   <nav>
     <div class="wrap">
       <a class="brand" href="/apps/alltails/"><img src="/apps/alltails/img/icon.png" alt="">AllTails</a>
-      <a class="nav-cta" href="https://apps.apple.com/app/id6818644293">Get the App</a>
+      <a class="nav-cta" href="https://testflight.apple.com/join/9zdaMKxX">Join the Beta</a>
     </div>
   </nav>
 
@@ -148,13 +148,13 @@
       <div>
         <h1>Track walks.<br><span>Share the replay.</span></h1>
         <p class="lede">AllTails tracks every walk with your dogs, then turns it into a replay worth posting. One app for owners, families, and the walkers who help.</p>
-        <a class="btn" href="https://apps.apple.com/app/id6818644293">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.37 12.6c.02 2.4 2.1 3.2 2.13 3.21-.02.06-.33 1.14-1.1 2.26-.66.97-1.35 1.93-2.43 1.95-1.07.02-1.41-.63-2.63-.63-1.22 0-1.6.61-2.61.65-1.04.04-1.84-1.05-2.5-2.01-1.36-1.97-2.4-5.56-1-7.98.69-1.2 1.93-1.96 3.28-1.98 1.02-.02 1.99.69 2.61.69.63 0 1.8-.85 3.04-.73.52.02 1.97.21 2.9 1.58-.08.05-1.73 1.01-1.71 3zM14.36 5.84c.55-.67.93-1.6.82-2.53-.8.03-1.77.53-2.34 1.2-.51.59-.96 1.54-.84 2.45.89.07 1.8-.45 2.36-1.12z"/></svg>
-          Download on the App Store
+        <a class="btn" href="https://testflight.apple.com/join/9zdaMKxX">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5.5" cy="10" r="2.2"/><circle cx="9.5" cy="6" r="2.2"/><circle cx="14.5" cy="6" r="2.2"/><circle cx="18.5" cy="10" r="2.2"/><path d="M12 11c-3.2 0-6 4.6-6 6.8 0 1.8 1.6 2.4 3 2.4 1.2 0 2-.6 3-.6s1.8.6 3 .6c1.4 0 3-.6 3-2.4C18 15.6 15.2 11 12 11z"/></svg>
+          Join the Free Beta
         </a>
-        <p class="note">For iPhone and Apple Watch.</p>
+        <p class="note">Free on TestFlight for iPhone and Apple Watch. App Store launch soon.</p>
       </div>
-      <div class="phone"><img src="/apps/alltails/img/screen-recap.webp" width="720" height="1565" alt="AllTails walk recap: Ralph and Arlo, 1.67 miles in 40 minutes, with the route on a map."></div>
+      <div class="phone"><video src="/apps/alltails/img/hero-demo.mp4" poster="/apps/alltails/img/hero-demo-poster.webp" width="720" height="1560" autoplay muted loop playsinline aria-label="AllTails in use: the Walk tab, the Pack week, a walk around Schiller Park, and its animated replay card."></video></div>
     </div>
 
     <section>
@@ -179,11 +179,11 @@
         <h2>Every walk becomes a replay.</h2>
         <p class="sub">Watch the route draw itself with your dogs on it. Pick a card and tap Share.</p>
         <div class="cards">
-          <figure><img src="/apps/alltails/img/card-replay.webp" width="642" height="1141" alt="Replay card: Ralph and Arlo, 1.67 miles." loading="lazy"><figcaption>Replay<small>Animated video</small></figcaption></figure>
-          <figure><img src="/apps/alltails/img/card-route.webp" width="642" height="1141" alt="Route card with a bright green route and the miles." loading="lazy"><figcaption>Route<small>The map, the miles</small></figcaption></figure>
-          <figure><img src="/apps/alltails/img/card-pack.webp" width="642" height="1141" alt="Pack card with photos of Ralph and Arlo." loading="lazy"><figcaption>Pack<small>Your dogs are the stars</small></figcaption></figure>
+          <figure><img src="/apps/alltails/img/card-replay.webp" width="642" height="1152" alt="Replay card: Ralph and Arlo walking the route, 1.06 miles in." loading="lazy"><figcaption>Replay<small>Animated video</small></figcaption></figure>
+          <figure><img src="/apps/alltails/img/card-route.webp" width="642" height="1152" alt="Route card: a bright green route, 1.24 miles in 24:32." loading="lazy"><figcaption>Route<small>The map, the miles</small></figcaption></figure>
+          <figure><img src="/apps/alltails/img/card-place.webp" width="642" height="1152" alt="Poster card: Lunch Loop in German Village, Ralph and Arlo, 1.2 miles." loading="lazy"><figcaption>Poster<small>Where you walked</small></figcaption></figure>
         </div>
-        <p class="fine">Plus Big Number, Poster, Pack Split, Photo, and AI cards. Every share trims about 150 m from each end of the route, so home stays private.</p>
+        <p class="fine">Plus Big Number, Pack Split, Photo, and AI cards. Every share trims about 150 m from each end of the route, so home stays private.</p>
       </div>
     </section>
 
@@ -191,7 +191,7 @@
       <div class="wrap">
         <span class="kicker">Packs</span>
         <h2>Walk together, even apart.</h2>
-        <p class="sub">Invite people to your pack with a link. Nobody needs an email or password.</p>
+        <p class="sub">Invite people to your pack with a link. When they walk your dogs, you get a heads-up and can follow along live.</p>
         <div class="duo">
           <div class="tile">
             <h3>For families</h3>
@@ -221,7 +221,7 @@
         <h2>Your walks stay yours.</h2>
         <div class="facts">
           <div class="tile"><strong>No sign-up</strong><p>Open the app and walk. Sign in with Apple to restore on a new phone.</p></div>
-          <div class="tile"><strong>No ads or analytics</strong><p>No tracking. We never sell your data.</p></div>
+          <div class="tile"><strong>No ads</strong><p>We never sell your data. Ads are measured only if you allow tracking.</p></div>
           <div class="tile"><strong>Health stays on your iPhone</strong><p>Apple Health data never leaves your iPhone.</p></div>
           <div class="tile"><strong>AI asks first</strong><p>AI cards send a photo only after you say yes.</p></div>
         </div>
@@ -233,9 +233,9 @@
       <div class="wrap">
         <img src="/apps/alltails/img/icon.png" width="96" height="96" alt="AllTails app icon">
         <h2>Take the dogs out.</h2>
-        <a class="btn" href="https://apps.apple.com/app/id6818644293">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.37 12.6c.02 2.4 2.1 3.2 2.13 3.21-.02.06-.33 1.14-1.1 2.26-.66.97-1.35 1.93-2.43 1.95-1.07.02-1.41-.63-2.63-.63-1.22 0-1.6.61-2.61.65-1.04.04-1.84-1.05-2.5-2.01-1.36-1.97-2.4-5.56-1-7.98.69-1.2 1.93-1.96 3.28-1.98 1.02-.02 1.99.69 2.61.69.63 0 1.8-.85 3.04-.73.52.02 1.97.21 2.9 1.58-.08.05-1.73 1.01-1.71 3zM14.36 5.84c.55-.67.93-1.6.82-2.53-.8.03-1.77.53-2.34 1.2-.51.59-.96 1.54-.84 2.45.89.07 1.8-.45 2.36-1.12z"/></svg>
-          Download on the App Store
+        <a class="btn" href="https://testflight.apple.com/join/9zdaMKxX">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5.5" cy="10" r="2.2"/><circle cx="9.5" cy="6" r="2.2"/><circle cx="14.5" cy="6" r="2.2"/><circle cx="18.5" cy="10" r="2.2"/><path d="M12 11c-3.2 0-6 4.6-6 6.8 0 1.8 1.6 2.4 3 2.4 1.2 0 2-.6 3-.6s1.8.6 3 .6c1.4 0 3-.6 3-2.4C18 15.6 15.2 11 12 11z"/></svg>
+          Join the Free Beta
         </a>
       </div>
     </section>
