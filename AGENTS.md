@@ -25,3 +25,7 @@ Client reports live in `/work/<client>/reports/`. Each report should have:
 - `noindex, nofollow` meta tag
 - Open Graph tags for Slack/social previews
 - Date-based naming: `api-2026-02-04.html`
+
+## AllTails pages
+
+Copy for `apps/alltails/` follows `~/code/alltails/COPY.md` (voice, value props, banned phrases). Visuals follow `~/code/alltails/DESIGN.md`.

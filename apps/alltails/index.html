@@ -4,17 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AllTails: Dog Walk Tracker</title>
-  <meta name="description" content="Track every walk with your dogs and share an animated replay. Packs for family and dog walkers. No sign-up, no ads.">
+  <meta name="description" content="A fun walk tracking app for you and your pups. Relive every walk, see who walked the dogs, and keep the streak going.">
   <meta name="robots" content="index, follow">
   <meta name="color-scheme" content="light">
   <meta name="theme-color" content="#F7F8FB">
-  <link rel="canonical" href="https://pipedream.ventures/apps/alltails/">
+  <link rel="canonical" href="https://alltailsapp.com/">
   <link rel="icon" type="image/png" href="/apps/alltails/img/icon.png">
   <link rel="apple-touch-icon" href="/apps/alltails/img/icon.png">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://alltailsapp.com/">
   <meta property="og:title" content="AllTails: Dog Walk Tracker">
-  <meta property="og:description" content="Track walks. Share the replay.">
+  <meta property="og:description" content="A fun walk tracking app for you and your pups.">
   <meta property="og:image" content="https://alltailsapp.com/apps/alltails/img/og.jpg">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="AllTails: Dog Walking App">
@@ -71,6 +71,10 @@
 
     /* Phone frame: inner radius = outer radius minus bezel */
     .phone { --bezel: 10px; --r: 50px; width: min(300px, 78vw); margin: 0 auto; padding: var(--bezel); border-radius: var(--r); background: var(--ink); box-shadow: 0 30px 60px rgba(17, 19, 31, .18); }
+    .phones { position: relative; width: min(420px, 92vw); margin: 0 auto; aspect-ratio: 420 / 575; overflow: visible; }
+    .phones .phone { position: absolute; width: 64%; }
+    .phones .back { left: 4%; top: 8%; transform: rotate(-6deg); opacity: .96; }
+    .phones .front { right: 4%; top: 0; transform: rotate(3deg); }
     .phone img, .phone video { display: block; width: 100%; height: auto; aspect-ratio: 720 / 1560; object-fit: cover; border-radius: calc(var(--r) - var(--bezel)); }
 
     section { padding: 64px 0; }
@@ -107,12 +111,6 @@
     .duo .walker p, .duo .walker li { color: rgba(255, 255, 255, .78); }
     .duo .walker li::before { background: var(--tennis); }
 
-    /* Privacy */
-    .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 12px; margin-top: 32px; }
-    .facts .tile strong { display: block; font-family: "Parkinsans", "Figtree", sans-serif; font-size: 1.3rem; font-weight: 800; margin-bottom: 4px; }
-    .text-link { display: inline-block; margin-top: 24px; color: var(--cobalt-deep); font-weight: 700; text-decoration: none; }
-    .text-link:hover { text-decoration: underline; }
-
     /* Final CTA */
     .final { text-align: center; }
     .final img { width: 96px; height: 96px; margin: 0 auto 20px; border-radius: 22px; box-shadow: var(--shadow); }
@@ -146,29 +144,29 @@
   <main>
     <div class="wrap hero">
       <div>
-        <h1>Track walks.<br><span>Share the replay.</span></h1>
-        <p class="lede">AllTails tracks every walk with your dogs, then turns it into a replay worth posting. One app for owners, families, and the walkers who help.</p>
+        <h1>Relive every walk <span>with your pups.</span></h1>
+        <p class="lede">A fun walk tracking app for you and your pups. Map every walk, share the replay, and see who walked the dogs.</p>
         <a class="btn" href="https://testflight.apple.com/join/9zdaMKxX">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5.5" cy="10" r="2.2"/><circle cx="9.5" cy="6" r="2.2"/><circle cx="14.5" cy="6" r="2.2"/><circle cx="18.5" cy="10" r="2.2"/><path d="M12 11c-3.2 0-6 4.6-6 6.8 0 1.8 1.6 2.4 3 2.4 1.2 0 2-.6 3-.6s1.8.6 3 .6c1.4 0 3-.6 3-2.4C18 15.6 15.2 11 12 11z"/></svg>
           Join the Free Beta
         </a>
         <p class="note">Free on TestFlight for iPhone and Apple Watch. App Store launch soon.</p>
       </div>
-      <div class="phone"><video src="/apps/alltails/img/hero-demo.mp4" poster="/apps/alltails/img/hero-demo-poster.webp" width="720" height="1560" autoplay muted loop playsinline aria-label="AllTails in use: the Walk tab, the Pack week, a walk around Schiller Park, and its animated replay card."></video></div>
+      <div class="phones"><div class="phone back"><img src="/apps/alltails/img/screen-pack.webp" width="720" height="1564" alt="My Pack: Ralph, Arlo, Seth and Morgan, 4.4 miles this week and a 4-day streak."></div><div class="phone front"><video src="/apps/alltails/img/hero-replay.mp4" poster="/apps/alltails/img/hero-replay-poster.webp" width="720" height="1564" autoplay muted loop playsinline aria-label="The animated replay of a walk with Ralph and Arlo, then swiping between share cards."></video></div></div>
     </div>
 
     <section>
       <div class="wrap">
         <span class="kicker">Track</span>
-        <h2>Every walk. Every dog.</h2>
-        <p class="sub">Start a walk with one dog or the whole pack. AllTails draws the route and counts time, distance, and miles for each dog.</p>
+        <h2>Track the walk for each dog.</h2>
+        <p class="sub">Start a walk with one dog or all of them. AllTails maps the route and counts time and distance for each dog.</p>
         <div class="tiles">
-          <div class="tile"><h3>Live GPS route</h3><p>Time, distance, and pace as you walk.</p></div>
-          <div class="tile"><h3>Miles for each dog</h3><p>Every dog gets its own totals.</p></div>
-          <div class="tile"><h3>Streaks and goals</h3><p>Set a weekly goal and keep the streak going.</p></div>
-          <div class="tile"><h3>Medals</h3><p>Earn milestones for distance, streaks, and long walks.</p></div>
+          <div class="tile"><h3>Live route</h3><p>Route, time, distance and pace while you walk.</p></div>
+          <div class="tile"><h3>Miles for each dog</h3><p>Each dog gets its own totals and streak.</p></div>
+          <div class="tile"><h3>Streaks and goals</h3><p>Set a weekly goal. Keep the streak going.</p></div>
+          <div class="tile"><h3>Milestones</h3><p>Earn milestones for distance, streaks and long walks.</p></div>
           <div class="tile"><h3>Apple Watch</h3><p>Start and track a walk from your wrist.</p></div>
-          <div class="tile"><h3>Widgets and Live Activity</h3><p>Start, pause, and finish from the Lock Screen.</p></div>
+          <div class="tile"><h3>Lock Screen</h3><p>Start, pause and finish a walk from the Lock Screen.</p></div>
         </div>
       </div>
     </section>
@@ -176,35 +174,35 @@
     <section class="band">
       <div class="wrap">
         <span class="kicker">Replay</span>
-        <h2>Every walk becomes a replay.</h2>
-        <p class="sub">Watch the route draw itself with your dogs on it. Pick a card and tap Share.</p>
+        <h2>Share it your way.</h2>
+        <p class="sub">Every walk becomes an animated replay with your dogs on the route. Pick a card and tap Share.</p>
         <div class="cards">
           <figure><img src="/apps/alltails/img/card-replay.webp" width="642" height="1152" alt="Replay card: Ralph and Arlo walking the route, 1.06 miles in." loading="lazy"><figcaption>Replay<small>Animated video</small></figcaption></figure>
           <figure><img src="/apps/alltails/img/card-route.webp" width="642" height="1152" alt="Route card: a bright green route, 1.24 miles in 24:32." loading="lazy"><figcaption>Route<small>The map, the miles</small></figcaption></figure>
           <figure><img src="/apps/alltails/img/card-place.webp" width="642" height="1152" alt="Poster card: Lunch Loop in German Village, Ralph and Arlo, 1.2 miles." loading="lazy"><figcaption>Poster<small>Where you walked</small></figcaption></figure>
         </div>
-        <p class="fine">Plus Big Number, Pack Split, Photo, and AI cards. Every share trims about 150 m from each end of the route, so home stays private.</p>
+        <p class="fine">Plus Big Number, Pack Split, Photo, and AI cards. Each share hides the start and end of the route, so home stays private.</p>
       </div>
     </section>
 
     <section>
       <div class="wrap">
         <span class="kicker">Packs</span>
-        <h2>Walk together, even apart.</h2>
-        <p class="sub">Invite people to your pack with a link. When they walk your dogs, you get a heads-up and can follow along live.</p>
+        <h2>See who walked the dogs.</h2>
+        <p class="sub">Invite your family or your dog walker with a link. When someone walks your dogs, you get a heads-up and can follow along live.</p>
         <div class="duo">
           <div class="tile">
             <h3>For families</h3>
-            <p>Your partner, kids, or roommate join your pack.</p>
+            <p>Your partner, kids or roommate join your pack.</p>
             <ul>
-              <li>Everyone sees the dogs' walks.</li>
+              <li>Everyone sees every walk with the dogs.</li>
               <li>Anyone can log a walk.</li>
               <li>Miles and streaks count for the whole pack.</li>
             </ul>
           </div>
           <div class="tile walker">
             <h3>For dog walkers</h3>
-            <p>One app across every client.</p>
+            <p>One app for all your clients.</p>
             <ul>
               <li>Join each client's pack.</li>
               <li>Switch packs from the top of the Pack tab.</li>
@@ -212,20 +210,6 @@
             </ul>
           </div>
         </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="wrap">
-        <span class="kicker">Privacy</span>
-        <h2>Your walks stay yours.</h2>
-        <div class="facts">
-          <div class="tile"><strong>No sign-up</strong><p>Open the app and walk. Sign in with Apple to restore on a new phone.</p></div>
-          <div class="tile"><strong>No ads</strong><p>We never sell your data. Ads are measured only if you allow tracking.</p></div>
-          <div class="tile"><strong>Health stays on your iPhone</strong><p>Apple Health data never leaves your iPhone.</p></div>
-          <div class="tile"><strong>AI asks first</strong><p>AI cards send a photo only after you say yes.</p></div>
-        </div>
-        <a class="text-link" href="/apps/alltails/privacy.html">Read the privacy policy</a>
       </div>
     </section>
 
