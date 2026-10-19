@@ -6,6 +6,8 @@ Current content: October 19, 2026. AllTails is in free beta on TestFlight.
 - User manual: `https://alltailsapp.com/apps/alltails/guide.html`.
 - Help center: `https://alltailsapp.com/support` and the existing `support.html` path.
 - Privacy: `https://alltailsapp.com/privacy`.
+- Approved 27-second demo: `https://alltailsapp.com/apps/alltails/video/alltails-demo-27s.mp4`.
+- Demo poster: `https://alltailsapp.com/apps/alltails/video/alltails-demo-27s-poster.jpg`.
 
 These are static pages. `help.css` is shared by the manual and help center.
 `help.js` searches the answers already present in `support.html`. No search
@@ -53,3 +55,15 @@ The Render static site auto-deploys `main`. Merge is a production deployment and
 needs scoped approval. The separate draft App Store launch PR #27 must keep
 these manual, help and beta links when rebased. Change the public download CTA
 only after the App Store app is available and that switch is approved.
+
+## Hosted demo
+
+Seth approved the 27-second Log walks with your dogs cut on October 19. The
+playback asset is 720 × 1280, 30 fps, H.264, 26.97 seconds, 2.4 MB, with MP4
+metadata at the front for progressive playback. The first-frame JPEG poster
+is available alongside it. The 1080p master and exact edit recipe remain in
+`/Volumes/Studio-4TB/Scratch/alltails-demo-20261019/`.
+
+This is an edit of the October 17 phone recording. Hosting this demo does
+not change the App Review attachment or replace the existing homepage
+replay. The native release record owns the App Review video selection.
