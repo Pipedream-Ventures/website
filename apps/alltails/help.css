@@ -919,3 +919,24 @@ strong{
     color:inherit
   }
 }
+
+/* Keep section navigation in reach without covering the article. */
+.section-jump { display: none; }
+.contents a[aria-current="location"] { color: var(--link); font-weight: 800; }
+.contents a[data-nav-shortcut] { color: var(--link); font-weight: 700; }
+.chapter-nav { display: flex; justify-content: space-between; gap: 22px; margin-top: 30px; }
+.chapter-nav a { display: flex; align-items: center; min-height: 44px; max-width: 48%; font-size: .88rem; font-weight: 700; }
+.chapter-nav a:last-child { text-align: right; justify-content: flex-end; }
+.chapter, .help-group, .help-group details { scroll-margin-top: 0; }
+@media(max-width:700px) {
+  html.has-section-nav { scroll-padding-top: 158px; }
+  .section-jump { display: block; position: sticky; top: 76px; z-index: 4; background: var(--paper); }
+  .section-jump-inner { display: flex; align-items: center; gap: 14px; padding-block: 4px 12px; }
+  .section-jump label { flex: none; font-size: .85rem; font-weight: 700; color: var(--slate); }
+  .section-jump select { flex: 1; min-width: 0; min-height: 44px; padding: 8px 12px; border: 0; border-radius: 12px; background: white; color: var(--ink); font: inherit; font-size: 1rem; cursor: pointer; }
+  .section-jump select:focus-visible { outline: 3px solid var(--cobalt); outline-offset: 2px; }
+  .has-section-nav .contents { display: none; }
+  .manual-intro { padding-top: 26px; }
+  .help-intro { padding-top: 28px; }
+}
+@media print { .section-jump, .chapter-nav { display: none; } }

@@ -13,6 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&amp;family=Parkinsans:wght@700;800&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/apps/alltails/help.css">
+<script src="/apps/alltails/navigation.js" defer></script>
 </head><body><a class="skip" href="#main">Skip to content</a>
 <header class="site-header">
 <div class="shell header-inner">
@@ -24,6 +25,9 @@
   </nav>
 </div>
 </header>
+<nav class="section-jump" aria-label="In this manual" hidden>
+<div class="shell section-jump-inner"><label for="section-select">Jump to</label><select id="section-select"><option value="">Choose a section</option></select></div>
+</nav>
 <main id="main" class="shell">
 <div class="manual-intro">
   <div><h1>User manual.</h1>
@@ -59,6 +63,7 @@
 <p>Install AllTails first, then open their invite link again. You can also tap <strong>Got an invite?</strong> during setup and paste the link. <a href="#packs">More about invites</a></p>
 </div>
 <p><a href="/apps/alltails/support.html#beta-install">Having trouble installing? Get help <span aria-hidden="true">↗</span></a></p>
+<nav class="chapter-nav" aria-label="Continue reading after join the beta"><a href="#main">Manual overview</a><a href="#setup">Next: Set up your dogs</a></nav>
 </section>
 <section id="setup" class="chapter">
 <h2>Set up your dogs.</h2>
@@ -69,6 +74,7 @@
 </ul>
 <p>Add your name so the pack can see who walked the dogs. Allow location when asked so AllTails can record your route. Health and notifications are optional.</p>
 <p>To add another dog later, open <strong>Pack</strong> and use the add-dog control. Tap a dog's photo to edit its profile.</p>
+<nav class="chapter-nav" aria-label="Continue reading after set up your dogs"><a href="#beta">Previous: Join the beta</a><a href="#first-walk">Next: Record a walk</a></nav>
 </section>
 <section id="first-walk" class="chapter">
 <h2>Record a walk.</h2>
@@ -85,6 +91,7 @@
 </ol>
 <p>If AllTails asks about a very short walk, choose <strong>Save Anyway</strong> to keep it or <strong>Discard Walk</strong> to remove it. A failed save offers <strong>Retry Save</strong>; try that before starting another walk.</p>
 <p><a href="/apps/alltails/support.html#gps">Route missing or inaccurate? Check location settings <span aria-hidden="true">↗</span></a></p>
+<nav class="chapter-nav" aria-label="Continue reading after record a walk"><a href="#setup">Previous: Set up your dogs</a><a href="#history">Next: Find and edit walks</a></nav>
 </section>
 <section id="history" class="chapter">
 <h2>Find and edit walks.</h2>
@@ -104,6 +111,7 @@
 </div>
 </dl>
 <p>Imported Health walks have an <strong>Apple Health</strong> label. They stay on the iPhone that imported them.</p>
+<nav class="chapter-nav" aria-label="Continue reading after find and edit walks"><a href="#first-walk">Previous: Record a walk</a><a href="#packs">Next: Share your pack</a></nav>
 </section>
 <section id="packs" class="chapter">
 <h2>Share your pack.</h2>
@@ -121,6 +129,7 @@
 <h3>Remove someone or leave</h3>
 <p>In your own pack, tap the person and choose <strong>Remove from Pack</strong>. In a pack you joined, switch to that pack and tap <strong>Leave Pack</strong>. Confirm the change in the app.</p>
 <p><a href="/apps/alltails/support.html#invite">Invite not working? Try these steps <span aria-hidden="true">↗</span></a></p>
+<nav class="chapter-nav" aria-label="Continue reading after share your pack"><a href="#history">Previous: Find and edit walks</a><a href="#watch-health">Next: Watch and Health</a></nav>
 </section>
 <section id="watch-health" class="chapter">
 <h2>Apple Watch and Health.</h2>
@@ -137,6 +146,7 @@
 </ol>
 <p>Imported Health walks stay on this iPhone. They do not go to your pack or cloud backup. If there are no new walks, check the date and that the workout is a walk.</p>
 <p><a href="/apps/alltails/support.html#health">Missing Health workouts or Watch walks? Get help <span aria-hidden="true">↗</span></a></p>
+<nav class="chapter-nav" aria-label="Continue reading after watch and health"><a href="#packs">Previous: Share your pack</a><a href="#sharing">Next: Share a walk</a></nav>
 </section>
 <section id="sharing" class="chapter">
 <h2>Share a walk.</h2>
@@ -149,6 +159,7 @@
 </figure>
 <h3>Optional AI cards</h3>
 <p>AllTails asks before sending your selected photos and walk details to its AI image services. These cards need a connection and have a daily limit. If a card fails, you can still use the other image templates and Replay.</p>
+<nav class="chapter-nav" aria-label="Continue reading after share a walk"><a href="#watch-health">Previous: Watch and Health</a><a href="#account">Next: Keep your walks</a></nav>
 </section>
 <section id="account" class="chapter">
 <h2>Keep your walks.</h2>
@@ -162,6 +173,7 @@
 <h3>Delete your account</h3>
 <p>In AllTails, open <strong>Pack → Settings → Manage Account → Delete Account</strong>. Read the confirmation before proceeding. This removes your account, cloud backup, uploaded photos and owned pack. Health workouts are managed separately in Apple Health.</p>
 <p><a href="/apps/alltails/support.html#restore">Need help restoring your dogs or walks? Contact us <span aria-hidden="true">↗</span></a></p>
+<nav class="chapter-nav" aria-label="Continue reading after keep your walks"><a href="#sharing">Previous: Share a walk</a><a href="#settings">Next: Make it yours</a></nav>
 </section>
 <section id="settings" class="chapter">
 <h2>Make it yours.</h2>
@@ -186,6 +198,7 @@
 <div class="contact-note"><h3>Something still unclear?</h3>
 <p><a href="/apps/alltails/support.html">Search the help center</a> or <a href="mailto:seth@pipedream.ventures?subject=AllTails%20help">email us</a>. Tell us what you were trying to do and what happened.</p>
 </div>
+<nav class="chapter-nav" aria-label="Continue reading after make it yours"><a href="#account">Previous: Keep your walks</a><a href="/apps/alltails/support.html">Open the help center</a></nav>
 </section>
 </div>
 </div>

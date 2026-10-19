@@ -13,6 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&amp;family=Parkinsans:wght@700;800&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/apps/alltails/help.css">
+<script src="/apps/alltails/navigation.js" defer></script>
 <script src="/apps/alltails/help.js" defer></script></head><body><a class="skip" href="#main">Skip to content</a>
 <header class="site-header">
 <div class="shell header-inner">
@@ -24,8 +25,11 @@
   </nav>
 </div>
 </header>
+<nav class="section-jump" aria-label="Help topics" hidden>
+<div class="shell section-jump-inner"><label for="section-select">Jump to</label><select id="section-select"><option value="">Choose a section</option></select></div>
+</nav>
 <main id="main" class="shell">
-<div class="help-intro"><h1>How can we help?</h1>
+<div class="help-intro" id="search"><h1>How can we help?</h1>
 <p class="intro">Find an answer and get back to your walk.</p>
 <form class="search" role="search" hidden>
 <label for="help-search">Search the help center</label><div class="search-field"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg><input id="help-search" type="search" placeholder="Try invites, GPS or Health" autocomplete="off" spellcheck="false"><button type="button" class="clear-search" hidden>Clear</button></div>
@@ -41,7 +45,8 @@
 <span aria-hidden="true">↗</span></a></div>
 <div class="reading-layout help-layout"><aside class="contents">
 <nav aria-label="Help topics"><p>Browse help</p>
-<a href="#getting-started">Getting started</a><a href="#walks">Walks and location</a><a href="#pack-help">Packs and invitations</a><a href="#health-help">Apple Watch and Health</a><a href="#share-help">Photos and sharing</a><a href="#account-help">Account and settings</a></nav>
+<a href="#search" data-nav-shortcut>Search answers</a>
+<a href="#getting-started">Getting started</a><a href="#walks">Walks and location</a><a href="#pack-help">Packs and invitations</a><a href="#health-help">Apple Watch and Health</a><a href="#share-help">Photos and sharing</a><a href="#account-help">Account and settings</a><a href="#contact">Contact support</a></nav>
 </aside>
 <div class="help-answers"><section class="help-group" id="getting-started">
 <h2>Getting started</h2>
