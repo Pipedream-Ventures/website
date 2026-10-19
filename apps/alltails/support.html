@@ -1,120 +1,209 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AllTails Support</title>
-  <meta name="description" content="Help with AllTails: walks, packs, Apple Health, sharing, and AI cards.">
-  <meta name="robots" content="index, follow">
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;800&display=swap" rel="stylesheet">
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { min-height: 100vh; background: #F7F8FB; color: #11131F; font-family: "Figtree", -apple-system, system-ui, sans-serif; line-height: 1.65; }
-    main { max-width: 720px; margin: 0 auto; padding: 4rem 1.25rem; }
-    a { color: #4B55E8; font-weight: 600; text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    h1 { font-size: 2rem; font-weight: 800; letter-spacing: -0.01em; margin-bottom: 0.25rem; }
-    h2 { font-size: 1.1rem; font-weight: 800; margin: 2.25rem 0 0.75rem; }
-    p, li { color: #52535F; font-size: 1rem; }
-    p { margin-bottom: 1rem; }
-    ul { margin-bottom: 1rem; padding-left: 1.25rem; }
-    li { margin-bottom: 0.4rem; }
-    .updated { color: #7A7C88; font-size: 0.9rem; margin-bottom: 2.5rem; }
-    .card { margin: 1.75rem 0; padding: 1.25rem 1.4rem; background: #FFFFFF; border-radius: 20px; box-shadow: 0 8px 24px rgba(17,19,31,.07); }
-    .card p:last-child { margin-bottom: 0; }
-    footer { margin-top: 3.5rem; color: #8A8C97; font-size: 0.85rem; }
-    details { margin-bottom: 0.6rem; padding: 1rem 1.25rem; background: #FFFFFF; border-radius: 20px; box-shadow: 0 8px 24px rgba(17,19,31,.06); }
-    details p:last-child { margin-bottom: 0; }
-    summary { cursor: pointer; color: #11131F; font-weight: 600; list-style: none; }
-    summary::-webkit-details-marker { display: none; }
-    summary::after { content: "+"; float: right; margin-left: 0.75rem; color: #606CFF; font-weight: 800; }
-    details[open] summary::after { content: "\2212"; }
-    details[open] summary { margin-bottom: 0.6rem; }
-    .back { display: inline-block; margin-bottom: 2rem; font-size: 0.95rem; }
-  </style>
-</head>
-<body>
-  <main>
-    <a class="back" href="/apps/alltails/">&larr; AllTails</a>
-    <h1>AllTails Support</h1>
-    <p class="updated">AllTails: Dog Walking App</p>
-
-    <p>Questions about a walk, your pack, sharing, or Apple Health? Email us with your iPhone model, the app version, and what happened.</p>
-
-    <div class="card">
-      <p><strong>Email:</strong> <a href="mailto:seth@pipedream.ventures">seth@pipedream.ventures</a></p>
-      <p>We read every message and usually reply within a few business days.</p>
-    </div>
-
-    <h2>Packs</h2>
-    <details>
-      <summary>How do I invite someone to my pack?</summary>
-      <p>Open the Pack tab and tap Invite to Your Pack. Send the link by Messages, Mail, or any app. When they tap it on an iPhone with AllTails, they join your pack. No AllTails yet? The link gets them the free beta on TestFlight first.</p>
-    </details>
-    <details>
-      <summary>Who can I invite?</summary>
-      <p>Family, a partner, a roommate, or your dog walker. Only people with your invite link can join. Nobody needs an email or password.</p>
-    </details>
-    <details>
-      <summary>What do pack members see?</summary>
-      <p>Your dogs' profiles and every walk with your dogs: the route, time, dogs, walker name, and note. Members can log their own walks with your dogs too. Apple Health data never goes to the pack.</p>
-    </details>
-    <details>
-      <summary>I'm a dog walker. Can I join more than one pack?</summary>
-      <p>Yes. Accept an invite from each client. Tap the pack name at the top of the Pack tab to switch between packs. When you walk dogs from several clients together, each client gets only the walk with their own dogs. Clients never see each other.</p>
-    </details>
-    <details>
-      <summary>How do I remove someone or leave a pack?</summary>
-      <p><strong>Your pack:</strong> open the Pack tab, tap the person, and tap Remove from Pack.</p>
-      <p><strong>Someone else's pack:</strong> switch to that pack at the top of the Pack tab and tap Leave Pack. Their dogs leave your phone. Your past walks keep their names. They can invite you again.</p>
-    </details>
-    <details>
-      <summary>A walk didn't show up for my pack.</summary>
-      <p>Check that both phones are online, then open AllTails again. Walks imported from Apple Health stay on the phone that imported them, so they don't go to the pack.</p>
-    </details>
-
-    <h2>Walks and GPS</h2>
-    <p>AllTails uses location only while a walk is running. If a route looks jumpy, allow location "While Using" and walk with a clear view of the sky for the first minute. Forgot to end a walk? Open it in the Pack tab and use Trim.</p>
-
-    <h2>Apple Health</h2>
-    <details>
-      <summary>What does AllTails do with Apple Health?</summary>
-      <p>It's optional. AllTails can save walks to Health as workouts, show heart rate from your Apple Watch, and import past walks from Health. Turn it on during setup or in the Settings app.</p>
-    </details>
-    <details>
-      <summary>Does my Health data leave my iPhone?</summary>
-      <p>No. Health data stays on your iPhone. Your pack gets only the route and time AllTails records itself, so a walk's distance in the pack can differ from the Health distance on your phone.</p>
-    </details>
-
-    <h2>Sharing and AI cards</h2>
-    <details>
-      <summary>Does a shared route show where I live?</summary>
-      <p>Every share card and replay trims about 150 m from each end of the route. A photo on a card can still show a place, so check the image before you share it.</p>
-    </details>
-    <details>
-      <summary>How do AI cards and illustrations work?</summary>
-      <p>They're optional. AllTails asks before it sends anything. If you say yes, it sends the photo you picked and a few walk details to an AI image service to make the picture. You need a network connection. If you cancel, nothing is sent.</p>
-    </details>
-    <details>
-      <summary>The AI card failed or says I hit the limit.</summary>
-      <p>Each phone can make a limited number of AI images per day. Try again tomorrow. Every other card and the replay still work without AI.</p>
-    </details>
-
-    <h2>Your data</h2>
-    <p>AllTails backs up your walks, dogs, and photos to our servers. Apple Health data stays on your iPhone. To delete everything, open Settings in AllTails and tap Delete Account. This deletes your account, backup, photos, and pack. Remove Health walks in the Health app.</p>
-    <details>
-      <summary>What if I get a new phone?</summary>
-      <p>On your old phone, open Settings, tap Back up your pack, and sign in with Apple. Then install AllTails on the new phone and sign in with Apple. Your dogs, walks, and packs come back.</p>
-    </details>
-
-    <h2>Privacy</h2>
-    <p>Read the <a href="/apps/alltails/privacy.html">AllTails Privacy Policy</a>.</p>
-    <footer>
-      <p>&copy; 2026 Pipedream Ventures LLC</p>
-    </footer>
-  </main>
-</body>
-</html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Help center · AllTails</title><meta name="description" content="Get help with the AllTails beta, pack invitations, GPS, Apple Health, Watch walks, sharing and your account.">
+<meta name="robots" content="index, follow"><meta name="theme-color" content="#F7F8FB">
+<link rel="canonical" href="https://alltailsapp.com/apps/alltails/support.html">
+<link rel="icon" type="image/png" href="/apps/alltails/img/icon.png">
+<meta property="og:type" content="website"><meta property="og:title" content="Help center · AllTails">
+<meta property="og:description" content="Get help with the AllTails beta, pack invitations, GPS, Apple Health, Watch walks, sharing and your account."><meta property="og:url" content="https://alltailsapp.com/apps/alltails/support.html">
+<meta property="og:image" content="https://alltailsapp.com/apps/alltails/img/og.jpg">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Help center · AllTails">
+<meta name="twitter:description" content="Get help with the AllTails beta, pack invitations, GPS, Apple Health, Watch walks, sharing and your account."><meta name="twitter:image" content="https://alltailsapp.com/apps/alltails/img/og.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&amp;family=Parkinsans:wght@700;800&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/apps/alltails/help.css">
+<script src="/apps/alltails/navigation.js" defer></script>
+<script src="/apps/alltails/help.js" defer></script></head><body><a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+<div class="shell header-inner">
+  <a class="brand" href="/apps/alltails/" aria-label="AllTails home"><img src="/apps/alltails/img/icon.png" width="34" height="34" alt=""><span>AllTails</span></a>
+  <nav aria-label="Main navigation">
+    <a href="/apps/alltails/guide.html">User manual</a>
+    <a href="/apps/alltails/support.html" aria-current="page">Help</a>
+    <a class="button small" href="https://testflight.apple.com/join/9zdaMKxX">Join the Free Beta</a>
+  </nav>
+</div>
+</header>
+<nav class="section-jump" aria-label="Help topics" hidden>
+<div class="shell section-jump-inner"><label for="section-select">Jump to</label><select id="section-select"><option value="">Choose a section</option></select></div>
+</nav>
+<main id="main" class="shell">
+<div class="help-intro" id="search"><h1>How can we help?</h1>
+<p class="intro">Find an answer and get back to your walk.</p>
+<form class="search" role="search" hidden>
+<label for="help-search">Search the help center</label><div class="search-field"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg><input id="help-search" type="search" placeholder="Try invites, GPS or Health" autocomplete="off" spellcheck="false"><button type="button" class="clear-search" hidden>Clear</button></div>
+<p class="search-status" role="status" aria-live="polite"></p>
+</form>
+</div>
+<div class="help-start"><a class="manual-link" href="/apps/alltails/guide.html"><div><h2>New to AllTails?</h2>
+<p>Start with the user manual.</p>
+</div>
+<span aria-hidden="true">↗</span></a><a class="beta-link" href="/apps/alltails/guide.html#beta"><div><h2>Join the free beta.</h2>
+<p>Install with TestFlight on your iPhone.</p>
+</div>
+<span aria-hidden="true">↗</span></a></div>
+<div class="reading-layout help-layout"><aside class="contents">
+<nav aria-label="Help topics"><p>Browse help</p>
+<a href="#search" data-nav-shortcut>Search answers</a>
+<a href="#getting-started">Getting started</a><a href="#walks">Walks and location</a><a href="#pack-help">Packs and invitations</a><a href="#health-help">Apple Watch and Health</a><a href="#share-help">Photos and sharing</a><a href="#account-help">Account and settings</a><a href="#contact">Contact support</a></nav>
+</aside>
+<div class="help-answers"><section class="help-group" id="getting-started">
+<h2>Getting started</h2>
+<details id="beta-install" data-terms="download join accept iphone">
+<summary>How do I install the beta?</summary>
+<div class="answer"><p>On your iPhone, install <a href="https://apps.apple.com/app/testflight/id899247664">TestFlight</a>, then open the <a href="https://testflight.apple.com/join/9zdaMKxX">AllTails beta link</a>. Tap <strong>View in TestFlight → Accept → Install</strong>. Open AllTails from your Home Screen.</p>
+<p>If you already installed TestFlight, return to the beta link. Installing TestFlight alone does not install AllTails. <a href="/apps/alltails/guide.html#beta">See the full install guide</a>.</p>
+<a class="permalink" href="#beta-install" aria-label="Link to this answer: How do I install the beta?">Link to this answer <span aria-hidden="true">↗</span></a></div>
+</details>
+<details id="beta-update" data-terms="expired expiration unavailable install not accepting testers">
+<summary>TestFlight says the beta expired or is full.</summary>
+<div class="answer"><p>Open TestFlight and check AllTails for an <strong>Update</strong>. If you see no available build, or the public beta says it is full or not accepting testers, <a href="#contact">email us</a> with the message you see. Keep AllTails installed while we help.</p>
+<a class="permalink" href="#beta-update" aria-label="Link to this answer: TestFlight says the beta expired or is full.">Link to this answer <span aria-hidden="true">↗</span></a></div>
+</details>
+<details id="no-dogs" data-terms="disabled grey gray button empty dog walker setup">
+<summary>Start Walk is unavailable, or I have no dogs.</summary>
+<div class="answer"><p>Select at least one dog and a walker in the <strong>Walk</strong> tab. To add your own dog, open <strong>Pack</strong> and use the add-dog control. If you walk someone else's dogs, ask the owner for a pack invite instead of creating the dogs again.</p>
+<a class="permalink" href="#no-dogs" aria-label="Link to this answer: Start Walk is unavailable, or I have no dogs.">Link to this answer <span aria-hidden="true">↗</span></a></div>
+</details>
+</section>
+<section class="help-group" id="walks">
+<h2>Walks and location</h2>
+<details id="gps" data-terms="gps map route jumpy inaccurate permissions distance">
+<summary>My route is missing or looks inaccurate.</summary>
+<div class="answer"><p>Check <strong>iPhone Settings → Privacy &amp; Security → Location Services → AllTails</strong>. Allow <strong>While Using the App</strong> and turn on <strong>Precise Location</strong>. Go outside with a clear view of the sky and give GPS a moment to settle.</p>
+<p>Start a walk in AllTails before putting the phone away. If the route is still wrong, <a href="#contact">send us the time of the walk and what happened</a>.</p>
+<a class="permalink" href="#gps" aria-label="Link to this answer: My route is missing or looks inaccurate.">Link to this answer <span aria-hidden="true">↗</span></a></div>
+</details>
+<details id="save" data-terms="lost missing history retry error failed finish">
+<summary>My walk did not save.</summary>
+<div class="answer"><p>If AllTails shows <strong>Retry Save</strong>, tap it before starting another walk. For a very short walk, choose <strong>Save Anyway</strong> if you want to keep it. Look in <strong>Pack → History</strong> for the saved walk.</p>
+<p>If it is still missing, keep the app installed and <a href="#contact">email us</a> with the date and approximate time.</p>
+<a class="permalink" href="#save" aria-label="Link to this answer: My walk did not save.">Link to this answer <span aria-hidden="true">↗</span></a></div>
+</details>
+<details id="trim" data-terms="edit time extra end distance">
+<summary>I forgot to finish a walk. Can I trim it?</summary>
+<div class="answer"><p>Yes. Open the saved walk in <strong>Pack → History</strong>, then choose <strong>Edit → Trim Walk</strong>. Drag the start or end handle, review the kept route, then tap <strong>Save</strong>. Trimming is available for recorded routes.</p>
+<a class="permalink" href="#trim" aria-label="Link to this answer: I forgot to finish a walk. Can I trim it?">Link to this answer <span aria-hidden="true">↗</span></a></div>
+</details>
+<details id="old-walks" data-terms="previous past runs history find search">
+<summary>Where are my older walks?</summary>
+<div class="answer"><p>Open <strong>Pack</strong> and scroll to <strong>History</strong>. Below the recent walks, tap <strong>See All … Walks</strong> to search and sort the rest. If you belong to several packs, check the pack selected at the top of <strong>Pack</strong>.</p>
+<a class="permalink" href="#old-walks" aria-label="Link to this answer: Where are my older walks?">Link to this answer <span aria-hidden="true">↗</span></a></div>
+</details>
+</section>
+<section class="help-group" id="pack-help">
+<h2>Packs and invitations</h2>
+<details id="invite" data-terms="join paste copied accept expired code invitation family partner">
+<summary>An invite link does not open my pack.</summary>
+<div class="answer"><p>First, make sure AllTails is installed. Return to the original invite message and open its link again. During setup, you can tap <strong>Got an invite?</strong> and paste the full link or enter its code.</p>
+<p>If the app says the invite did not work, ask the owner for a new link from <strong>Pack → Invite to Your Pack</strong> or <strong>Your Pack Is Shared</strong>. <a href="/apps/alltails/guide.html#packs">Read the pack guide</a>.</p>
+<a class="permalink" href="#invite" aria-label="Link to this answer: An invite link does not open my pack.">Link to this answer <span aria-hidden="true">↗</span></a></div>
+</details>
+<details id="pack-sync" data-terms="sync shared missing health refresh online update">
+<summary>A walk is not showing up for another pack member.</summary>
+<div class="answer"><p>Check that both phones are online, then open AllTails on both. Make sure the right pack is selected and the right dogs were on the walk. Walks imported from Apple Health stay on the importing phone and do not sync to a pack.</p>
+<p>If a recorded walk is still missing, <a href="#contact">email us</a> with the walk time and which phone recorded it.</p>
+<a class="permalink" href="#pack-sync" aria-label="Link to this answer: A walk is not showing up for another pack member.">Link to this answer <span aria-hidden="true">↗</span></a></div>
+</details>
+<details id="multiple-packs" data-terms="dog walker clients multiple families switch">
+<summary>Can I walk dogs from more than one family?</summary>
+<div class="answer"><p>Yes. Accept an invite from each owner. Tap the pack name at the top of <strong>Pack</strong> to switch. Each family sees only walks with its own dogs. <a href="/apps/alltails/guide.html#packs">See how packs work</a>.</p>
+<a class="permalink" href="#multiple-packs" aria-label="Link to this answer: Can I walk dogs from more than one family?">Link to this answer <span aria-hidden="true">↗</span></a></div>
+</details>
+<details id="leave" data-terms="remove delete member family leave revoke">
+<summary>How do I remove someone or leave a pack?</summary>
+<div class="answer"><p>For your own pack, tap the person in <strong>Pack</strong> and choose <strong>Remove from Pack</strong>. To leave someone else's pack, switch to it and tap <strong>Leave Pack</strong>. Confirm in the app. Their dogs leave your phone; your past walks keep their names.</p>
+<a class="permalink" href="#leave" aria-label="Link to this answer: How do I remove someone or leave a pack?">Link to this answer <span aria-hidden="true">↗</span></a></div>
+</details>
+</section>
+<section class="help-group" id="health-help">
+<h2>Apple Watch and Health</h2>
+<details id="health" data-terms="empty no walks import permission workout routes 90 days">
+<summary>My Health walks are not available to import.</summary>
+<div class="answer"><p>Open <strong>Pack → History → Import from Health</strong>. AllTails looks for walking workouts from the last 90 days. Walks already imported or matched to AllTails may not appear as new imports.</p>
+<p>In the iPhone Health settings, find <strong>Data Access &amp; Devices → AllTails</strong> and check access to <strong>Workouts</strong> and <strong>Workout Routes</strong>. Return to AllTails and try again. Settings names can vary by iOS version.</p>
+<a class="permalink" href="#health" aria-label="Link to this answer: My Health walks are not available to import.">Link to this answer <span aria-hidden="true">↗</span></a></div>
+</details>
+<details id="watch" data-terms="wrist install watchos pair companion">
+<summary>How do I install AllTails on Apple Watch?</summary>
+<div class="answer"><p>Install the iPhone beta on the phone paired with your Watch. Open AllTails in TestFlight and look in the app details for the Watch install option. The Watch app needs watchOS 11 or later. Open AllTails on your iPhone and set up your dogs first.</p>
+<a class="permalink" href="#watch" aria-label="Link to this answer: How do I install AllTails on Apple Watch?">Link to this answer <span aria-hidden="true">↗</span></a></div>
+</details>
+<details id="watch-sync" data-terms="watch transfer missing sync workout">
+<summary>A Watch walk has not appeared on my iPhone.</summary>
+<div class="answer"><p>Bring the paired Watch and iPhone together, check their connection, and open AllTails on the iPhone. Check <strong>Pack → History</strong> after the walk finishes transferring.</p>
+<p>If you recorded it in Apple's Workout app, use <strong>Import from Health</strong> instead. If it is still missing, <a href="#contact">email us</a> with the walk time and which app recorded it.</p>
+<a class="permalink" href="#watch-sync" aria-label="Link to this answer: A Watch walk has not appeared on my iPhone.">Link to this answer <span aria-hidden="true">↗</span></a></div>
+</details>
+<details id="health-data" data-terms="privacy data health calories backup heart rate shared">
+<summary>Does my pack see my heart rate or Health imports?</summary>
+<div class="answer"><p>No. Apple Health imports, heart rate and calories stay on your iPhone. They do not go to your pack or cloud backup. Packs receive the route and time AllTails records itself, so a shared walk's distance can differ from its Health distance.</p>
+<a class="permalink" href="#health-data" aria-label="Link to this answer: Does my pack see my heart rate or Health imports?">Link to this answer <span aria-hidden="true">↗</span></a></div>
+</details>
+</section>
+<section class="help-group" id="share-help">
+<h2>Photos and sharing</h2>
+<details id="share" data-terms="save photo replay export video image template">
+<summary>How do I save a card or Replay?</summary>
+<div class="answer"><p>Open a saved walk and tap <strong>Share Walk</strong>. Choose a template, then tap <strong>Share</strong>. Use the iPhone share sheet to save it or send it to another app. A video needs time to export; keep AllTails open until it is ready.</p>
+<a class="permalink" href="#share" aria-label="Link to this answer: How do I save a card or Replay?">Link to this answer <span aria-hidden="true">↗</span></a></div>
+</details>
+<details id="route-privacy" data-terms="privacy address location map home sharing">
+<summary>Does a shared route show my home?</summary>
+<div class="answer"><p>Share cards and replays hide about 150 metres at each end of a route. This does not guarantee that a familiar place cannot be recognized. Review the route and any photos before you share.</p>
+<a class="permalink" href="#route-privacy" aria-label="Link to this answer: Does a shared route show my home?">Link to this answer <span aria-hidden="true">↗</span></a></div>
+</details>
+<details id="ai" data-terms="ai poster illustration generation failed limit network consent">
+<summary>An AI card failed or reached the daily limit.</summary>
+<div class="answer"><p>Check your connection and try again. If you reached the daily limit, try again tomorrow. Other image cards and Replay are still available.</p>
+<p>AI cards are optional. AllTails asks before sending selected photos and walk details to its AI image services. Cancel the confirmation if you do not want to send them.</p>
+<a class="permalink" href="#ai" aria-label="Link to this answer: An AI card failed or reached the daily limit.">Link to this answer <span aria-hidden="true">↗</span></a></div>
+</details>
+</section>
+<section class="help-group" id="account-help">
+<h2>Account and settings</h2>
+<details id="restore" data-terms="restore backup reinstall sign in apple lost new phone account">
+<summary>How do I move to a new iPhone?</summary>
+<div class="answer"><p>On the old phone, open <strong>Pack → Settings → Complete your account</strong> and finish <strong>Continue with Apple</strong>. On the new phone, choose <strong>I have an account</strong> during setup and use the same Apple Account.</p>
+<p>Check your dogs and walks on the new phone before erasing the old one. Health imports, heart rate and calories are not in cloud backup. <a href="/apps/alltails/guide.html#account">Read the account guide</a>.</p>
+<a class="permalink" href="#restore" aria-label="Link to this answer: How do I move to a new iPhone?">Link to this answer <span aria-hidden="true">↗</span></a></div>
+</details>
+<details id="sign-in" data-terms="login sign in error failed account restore">
+<summary>Continue with Apple did not finish.</summary>
+<div class="answer"><p>Check your internet connection, then try <strong>Continue with Apple</strong> again from AllTails Settings. If you are restoring an account, use the same Apple Account you used before.</p>
+<p>If it still fails, keep the app installed and <a href="#contact">email us</a> with the error message and your iOS version.</p>
+<a class="permalink" href="#sign-in" aria-label="Link to this answer: Continue with Apple did not finish.">Link to this answer <span aria-hidden="true">↗</span></a></div>
+</details>
+<details id="notifications" data-terms="push reminders alerts permission daily walk">
+<summary>How do I turn on reminders or pack notifications?</summary>
+<div class="answer"><p>Open <strong>Pack → Settings → Notifications</strong>. Allow notifications and choose a time for the daily walk reminder. If notifications are blocked, tap <strong>Open Settings</strong> and allow them in the iPhone settings.</p>
+<p>Also check Focus and notification settings on your iPhone if alerts are silent.</p>
+<a class="permalink" href="#notifications" aria-label="Link to this answer: How do I turn on reminders or pack notifications?">Link to this answer <span aria-hidden="true">↗</span></a></div>
+</details>
+<details id="delete-account" data-terms="delete erase remove privacy data account">
+<summary>How do I delete my account and data?</summary>
+<div class="answer"><p>Open <strong>Pack → Settings → Manage Account → Delete Account</strong>. Read and confirm the deletion in AllTails. It removes the account, backup, uploaded photos and owned pack. Health workouts are managed separately in the Health app.</p>
+<p>For details, read the <a href="/apps/alltails/privacy.html">privacy policy</a>. If you cannot access the app, <a href="#contact">contact us</a>.</p>
+<a class="permalink" href="#delete-account" aria-label="Link to this answer: How do I delete my account and data?">Link to this answer <span aria-hidden="true">↗</span></a></div>
+</details>
+</section>
+<div class="no-results note" hidden><h2>No answers found.</h2>
+<p>Try a shorter search, like “invite” or “Health”. You can also <a href="/apps/alltails/guide.html">read the manual</a> or <a href="#contact">email us</a>.</p>
+<button class="text-button" type="button" id="reset-search">Show all answers</button></div>
+<section class="contact-note" id="contact">
+<h2>Ask us directly.</h2>
+<p>Tell us what you were trying to do, what happened and what you expected. Include your iPhone model, iOS version and AllTails version. A screenshot helps if you have one.</p>
+<a class="button" data-support-contact href="mailto:seth@pipedream.ventures?subject=AllTails%20help">Email AllTails support <span aria-hidden="true">↗</span></a><p class="email-address"><a href="mailto:seth@pipedream.ventures">seth@pipedream.ventures</a></p>
+<p>During the beta, you can also open AllTails in TestFlight and tap <strong>Send Beta Feedback</strong>.</p>
+</section>
+<p class="edition">Help center · Updated October 19, 2026</p>
+</div>
+</div>
+</main>
+<footer class="site-footer shell">
+<a class="brand" href="/apps/alltails/" aria-label="AllTails home"><img src="/apps/alltails/img/icon.png" width="28" height="28" alt="">AllTails</a>
+<nav aria-label="Footer"><a href="/apps/alltails/guide.html">User manual</a><a href="/apps/alltails/support.html">Help center</a><a href="/apps/alltails/privacy.html">Privacy</a><a href="mailto:seth@pipedream.ventures">Contact</a></nav>
+<p>© 2026 Pipedream Ventures LLC</p>
+</footer>
+</body></html>

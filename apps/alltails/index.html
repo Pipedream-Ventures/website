@@ -52,11 +52,14 @@
     nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
     .brand { display: flex; align-items: center; gap: 10px; font-size: 1.15rem; text-decoration: none; }
     .brand img { width: 32px; height: 32px; border-radius: 8px; }
-    .nav-cta { --h: 38px; display: inline-flex; align-items: center; height: var(--h); padding: 0 16px; border-radius: calc(var(--h) / 2); background: var(--ink); color: var(--white); font-weight: 700; font-size: .9rem; text-decoration: none; }
+    .nav-links { display:flex; align-items:center; gap:22px; }
+    .nav-guide { display:inline-flex; align-items:center; min-height:44px; font-size:.9rem; font-weight:600; text-decoration:none; color:var(--slate); }
+    .nav-guide:hover { color:var(--cobalt-deep); }
+    .nav-cta { --h: 44px; display: inline-flex; align-items: center; height: var(--h); padding: 0 16px; border-radius: calc(var(--h) / 2); background: var(--ink); color: var(--white); font-weight: 700; font-size: .9rem; text-decoration: none; }
 
     /* Buttons */
-    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; height: var(--btn-h); padding: 0 26px; border-radius: calc(var(--btn-h) / 2); background: var(--cobalt); color: var(--white); font-weight: 700; font-size: 1.05rem; text-decoration: none; transition: transform .15s ease, background .15s ease; }
-    .btn:hover { background: var(--cobalt-deep); transform: translateY(-1px); }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; height: var(--btn-h); padding: 0 26px; border-radius: calc(var(--btn-h) / 2); background: var(--cobalt-deep); color: var(--white); font-weight: 700; font-size: 1.05rem; text-decoration: none; transition: transform .15s ease, background .15s ease; }
+    .btn:hover { background: #3d46c5; transform: translateY(-1px); }
     .btn:focus-visible, .nav-cta:focus-visible { outline: 3px solid var(--cobalt); outline-offset: 3px; }
     .btn svg { width: 20px; height: 20px; flex: none; }
     .btn.light { background: var(--white); color: var(--ink); }
@@ -112,6 +115,21 @@
     .duo .walker p, .duo .walker li { color: rgba(255, 255, 255, .78); }
     .duo .walker li::before { background: var(--tennis); }
 
+    /* Beta install instructions */
+    #beta { scroll-margin-top:80px; }
+    .beta-top { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:start; gap:28px; }
+    .beta-top h2 { max-width:18ch; }
+    .beta-steps { counter-reset:beta; list-style:none; padding:0; display:grid; gap:28px; margin-top:36px; }
+    .beta-steps li { counter-increment:beta; position:relative; padding-left:50px; }
+    .beta-steps li::before { content:counter(beta); --size:32px; position:absolute; top:0; left:0; width:var(--size); height:var(--size); border-radius:calc(var(--size) / 2); background:var(--white); color:var(--cobalt-deep); font-weight:700; display:grid; place-items:center; }
+    .beta-steps h3 { font-size:1.1rem; margin-bottom:6px; }
+    .beta-steps p { color:var(--slate); }
+    .beta-steps a,.beta-help a { color:var(--cobalt-deep); text-underline-offset:.2em; }
+    .beta-help { margin-top:30px; color:var(--slate); }
+    @media(min-width:820px) { .beta-steps { grid-template-columns:repeat(3,1fr); gap:36px; } }
+    @media(max-width:540px) { .nav-links { gap:12px; } .nav-guide { font-size:.8rem; } .nav-cta { padding-inline:12px; font-size:.8rem; } nav .brand { gap:7px; font-size:1rem; } }
+    @media(max-width:370px) { .nav-links { gap:10px; } nav .brand { font-size:0; gap:0; } }
+
     /* Final CTA */
     .final { text-align: center; }
     .final img { width: 96px; height: 96px; margin: 0 auto 20px; border-radius: 22px; box-shadow: var(--shadow); }
@@ -138,7 +156,7 @@
   <nav>
     <div class="wrap">
       <a class="brand" href="/apps/alltails/"><img src="/apps/alltails/img/icon.png" alt="">AllTails</a>
-      <a class="nav-cta" href="https://testflight.apple.com/join/9zdaMKxX">Join the Beta</a>
+      <div class="nav-links"><a class="nav-guide" href="/apps/alltails/guide.html">User manual</a><a class="nav-guide" href="/apps/alltails/support.html">Help</a><a class="nav-cta" href="#beta">Join the Beta</a></div>
     </div>
   </nav>
 
@@ -151,7 +169,7 @@
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5.5" cy="10" r="2.2"/><circle cx="9.5" cy="6" r="2.2"/><circle cx="14.5" cy="6" r="2.2"/><circle cx="18.5" cy="10" r="2.2"/><path d="M12 11c-3.2 0-6 4.6-6 6.8 0 1.8 1.6 2.4 3 2.4 1.2 0 2-.6 3-.6s1.8.6 3 .6c1.4 0 3-.6 3-2.4C18 15.6 15.2 11 12 11z"/></svg>
           Join the Free Beta
         </a>
-        <p class="note">Free on TestFlight for iPhone and Apple Watch. App Store launch soon.</p>
+        <p class="note">Free on TestFlight for iPhone and Apple Watch. App Store launch soon.<br><a href="#beta">How to join the beta</a></p>
       </div>
       <div class="phones"><div class="phone back"><img src="/apps/alltails/img/screen-pack.webp" width="720" height="1564" alt="My Pack: Ralph, Arlo, Seth and Morgan, 4.4 miles this week and a 4-day streak."></div><div class="phone front"><video src="/apps/alltails/img/hero-replay.mp4" poster="/apps/alltails/img/hero-replay-poster.webp" width="720" height="1564" autoplay muted loop playsinline aria-label="The animated replay of a walk with Ralph and Arlo, then swiping between share cards."></video></div></div>
     </div>
@@ -229,6 +247,14 @@
       </div>
     </section>
 
+    <section id="beta">
+      <div class="wrap">
+        <div class="beta-top"><div><h2>Join the free beta.</h2><p class="sub">Install AllTails on your iPhone with TestFlight, Apple's app for trying beta apps.</p></div><a class="btn" href="https://testflight.apple.com/join/9zdaMKxX">Join the Free Beta</a></div>
+        <ol class="beta-steps"><li><h3>Get TestFlight.</h3><p>Install <a href="https://apps.apple.com/app/testflight/id899247664">TestFlight from the App Store</a> on your iPhone.</p></li><li><h3>Accept the invite.</h3><p>Return here and <a href="https://testflight.apple.com/join/9zdaMKxX">open the AllTails beta</a>. Tap View in TestFlight, then Accept and Install.</p></li><li><h3>Open AllTails.</h3><p>Set up your dogs or open a pack invite from someone you walk with.</p></li></ol>
+        <p class="beta-help">iOS 17 or later. Optional Watch app: watchOS 11 or later. <a href="/apps/alltails/guide.html#beta">Read the install guide</a> or <a href="/apps/alltails/support.html#beta-install">get help joining</a>.</p>
+      </div>
+    </section>
+
     <section class="final">
       <div class="wrap">
         <img src="/apps/alltails/img/icon.png" width="96" height="96" alt="AllTails app icon">
@@ -245,7 +271,8 @@
     <div class="wrap">
       <span>&copy; 2026 Pipedream Ventures LLC</span>
       <nav aria-label="AllTails links">
-        <a href="/apps/alltails/support.html">Support</a>
+        <a href="/apps/alltails/guide.html">User manual</a>
+        <a href="/apps/alltails/support.html">Help center</a>
         <a href="/apps/alltails/privacy.html">Privacy</a>
       </nav>
     </div>
