@@ -23,4 +23,4 @@ As of this content update, the public install path is TestFlight. App Store
 submission and the public-download switch have separate release approval.
 
 Reading interfaces use a single content column, per Seth's October 19 feedback.
-Use the sticky section picker for wayfinding instead of a sidebar.
+Use the sticky Contents menu for wayfinding instead of a sidebar.

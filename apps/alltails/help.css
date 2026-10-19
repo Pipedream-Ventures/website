@@ -936,9 +936,19 @@ strong{
 html.has-section-nav { scroll-padding-top: 164px; }
 .section-jump { display: block; position: sticky; top: 82px; z-index: 4; background: var(--paper); }
 .section-jump-inner { display: flex; align-items: center; gap: 14px; padding-block: 4px 12px; }
-.section-jump label { flex: none; font-size: .85rem; font-weight: 700; color: var(--slate); }
-.section-jump select { flex: 1; min-width: 0; min-height: 44px; padding: 8px 12px; border: 0; border-radius: 12px; background: white; color: var(--ink); font: inherit; cursor: pointer; }
-.section-jump select:focus-visible { outline: 3px solid var(--cobalt); outline-offset: 2px; }
+.section-menu { position: relative; flex: none; }
+.section-menu summary { display: flex; align-items: center; gap: 9px; min-height: 44px; padding: 0 10px; margin-left: -10px; border-radius: 12px; list-style: none; font-size: .88rem; font-weight: 700; }
+.section-menu summary::-webkit-details-marker { display: none; }
+.section-menu summary:hover, .section-menu[open] summary { background: white; color: var(--link); }
+.contents-icon { width: 19px; height: 19px; }
+.contents-chevron { width: 14px; height: 14px; transition: transform .15s ease; }
+.section-menu[open] .contents-chevron { transform: rotate(180deg); }
+.section-current { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--slate); font-size: .88rem; }
+.section-links { --menu-radius: 18px; --menu-padding: 8px; position: absolute; top: calc(100% + 4px); left: -10px; z-index: 6; width: min(340px, calc(100vw - 40px)); max-height: min(520px, calc(100dvh - 156px)); overflow-y: auto; padding: var(--menu-padding); border-radius: var(--menu-radius); background: white; box-shadow: 0 14px 40px rgba(17, 19, 31, .14); scrollbar-width: thin; scrollbar-color: var(--cobalt) white; }
+.section-links a { display: flex; align-items: center; min-height: 44px; padding: 10px 14px; border-radius: calc(var(--menu-radius) - var(--menu-padding)); color: var(--slate); font-size: .94rem; font-weight: 600; line-height: 1.4; text-decoration: none; }
+.section-links a:hover { background: var(--paper); color: var(--link); }
+.section-links a[aria-current="location"] { background: var(--paper); color: var(--link); font-weight: 800; }
+.chapter h2[tabindex="-1"]:focus, .help-group h2[tabindex="-1"]:focus { outline: none; }
 .chapter-nav { display: flex; justify-content: space-between; gap: 22px; margin-top: 30px; }
 .chapter-nav a { display: flex; align-items: center; min-height: 44px; max-width: 48%; font-size: .88rem; font-weight: 700; }
 .chapter-nav a:last-child { text-align: right; justify-content: flex-end; }

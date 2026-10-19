@@ -11,7 +11,7 @@ These are static pages. `help.css` is shared by the manual and help center.
 `help.js` searches the answers already present in `support.html`. No search
 request leaves the page. All answers remain accessible without JavaScript.
 Answer IDs are stable links used by the manual; keep them when editing content.
-`navigation.js` adds a section picker on every screen and marks the current section.
+`navigation.js` adds a Contents menu on every screen and marks the current section.
 The manual also has previous/next chapter links that work without JavaScript.
 The AllTails Cloudflare Worker already passes through `/apps/alltails/*`, so
 these pages and assets do not require a Worker deployment.
