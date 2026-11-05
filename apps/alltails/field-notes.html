@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Field Notes · AllTails</title>
+  <meta name="description" content="Building AllTails in public, written down as it happens.">
+  <meta name="robots" content="index, follow">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#F7F8FB">
+  <link rel="canonical" href="https://alltailsapp.com/field-notes">
+  <link rel="icon" type="image/png" href="/apps/alltails/img/icon.png">
+  <link rel="apple-touch-icon" href="/apps/alltails/img/icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://alltailsapp.com/field-notes">
+  <meta property="og:title" content="Field Notes · AllTails">
+  <meta property="og:description" content="Building AllTails in public, written down as it happens.">
+  <meta property="og:image" content="https://alltailsapp.com/apps/alltails/img/og.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;700&family=Parkinsans:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root { --paper: #F7F8FB; --ink: #11131F; --slate: #52535F; --muted: #7A7C88; --cobalt: #606CFF; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; }
+    body { background: var(--paper); color: var(--ink); font-family: "Figtree", -apple-system, system-ui, sans-serif; line-height: 1.55; }
+    a { color: inherit; }
+    .top { width: min(100% - 40px, 640px); margin: 0 auto; height: 60px; display: flex; align-items: center; }
+    .brand { display: flex; align-items: center; gap: 8px; font-family: "Parkinsans", "Figtree", sans-serif; font-weight: 800; letter-spacing: -0.02em; text-decoration: none; }
+    .brand img { width: 28px; height: 28px; border-radius: 22.37%; }
+    main { width: min(100% - 40px, 640px); margin: 0 auto; padding: 40px 0 96px; }
+    h1 { font-family: "Parkinsans", "Figtree", sans-serif; font-weight: 800; font-size: clamp(40px, 7vw, 56px); line-height: 1.05; letter-spacing: -0.02em; }
+    header { margin-bottom: 56px; }
+    header p { margin-top: 12px; color: var(--slate); font-size: 17px; }
+    article { margin-top: 48px; scroll-margin-top: 24px; }
+    h2 { font-size: 14px; font-weight: 600; line-height: 1.4; color: var(--muted); }
+    h2 a { text-decoration: none; }
+    h2 a:hover { color: var(--cobalt); }
+    article p { margin-top: 14px; font-size: 18px; line-height: 1.6; }
+    figure { margin-top: 24px; }
+    figure img { display: block; width: 100%; height: auto; border-radius: 16px; }
+    figcaption { margin-top: 8px; color: var(--muted); font-size: 14px; }
+    .empty { color: var(--slate); font-size: 18px; }
+    footer { width: min(100% - 40px, 640px); margin: 0 auto; padding: 24px 0 40px; display: flex; flex-wrap: wrap; gap: 12px 20px; justify-content: space-between; color: var(--muted); font-size: 14px; }
+    footer .wrap { display: contents; }
+    footer nav { display: flex; flex-wrap: wrap; gap: 16px; }
+    footer a { text-decoration: none; }
+    footer a:hover { color: var(--ink); }
+  </style>
+</head>
+<body>
+  <div class="top"><a class="brand" href="/apps/alltails/"><img src="/apps/alltails/img/icon.png" alt="">AllTails</a></div>
+  <main>
+    <header>
+      <h1>Field Notes</h1>
+      <p>Building AllTails in public, as it happens. By Seth Miller.</p>
+    </header>
+
+    <!--
+      New entries go at the top. Copy this shape:
+      <article id="2026-11-05">
+        <h2><a href="#2026-11-05"><time datetime="2026-11-05">November 5, 2026</time></a></h2>
+        <p>...</p>
+        <figure><img src="/apps/alltails/img/field-notes/name.jpg" alt="..."><figcaption>...</figcaption></figure>
+      </article>
+    -->
+    <p class="empty">First entry soon.</p>
+  </main>
+  <footer>
+    <div class="wrap">
+      <span>&copy; 2026 Pipedream Ventures LLC</span>
+      <nav aria-label="AllTails links">
+        <a href="https://beta.alltailsapp.com">Beta</a>
+        <a href="/apps/alltails/guide.html">User manual</a>
+        <a href="/apps/alltails/support.html">Help center</a>
+        <a href="/apps/alltails/privacy.html">Privacy</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>
