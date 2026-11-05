@@ -38,7 +38,7 @@ The TestFlight join page was checked in a real browser on October 19.
 
 ## Support House follow-up
 
-Support currently goes to `seth@pipedream.ventures` or TestFlight feedback.
+Support currently goes to `support@alltailsapp.com` or TestFlight feedback.
 The help center's primary contact link has `data-support-contact`. That is a
 future integration point, not a live Support House connection. When AllTails
 support intake is configured in Support House, replace or enhance this action
