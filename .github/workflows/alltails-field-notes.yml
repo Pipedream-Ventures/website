@@ -1,0 +1,26 @@
+name: AllTails field notes
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "apps/alltails/field-notes/*.md"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --no-save --no-package-lock marked
+      - run: node scripts/alltails-field-notes.mjs
+      - run: |
+          git config user.name "field-notes"
+          git config user.email "field-notes@users.noreply.github.com"
+          git add apps/alltails/field-notes.html
+          git diff --cached --quiet || (git commit -m "Rebuild AllTails field notes" && git push)
