@@ -127,7 +127,7 @@
     .beta-steps a,.beta-help a { color:var(--cobalt-deep); text-underline-offset:.2em; }
     .beta-help { margin-top:30px; color:var(--slate); }
     @media(min-width:820px) { .beta-steps { grid-template-columns:repeat(3,1fr); gap:36px; } }
-    @media(max-width:540px) { .nav-links { gap:12px; } .nav-guide { font-size:.8rem; } .nav-cta { padding-inline:12px; font-size:.8rem; } nav .brand { gap:7px; font-size:1rem; } }
+    @media(max-width:540px) { .nav-notes { display:none; } .nav-links { gap:12px; } .nav-guide { font-size:.8rem; } .nav-cta { padding-inline:12px; font-size:.8rem; } nav .brand { gap:7px; font-size:1rem; } }
     @media(max-width:370px) { .nav-links { gap:10px; } nav .brand { font-size:0; gap:0; } }
 
     /* Final CTA */
@@ -137,8 +137,8 @@
 
     footer { padding: 32px 0 48px; color: var(--muted); font-size: .9rem; }
     footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 20px; justify-content: space-between; }
-    footer nav { position: static; background: none; -webkit-backdrop-filter: none; backdrop-filter: none; display: flex; gap: 20px; }
-    footer a { color: var(--slate); font-weight: 600; text-decoration: none; }
+    footer nav { position: static; background: none; -webkit-backdrop-filter: none; backdrop-filter: none; display: flex; flex-wrap: wrap; gap: 8px 20px; }
+    footer a { color: var(--slate); font-weight: 600; text-decoration: none; white-space: nowrap; }
     footer a:hover { color: var(--ink); }
 
     @media (min-width: 820px) {
@@ -156,7 +156,7 @@
   <nav>
     <div class="wrap">
       <a class="brand" href="/apps/alltails/"><img src="/apps/alltails/img/icon.png" alt="">AllTails</a>
-      <div class="nav-links"><a class="nav-guide" href="/apps/alltails/guide.html">User manual</a><a class="nav-guide" href="/apps/alltails/support.html">Help</a><a class="nav-cta" href="#beta">Join the Beta</a></div>
+      <div class="nav-links"><a class="nav-guide" href="/apps/alltails/guide.html">User manual</a><a class="nav-guide nav-notes" href="/field-notes">Field Notes</a><a class="nav-guide" href="/apps/alltails/support.html">Help</a><a class="nav-cta" href="#beta">Join the Beta</a></div>
     </div>
   </nav>
 
@@ -273,6 +273,7 @@
       <nav aria-label="AllTails links">
         <a href="https://beta.alltailsapp.com">Beta</a>
         <a href="/apps/alltails/guide.html">User manual</a>
+        <a href="/field-notes">Field Notes</a>
         <a href="/apps/alltails/support.html">Help center</a>
         <a href="/apps/alltails/privacy.html">Privacy</a>
       </nav>
