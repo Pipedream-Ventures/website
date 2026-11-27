@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mesmerize · Paywalls and Meta events</title>
+  <meta name="description" content="The current Mesmerize paywalls, seven days of observed events, and what Superwall sends to Meta.">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <link rel="canonical" href="https://pipedream.ventures/pages/mesmerize-meta-events-nov27-53115d65/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Mesmerize · Paywalls and Meta events">
+  <meta property="og:description" content="The current Mesmerize paywalls, seven days of observed events, and what Superwall sends to Meta.">
+  <meta property="og:url" content="https://pipedream.ventures/pages/mesmerize-meta-events-nov27-53115d65/">
+  <meta property="og:image" content="https://pipedream.ventures/pages/mesmerize-meta-events-nov27-53115d65/og.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Mesmerize paywalls and Meta events, November 20–26, 2026">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Mesmerize · Paywalls and Meta events">
+  <meta name="twitter:description" content="The current Mesmerize paywalls, seven days of observed events, and what Superwall sends to Meta.">
+  <meta name="twitter:image" content="https://pipedream.ventures/pages/mesmerize-meta-events-nov27-53115d65/og.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,550&display=swap" rel="stylesheet">
+  <style>
+    :root { color-scheme: light; --ink: #1b1b1a; --muted: #565654; --line: #dfdfdd; --figure: #f5f5f4; --serif: Newsreader, Georgia, serif; --sans: "Hanken Grotesk", system-ui, sans-serif; }
+    * { box-sizing: border-box; }
+    body { margin: 0; color: var(--ink); background: #fff; font: 19px/1.48 var(--serif); }
+    main { width: min(736px, calc(100% - 40px)); margin: 64px auto; }
+    h1, h2 { font-weight: 550; line-height: 1.03; }
+    h1 { font-size: clamp(38px, 7vw, 59px); letter-spacing: -.035em; margin: 16px 0 24px; }
+    h2 { font-size: 29px; margin: 32px 0 12px; }
+    p { margin: 0 0 12px; }
+    .meta, figcaption, footer { font: 14px/1.45 var(--sans); color: var(--muted); }
+    header { margin-bottom: 28px; }
+    .lead { font-size: 22px; }
+    figure { background: var(--figure); border-radius: 12px; padding: 12px 16px; margin: 0; }
+    table { width: 100%; border-collapse: collapse; font: 15px/1.25 var(--sans); font-variant-numeric: tabular-nums; }
+    th, td { padding: 8px 4px; text-align: right; }
+    th:first-child { text-align: left; }
+    thead th { vertical-align: bottom; font-weight: 600; }
+    tbody tr, tfoot { border-top: 1px solid var(--line); }
+    tbody th { font-weight: 500; white-space: nowrap; }
+    tfoot { font-weight: 700; }
+    figcaption { padding: 8px 4px 4px; }
+    code { font: .79em ui-monospace, monospace; overflow-wrap: anywhere; }
+    a { color: inherit; text-decoration-color: #898987; text-underline-offset: .16em; }
+    footer { border-top: 1px solid var(--line); margin-top: 32px; padding-top: 16px; }
+    .routes { padding: 4px 16px; }
+    .route { display: grid; grid-template-columns: minmax(0, 1fr) 24px minmax(0, 1.6fr); gap: 12px; align-items: start; padding: 16px 0; font: 15px/1.4 var(--sans); }
+    .route + .route { border-top: 1px solid var(--line); }
+    .route p { margin: 4px 0 0; }
+    .route b { display: block; }
+    .route .arrow { text-align: center; color: var(--muted); }
+    .route .evidence { display: block; font-size: 13px; color: var(--muted); margin-top: 4px; }
+    .mapping { display: grid; gap: 4px; padding-top: 8px; }
+    .mapping span { display: block; }
+    .preview-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .preview { padding: 12px; }
+    .preview img { display: block; width: min(100%, 200px); height: auto; margin: 0 auto; border-radius: 8px; }
+    .preview figcaption { padding: 12px 0 0; color: var(--ink); }
+    .preview strong { display: block; }
+    .preview strong { margin-bottom: 4px; }
+    .signal-table, .event-table { table-layout: fixed; }
+    .campaign-table { margin-bottom: 16px; }
+    .campaign-table th:first-child { width: 35%; }
+    .signal-table col:first-child { width: 40%; }
+    .event-table .event-name { width: 34%; }
+    .event-table .event-count { width: 72px; }
+    .signal-table th, .signal-table td, .event-table th, .event-table td { padding: 12px 8px; text-align: left; vertical-align: top; }
+    .event-table th:nth-child(2), .event-table td:nth-child(2) { text-align: right; white-space: nowrap; padding-right: 16px; }
+    .signal-table th:first-child, .event-table th:first-child { white-space: normal; }
+    .event-table .source-row th { padding-block: 12px 4px; font-size: 13px; font-weight: 700; color: var(--muted); }
+    .event-table .source-row + tr { border-top: 0; }
+    .storefront td { white-space: nowrap; }
+    details { margin-top: 32px; }
+    summary { font-size: 25px; font-weight: 550; cursor: pointer; }
+    details figure { margin-top: 12px; }
+    .note { margin: 12px 0 0; }
+    @media (max-width: 480px) {
+      .routes { padding: 4px 12px; }
+      .route { grid-template-columns: minmax(0, 0.75fr) 16px minmax(0, 1.25fr); gap: 4px; font-size: 14px; }
+
+      main { margin: 32px auto; width: calc(100% - 32px); }
+      figure { padding: 8px; }
+      .preview-grid { gap: 8px; }
+      .preview figcaption { font-size: 13px; }
+      .signal-table td, .signal-table th { padding: 8px 4px; }
+      .event-table .event-name { width: 45%; }
+      .event-table .event-count { width: 52px; }
+      .event-table td, .event-table th { padding: 8px 4px; }
+      .event-table th:nth-child(2), .event-table td:nth-child(2) { padding-right: 8px; }
+      table { font-size: 13px; }
+      th, td { padding-inline: 4px; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <p class="meta">Mesmerize · Tangent · Nov 20–26, 2026 ET</p>
+    <h1>Mesmerize paywalls and Meta events</h1>
+    <p class="lead">The live onboarding paywall still offers a seven-day trial. Here’s what Superwall sends to Meta, and what Mesmerize recorded from Nov 20–26.</p>
+  </header>
+
+  <section aria-labelledby="signals">
+    <h2 id="signals">Campaign type and dataset</h2>
+    <figure class="campaign-table">
+      <table class="signal-table">
+        <thead><tr><th scope="col">Meta campaign setup</th><th scope="col">Where the ad set gets its signal</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Sales → Website</th><td>Choose the web dataset connected in Superwall and use the Superwall ad link. The link sends people to the App Store. Superwall reports the eligible conversions as website events.</td></tr>
+          <tr><th scope="row">App Promotion → App</th><td>Choose the Mesmerize iOS app data source. The ad set can optimize for installs or eligible app events, depending on its performance goal. Mesmerize logs a standard <code>Purchase</code> on this source even when a free trial starts.</td></tr>
+        </tbody>
+      </table>
+      <figcaption>The ad set’s conversion location and event source determine which events it can use. A <code>Purchase</code> on the app source and a <code>Purchase</code> on the web dataset can mean different things. We verified Superwall’s configured web destination. Tangent’s actual ad set settings were unavailable.</figcaption>
+    </figure>
+
+    <h2>Superwall’s web conversion events</h2>
+    <figure>
+      <table class="signal-table">
+        <colgroup><col><col></colgroup>
+        <thead><tr><th scope="col">Meta event</th><th scope="col">When Superwall sends it</th></tr></thead>
+        <tbody>
+          <tr><th scope="row"><code>InitiateCheckout</code></th><td>A checkout attempt starts.</td></tr>
+          <tr><th scope="row"><code>StartTrial</code></th><td>A free trial starts.</td></tr>
+          <tr><th scope="row"><code>sw_initial_conversion</code></th><td>The first transaction is a trial or a paid subscription.</td></tr>
+          <tr><th scope="row"><code>sw_initial_purchase</code></th><td>The first subscription transaction charges upfront, including paid intro offers.</td></tr>
+          <tr><th scope="row"><code>Purchase</code></th><td>Subscription Start maps here for a paid start or an eligible trial-to-paid conversion. One-time purchases share this event name.</td></tr>
+        </tbody>
+      </table>
+      <figcaption>These are Mesmerize’s saved web event mappings. Meta selects one eligible conversion event per ad set. Custom events may need confirmation in Events Manager. Superwall can also send a qualified purchase event filtered to specific product IDs. Meta receipt and event eligibility were unavailable for verification.</figcaption>
+    </figure>
+  </section>
+
+  <section aria-labelledby="paywalls">
+    <h2 id="paywalls">What users see</h2>
+    <div class="preview-grid">
+      <figure class="preview">
+        <img src="https://paywall-image-previews.superwalleditor.com/282367/p4h8D1kIj7asKxBX2SAD_g.png" width="1170" height="2532" alt="Live Mesmerize trial preview with Continue and No payment now" />
+        <figcaption><strong>Live onboarding · 100%</strong> Continue opens the trial flow. Eligible users get seven free days. An upfront welcome offer can appear when eligible.</figcaption>
+      </figure>
+      <figure class="preview">
+        <img src="https://paywall-image-previews.superwalleditor.com/291320/X28gqQ_u_DPGJt2JPezD4w.png" width="1170" height="2532" alt="Debug hard paywall showing $49.99 yearly and $12.99 monthly in the US preview" />
+        <figcaption><strong>Hard paywall · debug only</strong> Unlock opens Apple checkout for the selected plan. The preview still shows the older $12.99 monthly and $49.99 yearly plans.</figcaption>
+      </figure>
+    </div>
+    <p class="note">Official Superwall previews, shown in US English. The debug placement splits 34% Direct, 33% per-week framing and 33% per-month framing. The live and debug audiences have no country filters. Apple storefront and offer eligibility govern local prices and terms. If the remote paywall fails, iOS can fall back to its native trial flow.</p>
+  </section>
+
+  <section aria-labelledby="storefronts">
+    <h2 id="storefronts">What changes by storefront</h2>
+    <figure>
+      <table class="storefront">
+        <thead><tr><th scope="col">Storefront</th><th scope="col">After 7-day trial<br>/ year</th><th scope="col">Welcome offer<br>first year</th><th scope="col">New no-trial<br>month / year</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">US</th><td>$49.99</td><td>$29.99</td><td>$14.99 / $29.99</td></tr>
+          <tr><th scope="row">UK</th><td>£49.99</td><td>£29.99</td><td>£14.99 / £29.99</td></tr>
+          <tr><th scope="row">Canada</th><td>C$66.99</td><td>C$39.99</td><td>C$19.99 / C$39.99</td></tr>
+          <tr><th scope="row">Germany</th><td>€59.99</td><td>€34.99</td><td>€17.99 / €34.99</td></tr>
+        </tbody>
+      </table>
+      <figcaption>App Store Connect prices for four storefronts. Apple lists a seven-day introductory trial in all four. The new plans are approved and have no introductory offer in these storefronts, but neither is assigned to the live or debug paywalls shown above. The two new products had zero observed purchases in the seven-day window.</figcaption>
+    </figure>
+  </section>
+
+  <details>
+    <summary>Source diagram · who sends what</summary>
+    <figure class="routes" aria-label="Mesmerize event routes from source to destination">
+      <div class="route">
+        <div><b>Mesmerize iOS app</b><span class="evidence">Meta SDK · code verified</span></div>
+        <span class="arrow" aria-hidden="true">→</span>
+        <div><b>Meta app data source</b>
+          <p>Free trial → custom <code>a_startTrial</code> and standard <code>Purchase</code> without revenue. Upfront payment → custom <code>a_initialPurchase</code> and standard <code>Purchase</code> with amount when available.</p>
+          <p>Meta SDK auto-logging can also emit <code>StartTrial</code> and <code>Subscribe</code>.</p>
+        </div>
+      </div>
+      <div class="route">
+        <div><b>Superwall iOS SDK</b><span class="evidence">Production rows verified</span></div>
+        <span class="arrow" aria-hidden="true">→</span>
+        <div><b>Superwall analytics</b><p>Logs <code>paywall_open</code>, <code>transaction_start</code>, <code>transaction_complete</code>, <code>freeTrial_start</code> and <code>subscription_start</code>. These are the app’s Superwall events.</p></div>
+      </div>
+      <div class="route">
+        <div><b>Apple StoreKit → RevenueCat</b><span class="evidence">Server webhook verified</span></div>
+        <span class="arrow" aria-hidden="true">→</span>
+        <div><b>Superwall revenue tracking</b><p>RevenueCat sends <code>initial_purchase</code> and <code>renewal</code>. The transaction ID, period type and price tell us what happened and whether money changed hands.</p></div>
+      </div>
+      <div class="route">
+        <div><b>Superwall Meta Ads</b><span class="evidence">Server API · saved settings verified</span></div>
+        <span class="arrow" aria-hidden="true">→</span>
+        <div><b>Mesmerize Meta web dataset</b>
+          <div class="mapping">
+            <span>Paywall open → <code>ViewContent</code></span>
+            <span>Transaction start → <code>InitiateCheckout</code></span>
+            <span>Abandon → <code>sw_transaction_abandon</code></span>
+            <span>Free trial start → <code>StartTrial</code></span>
+            <span>Subscription start and one-time purchase → <code>Purchase</code></span>
+            <span>Initial purchase, no trial → <code>sw_initial_purchase</code></span>
+            <span>Initial trial or purchase → <code>sw_initial_conversion</code></span>
+          </div>
+          <p>These are the saved outbound names. Meta receipt and ad-set eligibility still need a check.</p>
+        </div>
+      </div>
+      <div class="route">
+        <div><b>RevenueCat → Meta</b><span class="evidence">Separate server integration · reported connected</span></div>
+        <span class="arrow" aria-hidden="true">→</span>
+        <div><b>Meta destination unverified</b><p>Defaults are <code>StartTrial</code> for trial starts and <code>Subscribe</code> for initial payments, trial conversions and renewals. The saved destination and enabled rows require RevenueCat dashboard access.</p></div>
+      </div>
+    </figure>
+    <p class="note">Superwall’s separate lifecycle Meta Conversion API integration is disconnected. The Supabase one-hour trial event goes only to Amplitude as of Nov 24.</p>
+  </details>
+
+  <h2 id="volume">Seven days of volume</h2>
+  <figure aria-label="Daily production volume">
+    <table>
+      <thead><tr><th scope="col">Date</th><th scope="col">Installs</th><th scope="col">Checkout starts</th><th scope="col">Free trials</th><th scope="col">Paid upfront</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Nov 20</th><td>302</td><td>108</td><td>26</td><td>1</td></tr>
+        <tr><th scope="row">Nov 21</th><td>369</td><td>166</td><td>45</td><td>4</td></tr>
+        <tr><th scope="row">Nov 22</th><td>368</td><td>177</td><td>45</td><td>6</td></tr>
+        <tr><th scope="row">Nov 23</th><td>301</td><td>128</td><td>24</td><td>4</td></tr>
+        <tr><th scope="row">Nov 24</th><td>361</td><td>166</td><td>45</td><td>4</td></tr>
+        <tr><th scope="row">Nov 25</th><td>245</td><td>116</td><td>24</td><td>1</td></tr>
+        <tr><th scope="row">Nov 26</th><td>360</td><td>192</td><td>42</td><td>8</td></tr>
+      </tbody>
+      <tfoot><tr><th scope="row">Total</th><td>2,306</td><td>1,053</td><td>251</td><td>28</td></tr></tfoot>
+    </table>
+    <figcaption>Installs and checkout starts are Superwall event counts. Free trials and upfront payments are distinct App Store transactions from RevenueCat’s production webhooks into Superwall. Counts cover all observed traffic. Meta-attributed volume is unverified.</figcaption>
+  </figure>
+
+  <section aria-labelledby="events">
+    <h2 id="events">Actual events recorded</h2>
+    <figure>
+      <table class="event-table">
+        <colgroup><col class="event-name"><col class="event-count"><col></colgroup>
+        <thead><tr><th scope="col">Event</th><th scope="col">Count</th><th scope="col">What it recorded</th></tr></thead>
+        <tbody>
+          <tr class="source-row"><th scope="rowgroup" colspan="3">Superwall iOS SDK</th></tr>
+          <tr><th scope="row"><code>app_install</code></th><td>2,306</td><td>Install events across iOS.</td></tr>
+          <tr><th scope="row"><code>paywall_open</code></th><td>2,871</td><td>1,433 paywall opens and 1,438 survey opens.</td></tr>
+          <tr><th scope="row"><code>transaction_start</code></th><td>1,053</td><td>Checkout attempts from 704 user IDs.</td></tr>
+          <tr><th scope="row"><code>transaction_abandon</code></th><td>705</td><td>Checkout abandon events.</td></tr>
+          <tr><th scope="row"><code>transaction_complete</code></th><td>297</td><td>Completions, including free trials.</td></tr>
+          <tr><th scope="row"><code>freeTrial_start</code></th><td>263</td><td>Includes 27 transactions RevenueCat classified as paid intro offers.</td></tr>
+          <tr><th scope="row"><code>subscription_start</code></th><td>34</td><td>32 matched RevenueCat renewal transaction IDs. Two had no match in the window.</td></tr>
+          <tr><th scope="row"><code>attribution_match</code></th><td>450</td><td>Attempts from Nov 24–26. All returned <code>no_candidates</code>.</td></tr>
+        </tbody>
+        <tbody>
+          <tr class="source-row"><th scope="rowgroup" colspan="3">RevenueCat webhook → Superwall</th></tr>
+          <tr><th scope="row"><code>initial_purchase</code></th><td>279</td><td>251 free trials and 28 upfront payments. The payments were all on the existing welcome offer.</td></tr>
+          <tr><th scope="row"><code>renewal</code></th><td>220</td><td>91 first charges after trial, 117 other paid renewals and 12 zero-charge records.</td></tr>
+        </tbody>
+      </table>
+      <figcaption>These counts cover all observed iOS traffic. The same transaction can appear in both sources. The 91 trial conversions include trials that started before this week. Meta receipt and attribution were unavailable for verification.</figcaption>
+    </figure>
+  </section>
+
+  <footer>
+    <p>Production events read Nov 27 at 12:17 p.m. ET. Superwall assignments and Apple storefront prices checked Nov 27. Superwall iOS app 58080, production event rows. RevenueCat counts require App Store and <code>environment=PRODUCTION</code> in the webhook payload. RevenueCat’s direct Meta settings and Meta’s event receipts required sign-in.</p>
+    <p><a href="https://app.superwall.com/27206/58080/integrations/mmp/meta">Saved Superwall mappings</a> · <a href="https://github.com/pzizz/Mesmerize-iOS/blob/b440f6dd428e3f491384a8eb8760bd40a3bc62bd/Mesmerize/Analytics/AppAnalytics.swift#L26">iOS event code</a> · <a href="https://app.revenuecat.com/projects/621e5fe3/charts">RevenueCat</a> · <a href="https://superwall.com/docs/integrations/meta-ads">Superwall campaign setup</a> · <a href="https://developers.facebook.com/docs/marketing-api/reference/adcampaigngroup/">Meta campaign objectives</a> · <a href="https://superwall.com/docs/integrations/meta-ads-qualified-events">Product-filtered events</a> · <a href="https://appstoreconnect.apple.com/apps/1461517107/distribution">App Store Connect</a> · <a href="https://app.superwall.com/27206/58080/campaigns">Superwall campaigns</a></p>
+  </footer>
+</main>
+</body>
+</html>
