@@ -101,7 +101,7 @@
   <header>
     <p class="meta">Mesmerize · Tangent · Nov 20–26, 2026 ET</p>
     <h1>Mesmerize paywalls and Meta events</h1>
-    <p class="lead">Mesmerize is still showing the trial paywall in production. Nov 20–26 had <strong>251 trial starts, 28 upfront payments, and 91 first charges after trial</strong>. We saw zero purchases on the two new no-trial plans.</p>
+    <p class="lead">Mesmerize is still showing the trial paywall in production. Nov 20–26 had <strong>251 trial starts, 28 upfront payments, and 91 trial conversions</strong>. We saw zero purchases on the two new no-trial plans.</p>
   </header>
 
   <section aria-labelledby="signals">
@@ -170,10 +170,10 @@
           <tbody>
             <tr class="source-row"><th scope="rowgroup" colspan="3">RevenueCat webhook → Superwall</th></tr>
             <tr><th scope="row"><code>initial_purchase</code></th><td>279</td><td>251 free trials and 28 upfront payments. The payments were all on the existing welcome offer.</td></tr>
-            <tr><th scope="row"><code>renewal</code></th><td>220</td><td>91 first charges after trial, 117 other paid renewals and 12 zero-charge records.</td></tr>
+            <tr><th scope="row"><code>renewal</code></th><td>220</td><td>91 trial conversions, 117 other paid renewals and 12 zero-charge records.</td></tr>
           </tbody>
         </table>
-        <figcaption>Counts cover all observed iOS traffic. A transaction can appear in both sources. The 91 first charges include trials that started before this week.</figcaption>
+        <figcaption>Counts cover all observed iOS traffic. A transaction can appear in both sources. A trial conversion is the first paid charge after a free trial. The 91 include trials that started before this week.</figcaption>
       </figure>
     </section>
 
